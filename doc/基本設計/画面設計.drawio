@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-07-22T03:55:37.178Z" agent="5.0 (X11; CrOS x86_64 14816.99.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36" version="20.1.3" etag="nQWQRiJyXtJwyWaN_TL-" type="github" pages="18">
+<mxfile host="app.diagrams.net" modified="2022-07-22T04:00:03.970Z" agent="5.0 (X11; CrOS x86_64 14816.99.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36" version="20.1.3" etag="noJtB-N1EOBYN544FbhP" type="github" pages="18">
   <diagram name="トップページ" id="c9db0220-8083-56f3-ca83-edcdcd058819">
     <mxGraphModel dx="1307" dy="514" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
@@ -463,7 +463,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="ユーザ情報編集" id="3O_Vo1PqBbylcAShj_DF">
-    <mxGraphModel dx="630" dy="506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1307" dy="514" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="VkKuKSko7qNjEUd3aBs1-0" style=";html=1;" />
         <mxCell id="VkKuKSko7qNjEUd3aBs1-1" style=";html=1;" parent="VkKuKSko7qNjEUd3aBs1-0" />
@@ -521,6 +521,12 @@
         </mxCell>
         <mxCell id="VkKuKSko7qNjEUd3aBs1-18" value="&lt;font&gt;既に使用されています&lt;/font&gt;" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=none;fontColor=#CC0000;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="VkKuKSko7qNjEUd3aBs1-1">
           <mxGeometry x="200" y="440" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rScl8lKdPqUOCnNV6Bc_-0" value="&lt;font&gt;一致しません&lt;/font&gt;" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=none;fontColor=#CC0000;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="VkKuKSko7qNjEUd3aBs1-1">
+          <mxGeometry x="640" y="440" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rScl8lKdPqUOCnNV6Bc_-1" value="&lt;font&gt;一致しません&lt;/font&gt;" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=none;fontColor=#CC0000;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="VkKuKSko7qNjEUd3aBs1-1">
+          <mxGeometry x="640" y="560" width="400" height="40" as="geometry" />
         </mxCell>
         <mxCell id="VkKuKSko7qNjEUd3aBs1-19" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;パスワードは英数字8文字以上でご設定ください&lt;/font&gt;" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=none;fontColor=#CC0000;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;" vertex="1" parent="VkKuKSko7qNjEUd3aBs1-1">
           <mxGeometry x="200" y="560" width="400" height="40" as="geometry" />
@@ -583,7 +589,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="ユーザ情報編集確認" id="YQpAt7-VEozPpvUDpLWq">
-    <mxGraphModel dx="630" dy="506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1307" dy="514" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="qP_e4eR-C08RfEm-_MsN-0" style=";html=1;" />
         <mxCell id="qP_e4eR-C08RfEm-_MsN-1" style=";html=1;" parent="qP_e4eR-C08RfEm-_MsN-0" />
@@ -691,7 +697,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="ユーザ情報編集完了" id="pQ4j7hiI2K-6abdhWNzE">
-    <mxGraphModel dx="630" dy="506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1307" dy="514" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="Z5eEi_f10Aoj85JUIQlD-0" style=";html=1;" />
         <mxCell id="Z5eEi_f10Aoj85JUIQlD-1" style=";html=1;" parent="Z5eEi_f10Aoj85JUIQlD-0" />
