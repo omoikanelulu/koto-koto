@@ -19,6 +19,7 @@
         <p>Hallo world</p>
         <p>linux環境を一旦削除、その後復元</p>
         <p>Githubとの連携が出来ているかチェック</p>
+        <p>ubuntuにcloneした、プッシュのテスト</p>
     </main>
     <footer>
     </footer>
