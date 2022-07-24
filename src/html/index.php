@@ -16,7 +16,7 @@ $nav_title = 'koto-kotoへようこそ';
     <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../css/custom.css">
-    <title>koto-kotoへようこそ</title>
+    <title><?= $nav_title ?></title>
 </head>
 
 <body class="bg-light">
@@ -49,27 +49,27 @@ $nav_title = 'koto-kotoへようこそ';
                             </ul>
                         </li>
                     </ul>
-                    <!-- <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
                 </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <div class="row">
-            <div class="col-12 col-md-8 col-xl-6">
-                <a href="#"><button type="button" class="btn btn-primary">ログイン</button></a>
-                <a href="#"><button type="button" class="btn btn-success">新規登録</button></a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-10 col-md-8 col-xl-6">
+                    <a href="#"><button type="button" class="user-login-btn btn btn-primary">ログイン</button></a>
+                    <a href="#"><button type="button" class="btn btn-success">新規登録</button></a>
+                </div>
+                <div class="col-2"></div>
             </div>
+            <p>Hallo world</p>
+            <p>linux環境を一旦削除、その後復元</p>
+            <p>Githubとの連携が出来ているかチェック</p>
+            <p>ubuntuにcloneした、プッシュのテスト</p>
+            <p>bootstrapのデフォルトの色を変更したい…</p>
         </div>
-        <p>Hallo world</p>
-        <p>linux環境を一旦削除、その後復元</p>
-        <p>Githubとの連携が出来ているかチェック</p>
-        <p>ubuntuにcloneした、プッシュのテスト</p>
-        <p>bootstrapのデフォルトの色を変更したい…</p>
     </main>
     <footer>
     </footer>
