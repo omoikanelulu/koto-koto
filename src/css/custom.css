@@ -19,9 +19,15 @@ h1,
 
 .navber {
   position: fixed;
+  margin-bottom: 5px;
+  z-index: 100;
 }
 
 .nav_title {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.user-login-btn {
+  margin-right: 2rem;
 }/*# sourceMappingURL=custom.css.map */
