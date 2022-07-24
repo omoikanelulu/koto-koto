@@ -1,11 +1,38 @@
 //テーマカラーの設定
-$primary:       #0d6efd;
-$secondary:     #6c757d;
-$success:       #198754;
-$info:          #0dcaf0;
-$warning:       #ffc107;
-$danger:        #dc3545;
-$light:         #a3317f;
-$dark:          #212529;
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
 
 @import "./bootstrap/bootstrap.css";
+
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.navber {
+    position: fixed;
+}
+
+.nav_title {
+    margin-top: 0;
+    margin-bottom: 0;
+}
