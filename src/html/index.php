@@ -55,7 +55,7 @@ $nav_title = 'koto-kotoへようこそ';
     </header>
 
     <main>
-        <div class="container-fluid">
+        <div class="mt-5 container-fluid">
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-10 col-md-8 col-xl-6">
