@@ -8,7 +8,6 @@ $danger: #dc3545;
 $light: #f8f9fa;
 $dark: #212529;
 
-@import "./bootstrap/bootstrap.css";
 
 h6,
 .h6,
@@ -28,9 +27,12 @@ h1,
     line-height: 1.2;
 }
 
-.navber {
+.mt-5 {
+    margin-top: 6rem;
+}
+
+.navber { // 上部で固定
     position: fixed;
-    margin-bottom: 5px;
     z-index: 100;
 }
 
@@ -42,3 +44,5 @@ h1,
 .user-login-btn {
     margin-right: 2rem;
 }
+
+@import "./bootstrap/bootstrap.css";
