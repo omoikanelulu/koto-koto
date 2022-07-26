@@ -21,7 +21,7 @@ $err_msg = '申し訳ございません<br>予期せぬエラーが発生いた�
 
 <body class="bg-light">
     <header>
-        <nav class="navbar fixed-top zindex-fixed navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand row" href="#">
                     <h1><?= $site_title ?><span> |</span></h1>

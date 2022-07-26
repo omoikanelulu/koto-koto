@@ -20,7 +20,7 @@ $nav_title = 'koto-kotoへようこそ';
 
 <body class="bg-light">
     <header>
-        <nav class="navbar fixed-top zindex-fixed navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand row" href="#">
                     <h1><?= $site_title ?><span> |</span></h1>
@@ -100,7 +100,7 @@ $nav_title = 'koto-kotoへようこそ';
 
                     <p>プルダウンメニューが右に行かねぇ</p>
 
-                    
+
                 </div>
                 <div class="col-1 col-md-2 col-xl-3"></div>
             </div>
