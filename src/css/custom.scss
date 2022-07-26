@@ -7,8 +7,10 @@ $success: #0a8072;
 $info: #0dcaf0;
 $warning: #ffc107;
 $danger: #dc3545;
-$light: #f8f9fa;
-$dark: #212529;
+// $light: #f8f9fa;
+$light: #bad3ec;
+// $dark: #212529;
+$dark: #2d4256;
 
 //リンクの文字色
 $link-color: #0d6efd;
@@ -51,11 +53,11 @@ $enable-rounded: true;
 
 //角丸の大きさの設定
 // $border-radius: 0.25rem;
-$border-radius: 0, 2.25rem, 0, 2.25rem;
+$border-radius: 0, 1.25rem, 0, 1.25rem;
 // $border-radius-sm: 0.2rem;
-$border-radius-sm: 0, 2rem, 0, 2rem;
+$border-radius-sm: 0, 1rem, 0, 1rem;
 // $border-radius-sm: 0.3rem;
-$border-radius-lg: 0, 3rem, 0, 3rem;
+$border-radius-lg: 0, 2rem, 0, 2rem;
 $border-radius-pill: 50rem;
 
 //影の設定 true=有効 false=無効
