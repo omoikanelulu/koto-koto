@@ -23,7 +23,7 @@ $nav_title = 'koto-kotoへようこそ';
         <nav class="navbar fixed-top zindex-fixed navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand row" href="#">
-                    <h2><?= $site_title ?><span> |</span></h2>
+                    <h1><?= $site_title ?><span> |</span></h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,13 +31,13 @@ $nav_title = 'koto-kotoへようこそ';
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item navbar-brand">
-                            <p class="nav_title"><?= $nav_title ?></p>
+                            <h4><?= $nav_title ?></h4>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 user_name
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li>
@@ -57,7 +57,7 @@ $nav_title = 'koto-kotoへようこそ';
             <div class="row">
                 <div class="col-1 col-md-2 col-xl-3"></div>
                 <div class="mb-4 col-10 col-md-8 col-xl-6">
-                    <a href="#"><button type="button" class="me-5 btn btn-primary">ログイン</button></a>
+                    <a href="#"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
                     <a href="#"><button type="button" class="btn btn-success">新規登録</button></a>
                 </div>
                 <div class="col-1 col-md-2 col-xl-3"></div>
@@ -66,8 +66,10 @@ $nav_title = 'koto-kotoへようこそ';
                 <div class="col-10 col-md-8 col-xl-6">
 
 
-                    <div class="card">
-                        <h5 class="card-header">使い方</h5>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>使い方</h5>
+                        </div>
                         <div class="card-body">
                             <ol>
                                 <li class="card-text">深く考えずにメモ感覚でデキゴトを記録する</li>
@@ -79,22 +81,26 @@ $nav_title = 'koto-kotoへようこそ';
                         </div>
                     </div>
 
-
                     <div class="card">
-                        <h5 class="card-header">なぜなに「koto-koto」</h5>
+                        <div class="card-header">
+                            <h5>なぜなに「koto-koto」</h5>
+                        </div>
                         <div class="card-body">
-                            <p class="card-text"></p>
+                            <h5 class="mb-2 card-text"><ins>何をするサイトなの？</ins></h5>
+                            <p class="card-text">当サイトは日々のデキゴトを記録し、イイコト（良かった事、楽しかった事、嬉しかった事など）を振り返ったり、
+                                ヤナコト（悪かった事、悲しかった事、辛かった事など）に対してどの様に対処するのか考える事で、</p>
+                            <ul>
+                                <li class="card-text">自己肯定感の向上</li>
+                                <li class="card-text">ストレスに対する対処の仕方を考え日々のストレスを軽減する</li>
+                            </ul>
+                            <p class="card-text">といった、セルフケアのお手伝いが出来れば良いな、という趣旨で制作しております。</p>
                         </div>
                     </div>
 
 
+                    <p>プルダウンメニューが右に行かねぇ</p>
 
-                    <p>Hallo world</p>
-                    <p>linux環境を一旦削除、その後復元</p>
-                    <p>Githubとの連携が出来ているかチェック</p>
-                    <p>ubuntuにcloneした、プッシュのテスト</p>
-                    <p>bootstrapのデフォルトの色を変更したい…</p>
-                    <p>中心に寄り過ぎだなぁ</p>
+                    
                 </div>
                 <div class="col-1 col-md-2 col-xl-3"></div>
             </div>
