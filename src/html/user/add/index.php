@@ -46,13 +46,48 @@ $nav_title = '新規登録';
 
                 <div class="mb-4 col-10 col-md-8 col-xl-6">
                     <form>
-                        <div class="mb-4">
-                            <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+
+
+
+
+
+                        <div class="row">
+                            <div class="mb-4 col-5 col-md-4 col-xl-3">
+                                <label for="user_name" class="form-label">ユーザ名</label>
+                                <input type="text" class="form-control" id="user_name" placeholder="user_name">
+                            </div>
                         </div>
-                        <div class="mb-4">
-                            <label for="exampleFormControlTextarea1" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" name="pass" id="pass">
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="mb-4 col-5 col-md-4 col-xl-3">
+                                <label for="user_mail_address" class="form-label">メールアドレス</label>
+                                <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                            </div>
+                            <div class="mb-4 col-5 col-md-4 col-xl-3">
+                                <label for="user_mail_address" class="form-label">メールアドレス確認用</label>
+                                <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-4 col-5 col-md-4 col-xl-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">パスワード</label>
+                                <input type="password" class="form-control" name="pass" id="pass">
+                            </div>
+                            <div class="mb-4 col-5 col-md-4 col-xl-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">パスワード確認用</label>
+                                <input type="password" class="form-control" name="pass" id="pass">
+                            </div>
                         </div>
                         <div class="mb-4 form-text text-danger">
                             NG message
