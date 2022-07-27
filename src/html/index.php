@@ -53,20 +53,16 @@ $nav_title = 'koto-kotoへようこそ';
     </header>
 
     <main>
-        <div class="mt-5 container-fluid">
-            <div class="row">
-                <div class="col-1 col-md-2 col-xl-3"></div>
-                <div class="mb-4 col-10 col-md-8 col-xl-6">
-                    <p>プルダウンメニューが右に行かねぇ</p>
+        <div class="mt-5 container">
+            <p>プルダウンメニューが右に行かねぇ</p>
+            <div class="row row-cols-2 d-flex justify-content-center">
+                <div class="mb-4 col">
                     <a href="#"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
                     <a href="#"><button type="button" class="btn btn-success">新規登録</button></a>
                 </div>
-                <div class="col-1 col-md-2 col-xl-3"></div>
-
-                <div class="col-1 col-md-2 col-xl-3"></div>
-                <div class="col-10 col-md-8 col-xl-6">
-
-
+            </div>
+            <div class="row row-cols-2 d-flex justify-content-center">
+                <div class="col">
                     <div class="card mb-4">
                         <div class="card-header">
                             <h5>使い方</h5>
@@ -81,7 +77,10 @@ $nav_title = 'koto-kotoへようこそ';
                             </ol>
                         </div>
                     </div>
-
+                </div>
+            </div>
+            <div class="row row-cols-2 d-flex justify-content-center">
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <h5>なぜなに「koto-koto」</h5>
@@ -97,10 +96,8 @@ $nav_title = 'koto-kotoへようこそ';
                             <p class="card-text">といった、セルフケアのお手伝いが出来れば良いな、という趣旨で制作しております。</p>
                         </div>
                     </div>
-
-
                 </div>
-                <div class="col-1 col-md-2 col-xl-3"></div>
+
             </div>
         </div>
     </main>

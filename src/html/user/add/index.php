@@ -42,18 +42,18 @@ $nav_title = '新規登録';
     <main>
         <div class="mt-5 container">
             <p class="mb-4">登録内容を入力してください</p>
-            <div class="row row-cols-3 d-flex justify-content-start">
+            <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <label for="user_mail_address" class="form-label">ユーザ名</label>
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-start">
-                <div class="col mb-4 form-text text-danger">
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                <div class="col form-text text-danger">
                     NG message
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-start">
+            <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <label for="user_mail_address" class="form-label">姓</label>
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
@@ -63,17 +63,17 @@ $nav_title = '新規登録';
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-start">
-                <div class="col mb-4 form-text text-danger">
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                <div class="col form-text text-danger">
                     NG message
                 </div>
-                <div class="col mb-4 form-text text-danger">
+                <div class="col form-text text-danger">
                     NG message
                 </div>
             </div>
 
             <label for="user_mail_address" class="form-label">生年月日</label>
-            <div class="mb-4 row row-cols-3 d-flex justify-content-start">
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <div class="input-group mb-3">
                         <select class="form-select" id="inputGroupSelect02">
@@ -85,7 +85,7 @@ $nav_title = '新規登録';
                         <label class="input-group-text" for="inputGroupSelect02">年</label>
                     </div>
                 </div>
-                <div class="row row-cols-2 d-flex justify-content-start">
+                <div class="row row-cols-2 d-flex justify-content-center">
                     <div class="col">
                         <div class="input-group mb-3">
                             <select class="form-select" id="inputGroupSelect02">
@@ -110,7 +110,7 @@ $nav_title = '新規登録';
                     </div>
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-start">
+            <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <label for="user_mail_address" class="form-label">メールアドレス</label>
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
@@ -120,15 +120,15 @@ $nav_title = '新規登録';
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-start">
-                <div class="col mb-4 form-text text-danger">
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                <div class="col form-text text-danger">
                     NG message
                 </div>
-                <div class="col mb-4 form-text text-danger">
+                <div class="col form-text text-danger">
                     NG message
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-start">
+            <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <label for="user_mail_address" class="form-label">パスワード</label>
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
@@ -138,19 +138,17 @@ $nav_title = '新規登録';
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-start">
-                <div class="col mb-4 form-text text-danger">
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                <div class="col form-text text-danger">
                     NG message
                 </div>
-                <div class="col mb-4 form-text text-danger">
+                <div class="col form-text text-danger">
                     NG message
                 </div>
             </div>
-            <div class="row row-cols-6 d-flex justify-content-start">
+            <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
-                    <button type="submit" class="btn btn-success">登録</button>
-                </div>
-                <div class="col">
+                    <button type="submit" class="me-3 btn btn-success">登録</button>
                     <button type="reset" class="btn btn-danger">キャンセル</button>
                 </div>
             </div>
