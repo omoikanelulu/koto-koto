@@ -12,7 +12,7 @@ $nav_title = 'koto-kotoへようこそ';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <!-- <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../css/custom.css">
     <title><?= $nav_title ?></title>
@@ -57,6 +57,7 @@ $nav_title = 'koto-kotoへようこそ';
             <div class="row">
                 <div class="col-1 col-md-2 col-xl-3"></div>
                 <div class="mb-4 col-10 col-md-8 col-xl-6">
+                    <p>プルダウンメニューが右に行かねぇ</p>
                     <a href="#"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
                     <a href="#"><button type="button" class="btn btn-success">新規登録</button></a>
                 </div>
@@ -96,9 +97,6 @@ $nav_title = 'koto-kotoへようこそ';
                             <p class="card-text">といった、セルフケアのお手伝いが出来れば良いな、という趣旨で制作しております。</p>
                         </div>
                     </div>
-
-
-                    <p>プルダウンメニューが右に行かねぇ</p>
 
 
                 </div>

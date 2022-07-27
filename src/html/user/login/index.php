@@ -12,7 +12,7 @@ $nav_title = 'ログイン';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <!-- <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $nav_title ?></title>

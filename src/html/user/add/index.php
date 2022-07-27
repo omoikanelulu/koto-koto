@@ -12,7 +12,7 @@ $nav_title = '新規登録';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <!-- <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $nav_title ?></title>
@@ -40,68 +40,121 @@ $nav_title = '新規登録';
     </header>
 
     <main>
-        <div class="mt-5 container-fluid">
-            <div class="row">
-                <div class="col-1 col-md-2 col-xl-3"></div>
-
-                <div class="mb-4 col-10 col-md-8 col-xl-6">
-                    <form>
-
-
-
-
-
-                        <div class="row">
-                            <div class="mb-4 col-5 col-md-4 col-xl-3">
-                                <label for="user_name" class="form-label">ユーザ名</label>
-                                <input type="text" class="form-control" id="user_name" placeholder="user_name">
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="row">
-                            <div class="mb-4 col-5 col-md-4 col-xl-3">
-                                <label for="user_mail_address" class="form-label">メールアドレス</label>
-                                <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
-                            </div>
-                            <div class="mb-4 col-5 col-md-4 col-xl-3">
-                                <label for="user_mail_address" class="form-label">メールアドレス確認用</label>
-                                <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-4 col-5 col-md-4 col-xl-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">パスワード</label>
-                                <input type="password" class="form-control" name="pass" id="pass">
-                            </div>
-                            <div class="mb-4 col-5 col-md-4 col-xl-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">パスワード確認用</label>
-                                <input type="password" class="form-control" name="pass" id="pass">
-                            </div>
-                        </div>
-                        <div class="mb-4 form-text text-danger">
-                            NG message
-                        </div>
-                        <div>
-                            <button type="submit" class="me-3 btn btn-primary">ログイン</button>
-                            <button type="reset" class="btn btn-danger">キャンセル</button>
-                            <p>このキャンセルボタンはtype属性が多分間違ってる</p>
-                        </div>
-                    </form>
+        <div class="mt-5 container">
+            <p class="mb-4">登録内容を入力してください</p>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col">
+                    <label for="user_mail_address" class="form-label">ユーザ名</label>
+                    <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
                 </div>
-
-                <div class="col-1 col-md-2 col-xl-3"></div>
             </div>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col mb-4 form-text text-danger">
+                    NG message
+                </div>
+            </div>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col">
+                    <label for="user_mail_address" class="form-label">姓</label>
+                    <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                </div>
+                <div class="col">
+                    <label for="user_mail_address" class="form-label">名</label>
+                    <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                </div>
+            </div>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col mb-4 form-text text-danger">
+                    NG message
+                </div>
+                <div class="col mb-4 form-text text-danger">
+                    NG message
+                </div>
+            </div>
+
+            <label for="user_mail_address" class="form-label">生年月日</label>
+            <div class="mb-4 row row-cols-3 d-flex justify-content-start">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="inputGroupSelect02">
+                            <option selected>2022</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                        <label class="input-group-text" for="inputGroupSelect02">年</label>
+                    </div>
+                </div>
+                <div class="row row-cols-2 d-flex justify-content-start">
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="inputGroupSelect02">
+                                <option selected>01</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                            </select>
+                            <label class="input-group-text" for="inputGroupSelect02">月</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="inputGroupSelect02">
+                                <option selected>01</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                            </select>
+                            <label class="input-group-text" for="inputGroupSelect02">日</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col">
+                    <label for="user_mail_address" class="form-label">メールアドレス</label>
+                    <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                </div>
+                <div class="col">
+                    <label for="user_mail_address" class="form-label">メールアドレス確認用</label>
+                    <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                </div>
+            </div>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col mb-4 form-text text-danger">
+                    NG message
+                </div>
+                <div class="col mb-4 form-text text-danger">
+                    NG message
+                </div>
+            </div>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col">
+                    <label for="user_mail_address" class="form-label">パスワード</label>
+                    <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                </div>
+                <div class="col">
+                    <label for="user_mail_address" class="form-label">パスワード確認用</label>
+                    <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                </div>
+            </div>
+            <div class="row row-cols-3 d-flex justify-content-start">
+                <div class="col mb-4 form-text text-danger">
+                    NG message
+                </div>
+                <div class="col mb-4 form-text text-danger">
+                    NG message
+                </div>
+            </div>
+            <div class="row row-cols-6 d-flex justify-content-start">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">登録</button>
+                </div>
+                <div class="col">
+                    <button type="reset" class="btn btn-danger">キャンセル</button>
+                </div>
+            </div>
+            <p>このキャンセルボタンはtype属性が多分間違ってる</p>
         </div>
     </main>
     <footer>
