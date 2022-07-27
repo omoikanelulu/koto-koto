@@ -153,6 +153,7 @@ $nav_title = '新規登録';
                     <button type="submit" class="me-3 btn btn-success">登録</button>
                     <button type="reset" class="btn btn-danger">キャンセル</button>
                 </div>
+                <div class="col"></div>
             </div>
             <p>このキャンセルボタンはtype属性が多分間違ってる</p>
         </div>
