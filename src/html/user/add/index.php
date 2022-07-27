@@ -41,12 +41,13 @@ $nav_title = '新規登録';
 
     <main>
         <div class="mt-5 container">
-            <p class="mb-4">登録内容を入力してください</p>
             <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
+                    <p class="mb-4">登録内容を入力してください</p>
                     <label for="user_mail_address" class="form-label">ユーザ名</label>
                     <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
                 </div>
+                <div class="col"></div>
             </div>
             <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col form-text text-danger">
@@ -72,9 +73,10 @@ $nav_title = '新規登録';
                 </div>
             </div>
 
-            <label for="user_mail_address" class="form-label">生年月日</label>
+
             <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
+                <label for="user_mail_address" class="form-label">生年月日</label>
                     <div class="input-group mb-3">
                         <select class="form-select" id="inputGroupSelect02">
                             <option selected>2022</option>
@@ -85,7 +87,7 @@ $nav_title = '新規登録';
                         <label class="input-group-text" for="inputGroupSelect02">年</label>
                     </div>
                 </div>
-                <div class="row row-cols-2 d-flex justify-content-center">
+                <div class="me-2 row row-cols-2 d-flex justify-content-center align-items-end">
                     <div class="col">
                         <div class="input-group mb-3">
                             <select class="form-select" id="inputGroupSelect02">
@@ -146,7 +148,7 @@ $nav_title = '新規登録';
                     NG message
                 </div>
             </div>
-            <div class="row row-cols-3 d-flex justify-content-center">
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <button type="submit" class="me-3 btn btn-success">登録</button>
                     <button type="reset" class="btn btn-danger">キャンセル</button>
