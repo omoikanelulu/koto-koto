@@ -81,7 +81,7 @@ $nav_title = 'koto-kotoへようこそ';
             </div>
             <div class="row row-cols-2 d-flex justify-content-center">
                 <div class="col">
-                    <div class="card">
+                    <div class="card mb-4">
                         <div class="card-header">
                             <h5>なぜなに「koto-koto」</h5>
                         </div>
