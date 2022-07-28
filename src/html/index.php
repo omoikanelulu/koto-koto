@@ -1,6 +1,11 @@
 <?php
-$site_title = 'koto-koto';
 $nav_title = 'koto-kotoへようこそ';
+// require_once'../../../class/config.php';
+echo dirname(__FILE__);
+echo '<br>';
+echo $_SERVER['HTTP_HOST'].dirname(__FILE__);
+// header("Location: http://" . $_SERVER["HTTP_HOST"] ."/shared_todo_lists_old/login/index.php");
+// のようにして、絶対パスで記述するのも1つの手ですね。
 
 ?>
 
