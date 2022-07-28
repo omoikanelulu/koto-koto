@@ -1,6 +1,6 @@
 <?php
 $site_title = 'koto-koto';
-$nav_title = '新規登録';
+$nav_title = '新規登録内容確認';
 
 ?>
 
@@ -44,7 +44,7 @@ $nav_title = '新規登録';
             <div class="mt-5 container">
                 <div class="row row-cols-3 d-flex justify-content-center">
                     <div class="col">
-                        <p class="mb-4">登録内容を入力してください</p>
+                        <p class="mb-4">登録内容をご確認ください</p>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -59,6 +59,7 @@ $nav_title = '新規登録';
                     <div class="col form-text text-danger">
                         NG message
                     </div>
+                    <div class="col"></div>
                 </div>
                 <div class="row row-cols-3 d-flex justify-content-center">
                     <div class="col">

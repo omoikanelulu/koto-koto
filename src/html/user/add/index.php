@@ -59,6 +59,7 @@ $nav_title = '新規登録';
                     <div class="col form-text text-danger">
                         NG message
                     </div>
+                    <div class="col"></div>
                 </div>
                 <div class="row row-cols-3 d-flex justify-content-center">
                     <div class="col">
