@@ -1,9 +1,8 @@
 <?php
+require_once dirname(__DIR__) . '/class/config.php'; //絶対パス
+// require_once '../class/config.php'; //相対パス
 $nav_title = 'koto-kotoへようこそ';
-// require_once'../../../class/config.php';
-echo dirname(__FILE__);
-echo '<br>';
-echo $_SERVER['HTTP_HOST'].dirname(__FILE__);
+
 // header("Location: http://" . $_SERVER["HTTP_HOST"] ."/shared_todo_lists_old/login/index.php");
 // のようにして、絶対パスで記述するのも1つの手ですね。
 
@@ -22,6 +21,7 @@ echo $_SERVER['HTTP_HOST'].dirname(__FILE__);
     <link rel="stylesheet" href="../css/custom.css">
     <title><?= $nav_title ?></title>
 </head>
+
 
 <body class="bg-light">
     <header>
@@ -102,7 +102,6 @@ echo $_SERVER['HTTP_HOST'].dirname(__FILE__);
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>

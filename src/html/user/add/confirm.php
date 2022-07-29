@@ -1,7 +1,6 @@
 <?php
-$nav_title = '新規登録内容確認';
-$sample_msg = '入力内容表示';
 require_once '../../../class/config.php';
+$nav_title = '新規登録内容確認';
 
 ?>
 
@@ -53,7 +52,7 @@ require_once '../../../class/config.php';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?=$sample_msg?>>
+                            <input type="text" class="form-control" id="user_name" value=<?=$test_msg?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -66,11 +65,11 @@ require_once '../../../class/config.php';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" value=<?= $sample_msg ?>>
+                            <input type="text" class="form-control" id="family_name" value=<?= $test_msg ?>>
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" value=<?= $sample_msg ?>>
+                            <input type="text" class="form-control" id="first_name" value=<?= $test_msg ?>>
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -86,7 +85,7 @@ require_once '../../../class/config.php';
                             <label for="user_mail_address" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
                                 <select class="form-select" id="birth_date_year">
-                                    <option selected><?= $sample_msg ?></option>
+                                    <option selected><?= $test_msg ?></option>
                                     <option value="2022">2022</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -98,7 +97,7 @@ require_once '../../../class/config.php';
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" id="birth_date_month">
-                                        <option selected><?= $sample_msg ?></option>
+                                        <option selected><?= $test_msg ?></option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
                                         <option value="03">03</option>
@@ -109,7 +108,7 @@ require_once '../../../class/config.php';
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" id="birth_date_day">
-                                        <option selected><?= $sample_msg ?></option>
+                                        <option selected><?= $test_msg ?></option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
                                         <option value="03">03</option>
@@ -122,7 +121,7 @@ require_once '../../../class/config.php';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" value=<?= $sample_msg ?>>
+                            <input type="email" class="form-control" id="user_mail_address" value=<?= $test_msg ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -135,7 +134,7 @@ require_once '../../../class/config.php';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" value=<?= $sample_msg ?>>
+                            <input type="password" class="form-control" id="pass" value=<?= $test_msg ?>>
                         </div>
                         <div class="col"></div>
                     </div>

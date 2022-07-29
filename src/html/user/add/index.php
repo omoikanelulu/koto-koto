@@ -1,5 +1,5 @@
 <?php
-$site_title = 'koto-koto';
+require_once '../../../class/config.php';
 $nav_title = '新規登録';
 
 ?>
