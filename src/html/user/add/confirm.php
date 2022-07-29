@@ -41,7 +41,7 @@ $nav_title = '新規登録内容確認';
 
     <main>
         <div class="mt-5 container">
-            <form action="./confirm.php" method="POST">
+            <form action="./action.php" method="POST">
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
@@ -147,7 +147,7 @@ $nav_title = '新規登録内容確認';
                 </fieldset>
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
-                        <button type="submit" class="me-3 btn btn-success">登録</button>
+                        <button type="submit" class="me-3 btn btn-success">新規登録</button>
                         <button type="reset" class="btn btn-danger">キャンセル</button>
                     </div>
                     <div class="col"></div>
