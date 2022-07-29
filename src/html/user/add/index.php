@@ -157,7 +157,7 @@ $nav_title = '新規登録';
                 </fieldset>
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
-                        <button type="submit" class="me-3 btn btn-success">登録</button>
+                        <button type="submit" class="me-3 btn btn-success">新規登録</button>
                         <button type="reset" class="btn btn-danger">キャンセル</button>
                     </div>
                     <div class="col"></div>
