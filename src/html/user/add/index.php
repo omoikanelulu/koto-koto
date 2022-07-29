@@ -40,8 +40,9 @@ $nav_title = '新規登録';
     </header>
 
     <main>
-        <form action="./confirm.php" method="POST">
-                <div class="mt-5 container">
+        <div class="mt-5 container">
+            <form action="./confirm.php" method="POST">
+                <fieldset>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <p class="mb-4">登録内容を入力してください</p>
@@ -153,16 +154,17 @@ $nav_title = '新規登録';
                             NG message
                         </div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <button type="submit" class="me-3 btn btn-success">登録</button>
-                            <button type="reset" class="btn btn-danger">キャンセル</button>
-                        </div>
-                        <div class="col"></div>
+                </fieldset>
+                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="col">
+                        <button type="submit" class="me-3 btn btn-success">登録</button>
+                        <button type="reset" class="btn btn-danger">キャンセル</button>
                     </div>
-                    <p>このキャンセルボタンはtype属性が多分間違ってる</p>
+                    <div class="col"></div>
                 </div>
-        </form>
+                <p>このキャンセルボタンはtype属性が多分間違ってる</p>
+            </form>
+        </div>
     </main>
     <footer>
     </footer>
