@@ -46,7 +46,7 @@ require_once '../../../class/config.php';
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <p class="mb-4">登録内容を入力してください</p>
+                            <p class="mb-4">以下の内容で登録します、よろしいですか？</p>
                         </div>
                         <div class="col"></div>
                     </div>
