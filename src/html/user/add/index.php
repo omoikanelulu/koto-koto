@@ -158,7 +158,7 @@ $nav_title = '新規登録';
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">新規登録</button>
-                        <button type="reset" class="btn btn-danger">キャンセル</button>
+                        <a href="絶対パス？相対パス？"><button type="reset" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
