@@ -1,6 +1,7 @@
 <?php
 $nav_title = '新規登録内容確認';
-require_once'../../../class/config.php';
+$sample_msg = '入力内容表示';
+require_once '../../../class/config.php';
 
 ?>
 
@@ -40,101 +41,111 @@ require_once'../../../class/config.php';
     </header>
 
     <main>
-        <form action="./confirm.php" method="POST">
-            <div class="mt-5 container">
-                <div class="row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
-                        <p class="mb-4">登録内容をご確認ください</p>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
-                        <label for="user_name" class="form-label">ユーザ名</label>
-                        <input disabled type="text" class="form-control" id="user_name" value=<?= $test_msg ?>>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col form-text text-danger">
-                        NG message
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
-                        <label for="family_name" class="form-label">姓</label>
-                        <input disabled type="email" class="form-control" id="family_name" value=<?= $test_msg ?>>
-                    </div>
-                    <div class="col">
-                        <label for="first_name" class="form-label">名</label>
-                        <input disabled type="email" class="form-control" id="first_name" value=<?= $test_msg ?>>
-                    </div>
-                </div>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col form-text text-danger">
-                        NG message
-                    </div>
-                    <div class="col form-text text-danger">
-                        NG message
-                    </div>
-                </div>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
-                        <label for="user_mail_address" class="form-label">生年月日</label>
-                        <div class="input-group mb-3">
-                            <select disabled class="form-select" id="birth_date_year">
-                                <option selected><?= $test_msg ?></option>
-                            </select>
-                            <label class="input-group-text" for="birth_date_year">年</label>
-                        </div>
-                    </div>
-                    <div class="me-2 row row-cols-2 d-flex justify-content-center align-items-end">
+        <div class="mt-5 container">
+            <form action="./confirm.php" method="POST">
+                <fieldset disabled>
+                    <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <div class="input-group mb-3">
-                                <select disabled class="form-select" id="birth_date_month">
-                                    <option selected><?= $test_msg ?></option>
-                                </select>
-                                <label class="input-group-text" for="birth_date_month">月</label>
-                            </div>
+                            <p class="mb-4">登録内容を入力してください</p>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row row-cols-3 d-flex justify-content-center">
+                        <div class="col">
+                            <label for="user_name" class="form-label">ユーザ名</label>
+                            <input type="text" class="form-control" id="user_name" value=<?=$sample_msg?>>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                        <div class="col form-text text-danger">
+                            NG message
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row row-cols-3 d-flex justify-content-center">
+                        <div class="col">
+                            <label for="family_name" class="form-label">姓</label>
+                            <input type="text" class="form-control" id="family_name" value=<?= $sample_msg ?>>
                         </div>
                         <div class="col">
+                            <label for="first_name" class="form-label">名</label>
+                            <input type="text" class="form-control" id="first_name" value=<?= $sample_msg ?>>
+                        </div>
+                    </div>
+                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                        <div class="col form-text text-danger">
+                            NG message
+                        </div>
+                        <div class="col form-text text-danger">
+                            NG message
+                        </div>
+                    </div>
+                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                        <div class="col">
+                            <label for="user_mail_address" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
-                                <select disabled class="form-select" id="birth_date_day">
-                                    <option selected><?= $test_msg ?></option>
+                                <select class="form-select" id="birth_date_year">
+                                    <option selected><?= $sample_msg ?></option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
                                 </select>
-                                <label class="input-group-text" for="birth_date_day">日</label>
+                                <label class="input-group-text" for="birth_date_year">年</label>
+                            </div>
+                        </div>
+                        <div class="me-2 row row-cols-2 d-flex justify-content-center align-items-end">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <select class="form-select" id="birth_date_month">
+                                        <option selected><?= $sample_msg ?></option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                    </select>
+                                    <label class="input-group-text" for="birth_date_month">月</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <select class="form-select" id="birth_date_day">
+                                        <option selected><?= $sample_msg ?></option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                    </select>
+                                    <label class="input-group-text" for="birth_date_day">日</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
-                        <label for="user_mail_address" class="form-label">メールアドレス</label>
-                        <input disabled type="email" class="form-control" id="user_mail_address" value=<?= $test_msg ?>>
+                    <div class="row row-cols-3 d-flex justify-content-center">
+                        <div class="col">
+                            <label for="user_mail_address" class="form-label">メールアドレス</label>
+                            <input type="email" class="form-control" id="user_mail_address" value=<?= $sample_msg ?>>
+                        </div>
+                        <div class="col"></div>
                     </div>
-                    <div class="col"></div>
-                </div>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col form-text text-danger">
-                        NG message
+                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                        <div class="col form-text text-danger">
+                            NG message
+                        </div>
+                        <div class="col"></div>
                     </div>
-                    <div class="col">
+                    <div class="row row-cols-3 d-flex justify-content-center">
+                        <div class="col">
+                            <label for="pass" class="form-label">パスワード</label>
+                            <input type="password" class="form-control" id="pass" value=<?= $sample_msg ?>>
+                        </div>
+                        <div class="col"></div>
                     </div>
-                </div>
-                <div class="row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
-                        <label for="pass" class="form-label">パスワード</label>
-                        <input disabled type="email" class="form-control" id="pass" value=<?= $test_msg ?>>
+                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                        <div class="col form-text text-danger">
+                            NG message
+                        </div>
+                        <div class="col"></div>
                     </div>
-                    <div class="col"></div>
-                </div>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col form-text text-danger">
-                        NG message
-                    </div>
-                    <div class="col form-text text-danger"></div>
-                </div>
+                </fieldset>
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">登録</button>
@@ -143,8 +154,8 @@ require_once'../../../class/config.php';
                     <div class="col"></div>
                 </div>
                 <p>このキャンセルボタンはtype属性が多分間違ってる</p>
-            </div>
-        </form>
+            </form>
+        </div>
     </main>
     <footer>
     </footer>
