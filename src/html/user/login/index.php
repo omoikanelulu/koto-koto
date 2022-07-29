@@ -1,5 +1,5 @@
 <?php
-$site_title = 'koto-koto';
+require_once '../../../class/config.php';
 $nav_title = 'ログイン';
 
 ?>
@@ -40,33 +40,34 @@ $nav_title = 'ログイン';
     </header>
 
     <main>
-        <div class="mt-5 container-fluid">
-            <div class="row">
-                <div class="col-1 col-md-2 col-xl-3"></div>
-
-                <div class="mb-4 col-10 col-md-8 col-xl-6">
-                    <form>
-                        <div class="mb-4">
+        <div class="mt-5 container">
+            <form action="./action.php" method="post">
+                <fieldset>
+                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
+                        <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
                             <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
                         </div>
-                        <div class="mb-4">
-                            <label for="exampleFormControlTextarea1" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" name="pass" id="pass">
+                    </div>
+                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
+                        <div class="col">
+                            <label for="pass" class="form-label">パスワード</label>
+                            <input type="password" class="form-control" id="pass" placeholder="hoge@example.com">
                         </div>
-                        <div class="mb-4 form-text text-danger">
-                            NG message
-                        </div>
-                        <div>
-                            <button type="submit" class="me-3 btn btn-primary">ログイン</button>
-                            <button type="reset" class="btn btn-danger">キャンセル</button>
-                            <p>このキャンセルボタンはtype属性が多分間違ってる</p>
-                        </div>
-                    </form>
+                    </div>
+                </fieldset>
+                <div class="row row-cols-2 d-flex justify-content-center">
+                    <div class="col form-text text-danger">
+                        NG message
+                    </div>
                 </div>
-
-                <div class="col-1 col-md-2 col-xl-3"></div>
-            </div>
+                <div class="row row-cols-2 d-flex justify-content-center">
+                    <div class="col">
+                        <input type="submit" class="me-3 btn btn-primary" value="ログイン">
+                        <input type="button" class="btn btn-danger" value="キャンセル">
+                    </div>
+                </div>
+            </form>
         </div>
     </main>
     <footer>
