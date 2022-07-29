@@ -62,8 +62,8 @@ $nav_title = 'koto-kotoへようこそ';
             <p>プルダウンメニューが右に行かねぇ</p>
             <div class="row row-cols-2 d-flex justify-content-center">
                 <div class="mb-4 col">
-                    <a href="#"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
-                    <a href="#"><button type="button" class="btn btn-success">新規登録</button></a>
+                    <a href="./user/login/index.php"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
+                    <a href="./user/add/index.php"><button type="button" class="btn btn-success">新規登録</button></a>
                 </div>
             </div>
             <div class="row row-cols-2 d-flex justify-content-center">
