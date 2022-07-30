@@ -1,5 +1,5 @@
 <?php
-require_once '../../../class/config.php';
+require_once '../../../class/Config.php';
 $nav_title = 'ログイン';
 
 ?>
@@ -52,7 +52,7 @@ $nav_title = 'ログイン';
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" placeholder="hoge@example.com">
+                            <input type="password" class="form-control" id="pass" placeholder="your_password">
                         </div>
                     </div>
                 </fieldset>

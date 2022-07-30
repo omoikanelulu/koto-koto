@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/class/config.php'; //絶対パス
+require_once dirname(__DIR__) . '/class/Config.php'; //絶対パス
 // require_once '../class/config.php'; //相対パス
 $nav_title = 'koto-kotoへようこそ';
 

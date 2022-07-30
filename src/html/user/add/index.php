@@ -1,5 +1,5 @@
 <?php
-require_once '../../../class/config.php';
+require_once '../../../class/Config.php';
 $nav_title = '新規登録';
 
 ?>
@@ -139,11 +139,11 @@ $nav_title = '新規登録';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" placeholder="hoge@example.com">
+                            <input type="password" class="form-control" id="pass" placeholder="your_password">
                         </div>
                         <div class="col">
                             <label for="pass_check" class="form-label">パスワード確認用</label>
-                            <input type="password" class="form-control" id="pass_check" placeholder="hoge@example.com">
+                            <input type="password" class="form-control" id="pass_check" placeholder="your_password">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">

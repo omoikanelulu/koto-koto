@@ -1,5 +1,5 @@
 <?php
-require_once '../../class/config.php';
+require_once '../../class/Config.php';
 $nav_title = 'エラーが発生しました';
 
 ?>
