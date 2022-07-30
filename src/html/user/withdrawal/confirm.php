@@ -1,5 +1,5 @@
 <?php
-require_once '../../../class/config.php';
+require_once '../../../class/Config.php';
 $nav_title = '退会確認';
 
 ?>
@@ -45,14 +45,14 @@ $nav_title = '退会確認';
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <p class="mb-4">以下の内容で登録します、よろしいですか？</p>
+                            <p class="mb-4">下記ユーザの退会処理を行います、よろしいですか？</p>
                         </div>
                         <div class="col"></div>
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?= $test_msg ?>>
+                            <input type="text" class="form-control" id="user_name" value=<?= $session_info ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -65,11 +65,11 @@ $nav_title = '退会確認';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" value=<?= $test_msg ?>>
+                            <input type="text" class="form-control" id="family_name" value=<?= $session_info ?>>
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" value=<?= $test_msg ?>>
+                            <input type="text" class="form-control" id="first_name" value=<?= $session_info ?>>
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -78,63 +78,12 @@ $nav_title = '退会確認';
                         </div>
                         <div class="col form-text text-danger">
                             NG message
-                        </div>
-                    </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <label for="user_mail_address" class="form-label">生年月日</label>
-                            <div class="input-group mb-3">
-                                <select class="form-select" id="birth_date_year">
-                                    <option selected><?= $test_msg ?></option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                </select>
-                                <label class="input-group-text" for="birth_date_year">年</label>
-                            </div>
-                        </div>
-                        <div class="me-2 row row-cols-2 d-flex justify-content-center align-items-end">
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <select class="form-select" id="birth_date_month">
-                                        <option selected><?= $test_msg ?></option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                    </select>
-                                    <label class="input-group-text" for="birth_date_month">月</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <select class="form-select" id="birth_date_day">
-                                        <option selected><?= $test_msg ?></option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                    </select>
-                                    <label class="input-group-text" for="birth_date_day">日</label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" value=<?= $test_msg ?>>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" value=<?= $test_msg ?>>
+                            <input type="email" class="form-control" id="user_mail_address" value=<?= $session_info ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -147,7 +96,7 @@ $nav_title = '退会確認';
                 </fieldset>
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
-                        <button type="submit" class="me-3 btn btn-success">新規登録</button>
+                        <button type="submit" class="me-3 btn btn-success">退会する</button>
                         <button type="reset" class="btn btn-danger">キャンセル</button>
                     </div>
                     <div class="col"></div>

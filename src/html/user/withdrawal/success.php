@@ -1,5 +1,5 @@
 <?php
-require_once '../../../class/config.php';
+require_once '../../../class/Config.php';
 $nav_title = '退会完了';
 
 ?>
@@ -43,8 +43,8 @@ $nav_title = '退会完了';
         <div class="mt-5 container">
             <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
-                    <p>ユーザ登録が完了しました</p>
-                    <p class="mb-4">トップページよりログインし、ご利用ください</p>
+                    <p>退会処理が完了しました</p>
+                    <p class="mb-4">ご利用ありがとうございました</p>
                 </div>
                 <div class="col"></div>
             </div>
