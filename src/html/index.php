@@ -26,9 +26,9 @@ $nav_title = 'koto-kotoへようこそ';
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand row" href="#">
-                    <h1><?= $site_title ?><span> |</span></h1>
+            <div class="container-fluid d-flex align-items-center">
+                <a class="navbar-brand row" href="<?= $top_page_url ?>">
+                    <h1><?= $site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -91,7 +91,7 @@ $nav_title = 'koto-kotoへようこそ';
                             <h5>なぜなに「koto-koto」</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="mb-2 card-text"><ins>何をするサイトなの？</ins></h5>
+                            <h5 class="mb-2 card-text">何をするサイトなの？</h5>
                             <p class="card-text">当サイトは日々のデキゴトを記録し、イイコト（良かった事、楽しかった事、嬉しかった事など）を振り返ったり、
                                 ヤナコト（悪かった事、悲しかった事、辛かった事など）に対してどの様に対処するのか考える事で、</p>
                             <ul>

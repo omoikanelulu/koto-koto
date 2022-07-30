@@ -22,8 +22,8 @@ $nav_title = 'ログイン';
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand row" href="#">
-                    <h1><?= $site_title ?><span> |</span></h1>
+                <a class="navbar-brand row" href="<?= $top_page_url ?>">
+                    <h1><?= $site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

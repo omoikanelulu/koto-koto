@@ -22,8 +22,8 @@ $nav_title = '新規登録内容確認';
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand row" href="#">
-                    <h1><?= $site_title ?><span> |</span></h1>
+                <a class="navbar-brand row" href="<?= $top_page_url ?>">
+                    <h1><?= $site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@ $nav_title = '新規登録内容確認';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?=$test_msg?>>
+                            <input type="text" class="form-control" id="user_name" value=<?= $test_msg ?>>
                         </div>
                         <div class="col"></div>
                     </div>
