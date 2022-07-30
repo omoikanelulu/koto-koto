@@ -46,6 +46,7 @@ $nav_title = '退会確認';
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <p class="mb-4">下記ユーザの退会処理を行います、よろしいですか？</p>
+                            <p class="mb-4 text-danger">※この処理は取り消せません！</p>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -56,7 +57,7 @@ $nav_title = '退会確認';
                         </div>
                         <div class="col"></div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
                             NG message
                         </div>
@@ -72,7 +73,7 @@ $nav_title = '退会確認';
                             <input type="text" class="form-control" id="first_name" value=<?= $session_info ?>>
                         </div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
                             NG message
                         </div>
@@ -87,7 +88,7 @@ $nav_title = '退会確認';
                         </div>
                         <div class="col"></div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
                             NG message
                         </div>
@@ -97,7 +98,8 @@ $nav_title = '退会確認';
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">退会する</button>
-                        <button type="reset" class="btn btn-danger">キャンセル</button>
+                        <!-- <button type="reset" class="btn btn-danger">キャンセル</button> -->
+                        <a href="<?= $top_page_url ?>"><button class="btn btn-danger">キャンセル</button></a><!--君もか…-->
                     </div>
                     <div class="col"></div>
                 </div>
