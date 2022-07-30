@@ -1,7 +1,6 @@
 <?php
-$site_title = 'koto-koto';
+require_once '../../class/config.php';
 $nav_title = 'エラーが発生しました';
-$err_msg = '申し訳ございません<br>予期せぬエラーが発生いたしました<br>時間を置いてから再度お試しください';
 
 ?>
 
@@ -24,7 +23,7 @@ $err_msg = '申し訳ございません<br>予期せぬエラーが発生いた�
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand row" href="#">
-                    <h1><?= $site_title ?><span> |</span></h1>
+                    <h1><?= $site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,7 +45,7 @@ $err_msg = '申し訳ございません<br>予期せぬエラーが発生いた�
                 <div class="col-1 col-md-2 col-xl-3"></div>
                 <div class="mb-4 col-10 col-md-8 col-xl-6">
                     <p class="mb-4"><?= $err_msg ?></p>
-                    <a href="#"><button type="button" class="btn btn-danger">ログアウト</button></a>
+                    <a href="../user/logout/action.php"><button type="button" class="btn btn-danger">ログアウト</button></a>
                 </div>
                 <div class="col-1 col-md-2 col-xl-3"></div>
             </div>
