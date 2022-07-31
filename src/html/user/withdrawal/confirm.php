@@ -98,12 +98,10 @@ $nav_title = '退会確認';
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">退会する</button>
-                        <!-- <button type="reset" class="btn btn-danger">キャンセル</button> -->
-                        <a href="<?= $top_page_url ?>"><button class="btn btn-danger">キャンセル</button></a><!--君もか…-->
+                        <a href="<?= $top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
-                <p>このキャンセルボタンはtype属性が多分間違ってる</p>
             </form>
         </div>
     </main>
