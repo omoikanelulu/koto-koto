@@ -41,7 +41,7 @@ $nav_title = 'ユーザ情報編集';
 
     <main>
         <div class="mt-5 container">
-            <form action="./confirm.php" method="post">
+            <form action="./acount_edit.php" method="post">
                 <fieldset>
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
