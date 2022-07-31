@@ -44,13 +44,14 @@ $nav_title = '新規登録完了';
             <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <p>ユーザ登録が完了しました</p>
-                    <p class="mb-4">トップページよりログインし、ご利用ください</p>
+                    <p >トップページよりログインし、</p>
+                    <p class="mb-4">ご利用ください</p>
                 </div>
                 <div class="col"></div>
             </div>
             <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
-                    <a href=<?= $top_page_url ?>><button type="submit" class="me-3 btn btn-primary">トップページへ</button></a>
+                    <a href=<?= $top_page_url ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
                 <div class="col"></div>
             </div>
