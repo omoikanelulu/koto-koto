@@ -64,7 +64,7 @@ $nav_title = 'ログイン';
                 <div class="row row-cols-2 d-flex justify-content-center">
                     <div class="col">
                         <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <input type="button" class="btn btn-danger" value="キャンセル">
+                        <a href=<?= $top_page_url ?>><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                 </div>
             </form>
