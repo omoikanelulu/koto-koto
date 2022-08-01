@@ -19,7 +19,6 @@ $nav_title = 'デキゴトを記録';
     <title><?= $nav_title ?></title>
 </head>
 
-
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
@@ -37,7 +36,18 @@ $nav_title = 'デキゴトを記録';
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                ひとつめ
+                                メニュー
+                            </a>
+                            <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
+                                <?php foreach ($menu_urls as $menu => $url) : ?>
+                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                user_name
                             </a>
                             <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
