@@ -38,19 +38,6 @@ $nav_title = 'koto-kotoへようこそ';
                         <li class="nav-item navbar-brand">
                             <h4><?= $nav_title ?></h4>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                user_name
-                            </a>
-                            <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">ログアウト</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +46,6 @@ $nav_title = 'koto-kotoへようこそ';
 
     <main>
         <div class="mt-5 container">
-            <p>プルダウンメニューが右に行かねぇ</p>
             <div class="row row-cols-2 d-flex justify-content-center">
                 <div class="mb-4 col">
                     <a href="./user/login/index.php"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
