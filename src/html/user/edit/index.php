@@ -1,6 +1,6 @@
 <?php
 require_once '../../../class/Config.php';
-$nav_title = 'ユーザ情報編集';
+$nav_title = 'ユーザ本人確認';
 
 ?>
 
