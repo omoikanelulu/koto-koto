@@ -1,7 +1,7 @@
 <?php
 // require_once dirname(__DIR__) . '/class/Config.php'; //絶対パス
 require_once '../../class/Config.php'; //相対パス
-$nav_title = 'デキゴトを記録する';
+$nav_title = 'デキゴトを記録';
 
 ?>
 
@@ -31,13 +31,13 @@ $nav_title = 'デキゴトを記録する';
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-lg-0">
                         <li class="nav-item navbar-brand">
                             <h4><?= $nav_title ?></h4>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                user_name
+                                ひとつめ
                             </a>
                             <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -48,24 +48,6 @@ $nav_title = 'デキゴトを記録する';
                                 <li><a class="dropdown-item" href="#">ログアウト</a></li>
                             </ul>
                         </li>
-
-
-                        <li class="d-flex justify-content-end nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                user_name
-                            </a>
-                            <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">ログアウト</a></li>
-                            </ul>
-                        </li>
-
-
-
                     </ul>
                 </div>
             </div>
@@ -75,12 +57,6 @@ $nav_title = 'デキゴトを記録する';
     <main>
         <div class="mt-5 container">
             <p>プルダウンメニューが右に行かねぇ</p>
-            <div class="row row-cols-2 d-flex justify-content-center">
-                <div class="mb-4 col">
-                    <a href="./user/login/index.php"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
-                    <a href="./user/add/index.php"><button type="button" class="btn btn-success">新規登録</button></a>
-                </div>
-            </div>
             <div class="row row-cols-2 d-flex justify-content-center">
                 <div class="col">
                     <div class="card mb-4">
@@ -124,7 +100,7 @@ $nav_title = 'デキゴトを記録する';
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
-    <script src="../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
