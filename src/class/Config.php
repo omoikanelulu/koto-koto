@@ -1,6 +1,7 @@
 <?php
 
 $top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php';
+$things_top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php';
 $site_title = 'koto-koto';
 $test_msg = '入力内容が表示される';
 $session_info ='sessionに保存した内容';
