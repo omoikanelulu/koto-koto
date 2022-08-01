@@ -1,6 +1,6 @@
 <?php
 require_once '../../../class/Config.php';
-$nav_title = '登録情報編集';
+$nav_title = 'ユーザ情報編集';
 
 ?>
 
@@ -105,7 +105,7 @@ $nav_title = '登録情報編集';
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">編集する</button>
-                        <a href="<?= $top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="<?= $things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
