@@ -50,7 +50,7 @@ $nav_title = '退会完了';
             </div>
             <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
-                    <a href=<?= $top_page_url ?>><button type="submit" class="me-3 btn btn-primary">トップページへ</button></a>
+                    <a href=<?= $top_page_url ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
                 <div class="col"></div>
             </div>
