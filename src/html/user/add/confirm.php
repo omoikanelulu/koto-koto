@@ -148,11 +148,12 @@ $nav_title = '新規登録内容確認';
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">新規登録</button>
-                        <button type="reset" class="btn btn-danger">キャンセル</button>
+                        <a href="./index.php"><button type="button" class="btn btn-secondary">前のページに戻る</button></a>
                     </div>
-                    <div class="col"></div>
+                    <div class="col">
+                        <a href=<?= $top_page_url ?>><button type="button" class="btn btn-danger">キャンセル</button></a>
+                    </div>
                 </div>
-                <p>このキャンセルボタンは情報入力画面に戻るようにする</p>
             </form>
         </div>
     </main>
