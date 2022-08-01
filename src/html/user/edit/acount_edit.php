@@ -45,7 +45,7 @@ $nav_title = '登録情報編集';
                 <fieldset>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <p class="mb-4">修正する項目にチェックを入れてください</p>
+                            <p class="mb-4">編集する項目にチェックを入れてください</p>
                         </div>
                         <div class="col"></div>
                     </div>
