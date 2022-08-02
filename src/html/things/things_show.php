@@ -46,6 +46,16 @@ $nav_title = 'デキゴトを表示';
                                 <?php endforeach ?>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                --
+                            </a>
+                            <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <?php foreach ($nav_menus as $menu => $url) : ?>
+                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </li>
                     </ul>
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
