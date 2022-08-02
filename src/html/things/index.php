@@ -36,7 +36,7 @@ $nav_title = 'デキゴトを記録';
                         </li>
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
-                        <li class="nav-item dropend">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 メニュー
                             </a>
@@ -68,7 +68,6 @@ $nav_title = 'デキゴトを記録';
 
     <main>
         <div class="mt-5 container">
-            <p>プルダウンメニューが右に行かねぇ</p>
             <div class="row row-cols-2 d-flex justify-content-center">
                 <div class="col">
                     <div class="card mb-4">
