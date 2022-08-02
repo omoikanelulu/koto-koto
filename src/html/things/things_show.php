@@ -1,7 +1,21 @@
 <?php
 // require_once dirname(__DIR__) . '/class/Config.php'; //絶対パス
 require_once '../../class/Config.php'; //相対パス
+require_once '../../class/Date.php';
 $nav_title = 'デキゴトを表示';
+
+$years = years_select(2020, 2090);
+$months = months_select(01, 12);
+$days = days_select(01, 31);
+
+// デバッグ用 //
+echo '<pre>';
+var_dump($years);
+var_dump($months);
+var_dump($days);
+echo '</pre>';
+exit();
+////////////////
 
 ?>
 
@@ -48,13 +62,16 @@ $nav_title = 'デキゴトを表示';
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                --
+                                <select>
+                                    <?php foreach ($years as $year) : ?>
+                                        <option value=<?= $year ?>><?= $year ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </a>
-                            <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($nav_menus as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
-                                <?php endforeach ?>
-                            </ul>
+                        <li><span class="navbar-text">年</span></li>
+                        <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <option value=<?= $years ?>><?= $years ?></option>
+                        </ul>
                         </li>
                     </ul>
                     <!-- ユーザメニュー -->

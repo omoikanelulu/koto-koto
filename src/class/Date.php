@@ -6,10 +6,11 @@
  */
 function days_select($start, $end)
 {
+    $days = array();
     for ($i = $start; $i <= $end; $i++) {
-        $days = '<option value="' . $i . '">' . $i . '</option>';
-        return $days;
+        $days[] = $i;
     }
+    return $days;
 }
 
 /**
@@ -18,10 +19,11 @@ function days_select($start, $end)
  */
 function months_select($start, $end)
 {
+    $months = array();
     for ($i = $start; $i <= $end; $i++) {
-        $months = '<option value="' . $i . '">' . $i . '</option>';
-        return $months;
+        $months[] = $i;
     }
+    return $months;
 }
 
 /**
@@ -30,8 +32,9 @@ function months_select($start, $end)
  */
 function years_select($start, $end)
 {
+    $years = array();
     for ($i = $start; $i <= $end; $i++) {
-        $years = '<option value="' . $i . '">' . $i . '</option>';
-        return $years;
+        $years[] = $i;
     }
+    return $years;
 }
