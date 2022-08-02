@@ -22,7 +22,7 @@ $nav_title = 'デキゴトを記録';
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid d-flex align-items-center">
+            <div class="navbar-text container-fluid">
                 <a class="navbar-brand row" href="<?= $top_page_url ?>">
                     <h1><?= $site_title ?> |</h1>
                 </a>
@@ -36,29 +36,31 @@ $nav_title = 'デキゴトを記録';
                         </li>
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropend">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 メニュー
                             </a>
-                            <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($nav_menus as $menu => $url) : ?>
                                     <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
                                 <?php endforeach ?>
                             </ul>
                         </li>
-                        <!-- ユーザメニュー -->
-                        <li class="nav-item dropdown">
+                    </ul>
+                    <!-- ユーザメニュー -->
+                    <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
+                        <li class="nav-item dropstart">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 user_name
                             </a>
-                            <ul class="text-end dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($nav_user_menus as $menu => $url) : ?>
                                     <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
                                 <?php endforeach ?>
                             </ul>
                         </li>
-                        <!-- ここまでドロップダウンメニュー -->
                     </ul>
+                    <!-- ここまでドロップダウンメニュー -->
                 </div>
             </div>
         </nav>
