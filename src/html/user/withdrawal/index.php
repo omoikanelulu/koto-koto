@@ -12,7 +12,7 @@ $nav_title = '退会本人確認';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $nav_title ?></title>
@@ -33,6 +33,8 @@ $nav_title = '退会本人確認';
                         <li class="nav-item navbar-brand">
                             <h4><?= $nav_title ?></h4>
                         </li>
+                        <!-- ここにメニューのプルダウンメニューを入れる -->
+
                     </ul>
                 </div>
             </div>
@@ -75,7 +77,7 @@ $nav_title = '退会本人確認';
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
-    <script src="../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
