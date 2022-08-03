@@ -9,12 +9,12 @@ $months = months_select(01, 12);
 $days = days_select(01, 31);
 
 // デバッグ用 //
-echo '<pre>';
-var_dump($years);
-var_dump($months);
-var_dump($days);
-echo '</pre>';
-exit();
+// echo '<pre>';
+// var_dump($years);
+// var_dump($months);
+// var_dump($days);
+// echo '</pre>';
+// exit();
 ////////////////
 
 ?>
@@ -45,14 +45,11 @@ exit();
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-lg-0">
-                        <li class="nav-item navbar-brand">
-                            <h4><?= $nav_title ?></h4>
-                        </li>
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                メニュー
+                                <div class="me-3"><?= $nav_title ?></div>
                             </a>
                             <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($nav_menus as $menu => $url) : ?>
@@ -60,19 +57,37 @@ exit();
                                 <?php endforeach ?>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <select>
+                        <!-- 年月日の入力フォーム -->
+
+
+                        <form class="row" action="#">
+                            <div class="col input-group">
+                                <select class="form-select" name="input_year" id="input_year">
                                     <?php foreach ($years as $year) : ?>
                                         <option value=<?= $year ?>><?= $year ?></option>
                                     <?php endforeach ?>
                                 </select>
-                            </a>
-                        <li><span class="navbar-text">年</span></li>
-                        <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                            <option value=<?= $years ?>><?= $years ?></option>
-                        </ul>
-                        </li>
+                                <label class="input-group-text" for="input_year">年</label>
+                            </div>
+                            <div class="col input-group">
+                                <select class="form-select" name="input_year" id="input_year">
+                                    <?php foreach ($months as $month) : ?>
+                                        <option value=<?= $month ?>><?= $month ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                                <label class="input-group-text" for="input_year">月</label>
+                            </div>
+                            <div class=" col input-group">
+                                <select class="form-select" name="input_year" id="input_year">
+                                    <?php foreach ($days as $day) : ?>
+                                        <option value=<?= $day ?>><?= $day ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                                <label class="input-group-text" for="input_year">日</label>
+                            </div>
+                        </form>
+
+
                     </ul>
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
