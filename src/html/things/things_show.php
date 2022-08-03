@@ -35,6 +35,7 @@ $days = days_select(01, 31);
 
 <body class="bg-light">
     <header>
+
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
                 <a class="navbar-brand row" href="<?= $top_page_url ?>">
@@ -58,8 +59,6 @@ $days = days_select(01, 31);
                             </ul>
                         </li>
                         <!-- 年月日の入力フォーム -->
-
-
                         <form class="row" action="#">
                             <div class="col input-group">
                                 <select class="form-select" name="input_year" id="input_year">
@@ -86,8 +85,6 @@ $days = days_select(01, 31);
                                 <label class="input-group-text" for="input_year">日</label>
                             </div>
                         </form>
-
-
                     </ul>
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
@@ -106,6 +103,7 @@ $days = days_select(01, 31);
                 </div>
             </div>
         </nav>
+
     </header>
 
     <main>
