@@ -38,7 +38,7 @@ $days = days_select(01, 31);
     <header>
 
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
-            <div class="navbar-text container-fluid row-cols-6">
+            <div class="navbar-text container-fluid row-cols">
                 <div class="col">
                     <a class="navbar-brand" href="<?= $top_page_url ?>">
                         <h1><?= $site_title ?> |</h1>
