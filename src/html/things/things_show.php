@@ -1,22 +1,18 @@
 <?php
 // require_once dirname(__DIR__) . '/class/Config.php'; //絶対パス
-require_once '../../class/Config.php'; //相対パス
+
 require_once '../../class/Date.php';
-$nav_title = 'デキゴトを表示';
+require_once '../../class/Util.php';
+require_once '../../class/Config.php'; //相対パス
+$current_page = get_uri();
 
-$years = years_select(2018, date('Y'));
-$months = months_select(01, 12);
-$days = days_select(01, 31);
-
-
-// デバッグ用 //
-// echo '<pre>';
-// var_dump($years);
-// var_dump($months);
-// var_dump($days);
-// echo '</pre>';
-// exit();
-////////////////
+// ページに合わせてメニューの表示を変える処理
+foreach ($nav_menus as $menu => $url) {
+    if ($current_page == $url) {
+        $nav_title = $menu;
+        break;
+    }
+}
 
 ?>
 
@@ -36,31 +32,31 @@ $days = days_select(01, 31);
 
 <body class="bg-light">
     <header>
-
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="navbar-text container-fluid row-cols">
-                <div class="col">
-                    <a class="navbar-brand" href="<?= $top_page_url ?>">
-                        <h1><?= $site_title ?> |</h1>
-                    </a>
-                </div>
+                <a class="navbar-brand row" href="<?= $top_page_url ?>">
+                    <h1><?= $site_title ?> |</h1>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-lg-0">
+                        <!-- <li class="nav-item navbar-brand">
+                            <h4><//?= $nav_title ?></h4>
+                        </li> -->
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="me-3"><?= $nav_title ?></div>
-                                </a>
-                                <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                    <?php foreach ($nav_menus as $menu => $url) : ?>
-                                        <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
-                                    <?php endforeach ?>
-                                </ul>
-                            </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?= $nav_title ?>
+                            </a>
+                            <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <?php foreach ($nav_menus as $menu => $url) : ?>
+                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </li>
                         <!-- 年月日の入力フォーム -->
                         <form class="row" action="#">
                             <div class="col input-group">
