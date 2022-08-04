@@ -7,6 +7,11 @@ $test_msg = '入力内容が表示される';
 $session_info = 'sessionに保存した内容';
 $err_msg = '申し訳ございません<br>予期せぬエラーが発生いたしました<br>時間を置いてから再度お試しください';
 
+// 年月日の期間を指定する
+$years = years_select(2018, date('Y'));
+$months = months_select(01, 12);
+$days = days_select(01, 31);
+
 $nav_menus = array( //navbarのページ選択メニュー項目
     "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
     "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
