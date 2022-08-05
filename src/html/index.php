@@ -1,6 +1,8 @@
 <?php
-require_once dirname(__DIR__) . '/class/Config.php'; //絶対パス
-// require_once '../class/config.php'; //相対パス
+require_once '../class/Date.php';
+require_once '../class/Util.php';
+require_once '../class/Config.php';
+
 $nav_title = 'koto-kotoへようこそ';
 
 // header("Location: http://" . $_SERVER["HTTP_HOST"] ."/shared_todo_lists_old/login/index.php");

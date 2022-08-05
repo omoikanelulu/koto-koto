@@ -1,6 +1,4 @@
 <?php
-// require_once dirname(__DIR__) . '/class/Config.php'; //絶対パス
-
 require_once '../../class/Date.php';
 require_once '../../class/Util.php';
 require_once '../../class/Config.php'; //相対パス
