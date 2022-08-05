@@ -1,4 +1,6 @@
 <?php
+require_once '../../../class/Date.php';
+require_once '../../../class/Util.php';
 require_once '../../../class/Config.php';
 $nav_title = '退会完了';
 
