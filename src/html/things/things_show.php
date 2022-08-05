@@ -2,7 +2,8 @@
 require_once '../../class/Date.php';
 require_once '../../class/Util.php';
 require_once '../../class/Config.php';
-$current_page = get_uri();
+$current_page = Util::get_uri();
+
 
 // ページに合わせてメニューの表示を変える処理
 foreach ($nav_menus as $menu => $url) {
