@@ -1,17 +1,17 @@
 <?php
-require_once '../../class/Date.php';
-require_once '../../class/Util.php';
 require_once '../../class/Config.php';
-$current_page = Util::get_uri();
+require_once '../../class/Base.php';
+require_once '../../class/Date.php';
 
+$ins = new Base();
 
 // ページに合わせてメニューの表示を変える処理
-foreach ($nav_menus as $menu => $url) {
-    if ($current_page == $url) {
-        $nav_title = $menu;
-        break;
-    }
-}
+// foreach ($nav_menus as $menu => $url) {
+//     if ($current_page == $url) {
+//         $nav_title = $menu;
+//         break;
+//     }
+// }
 
 ?>
 
