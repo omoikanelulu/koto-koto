@@ -11,21 +11,8 @@ class Date
         return $this_year;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    // 下記は年、月、日をfor文で作成して、変数に代入する為に使っていた
+    // 今はConfig.phpにまとめたのでもう使用されないと思われる
     /**
      * @param int $start 最小日
      * @param int $end 最大日
