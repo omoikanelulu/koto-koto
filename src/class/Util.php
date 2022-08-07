@@ -14,9 +14,9 @@ class Util
     /**
      * 現在のファイル名を取得する
      */
-    public static function get_file_name()
-    {
-        echo $_SERVER['REQUEST_URI'];
-        return;
-    }
+    // public static function get_file_name()
+    // {
+    //     echo $_SERVER['REQUEST_URI'];
+    //     return;
+    // }
 }
