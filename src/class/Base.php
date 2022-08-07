@@ -4,6 +4,7 @@ class Base //クラスプロパティの値には動的な値を入れられな�
 {
     public function __constract()
     {
+        // プロパティ
         $top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php';
         $things_top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php';
         $site_title = 'koto-koto';
@@ -13,7 +14,8 @@ class Base //クラスプロパティの値には動的な値を入れられな�
 
         $current_page = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-        $nav_menus = array( //navbarのページ選択メニュー項目
+        //navbarのページ選択メニュー項目
+        $nav_menus = array(
             "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
             "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
             "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
@@ -22,12 +24,14 @@ class Base //クラスプロパティの値には動的な値を入れられな�
             "削除済みデキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/deleted_things_show.php',
         );
 
-        $nav_user_menus = array( //navbarのuserメニュー項目
+        //navbarのuserメニュー項目
+        $nav_user_menus = array(
             "ユーザ情報編集" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/index.php',
             "ログアウト" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/logout/action.php',
             "退会する" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/withdrawal/index.php',
         );
 
+        // ページに合わせてメニューの表示を変えるメソッド
         foreach ($nav_menus as $menu => $url) {
             if ($current_page == $url) {
                 $nav_title = $menu;
