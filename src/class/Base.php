@@ -2,20 +2,27 @@
 
 class Base //クラスプロパティの値には動的な値を入れられない、入れたい場合は__constract()を使う
 {
-    public function __constract()
+    // プロパティ
+    public $top_page_url = null;
+    public $things_top_page_url = null;
+    public $test_msg = '入力内容が表示される';
+    public $session_info = 'sessionに保存した内容';
+    public $this_year = null;
+    public $current_page = null;
+    public $nav_title = null;
+    public $nav_menus = null;
+    public $nav_user_menus = null;
+
+    // コンストラクタ
+    public function __construct()
     {
-        // プロパティ
-        $top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php';
-        $things_top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php';
-        $site_title = 'koto-koto';
-        $test_msg = '入力内容が表示される';
-        $session_info = 'sessionに保存した内容';
-        $err_msg = '申し訳ございません<br>予期せぬエラーが発生いたしました<br>時間を置いてから再度お試しください';
+        $this->top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php';
+        $this->things_top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php';
+        $this->this_year = date('Y');
+        $this->current_page = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-        $current_page = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-        //navbarのページ選択メニュー項目
-        $nav_menus = array(
+        //navbarのメニュー項目
+        $this->nav_menus = array(
             "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
             "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
             "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
@@ -25,19 +32,23 @@ class Base //クラスプロパティの値には動的な値を入れられな�
         );
 
         //navbarのuserメニュー項目
-        $nav_user_menus = array(
+        $this->nav_user_menus = array(
             "ユーザ情報編集" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/index.php',
             "ログアウト" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/logout/action.php',
             "退会する" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/withdrawal/index.php',
         );
+    }
 
+    // メソッド
+    public function nav_title()
+    {
         // ページに合わせてメニューの表示を変えるメソッド
-        foreach ($nav_menus as $menu => $url) {
-            if ($current_page == $url) {
-                $nav_title = $menu;
+        foreach ($this->nav_menus as $menu => $url) {
+            if ($this->current_page == $url) {
+                $this->nav_title = $menu;
                 break;
             }
         }
-        return $nav_title = $menu;
+        return $this->nav_title;
     }
 }
