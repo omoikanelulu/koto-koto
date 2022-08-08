@@ -1,8 +1,7 @@
 <?php
 require_once '../../class/Config.php';
 require_once '../../class/Base.php';
-require_once '../../class/Date.php';
-
+// require_once '../../class/Date.php';
 $ins = new Base();
 
 // ページに合わせてメニューの表示を変える処理
@@ -26,15 +25,15 @@ $ins = new Base();
     <link rel="stylesheet" href="../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../css/custom.css">
-    <title><?= $nav_title ?></title>
+    <title><?= $ins->nav_title ?></title>
 </head>
 
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="navbar-text container-fluid row-cols">
-                <a class="navbar-brand row" href="<?= $top_page_url ?>">
-                    <h1><?= $site_title ?> |</h1>
+                <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
+                    <h1><?= Config::$site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -48,41 +47,44 @@ $ins = new Base();
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= $nav_title ?>
+                                <?= $ins->nav_title ?>
                             </a>
                             <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($nav_menus as $menu => $url) : ?>
+                                <?php foreach ($ins->nav_menus as $menu => $url) : ?>
                                     <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
                                 <?php endforeach ?>
                             </ul>
                         </li>
                         <!-- 年月日の入力フォーム -->
-                        <form class="row" action="#">
-                            <div class="col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
-                                    <?php foreach ($years as $year) : ?>
-                                        <option value=<?= $year ?>><?= $year ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_year">年</label>
-                            </div>
-                            <div class="col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
-                                    <?php foreach ($months as $month) : ?>
-                                        <option value=<?= $month ?>><?= $month ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_year">月</label>
-                            </div>
-                            <div class=" col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
-                                    <?php foreach ($days as $day) : ?>
-                                        <option value=<?= $day ?>><?= $day ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_year">日</label>
-                            </div>
-                        </form>
+                        <fieldset>
+                            <form class="row" action="#">
+                                <div class="col input-group">
+                                    <select class="form-select" name="input_year" id="input_year">
+                                        <!-- ここはfor文でfirst_yearからthis_yearまでで繰り返せばOKかな -->
+                                        <?php foreach ($years as $year) : ?>
+                                            <option value=<?= $year ?>><?= $year ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    <label class="input-group-text" for="input_year">年</label>
+                                </div>
+                                <div class="col input-group">
+                                    <select class="form-select" name="input_year" id="input_year">
+                                        <?php foreach (Config::$months as $key => $val) : ?>
+                                            <option value=<?= $val ?>><?= $val ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    <label class="input-group-text" for="input_year">月</label>
+                                </div>
+                                <div class="col input-group">
+                                    <select class="form-select" name="input_year" id="input_year">
+                                        <?php foreach (Config::$days as $key => $val) : ?>
+                                            <option value=<?= $val ?>><?= $val ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    <label class="input-group-text" for="input_year">日</label>
+                                </div>
+                            </form>
+                        </fieldset>
                     </ul>
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
@@ -91,7 +93,7 @@ $ins = new Base();
                                 user_name
                             </a>
                             <ul class="text-end dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($nav_user_menus as $menu => $url) : ?>
+                                <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
                                     <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
                                 <?php endforeach ?>
                             </ul>
