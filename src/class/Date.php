@@ -5,7 +5,7 @@ class Date
     /**
      * 今年の年を代入する
      */
-    public function __constract()
+    public function __constract() //これもBase.phpに入れたらいいのでは？
     {
         $this_year = date('Y');
         return $this_year;
