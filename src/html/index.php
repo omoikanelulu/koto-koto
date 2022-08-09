@@ -1,12 +1,8 @@
 <?php
-require_once '../class/Date.php';
-require_once '../class/Util.php';
 require_once '../class/Config.php';
+require_once '../class/Base.php';
 
-$nav_title = 'koto-kotoへようこそ';
-
-// header("Location: http://" . $_SERVER["HTTP_HOST"] ."/shared_todo_lists_old/login/index.php");
-// のようにして、絶対パスで記述するのも1つの手ですね。
+$ins = new Base();
 
 ?>
 
@@ -21,16 +17,15 @@ $nav_title = 'koto-kotoへようこそ';
     <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../css/custom.css">
-    <title><?= $nav_title ?></title>
+    <title><?= $ins->nav_title ?></title>
 </head>
-
 
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
-                <a class="navbar-brand row" href="<?= $top_page_url ?>">
-                    <h1><?= $site_title ?> |</h1>
+                <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
+                    <h1><?= Config::$site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -38,7 +33,7 @@ $nav_title = 'koto-kotoへようこそ';
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item navbar-brand">
-                            <h4><?= $nav_title ?></h4>
+                            <h4><?= $ins->nav_title ?></h4>
                         </li>
                     </ul>
                 </div>
