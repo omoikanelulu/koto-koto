@@ -1,6 +1,6 @@
 <?php
 
-class Base //クラスプロパティの値には動的な値を入れられない、入れたい場合は__constract()を使う
+class Base //クラスプロパティの値には動的な値を入れられない、入れたい場合は__construct()を使う
 {
     // プロパティ
     public $top_page_url = null;
@@ -23,6 +23,8 @@ class Base //クラスプロパティの値には動的な値を入れられな�
 
         //navbarのメニュー項目
         $this->nav_menus = array(
+            "koto-kotoへようこそ" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php',
+            "エラーが発生しました" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/error/index.php',
             "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
             "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
             "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
@@ -37,18 +39,14 @@ class Base //クラスプロパティの値には動的な値を入れられな�
             "ログアウト" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/logout/action.php',
             "退会する" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/withdrawal/index.php',
         );
-    }
 
-    // メソッド
-    public function nav_title()
-    {
-        // ページに合わせてメニューの表示を変えるメソッド
+        // ページに合わせてメニューの表示を変える
         foreach ($this->nav_menus as $menu => $url) {
             if ($this->current_page == $url) {
                 $this->nav_title = $menu;
                 break;
             }
         }
-        return $this->nav_title;
     }
+
 }
