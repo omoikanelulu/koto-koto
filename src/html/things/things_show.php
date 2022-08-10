@@ -39,8 +39,9 @@ $ins = new Base();
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <?= $ins->nav_title ?>
                                 </a>
+                                <!-- ドロップダウンメニューの中身 -->
                                 <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                    <?php foreach ($ins->nav_menus['link'] as $menu => $url) : ?>
+                                    <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
                                         <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
                                     <?php endforeach ?>
                                 </ul>
