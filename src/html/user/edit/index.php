@@ -1,6 +1,8 @@
 <?php
 require_once '../../../class/Config.php';
-$nav_title = 'ユーザ本人確認';
+require_once '../../../class/Base.php';
+
+$ins = new Base();
 
 ?>
 
@@ -21,9 +23,9 @@ $nav_title = 'ユーザ本人確認';
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand row" href="<?= $top_page_url ?>">
-                    <h1><?= $site_title ?> |</h1>
+            <div class="container-fluid d-flex align-items-center">
+                <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
+                    <h1><?= Config::$site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,7 +33,7 @@ $nav_title = 'ユーザ本人確認';
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item navbar-brand">
-                            <h4><?= $nav_title ?></h4>
+                            <h4><?= $ins->nav_title ?></h4>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +43,7 @@ $nav_title = 'ユーザ本人確認';
 
     <main>
         <div class="mt-5 container">
-            <form action="./acount_edit.php" method="post">
+            <form action="./account_edit.php" method="post">
                 <fieldset>
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
