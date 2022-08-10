@@ -42,6 +42,9 @@ class Base //クラスプロパティの値には動的な値を入れられな�
                 "ユーザ情報確認" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/confirm.php',
                 "ユーザ情報編集完了" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/success.php',
                 "ユーザ本人確認" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/index.php',
+                "退会本人確認" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/withdrawal/index.php',
+                "退会確認" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/withdrawal/confirm.php',
+                "退会処理完了" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/withdrawal/success.php',
             )
         );
 
