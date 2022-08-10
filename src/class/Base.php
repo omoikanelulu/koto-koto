@@ -36,6 +36,10 @@ class Base //クラスプロパティの値には動的な値を入れられな�
                 "エラーが発生しました" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/error/index.php',
                 "ログイン" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/login/index.php',
                 "新規ユーザ登録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/add/index.php',
+                "ユーザ情報編集" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/account_edit.php',
+                "ユーザ情報確認" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/confirm.php',
+                "ユーザ情報編集完了" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/success.php',
+                "ユーザ本人確認" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/index.php',
             )
         );
 
