@@ -23,16 +23,35 @@ class Base //クラスプロパティの値には動的な値を入れられな�
 
         //navbarのメニュー項目
         $this->nav_menus = array(
-            "koto-kotoへようこそ" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php',
-            "エラーが発生しました" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/error/index.php',
-            "ログイン" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/login/index.php',
-            "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
-            "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
-            "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
-            "イイコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/good_things_show.php',
-            "ヤナコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/bad_things_show.php',
-            "削除済みデキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/deleted_things_show.php',
+            'link' => array(
+                "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
+                "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
+                "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
+                "イイコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/good_things_show.php',
+                "ヤナコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/bad_things_show.php',
+                "削除済みデキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/deleted_things_show.php',
+            ),
+            'not_link' => array(
+                "koto-kotoへようこそ" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php',
+                "エラーが発生しました" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/error/index.php',
+                "ログイン" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/login/index.php',
+                "新規ユーザ登録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/add/index.php',
+            )
         );
+
+        // //navbarのメニュー項目
+        // $this->nav_menus = array(
+        //     "koto-kotoへようこそ" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php',
+        //     "エラーが発生しました" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/error/index.php',
+        //     "ログイン" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/login/index.php',
+        //     "新規ユーザ登録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/add/index.php',
+        //     "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
+        //     "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
+        //     "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
+        //     "イイコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/good_things_show.php',
+        //     "ヤナコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/bad_things_show.php',
+        //     "削除済みデキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/deleted_things_show.php',
+        // );
 
         //navbarのuserメニュー項目
         $this->nav_user_menus = array(
@@ -41,13 +60,12 @@ class Base //クラスプロパティの値には動的な値を入れられな�
             "退会する" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/withdrawal/index.php',
         );
 
-        // ページに合わせてメニューの表示を変える
-        foreach ($this->nav_menus as $menu => $url) {
+        // nav-barにリンク用のメニューを用意する
+        foreach ($this->nav_menus['link'] as $key => $url) {
             if ($this->current_page == $url) {
-                $this->nav_title = $menu;
+                $this->nav_title = $key;
                 break;
             }
         }
     }
-
 }
