@@ -40,7 +40,7 @@ $ins = new Base();
                                     <?= $ins->nav_title ?>
                                 </a>
                                 <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                    <?php foreach ($ins->nav_menus as $menu => $url) : ?>
+                                    <?php foreach ($ins->nav_menus['link'] as $menu => $url) : ?>
                                         <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
                                     <?php endforeach ?>
                                 </ul>
