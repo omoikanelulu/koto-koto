@@ -21,46 +21,21 @@ $ins = new Base();
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
-            <div class="navbar-text container-fluid row-cols-auto">
-                <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
+            <div class="container-fluid d-flex align-items-center">
+                <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::$site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="row-cols-auto">
-                        <ul class="navbar-nav me-auto mb-lg-0">
-                            <!-- ここからドロップダウンメニュー -->
-                            <!-- ページ移動メニュー -->
-                            <li class="nav-item dropdown">
-                                <p class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?= $ins->nav_title ?>
-                                </p>
-                                <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                    <?php foreach ($ins->nav_menus as $menu => $url) : ?>
-                                        <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
-                                    <?php endforeach ?>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- ユーザメニュー -->
-                    <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
-                        <li class="nav-item dropstart">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                user_name
-                            </a>
-                            <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
-                                <?php endforeach ?>
-                            </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item navbar-brand">
+                            <h4><?= $ins->nav_title ?></h4>
                         </li>
                     </ul>
-                    <!-- ここまでドロップダウンメニュー -->
                 </div>
             </div>
         </nav>
