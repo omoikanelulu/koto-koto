@@ -66,7 +66,7 @@ $ins = new Base();
                 <div class="row row-cols-2 d-flex justify-content-center">
                     <div class="col">
                         <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <a href="<?= $top_page_url ?>"><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                        <a href="<?= $ins->top_page_url ?>"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                 </div>
             </form>

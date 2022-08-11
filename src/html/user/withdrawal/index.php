@@ -21,7 +21,7 @@ $ins = new Base();
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -66,7 +66,7 @@ $ins = new Base();
                 <div class="row row-cols-2 d-flex justify-content-center">
                     <div class="col">
                         <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <input type="button" class="btn btn-danger" value="キャンセル">
+                        <a href="<?= $ins->top_page_url ?>"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                 </div>
             </form>
