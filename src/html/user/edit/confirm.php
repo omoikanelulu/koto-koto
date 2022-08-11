@@ -17,7 +17,7 @@ $ins = new Base();
     <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
-    <title><?= $nav_title ?></title>
+    <title><?= $ins->nav_title ?></title>
 </head>
 
 <body class="bg-light">
@@ -43,7 +43,7 @@ $ins = new Base();
 
     <main>
         <div class="mt-5 container">
-            <form action="./confirm.php" method="POST">
+            <form action="./action.php" method="POST">
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
@@ -107,10 +107,10 @@ $ins = new Base();
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">編集する</button>
-                        <a href="./acount_edit.php"><button type="button" class="me-3 btn btn-secondary">前の画面に戻る</button></a>
+                        <a href="./account_edit.php"><button type="button" class="me-3 btn btn-secondary">前の画面に戻る</button></a>
                     </div>
                     <div class="col">
-                        <a href="<?= $things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="<?= $ins->things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                 </div>
             </form>

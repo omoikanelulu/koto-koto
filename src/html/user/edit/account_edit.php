@@ -17,7 +17,7 @@ $ins = new Base();
     <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
-    <title><?= $nav_title ?></title>
+    <title><?= $ins->nav_title ?></title>
 </head>
 
 <body class="bg-light">
@@ -107,7 +107,7 @@ $ins = new Base();
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">編集する</button>
-                        <a href="<?= $things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="<?= $ins->things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
