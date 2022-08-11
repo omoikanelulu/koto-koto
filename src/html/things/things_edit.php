@@ -48,24 +48,24 @@ $ins = new Base();
                         <form class="row" action="#">
                             <div class="col input-group">
                                 <select class="form-select" name="input_year" id="input_year">
-                                    <?php foreach ($years as $year) : ?>
-                                        <option value=<?= $year ?>><?= $year ?></option>
-                                    <?php endforeach ?>
+                                    <?php for ($i = Config::$first_year; $i <= $ins->this_year; $i++) : ?>
+                                        <option value="$i"><?= $i ?></option>
+                                    <?php endfor ?>
                                 </select>
                                 <label class="input-group-text" for="input_year">年</label>
                             </div>
                             <div class="col input-group">
                                 <select class="form-select" name="input_year" id="input_year">
-                                    <?php foreach ($months as $month) : ?>
-                                        <option value=<?= $month ?>><?= $month ?></option>
+                                    <?php foreach (Config::$months as $key => $val) : ?>
+                                        <option value=<?= $val ?>><?= $val ?></option>
                                     <?php endforeach ?>
                                 </select>
                                 <label class="input-group-text" for="input_year">月</label>
                             </div>
                             <div class=" col input-group">
                                 <select class="form-select" name="input_year" id="input_year">
-                                    <?php foreach ($days as $day) : ?>
-                                        <option value=<?= $day ?>><?= $day ?></option>
+                                    <?php foreach (Config::$days as $key => $val) : ?>
+                                        <option value=<?= $val ?>><?= $val ?></option>
                                     <?php endforeach ?>
                                 </select>
                                 <label class="input-group-text" for="input_year">日</label>
