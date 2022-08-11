@@ -21,7 +21,7 @@ $ins = new Base();
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -86,11 +86,10 @@ $ins = new Base();
                         <div class="col">
                             <label for="user_mail_address" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
-                                <select class="form-select" id="birth_date_year">
-                                    <option selected>2022</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
+                                <select class="form-select" name="birth_date_year" id="birth_date_year">
+                                    <?php for ($i = Config::$first_year; $i <= $ins->this_year; $i++) : ?>
+                                        <option value="$i"><?= $i ?></option>
+                                    <?php endfor ?>
                                 </select>
                                 <label class="input-group-text" for="birth_date_year">年</label>
                             </div>
@@ -99,10 +98,9 @@ $ins = new Base();
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" id="birth_date_month">
-                                        <option selected>01</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
+                                        <?php foreach (Config::$months as $key => $val) : ?>
+                                            <option value=<?= $val ?>><?= $val ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                     <label class="input-group-text" for="birth_date_month">月</label>
                                 </div>
@@ -110,10 +108,10 @@ $ins = new Base();
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" id="birth_date_day">
-                                        <option selected>01</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
+                                        <!-- <option selected>01</option> -->
+                                        <?php foreach (Config::$days as $key => $val) : ?>
+                                            <option value=<?= $val ?>><?= $val ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                     <label class="input-group-text" for="birth_date_day">日</label>
                                 </div>
@@ -160,7 +158,7 @@ $ins = new Base();
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">新規登録</button>
-                        <a href="<?= $top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="<?= $ins->top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
