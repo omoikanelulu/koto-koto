@@ -23,8 +23,8 @@ $ins = new Base();
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
-            <div class="navbar-text container-fluid row-cols">
-                <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
+            <div class="navbar-text container-fluid align-item-center">
+                <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::$site_title ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ $ins = new Base();
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <?= $ins->nav_title ?>
                             </a>
-                            <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
                                     <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
                                 <?php endforeach ?>
@@ -55,20 +55,20 @@ $ins = new Base();
                                 <label class="input-group-text" for="input_year">年</label>
                             </div>
                             <div class="col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
+                                <select class="form-select" name="input_month" id="input_month">
                                     <?php foreach (Config::$months as $key => $val) : ?>
                                         <option value=<?= $val ?>><?= $val ?></option>
                                     <?php endforeach ?>
                                 </select>
-                                <label class="input-group-text" for="input_year">月</label>
+                                <label class="input-group-text" for="input_month">月</label>
                             </div>
-                            <div class=" col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
+                            <div class="col input-group">
+                                <select class="form-select" name="input_day" id="input_day">
                                     <?php foreach (Config::$days as $key => $val) : ?>
                                         <option value=<?= $val ?>><?= $val ?></option>
                                     <?php endforeach ?>
                                 </select>
-                                <label class="input-group-text" for="input_year">日</label>
+                                <label class="input-group-text" for="input_day">日</label>
                             </div>
                         </form>
                     </ul>
