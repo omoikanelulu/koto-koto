@@ -21,7 +21,7 @@ $ins = new Base();
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -161,6 +161,11 @@ $ins = new Base();
     </main>
     <footer>
     </footer>
+
+    <!-- 指定したidがついている要素にreadonlyを付与するっぽいけど動かなかった
+    <script>
+        $('#user_form *').prop('readonly', true);
+    </script> -->
 
     <!-- bootstrap JavaScript Bundle with Popper -->
     <script src="../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
