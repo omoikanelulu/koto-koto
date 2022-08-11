@@ -45,7 +45,7 @@ $ins = new Base();
                             </ul>
                         </li>
                         <!-- 年月日の入力フォーム -->
-                        <form class="row" action="#">
+                        <form class="invisible row" action="#">
                             <div class="col input-group">
                                 <select class="form-select" name="input_year" id="input_year">
                                     <?php for ($i = Config::$first_year; $i <= $ins->this_year; $i++) : ?>
