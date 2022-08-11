@@ -26,6 +26,8 @@ class Base //クラスプロパティの値には動的な値を入れられな�
             'links' => array(
                 "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
                 "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
+                "対処法を記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/input_bad_things_approach.php',
+                "- - - - - - - - - - - - - -" => '',
                 "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
                 "イイコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/good_things_show.php',
                 "ヤナコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/bad_things_show.php',
