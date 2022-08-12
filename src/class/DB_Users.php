@@ -11,20 +11,27 @@ class DB_Users extends DB_Base
 
     /**
      * 一覧を取得しreturnする
+     * @param int 0=未削除 1=削除済み
      */
-    public function dbAllSelect(): array
+    public function allSelect($int): array
     {
         $sql = 'SELECT';
         $sql .= ' id';
-        $sql .= ',user';
+        $sql .= ',user_name';
         $sql .= ',family_name';
         $sql .= ',first_name';
-        $sql .= ',is_admin';
+        $sql .= ',birth_date';
+        $sql .= ',user_mail_address';
+        $sql .= ',pass';
+        $sql .= ',is_deleted';
+        $sql .= ',create_date_time';
+        $sql .= ',update_date_time';
         $sql .= ' FROM users';
-        $sql .= ' WHERE is_deleted = 0';
+        $sql .= ' WHERE is_deleted = :int';
         $sql .= ' ORDER BY id ASC';
 
         $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':int', $int, PDO::PARAM_INT);
 
         $stmt->execute();
 
