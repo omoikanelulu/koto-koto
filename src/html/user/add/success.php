@@ -43,11 +43,11 @@ $ins = new Base();
 
     <main>
         <div class="mt-5 container">
-            <div class="row row-cols-3 d-flex justify-content-center">
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
                     <p>ユーザ登録が完了しました</p>
-                    <p >トップページよりログインし、</p>
-                    <p class="mb-4">ご利用ください</p>
+                    <p>トップページよりログインし、</p>
+                    <p>ご利用ください</p>
                 </div>
                 <div class="col"></div>
             </div>
