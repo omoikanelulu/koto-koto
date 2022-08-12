@@ -43,19 +43,16 @@ $ins = new Base();
 
     <main>
         <div class="mt-5 container">
-            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+            <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                 <div class="col">
                     <p>ユーザ登録が完了しました</p>
-                    <p>トップページよりログインし、</p>
-                    <p>ご利用ください</p>
+                    <p>トップページよりログインし、ご利用ください</p>
                 </div>
-                <div class="col"></div>
             </div>
-            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+            <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                 <div class="col">
                     <a href=<?= $ins->top_page_url ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
-                <div class="col"></div>
             </div>
     </main>
     <footer>
