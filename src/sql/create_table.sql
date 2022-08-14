@@ -69,7 +69,7 @@ CREATE TABLE users (
 --
 ALTER TABLE things
   ADD PRIMARY KEY (id),
-  ADD KEY IX_users_id_user_id (user_id) USING BTREE COMMENT 'usersのidと紐付けている';
+  ADD KEY IX_users (user_id) USING BTREE COMMENT 'usersのidと紐付けている';
 
 --
 -- テーブルのインデックス users
