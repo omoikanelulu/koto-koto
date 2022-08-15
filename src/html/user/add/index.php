@@ -1,6 +1,11 @@
 <?php
 require_once '../../../class/Config.php';
 require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+
+// セッションスタート
+Security::session();
 
 $ins = new Base();
 
@@ -87,7 +92,7 @@ $ins = new Base();
                             <label for="user_mail_address" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
                                 <select class="form-select" name="birth_date_year" id="birth_date_year">
-                                    <?php for ($i = Config::$first_year; $i <= $ins->this_year; $i++) : ?>
+                                    <?php for ($i = $ins->this_year; $i >= $ins->this_year - 100; $i--) : ?>
                                         <option value="$i"><?= $i ?></option>
                                     <?php endfor ?>
                                 </select>
