@@ -60,7 +60,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" placeholder="hoge@example.com">
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name">
                         </div>
                         <div class="col"></div>
                     </div>
@@ -73,11 +73,11 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" placeholder="hoge@example.com">
+                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name">
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" placeholder="hoge@example.com">
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -90,11 +90,11 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <label for="user_mail_address" class="form-label">生年月日</label>
+                            <label for="" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
                                 <select class="form-select" name="birth_date_year" id="birth_date_year">
                                     <?php for ($i = $ins->this_year; $i >= $ins->this_year - 100; $i--) : ?>
-                                        <option value="$i"><?= $i ?></option>
+                                        <option value=<?= $i ?>><?= $i ?></option>
                                     <?php endfor ?>
                                 </select>
                                 <label class="input-group-text" for="birth_date_year">年</label>
@@ -103,7 +103,7 @@ $ins = new Base();
                         <div class="me-2 row row-cols-2 d-flex justify-content-center align-items-end">
                             <div class="col">
                                 <div class="input-group mb-3">
-                                    <select class="form-select" id="birth_date_month">
+                                    <select class="form-select" name="birth_date_month" id="birth_date_month">
                                         <?php foreach (Config::$months as $key => $val) : ?>
                                             <option value=<?= $val ?>><?= $val ?></option>
                                         <?php endforeach ?>
@@ -113,8 +113,7 @@ $ins = new Base();
                             </div>
                             <div class="col">
                                 <div class="input-group mb-3">
-                                    <select class="form-select" id="birth_date_day">
-                                        <!-- <option selected>01</option> -->
+                                    <select class="form-select" name="birth_date_day" id="birth_date_day">
                                         <?php foreach (Config::$days as $key => $val) : ?>
                                             <option value=<?= $val ?>><?= $val ?></option>
                                         <?php endforeach ?>
@@ -127,11 +126,11 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="your@example.com">
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
-                            <input type="email" class="form-control" id="user_mail_address_check" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address_check" id="user_mail_address_check" placeholder="再入力">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -145,11 +144,11 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password">
                         </div>
                         <div class="col">
                             <label for="pass_check" class="form-label">パスワード確認用</label>
-                            <input type="password" class="form-control" id="pass_check" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass_check" id="pass_check" placeholder="再入力">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
