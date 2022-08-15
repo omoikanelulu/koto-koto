@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 require_once '../../../class/Config.php';
 require_once '../../../class/Base.php';
 require_once '../../../class/Security.php';
@@ -16,7 +19,81 @@ $post = Security::sanitize($_POST);
 // サニタイズ済みのデータをセッションに保存
 $_SESSION['user_data'] = $post;
 
+// ここから、バリデーション
+$result = "";
 
+// user_nameの文字数チェック
+$result = Validation::ll_user_name($post['user_name']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_ll_user_name'] = Config::$err_ll_user_name;
+} else {
+    $result = '';
+}
+
+// family_nameの文字数チェック
+$result = Validation::ll_family_name($post['family_name']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_ll_family_name'] = Config::$err_ll_family_name;
+} else {
+    $result = '';
+}
+
+// user_mail_addressの文字数チェック
+$result = Validation::ll_user_mail_address($post['user_mail_address']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_ll_user_mail_address'] = Config::$err_ll_user_mail_address;
+} else {
+    $result = '';
+}
+
+// passの文字数チェック
+$result = Validation::ll_pass($post['pass']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_ll_pass'] = Config::$err_ll_pass;
+} else {
+    $result = '';
+}
+
+// first_nameの文字数チェック
+$result = Validation::ll_first_name($post['first_name']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_ll_first_name'] = Config::$err_ll_first_name;
+} else {
+    $result = '';
+}
+
+// 生年月日が正しいかチェック
+$result = Validation::is_correct_date($post['birth_date_year'], $post['birth_date_month'], $post['birth_date_day']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_is_correct_date'] = Config::$err_is_correct_date;
+} else {
+    $result = '';
+}
+
+// 確認用メールアドレスが正しいかチェック
+$result = Validation::is_matched($post['user_mail_address'], $post['user_mail_address_check']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_is_matched_mail'] = Config::$err_is_matched;
+} else {
+    $result = '';
+}
+
+// 確認用パスワードが正しいかチェック
+$result = Validation::is_matched($post['pass'], $post['pass_check']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_is_matched_pass'] = Config::$err_is_matched;
+} else {
+    $result = '';
+}
+// ここまでバリデーション
+
+// デバッグ用 //
+echo '<pre>';
+var_dump($result);
+var_dump($post);
+echo '</pre>';
+exit();
+////////////////
 ?>
 
 <!DOCTYPE html>
