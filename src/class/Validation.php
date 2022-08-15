@@ -1,12 +1,62 @@
 <?php
+require_once 'Config.php';
+
 class Validation
 {
     /**
-     * 文字数チェック
+     * user_name文字数チェック
      */
-    public static function length_limit($str)
+    public static function ll_user_name($var)
     {
-        if (mb_strlen($str) >= 100 || $str == '') {
+        if (mb_strlen($var) <= Config::$ll_user_name || $var == '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * family_name文字数チェック
+     */
+    public static function ll_family_name($var)
+    {
+        if (mb_strlen($var) <= Config::$ll_family_name || $var == '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * first_name文字数チェック
+     */
+    public static function ll_first_name($var)
+    {
+        if (mb_strlen($var) <= Config::$ll_first_name || $var == '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * メールアドレス文字数チェック
+     */
+    public static function ll_user_mail_address($var)
+    {
+        if (mb_strlen($var) <= Config::$ll_user_mail_address || $var == '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * パスワード文字数チェック
+     */
+    public static function ll_pass($var)
+    {
+        if (mb_strlen($var) <= Config::$ll_pass || $var == '') {
             return true;
         } else {
             return false;
@@ -15,15 +65,28 @@ class Validation
 
     /**
      * 正しい年月日かチェック
-     * @param date 年月日
+     * @param date 年,月,日
      * :true 正しい
      * :false 正しくない
      * checkdate(int $month, int $day, int $year): bool
      */
-    public static function is_correct_date($date)
+    public static function is_correct_date($year, $month, $day)
     {
-        list($year, $month, $day) = explode('-', $date);
         if (checkdate($month, $day, $year)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param var 比較する値が代入された変数
+     * :true 一致した
+     * :false 一致しない
+     */
+    public static function is_matched($var1, $var2)
+    {
+        if ($var1 == $var2) {
             return true;
         } else {
             return false;
