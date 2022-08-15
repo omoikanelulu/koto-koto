@@ -7,7 +7,15 @@ require_once '../../../class/Validation.php';
 // セッションスタート
 Security::session();
 
+// インスタンス作成
 $ins = new Base();
+
+// POSTされてきたデータをサニタイズして$postへ代入
+$post = Security::sanitize($_POST);
+
+// サニタイズ済みのデータをセッションに保存
+$_SESSION['user_data'] = $post;
+
 
 ?>
 
@@ -51,15 +59,16 @@ $ins = new Base();
             <form action="./action.php" method="POST">
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <p class="mb-4">以下の内容で登録します、よろしいですか？</p>
+                        <div class="col mb-4">
+                            <p>以下の内容で登録します、</p>
+                            <p>よろしいですか？</p>
                         </div>
                         <div class="col"></div>
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?= $ins->test_msg ?>>
+                            <input type="text" class="form-control" id="user_name" value=<?= $post['user_name'] ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -72,11 +81,11 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" value=<?= $ins->test_msg ?>>
+                            <input type="text" class="form-control" id="family_name" value=<?= $post['family_name'] ?>>
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" value=<?= $ins->test_msg ?>>
+                            <input type="text" class="form-control" id="first_name" value=<?= $post['first_name'] ?>>
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -89,13 +98,10 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <label for="user_mail_address" class="form-label">生年月日</label>
+                            <label for="" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
                                 <select class="form-select" id="birth_date_year">
-                                    <option selected><?= $ins->test_msg ?></option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
+                                    <option selected><?= $post['birth_date_year'] ?></option>
                                 </select>
                                 <label class="input-group-text" for="birth_date_year">年</label>
                             </div>
@@ -104,10 +110,7 @@ $ins = new Base();
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" id="birth_date_month">
-                                        <option selected><?= $ins->test_msg ?></option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
+                                        <option selected><?= $post['birth_date_month'] ?></option>
                                     </select>
                                     <label class="input-group-text" for="birth_date_month">月</label>
                                 </div>
@@ -115,10 +118,7 @@ $ins = new Base();
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" id="birth_date_day">
-                                        <option selected><?= $ins->test_msg ?></option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
+                                        <option selected><?= $post['birth_date_day'] ?></option>
                                     </select>
                                     <label class="input-group-text" for="birth_date_day">日</label>
                                 </div>
@@ -128,7 +128,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" value=<?= $ins->test_msg ?>>
+                            <input type="email" class="form-control" id="user_mail_address" value=<?= $post['user_mail_address'] ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -141,7 +141,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" value=<?= $ins->test_msg ?>>
+                            <input type="password" class="form-control" id="pass" value=<?= $post['pass'] ?>>
                         </div>
                         <div class="col"></div>
                     </div>
