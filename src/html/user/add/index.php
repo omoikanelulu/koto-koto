@@ -66,7 +66,9 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                            NG message
+                            <?php if (isset($_SESSION['err']['err_ll_user_name'])) : ?>
+                                <?= $_SESSION['err']['err_ll_user_name'] ?>
+                            <?php endif ?>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -82,13 +84,17 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                            NG message
+                        <?php if (isset($_SESSION['err']['err_ll_family_name'])) : ?>
+                                <?= $_SESSION['err']['err_ll_family_name'] ?>
+                            <?php endif ?>
                         </div>
                         <div class="col form-text text-danger">
-                            NG message
+                        <?php if (isset($_SESSION['err']['err_ll_first_name'])) : ?>
+                                <?= $_SESSION['err']['err_ll_first_name'] ?>
+                            <?php endif ?>
                         </div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
@@ -123,6 +129,14 @@ $ins = new Base();
                             </div>
                         </div>
                     </div>
+                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                        <div class="col form-text text-danger">
+                            <?php if (isset($_SESSION['err']['err_is_correct_date'])) : ?>
+                                <?= $_SESSION['err']['err_is_correct_date'] ?>
+                            <?php endif ?>
+                        </div>
+                        <div class="col"></div>
+                    </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
@@ -135,10 +149,14 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                            NG message
+                        <?php if (isset($_SESSION['err']['err_ll_user_mail_address'])) : ?>
+                                <?= $_SESSION['err']['err_ll_user_mail_address'] ?>
+                            <?php endif ?>
                         </div>
                         <div class="col form-text text-danger">
-                            NG message
+                            <?php if (isset($_SESSION['err']['err_is_matched_mail'])) : ?>
+                                <?= $_SESSION['err']['err_is_matched_mail'] ?>
+                            <?php endif ?>
                         </div>
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
@@ -153,10 +171,14 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                            NG message
+                        <?php if (isset($_SESSION['err']['err_ll_pass'])) : ?>
+                                <?= $_SESSION['err']['err_ll_pass'] ?>
+                            <?php endif ?>
                         </div>
                         <div class="col form-text text-danger">
-                            NG message
+                            <?php if (isset($_SESSION['err']['err_is_matched_pass'])) : ?>
+                                <?= $_SESSION['err']['err_is_matched_pass'] ?>
+                            <?php endif ?>
                         </div>
                     </div>
                 </fieldset>
@@ -171,6 +193,13 @@ $ins = new Base();
         </div>
     </main>
     <footer>
+        <?php
+        // デバッグ用 //
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ////////////////
+        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
