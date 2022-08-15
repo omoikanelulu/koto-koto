@@ -7,6 +7,7 @@ require_once '../../../class/Validation.php';
 // セッションスタート
 Security::session();
 
+// インスタンス作成
 $ins = new Base();
 
 ?>
