@@ -12,6 +12,20 @@ class Security
     }
 
     /**
+     * XSS（クロスサイトスクリプティング）対策
+     * 受け取ったデータをサニタイズする
+     */
+    public static function sanitize($post)
+    {
+        foreach ($post as $key => $v) {
+            // $post[$key] = htmlspecialchars($v, ENT_HTML5, 'UTF-8', true);
+            // オプションは無しでもいけるはず
+            $post[$key] = htmlspecialchars($v);
+        }
+        return $post;
+    }
+
+    /**
      * ログインされていない場合はindexにリダイレクトさせる
      * 同一ディレクトリのindexであるため注意
      */
@@ -53,19 +67,5 @@ class Security
         } else {
             return true; // 一致した
         }
-    }
-
-    /**
-     * XSS（クロスサイトスクリプティング）対策
-     * 受け取ったデータをサニタイズする
-     */
-    public static function sanitize($post)
-    {
-        foreach ($post as $key => $v) {
-            // $post[$key] = htmlspecialchars($v, ENT_HTML5, 'UTF-8', true);
-            // オプションは無しでもいけるはず
-            $post[$key] = htmlspecialchars($v);
-        }
-        return $post;
     }
 }
