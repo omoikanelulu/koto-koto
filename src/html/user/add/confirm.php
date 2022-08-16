@@ -24,7 +24,7 @@ $result = "";
 unset($_SESSION['err']);
 
 // user_nameの文字数チェック
-$result = Validation::ll_user_name($post['user_name']);
+$result = Validation::llUserName($post['user_name']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_user_name'] = Config::$err_ll_user_name;
 } else {
@@ -32,7 +32,7 @@ if ($result == false) { // NGの場合
 }
 
 // family_nameの文字数チェック
-$result = Validation::ll_family_name($post['family_name']);
+$result = Validation::llFamilyName($post['family_name']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_family_name'] = Config::$err_ll_family_name;
 } else {
@@ -40,7 +40,7 @@ if ($result == false) { // NGの場合
 }
 
 // user_mail_addressの文字数チェック
-$result = Validation::ll_user_mail_address($post['user_mail_address']);
+$result = Validation::llUserMailAddress($post['user_mail_address']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_user_mail_address'] = Config::$err_ll_user_mail_address;
 } else {
@@ -48,7 +48,7 @@ if ($result == false) { // NGの場合
 }
 
 // passの文字数チェック
-$result = Validation::ll_pass($post['pass']);
+$result = Validation::llPass($post['pass']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_pass'] = Config::$err_ll_pass;
 } else {
@@ -56,7 +56,7 @@ if ($result == false) { // NGの場合
 }
 
 // first_nameの文字数チェック
-$result = Validation::ll_first_name($post['first_name']);
+$result = Validation::llFirstName($post['first_name']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_first_name'] = Config::$err_ll_first_name;
 } else {
@@ -64,7 +64,7 @@ if ($result == false) { // NGの場合
 }
 
 // 生年月日が正しいかチェック
-$result = Validation::is_correct_date($post['birth_date_year'], $post['birth_date_month'], $post['birth_date_day']);
+$result = Validation::isCorrectDate($post['birth_date_year'], $post['birth_date_month'], $post['birth_date_day']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_is_correct_date'] = Config::$err_is_correct_date;
 } else {
@@ -72,7 +72,7 @@ if ($result == false) { // NGの場合
 }
 
 // 確認用メールアドレスが正しいかチェック
-$result = Validation::is_matched($post['user_mail_address'], $post['user_mail_address_check']);
+$result = Validation::isMatched($post['user_mail_address'], $post['user_mail_address_check']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_is_matched_mail'] = Config::$err_is_matched;
 } else {
@@ -80,7 +80,7 @@ if ($result == false) { // NGの場合
 }
 
 // 確認用パスワードが正しいかチェック
-$result = Validation::is_matched($post['pass'], $post['pass_check']);
+$result = Validation::isMatched($post['pass'], $post['pass_check']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_is_matched_pass'] = Config::$err_is_matched;
 } else {

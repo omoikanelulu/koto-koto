@@ -6,7 +6,7 @@ class Validation
     /**
      * user_name文字数チェック
      */
-    public static function ll_user_name($var)
+    public static function llUserName($var)
     {
         if (mb_strlen($var) <= Config::$ll_user_name || $var == '') {
             return true;
@@ -18,7 +18,7 @@ class Validation
     /**
      * family_name文字数チェック
      */
-    public static function ll_family_name($var)
+    public static function llFamilyName($var)
     {
         if (mb_strlen($var) <= Config::$ll_family_name || $var == '') {
             return true;
@@ -30,7 +30,7 @@ class Validation
     /**
      * first_name文字数チェック
      */
-    public static function ll_first_name($var)
+    public static function llFirstName($var)
     {
         if (mb_strlen($var) <= Config::$ll_first_name || $var == '') {
             return true;
@@ -42,7 +42,7 @@ class Validation
     /**
      * メールアドレス文字数チェック
      */
-    public static function ll_user_mail_address($var)
+    public static function llUserMailAddress($var)
     {
         if (mb_strlen($var) <= Config::$ll_user_mail_address || $var == '') {
             return true;
@@ -54,7 +54,7 @@ class Validation
     /**
      * パスワード文字数チェック
      */
-    public static function ll_pass($var)
+    public static function llPass($var)
     {
         if (mb_strlen($var) <= Config::$ll_pass || $var == '') {
             return true;
@@ -70,7 +70,7 @@ class Validation
      * :false 正しくない
      * checkdate(int $month, int $day, int $year): bool
      */
-    public static function is_correct_date($year, $month, $day)
+    public static function isCorrectDate($year, $month, $day)
     {
         if (checkdate($month, $day, $year)) {
             return true;
@@ -84,7 +84,7 @@ class Validation
      * :true 一致した
      * :false 一致しない
      */
-    public static function is_matched($var1, $var2)
+    public static function isMatched($var1, $var2)
     {
         if ($var1 == $var2) {
             return true;
