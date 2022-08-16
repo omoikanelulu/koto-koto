@@ -122,25 +122,25 @@ class DB_Users extends DB_Base
     }
 
     /**
-     * user情報を登録
-     * @param array $post サニタイズ済みの配列データ
+     * データベースに、ユーザ情報を登録する
+     * @param array $data
      * @return bool true
      */
-    public function dbUserAdd($post): bool
+    public function userAdd($data): bool
     {
         // passをハッシュ化する
-        $post['pass'] = password_hash($post['pass'], PASSWORD_DEFAULT);
+        $data['pass'] = password_hash($data['pass'], PASSWORD_DEFAULT);
 
         $sql = 'INSERT INTO';
         $sql .= ' users (user, pass, family_name, first_name, is_admin)';
         $sql .= ' VALUES(:user, :pass, :family_name, :first_name, :is_admin)';
 
         $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user', $post['user'], PDO::PARAM_STR);
-        $stmt->bindValue(':pass', $post['pass'], PDO::PARAM_STR);
-        $stmt->bindValue(':family_name', $post['family_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':first_name', $post['first_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':is_admin', $post['is_admin'], PDO::PARAM_INT);
+        $stmt->bindValue(':user', $data['user'], PDO::PARAM_STR);
+        $stmt->bindValue(':pass', $data['pass'], PDO::PARAM_STR);
+        $stmt->bindValue(':family_name', $data['family_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':first_name', $data['first_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':is_admin', $data['is_admin'], PDO::PARAM_INT);
 
         $stmt->execute();
 
