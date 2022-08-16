@@ -60,7 +60,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name">
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['user_name'] : '' ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -75,21 +75,21 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name">
+                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['family_name'] : '' ?>>
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name">
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['first_name'] : '' ?>>
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                        <?php if (isset($_SESSION['err']['err_ll_family_name'])) : ?>
+                            <?php if (isset($_SESSION['err']['err_ll_family_name'])) : ?>
                                 <?= $_SESSION['err']['err_ll_family_name'] ?>
                             <?php endif ?>
                         </div>
                         <div class="col form-text text-danger">
-                        <?php if (isset($_SESSION['err']['err_ll_first_name'])) : ?>
+                            <?php if (isset($_SESSION['err']['err_ll_first_name'])) : ?>
                                 <?= $_SESSION['err']['err_ll_first_name'] ?>
                             <?php endif ?>
                         </div>
@@ -140,7 +140,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="your@example.com">
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="your@example.com" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['user_mail_address'] : '' ?>>
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
@@ -149,7 +149,7 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                        <?php if (isset($_SESSION['err']['err_ll_user_mail_address'])) : ?>
+                            <?php if (isset($_SESSION['err']['err_ll_user_mail_address'])) : ?>
                                 <?= $_SESSION['err']['err_ll_user_mail_address'] ?>
                             <?php endif ?>
                         </div>
@@ -171,7 +171,7 @@ $ins = new Base();
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                        <?php if (isset($_SESSION['err']['err_ll_pass'])) : ?>
+                            <?php if (isset($_SESSION['err']['err_ll_pass'])) : ?>
                                 <?= $_SESSION['err']['err_ll_pass'] ?>
                             <?php endif ?>
                         </div>

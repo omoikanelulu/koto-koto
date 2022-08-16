@@ -17,10 +17,11 @@ $ins = new Base();
 $post = Security::sanitize($_POST);
 
 // サニタイズ済みのデータをセッションに保存
-$_SESSION['user_data'] = $post;
+$_SESSION['input_user_data'] = $post;
 
-// ここから、バリデーション
+// 【バリデーション開始】
 $result = "";
+unset($_SESSION['err']);
 
 // user_nameの文字数チェック
 $result = Validation::ll_user_name($post['user_name']);
@@ -85,7 +86,7 @@ if ($result == false) { // NGの場合
 } else {
     $result = '';
 }
-// ここまでバリデーション
+// 【バリデーション終了】
 
 // デバッグ用 //
 echo '<pre>';
