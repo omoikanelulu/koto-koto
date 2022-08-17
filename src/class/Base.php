@@ -17,6 +17,7 @@ class Base //クラスプロパティの値には動的な値を入れられな�
     public function __construct()
     {
         $this->top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php';
+        $this->err_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/error/index.php';
         $this->things_top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php';
         $this->this_year = date('Y');
         $this->current_page = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
