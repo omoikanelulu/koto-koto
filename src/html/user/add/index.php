@@ -60,7 +60,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['user_name'] : '' ?>>
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['user_name'] : '' ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -75,11 +75,11 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['family_name'] : '' ?>>
+                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['family_name'] : '' ?>>
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['first_name'] : '' ?>>
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['first_name'] : '' ?>>
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -99,6 +99,7 @@ $ins = new Base();
                             <label for="" class="form-label">生年月日</label>
                             <div class="input-group mb-3">
                                 <select class="form-select" name="birth_date_year" id="birth_date_year">
+                                    <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?></option>
                                     <?php for ($i = $ins->this_year; $i >= $ins->this_year - 100; $i--) : ?>
                                         <option value=<?= $i ?>><?= $i ?></option>
                                     <?php endfor ?>
@@ -110,6 +111,7 @@ $ins = new Base();
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" name="birth_date_month" id="birth_date_month">
+                                        <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?></option>
                                         <?php foreach (Config::$months as $key => $val) : ?>
                                             <option value=<?= $val ?>><?= $val ?></option>
                                         <?php endforeach ?>
@@ -120,6 +122,7 @@ $ins = new Base();
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <select class="form-select" name="birth_date_day" id="birth_date_day">
+                                        <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?></option>
                                         <?php foreach (Config::$days as $key => $val) : ?>
                                             <option value=<?= $val ?>><?= $val ?></option>
                                         <?php endforeach ?>
@@ -140,7 +143,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="your@example.com" value=<?php (isset($_SESSION['input_user_data'])) ? $_SESSION['input_user_data']['user_mail_address'] : '' ?>>
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="your@example.com" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['user_mail_address'] : '' ?>>
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
