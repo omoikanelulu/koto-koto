@@ -124,7 +124,7 @@ class DB_Users extends DB_Base
     /**
      * データベースに、ユーザ情報を登録する
      * @param array $data
-     * @return bool true
+     * @return :bool
      */
     public function userAdd($data): bool
     {
@@ -132,18 +132,24 @@ class DB_Users extends DB_Base
         $data['pass'] = password_hash($data['pass'], PASSWORD_DEFAULT);
 
         $sql = 'INSERT INTO';
-        $sql .= ' users (user, pass, family_name, first_name, is_admin)';
-        $sql .= ' VALUES(:user, :pass, :family_name, :first_name, :is_admin)';
+        $sql .= ' users (user_name, family_name, first_name, birth_date, user_mail_address, pass)';
+        $sql .= ' VALUES(:user_name, :family_name, :first_name, :birth_date, user_mail_address, :pass,)';
 
         $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user', $data['user'], PDO::PARAM_STR);
-        $stmt->bindValue(':pass', $data['pass'], PDO::PARAM_STR);
+        $stmt->bindValue(':user_name', $data['user_name'], PDO::PARAM_STR);
         $stmt->bindValue(':family_name', $data['family_name'], PDO::PARAM_STR);
         $stmt->bindValue(':first_name', $data['first_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':is_admin', $data['is_admin'], PDO::PARAM_INT);
+        $stmt->bindValue(':birth_date', ($data['birth_date_year'] . '-' . $data['birth_date_month'] . '-' . $data['birth_date_day']), PDO::PARAM_STR);
+        $stmt->bindValue(':user_mail_address', $data['user_mail_address'], PDO::PARAM_STR);
+        $stmt->bindValue(':pass', $data['pass'], PDO::PARAM_STR);
 
         $stmt->execute();
-
+// デバッグ用 //
+echo'<pre>';
+var_dump($stmt);
+echo'</pre>';
+exit();
+////////////////
         return true;
     }
 
