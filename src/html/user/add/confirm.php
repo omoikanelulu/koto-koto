@@ -88,13 +88,6 @@ if ($result == false) { // NGの場合
 }
 // 【バリデーション終了】
 
-// デバッグ用 //
-echo '<pre>';
-var_dump($result);
-var_dump($post);
-echo '</pre>';
-exit();
-////////////////
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +143,7 @@ exit();
                         </div>
                         <div class="col"></div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
                             NG message
                         </div>
@@ -166,7 +159,7 @@ exit();
                             <input type="text" class="form-control" id="first_name" value=<?= $post['first_name'] ?>>
                         </div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
                             NG message
                         </div>
@@ -210,7 +203,7 @@ exit();
                         </div>
                         <div class="col"></div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
                             NG message
                         </div>
@@ -223,7 +216,7 @@ exit();
                         </div>
                         <div class="col"></div>
                     </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
                             NG message
                         </div>
@@ -243,6 +236,16 @@ exit();
         </div>
     </main>
     <footer>
+
+        <?php
+        echo '
+        <pre>';
+        var_dump($result);
+        var_dump($post);
+        // var_dump($post['birth_date_year'] . '-' . $post['birth_date_month'] . '-' . $post['birth_date_day']);
+        echo '</pre>';
+        // exit();
+        ?>
     </footer>
 
     <!-- 指定したidがついている要素にreadonlyを付与するっぽいけど動かなかった
