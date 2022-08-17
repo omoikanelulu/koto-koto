@@ -133,23 +133,18 @@ class DB_Users extends DB_Base
 
         $sql = 'INSERT INTO';
         $sql .= ' users (user_name, family_name, first_name, birth_date, user_mail_address, pass)';
-        $sql .= ' VALUES(:user_name, :family_name, :first_name, :birth_date, user_mail_address, :pass,)';
+        $sql .= ' VALUES(:user_name, :family_name, :first_name, :birth_date, :user_mail_address, :pass)';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_name', $data['user_name'], PDO::PARAM_STR);
         $stmt->bindValue(':family_name', $data['family_name'], PDO::PARAM_STR);
         $stmt->bindValue(':first_name', $data['first_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':birth_date', ($data['birth_date_year'] . '-' . $data['birth_date_month'] . '-' . $data['birth_date_day']), PDO::PARAM_STR);
+        $stmt->bindValue(':birth_date', $data['birth_date_year'] . '-' . $data['birth_date_month'] . '-' . $data['birth_date_day'], PDO::PARAM_STR);
         $stmt->bindValue(':user_mail_address', $data['user_mail_address'], PDO::PARAM_STR);
         $stmt->bindValue(':pass', $data['pass'], PDO::PARAM_STR);
 
         $stmt->execute();
-// デバッグ用 //
-echo'<pre>';
-var_dump($stmt);
-echo'</pre>';
-exit();
-////////////////
+
         return true;
     }
 
