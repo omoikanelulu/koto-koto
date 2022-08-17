@@ -1,14 +1,28 @@
 <?php
-require_once '../../../class/Config.php';
-require_once '../../../class/Base.php';
-require_once '../../../class/Security.php';
-require_once '../../../class/Validation.php';
-require_once '../../../class/DB_Base.php';
-require_once '../../../class/DB_Users.php';
+try {
+    require_once '../../../class/Config.php';
+    require_once '../../../class/Base.php';
+    require_once '../../../class/Security.php';
+    require_once '../../../class/Validation.php';
+    require_once '../../../class/DB_Base.php';
+    require_once '../../../class/DB_Users.php';
 
-// セッションスタート
-Security::session();
+    // セッションスタート
+    Security::session();
+    $post = $_SESSION['input_user_data'];
 
+    $ins = new Base;
 
-echo '新規ユーザ登録処理を行う';
-?>
+    // インスタンス生成、新規ユーザ登録する
+    $DBins = new DB_Users;
+    // trueならsuccessページへ遷移する
+    $result = $DBins->userAdd($post);
+    if ($result == true) {
+        header('Location:./success.php');
+        exit();
+    }
+} catch (Exception $e) {
+    $_SESSION['exception'] = $e;
+    header('Location:' . $ins->err_page_url);
+    exit();
+}
