@@ -18,6 +18,7 @@ try {
     // trueならsuccessページへ遷移する
     $result = $DBins->userAdd($post);
     if ($result == true) {
+        unset($_SESSION['input_user_data'],$_SESSION['exception']);
         header('Location:./success.php');
         exit();
     }
