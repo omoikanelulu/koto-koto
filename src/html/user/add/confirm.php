@@ -1,7 +1,4 @@
 <?php
-
-use LDAP\Result;
-
 require_once '../../../class/Config.php';
 require_once '../../../class/Base.php';
 require_once '../../../class/Security.php';
@@ -240,12 +237,14 @@ if ($result == false) { // NGの場合
         <?php
         echo '
         <pre>';
-        var_dump($result);
+        // var_dump($result);
         var_dump($post);
-        // var_dump($post['birth_date_year'] . '-' . $post['birth_date_month'] . '-' . $post['birth_date_day']);
+        echo '<br>年月日をまとめて表示<br>';
+        var_dump($post['birth_date_year'] . '-' . $post['birth_date_month'] . '-' . $post['birth_date_day']);
         echo '</pre>';
         // exit();
         ?>
+
     </footer>
 
     <!-- 指定したidがついている要素にreadonlyを付与するっぽいけど動かなかった
