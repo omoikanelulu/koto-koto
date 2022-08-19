@@ -1,7 +1,10 @@
 <?php
+require_once 'Base.php';
 
 class Security
 {
+    // static $ins = new Base;
+
     /**
      * セッションを開始する
      */
@@ -31,9 +34,10 @@ class Security
      */
     public static function notLogin()
     {
-        if (empty($_SESSION['user'])) {
-            header('Location:./index.php');
-            // header('Location:../login/index.php');
+        $ins = new Base; // newする場所はfunctionかclass内で。class外でnewしてもclass内には影響がない
+        if (empty($_SESSION['login_user'])) {
+            // header('Location:'.self::$ins->top_page_url);
+            header('Location:'.$ins->top_page_url);
             exit();
         }
     }
