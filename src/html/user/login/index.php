@@ -5,7 +5,6 @@ require_once '../../../class/Security.php';
 require_once '../../../class/Validation.php';
 require_once '../../../class/DB_Base.php';
 require_once '../../../class/DB_Users.php';
-
 Security::session();
 
 $ins = new Base();

@@ -4,6 +4,7 @@ class Base //クラスプロパティの値には動的な値を入れられな�
 {
     // プロパティ
     public $top_page_url = null;
+    public $err_page_url = null;
     public $things_top_page_url = null;
     public $test_msg = '入力内容が表示される';
     public $session_info = 'sessionに保存した内容';
@@ -26,13 +27,13 @@ class Base //クラスプロパティの値には動的な値を入れられな�
         $this->nav_menus = array(
             'links' => array(
                 "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/index.php',
-                "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_edit.php',
-                "対処法を記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/input_bad_things_approach.php',
+                "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/thing_edit.php',
+                "対処法を記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/input_bad_thing_approach.php',
                 "- - - - - - - - - - - - - -" => '',
-                "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/things_show.php',
-                "イイコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/good_things_show.php',
-                "ヤナコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/bad_things_show.php',
-                "削除済みデキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/deleted_things_show.php',
+                "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/thing_show.php',
+                "イイコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/good_thing_show.php',
+                "ヤナコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/bad_thing_show.php',
+                "削除済みデキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/deleted_thing_show.php',
             ),
             'not_links' => array(
                 "koto-kotoへようこそ" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php',
