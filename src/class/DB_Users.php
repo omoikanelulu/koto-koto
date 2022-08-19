@@ -84,41 +84,23 @@ class DB_Users extends DB_Base
     }
 
     /**
-     * DBのusersテーブルからuserを探す
-     * @return $rec 該当したレコードが入る
+     * 入力されたメールアドレスを元にDBのusersテーブルからuserのレコードを探す
+     * @return :array
      */
-    public function dbFindUser($user)
+    public function userLogin($post)
     {
-        $sql = 'SELECT * FROM users WHERE user=:user';
+        $rec = '';
+
+        $sql = 'SELECT * FROM users WHERE user_mail_address=:user_mail_address';
         $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user', $user['user'], PDO::PARAM_STR);
+        $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
         $stmt->execute();
+
         // 該当したレコードが入る
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        // 見つからなかった時のメッセージ
-        if (empty($rec)) {
-            $_SESSION['err']['msg'] = 'ご登録されていないようです';
 
-            // $_SESSION['loginFailure']++;
-            header('Location:../login/index.php');
-            exit();
-        } else {
-            // 本人確認
-            $result = password_verify($user['pass'], $rec['pass']);
-            if ($result) {
-                $_SESSION['user'] = $rec;
-                unset($_SESSION['err']['msg']);
-                header('Location:../todo/index.php');
-                exit();
-            } else {
-                $_SESSION['err']['msg'] = 'IDかパスワードが間違っています';
-
-                // $_SESSION['loginFailure']++;
-
-                header('Location:../login/index.php');
-                exit();
-            }
-        }
+        // 結果を取得
+        return $rec;
     }
 
     /**
