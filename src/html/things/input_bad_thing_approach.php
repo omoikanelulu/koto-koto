@@ -48,7 +48,7 @@ $ins = new Base();
                         <form class="invisible row" action="#">
                             <div class="col input-group">
                                 <select class="form-select" name="input_year" id="input_year">
-                                    <?php for ($i = Config::$first_year; $i <= $ins->this_year; $i++) : ?>
+                                    <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
                                         <option value="$i"><?= $i ?></option>
                                     <?php endfor ?>
                                 </select>
