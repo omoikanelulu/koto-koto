@@ -31,7 +31,7 @@ $ins = new Base();
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
-                    <h1><?= Config::$site_title ?> |</h1>
+                    <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

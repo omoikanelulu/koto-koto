@@ -8,7 +8,7 @@ class Validation
      */
     public static function llUserName($var)
     {
-        if (mb_strlen($var) <= Config::$ll_user_name || $var == '') {
+        if (mb_strlen($var) <= Config::LL_USER_NAME || $var == '') {
             return true;
         } else {
             return false;
@@ -20,7 +20,7 @@ class Validation
      */
     public static function llFamilyName($var)
     {
-        if (mb_strlen($var) <= Config::$ll_family_name || $var == '') {
+        if (mb_strlen($var) <= Config::LL_FAMILY_NAME || $var == '') {
             return true;
         } else {
             return false;
@@ -32,7 +32,7 @@ class Validation
      */
     public static function llFirstName($var)
     {
-        if (mb_strlen($var) <= Config::$ll_first_name || $var == '') {
+        if (mb_strlen($var) <= Config::LL_FIRST_NAME || $var == '') {
             return true;
         } else {
             return false;
@@ -44,7 +44,7 @@ class Validation
      */
     public static function llUserMailAddress($var)
     {
-        if (mb_strlen($var) <= Config::$ll_user_mail_address || $var == '') {
+        if (mb_strlen($var) <= Config::LL_USER_MAIL_ADDRESS || $var == '') {
             return true;
         } else {
             return false;
@@ -56,7 +56,7 @@ class Validation
      */
     public static function llPass($var)
     {
-        if (mb_strlen($var) <= Config::$ll_pass || $var == '') {
+        if (mb_strlen($var) <= Config::LL_PASS || $var == '') {
             return true;
         } else {
             return false;

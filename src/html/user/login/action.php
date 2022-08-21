@@ -18,14 +18,14 @@ $post = Security::sanitize($_POST);
 $rec = $login->userLogin($post);
 
 if (empty($rec)) {
-    $_SESSION['err']['err_userLogin'] = Config::$err_userLogin;
+    $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
 } elseif (password_verify($post['pass'], $rec['pass'])) {
     $_SESSION['login_user'] = $rec;
     unset($_SESSION['err']);
     header('Location:'.$ins->things_top_page_url);
     exit();
 } else {
-    $_SESSION['err']['err_userLogin'] = Config::$err_userLogin;
+    $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
 }
 
 header('Location:./index.php');

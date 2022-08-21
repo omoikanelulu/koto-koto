@@ -31,7 +31,7 @@ $ins = new Base();
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand row" href="#">
-                    <h1><?= Config::$site_title ?> |</h1>
+                    <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@ $ins = new Base();
             <div class="row">
                 <div class="col-1 col-md-2 col-xl-3"></div>
                 <div class="mb-4 col-10 col-md-8 col-xl-6">
-                    <p class="mb-4"><?= Config::$err_msg ?></p>
+                    <p class="mb-4"><?= Config::ERR_MSG ?></p>
                     <a href="../user/logout/action.php"><button type="button" class="btn btn-danger">ログアウト</button></a>
                 </div>
                 <div class="col-1 col-md-2 col-xl-3"></div>

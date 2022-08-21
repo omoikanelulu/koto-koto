@@ -34,7 +34,7 @@ $ins = new Base();
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="navbar-text container-fluid align-item-center">
                 <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
-                    <h1><?= Config::$site_title ?> |</h1>
+                    <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -65,7 +65,7 @@ $ins = new Base();
                             </div>
                             <div class="col input-group">
                                 <select class="form-select" name="input_month" id="input_month">
-                                    <?php foreach (Config::$months as $key => $val) : ?>
+                                    <?php foreach (Config::MONTHS as $key => $val) : ?>
                                         <option value=<?= $val ?>><?= $val ?></option>
                                     <?php endforeach ?>
                                 </select>
@@ -73,7 +73,7 @@ $ins = new Base();
                             </div>
                             <div class="col input-group">
                                 <select class="form-select" name="input_day" id="input_day">
-                                    <?php foreach (Config::$days as $key => $val) : ?>
+                                    <?php foreach (Config::DAYS as $key => $val) : ?>
                                         <option value=<?= $val ?>><?= $val ?></option>
                                     <?php endforeach ?>
                                 </select>

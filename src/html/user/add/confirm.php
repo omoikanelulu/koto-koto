@@ -24,7 +24,7 @@ unset($_SESSION['err']);
 // user_nameの文字数チェック
 $result = Validation::llUserName($post['user_name']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_user_name'] = Config::$err_ll_user_name;
+    $_SESSION['err']['err_ll_user_name'] = Config::ERR_LL_USER_NAME;
     $check_ng = true;
 } else {
     $result = '';
@@ -33,7 +33,7 @@ if ($result == false) { // NGの場合
 // family_nameの文字数チェック
 $result = Validation::llFamilyName($post['family_name']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_family_name'] = Config::$err_ll_family_name;
+    $_SESSION['err']['err_ll_family_name'] = Config::ERR_LL_FAMILY_NAME;
     $check_ng = true;
 } else {
     $result = '';
@@ -42,7 +42,7 @@ if ($result == false) { // NGの場合
 // user_mail_addressの文字数チェック
 $result = Validation::llUserMailAddress($post['user_mail_address']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_user_mail_address'] = Config::$err_ll_user_mail_address;
+    $_SESSION['err']['err_ll_user_mail_address'] = Config::ERR_LL_USER_MAIL_ADDRESS;
     $check_ng = true;
 } else {
     $result = '';
@@ -51,7 +51,7 @@ if ($result == false) { // NGの場合
 // passの文字数チェック
 $result = Validation::llPass($post['pass']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_pass'] = Config::$err_ll_pass;
+    $_SESSION['err']['err_ll_pass'] = Config::ERR_LL_PASS;
     $check_ng = true;
 } else {
     $result = '';
@@ -60,7 +60,7 @@ if ($result == false) { // NGの場合
 // first_nameの文字数チェック
 $result = Validation::llFirstName($post['first_name']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_first_name'] = Config::$err_ll_first_name;
+    $_SESSION['err']['err_ll_first_name'] = Config::ERR_LL_FIRST_NAME;
     $check_ng = true;
 } else {
     $result = '';
@@ -69,7 +69,7 @@ if ($result == false) { // NGの場合
 // 生年月日が正しいかチェック
 $result = Validation::isCorrectDate($post['birth_date_year'], $post['birth_date_month'], $post['birth_date_day']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_is_correct_date'] = Config::$err_is_correct_date;
+    $_SESSION['err']['err_is_correct_date'] = Config::ERR_IS_CORRECT_DATE;
     $check_ng = true;
 } else {
     $result = '';
@@ -78,7 +78,7 @@ if ($result == false) { // NGの場合
 // 確認用メールアドレスが正しいかチェック
 $result = Validation::isMatched($post['user_mail_address'], $post['user_mail_address_check']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_is_matched_mail'] = Config::$err_is_matched;
+    $_SESSION['err']['err_is_matched_mail'] = Config::ERR_IS_MATCHED;
     $check_ng = true;
 } else {
     $result = '';
@@ -87,7 +87,7 @@ if ($result == false) { // NGの場合
 // 確認用パスワードが正しいかチェック
 $result = Validation::isMatched($post['pass'], $post['pass_check']);
 if ($result == false) { // NGの場合
-    $_SESSION['err']['err_is_matched_pass'] = Config::$err_is_matched;
+    $_SESSION['err']['err_is_matched_pass'] = Config::ERR_IS_MATCHED;
     $check_ng = true;
 } else {
     $result = '';
@@ -121,7 +121,7 @@ if ($check_ng == true) {
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
-                    <h1><?= Config::$site_title ?> |</h1>
+                    <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
