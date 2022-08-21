@@ -8,7 +8,7 @@ class Validation
      */
     public static function llUserName($var)
     {
-        if (mb_strlen($var) <= Config::LL_USER_NAME || $var == '') {
+        if (mb_strlen($var) <= Config::LL_USER_NAME && !empty($var)) {
             return true;
         } else {
             return false;
@@ -20,7 +20,7 @@ class Validation
      */
     public static function llFamilyName($var)
     {
-        if (mb_strlen($var) <= Config::LL_FAMILY_NAME || $var == '') {
+        if (mb_strlen($var) <= Config::LL_FAMILY_NAME && !empty($var)) {
             return true;
         } else {
             return false;
@@ -32,7 +32,7 @@ class Validation
      */
     public static function llFirstName($var)
     {
-        if (mb_strlen($var) <= Config::LL_FIRST_NAME || $var == '') {
+        if (mb_strlen($var) <= Config::LL_FIRST_NAME && !empty($var)) {
             return true;
         } else {
             return false;
@@ -44,7 +44,7 @@ class Validation
      */
     public static function llUserMailAddress($var)
     {
-        if (mb_strlen($var) <= Config::LL_USER_MAIL_ADDRESS || $var == '') {
+        if (mb_strlen($var) <= Config::LL_USER_MAIL_ADDRESS && !empty($var)) {
             return true;
         } else {
             return false;
@@ -56,7 +56,7 @@ class Validation
      */
     public static function llPass($var)
     {
-        if (mb_strlen($var) <= Config::LL_PASS || $var == '') {
+        if (mb_strlen($var) <= Config::LL_PASS && !empty($var)) {
             return true;
         } else {
             return false;
@@ -71,8 +71,8 @@ class Validation
      * checkdate(int $month, int $day, int $year): bool
      */
     public static function isCorrectDate($year, $month, $day)
-    {
-        if (checkdate($month, $day, $year)) {
+    { // 入力された値がない場合の処理が必要
+        if (!empty($year) && !empty($month) && !empty($day) && checkdate($month, $day, $year)) {
             return true;
         } else {
             return false;
