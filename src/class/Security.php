@@ -15,6 +15,23 @@ class Security
     }
 
     /**
+     * まるっとログアウト処理
+     */
+    public static function logout()
+    {
+        // セッション変数を全て解除
+        $_SESSION = array();
+
+        // セッションクッキーの削除
+        if (isset($_COOKIE["PHPSESSID"])) {
+            setcookie("PHPSESSID", '', time() - 1800, '/');
+        }
+
+        // セッションを破棄する
+        session_destroy();
+    }
+
+    /**
      * XSS（クロスサイトスクリプティング）対策
      * 受け取ったデータをサニタイズする
      */
@@ -37,7 +54,7 @@ class Security
         $ins = new Base; // newする場所はfunctionかclass内で。class外でnewしてもclass内には影響がない
         if (empty($_SESSION['login_user'])) {
             // header('Location:'.self::$ins->top_page_url);
-            header('Location:'.$ins->top_page_url);
+            header('Location:' . $ins->top_page_url);
             exit();
         }
     }

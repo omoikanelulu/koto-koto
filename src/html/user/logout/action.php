@@ -7,11 +7,8 @@ require_once '../../../class/Validation.php';
 // セッションスタート
 Security::session();
 
-// インスタンス作成
 $ins = new Base();
 
-unset($_SESSION['login_user']);
+Security::logout();
 
-header('Location:'.$ins->top_page_url);
-
-?>
+header('Location:' . $ins->top_page_url);
