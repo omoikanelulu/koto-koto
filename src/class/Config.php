@@ -24,11 +24,11 @@ class Config //staticプロパティは内容が変化しないのものを設�
     public const ERR_IS_MATCHED = '一致しません';
 
     // エラーメッセージ（文字数制限）
-    public const ERR_LL_USER_NAME = '文字数は50文字以内にしてください';
-    public const ERR_LL_FAMILY_NAME = '文字数は20文字以内にしてください';
-    public const ERR_LL_FIRST_NAME = '文字数は20文字以内にしてください';
-    public const ERR_LL_USER_MAIL_ADDRESS = '文字数は50文字以内にしてください';
-    public const ERR_LL_PASS = '文字数は50文字以内にしてください';
+    public const ERR_LL_USER_NAME = '文字数は1文字以上'.self::LL_USER_NAME.'文字以内にしてください';
+    public const ERR_LL_FAMILY_NAME = '文字数は1文字以上'.self::LL_FAMILY_NAME.'文字以内にしてください';
+    public const ERR_LL_FIRST_NAME = '文字数は1文字以上'.self::LL_FIRST_NAME.'文字以内にしてください';
+    public const ERR_LL_USER_MAIL_ADDRESS = '文字数は1文字以上'.self::LL_USER_MAIL_ADDRESS.'文字以内にしてください';
+    public const ERR_LL_PASS = '文字数は1文字以上'.self::LL_PASS.'文字以内にしてください';
 
     // エラーメッセージ（メソッド）
     public const ERR_USER_LOGIN = 'ご登録されていないか、入力に誤りがあります';
