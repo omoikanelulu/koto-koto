@@ -89,6 +89,14 @@ $ins = new Base();
         </div>
     </main>
     <footer>
+        <?php
+        // デバッグ用 //
+        echo'<pre>';
+        echo 'セッションID<br>';
+        var_dump($_COOKIE['PHPSESSID']);
+        echo'</pre>';
+        ////////////////
+        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
