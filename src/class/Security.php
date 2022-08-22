@@ -22,7 +22,7 @@ class Security
         // セッション変数を全て解除
         $_SESSION = array();
 
-        // セッションクッキーの削除
+        // セッションクッキーの削除、time()ってなんぞ？
         if (isset($_COOKIE["PHPSESSID"])) {
             setcookie("PHPSESSID", '', time() - 1800, '/');
         }
