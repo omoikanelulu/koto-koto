@@ -10,6 +10,81 @@ class DB_Users extends DB_Base
     }
 
     /**
+     * ログイン処理
+     * 入力されたメールアドレスを元にDBのusersテーブルからuserのレコードを探す
+     */
+    public function userLogin($post): array
+    {
+        $rec = '';
+
+        $sql = 'SELECT * FROM users WHERE user_mail_address=:user_mail_address';
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
+        $stmt->execute();
+
+        // 該当したレコードが入る
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // 結果を取得
+        return $rec;
+    }
+
+    /**
+     * データベースに、ユーザを新規登録する
+     * @param array $data
+     * @return :bool
+     */
+    public function userAdd($data): bool
+    {
+        // passをハッシュ化する
+        $data['pass'] = password_hash($data['pass'], PASSWORD_DEFAULT);
+
+        $sql = 'INSERT INTO';
+        $sql .= ' users (user_name, family_name, first_name, birth_date, user_mail_address, pass)';
+        $sql .= ' VALUES(:user_name, :family_name, :first_name, :birth_date, :user_mail_address, :pass)';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_name', $data['user_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':family_name', $data['family_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':first_name', $data['first_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':birth_date', $data['birth_date_year'] . '-' . $data['birth_date_month'] . '-' . $data['birth_date_day'], PDO::PARAM_STR);
+        $stmt->bindValue(':user_mail_address', $data['user_mail_address'], PDO::PARAM_STR);
+        $stmt->bindValue(':pass', $data['pass'], PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return true;
+    }
+
+    /**
+     * ユーザ情報の編集、更新
+     */
+    public function userUpdate($post)
+    {
+        $sql = 'UPDATE users SET';
+        $sql .= ' user=:user,';
+        // $sql .= ' pass=:pass';
+        $sql .= ' family_name=:family_name';
+        $sql .= ' ,first_name=:first_name';
+        $sql .= ' ,is_admin=:is_admin';
+        $sql .= ' ,is_deleted=:is_deleted';
+        $sql .= ' WHERE id=:id';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user', $post['user'], PDO::PARAM_STR);
+        // $stmt->bindValue(':pass', $post['pass'], PDO::PARAM_STR);
+        $stmt->bindValue(':family_name', $post['family_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':first_name', $post['first_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':is_admin', $post['is_admin'], PDO::PARAM_INT);
+        $stmt->bindValue(':is_deleted', $post['is_deleted'], PDO::PARAM_INT);
+        $stmt->bindValue(':id', $post['id'], PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return true;
+    }
+
+    /**
      * 一覧を取得しreturnする
      * @param int 0=未削除 1=削除済み
      */
@@ -81,83 +156,6 @@ class DB_Users extends DB_Base
         } else {
             return true;
         }
-    }
-
-    /**
-     * 入力されたメールアドレスを元にDBのusersテーブルからuserのレコードを探す
-     * @return :array
-     */
-    public function userLogin($post)
-    {
-        $rec = '';
-
-        $sql = 'SELECT * FROM users WHERE user_mail_address=:user_mail_address';
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
-        $stmt->execute();
-
-        // 該当したレコードが入る
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // 結果を取得
-        return $rec;
-    }
-
-    /**
-     * データベースに、ユーザ情報を登録する
-     * @param array $data
-     * @return :bool
-     */
-    public function userAdd($data): bool
-    {
-        // passをハッシュ化する
-        $data['pass'] = password_hash($data['pass'], PASSWORD_DEFAULT);
-
-        $sql = 'INSERT INTO';
-        $sql .= ' users (user_name, family_name, first_name, birth_date, user_mail_address, pass)';
-        $sql .= ' VALUES(:user_name, :family_name, :first_name, :birth_date, :user_mail_address, :pass)';
-
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user_name', $data['user_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':family_name', $data['family_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':first_name', $data['first_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':birth_date', $data['birth_date_year'] . '-' . $data['birth_date_month'] . '-' . $data['birth_date_day'], PDO::PARAM_STR);
-        $stmt->bindValue(':user_mail_address', $data['user_mail_address'], PDO::PARAM_STR);
-        $stmt->bindValue(':pass', $data['pass'], PDO::PARAM_STR);
-
-        $stmt->execute();
-
-        return true;
-    }
-
-    /**
-     * ユーザ情報の更新
-     *
-     * @return true
-     */
-    public function userUpdate($post)
-    {
-        $sql = 'UPDATE users SET';
-        $sql .= ' user=:user,';
-        // $sql .= ' pass=:pass';
-        $sql .= ' family_name=:family_name';
-        $sql .= ' ,first_name=:first_name';
-        $sql .= ' ,is_admin=:is_admin';
-        $sql .= ' ,is_deleted=:is_deleted';
-        $sql .= ' WHERE id=:id';
-
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user', $post['user'], PDO::PARAM_STR);
-        // $stmt->bindValue(':pass', $post['pass'], PDO::PARAM_STR);
-        $stmt->bindValue(':family_name', $post['family_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':first_name', $post['first_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':is_admin', $post['is_admin'], PDO::PARAM_INT);
-        $stmt->bindValue(':is_deleted', $post['is_deleted'], PDO::PARAM_INT);
-        $stmt->bindValue(':id', $post['id'], PDO::PARAM_INT);
-
-        $stmt->execute();
-
-        return true;
     }
 
     /**
