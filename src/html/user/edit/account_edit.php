@@ -1,10 +1,10 @@
 <?php
-require_once '../../class/Config.php';
-require_once '../../class/Base.php';
-require_once '../../class/Security.php';
-require_once '../../class/Validation.php';
-require_once '../../class/DB_Base.php';
-require_once '../../class/DB_Users.php';
+require_once '../../../class/Config.php';
+require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
 
 Security::session();
 
@@ -12,6 +12,22 @@ Security::session();
 Security::notLogin();
 
 $ins = new Base();
+
+$post = Security::sanitize($_POST);
+
+// 入力されたIDとPASSをログイン情報と比較し、本人確認する
+$check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+
+// NGの場合はエラーメッセージを出して前のページに遷移
+if ($check_id == false && !isset($_SESSION['verified'])) {
+    $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
+    header('Location:./index.php', true, 307);
+    exit();
+} else {
+    // 通過したタイミングでエラーメッセージと、verifiedを削除する
+    unset($_SESSION['err']['err_checkId']);
+    unset($_SESSION['verified']);
+}
 
 ?>
 
@@ -23,14 +39,14 @@ $ins = new Base();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <link rel="stylesheet" href="../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $ins->nav_title ?></title>
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -62,54 +78,54 @@ $ins = new Base();
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="user_name_edit" id="user_name">
+                            <input type="checkbox" name="edit_user_name" id="user_name">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" placeholder="hoge@example.com">
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com">
                         </div>
                         <div class="col"></div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                            NG message
+                            <?= isset($_SESSION['err']['err_ll_user_name']) ? $_SESSION['err']['err_ll_user_name'] : '' ?>
                         </div>
                         <div class="col"></div>
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="user_mail_address_edit" id="user_mail_address">
+                            <input type="checkbox" name="edit_user_mail_address" id="user_mail_address">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com">
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
-                            <input type="email" class="form-control" id="user_mail_address_check" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address_check" id="user_mail_address_check" placeholder="hoge@example.com">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                            NG message
+                            <?= isset($_SESSION['err']['err_ll_user_mail_address']) ? $_SESSION['err']['err_ll_user_mail_address'] : '' ?>
                         </div>
                         <div class="col form-text text-danger">
-                            NG message
+                            <?= isset($_SESSION['err']['err_is_matched_mail']) ? $_SESSION['err']['err_is_matched_mail'] : '' ?>
                         </div>
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="pass_edit" id="pass">
+                            <input type="checkbox" name="edit_pass" id="pass">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password">
                         </div>
                         <div class="col">
                             <label for="pass_check" class="form-label">パスワード確認用</label>
-                            <input type="password" class="form-control" id="pass_check" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass_check" id="pass_check" placeholder="your_password">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                         <div class="col form-text text-danger">
-                            NG message
+                            <?= isset($_SESSION['err']['err_ll_pass']) ? $_SESSION['err']['err_ll_pass'] : '' ?>
                         </div>
                         <div class="col form-text text-danger">
-                            NG message
+                            <?= isset($_SESSION['err']['err_is_matched_pass']) ? $_SESSION['err']['err_is_matched_pass'] : '' ?>
                         </div>
                     </div>
                 </fieldset>
@@ -124,10 +140,17 @@ $ins = new Base();
         </div>
     </main>
     <footer>
+        <?php
+        // デバッグ用 //
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ////////////////
+        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
-    <script src="../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
