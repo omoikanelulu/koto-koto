@@ -32,4 +32,5 @@ class Config //staticプロパティは内容が変化しないのものを設�
 
     // エラーメッセージ（メソッド）
     public const ERR_USER_LOGIN = 'ご登録されていないか、入力に誤りがあります';
+    public const ERR_CHECK_ID = 'ご登録された情報を入力してください';
 }
