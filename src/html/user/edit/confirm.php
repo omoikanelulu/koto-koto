@@ -185,7 +185,7 @@ if ($check_ng == true) {
                         <a href="./account_edit.php"><button type="button" class="me-3 btn btn-secondary">前の画面に戻る</button></a>
                     </div>
                     <div class="col">
-                        <a href="<?= $ins->things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="<?= $ins->edit_cancel_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                 </div>
             </form>
