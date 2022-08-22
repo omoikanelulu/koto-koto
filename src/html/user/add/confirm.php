@@ -241,7 +241,7 @@ if ($check_ng == true) {
                         <a href="./index.php"><button type="button" class="btn btn-secondary">前のページに戻る</button></a>
                     </div>
                     <div class="col">
-                        <a href=<?= $ins->top_page_url ?>><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href=<?= $ins->nav_user_menus['ログアウト'] ?>><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                 </div>
             </form>

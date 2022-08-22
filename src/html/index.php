@@ -1,6 +1,9 @@
 <?php
 require_once '../class/Config.php';
 require_once '../class/Base.php';
+require_once '../class/Security.php';
+
+Security::session();
 
 $ins = new Base();
 
@@ -94,6 +97,8 @@ $ins = new Base();
         echo'<pre>';
         echo 'セッションID<br>';
         var_dump($_COOKIE['PHPSESSID']);
+        echo 'セッションの中身<br>';
+        var_dump($_SESSION);
         echo'</pre>';
         ////////////////
         ?>
