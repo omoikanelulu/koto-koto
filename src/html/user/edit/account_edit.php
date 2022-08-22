@@ -15,18 +15,20 @@ $ins = new Base();
 
 $post = Security::sanitize($_POST);
 
-// 入力されたIDとPASSをログイン情報と比較し、本人確認する
-$check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+if (!isset($_SESSION['verified'])) {
+    // 入力されたIDとPASSをログイン情報と比較し、本人確認する
+    $check_id = Security::checkId($post['user_mail_address'], $post['pass']);
 
-// NGの場合はエラーメッセージを出して前のページに遷移
-if ($check_id == false && !isset($_SESSION['verified'])) {
-    $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
-    header('Location:./index.php', true, 307);
-    exit();
-} else {
-    // 通過したタイミングでエラーメッセージと、verifiedを削除する
-    unset($_SESSION['err']['err_checkId']);
-    unset($_SESSION['verified']);
+    // NGの場合はエラーメッセージを出して前のページに遷移
+    if ($check_id == false) {
+        $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
+        header('Location:./index.php', true, 307);
+        exit();
+    } else {
+        // 通過したタイミングでエラーメッセージと、verifiedを削除する
+        unset($_SESSION['err']['err_checkId']);
+        unset($_SESSION['verified']);
+    }
 }
 
 ?>
@@ -132,7 +134,7 @@ if ($check_id == false && !isset($_SESSION['verified'])) {
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">編集する</button>
-                        <a href="<?= $ins->things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="<?= $ins->edit_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
