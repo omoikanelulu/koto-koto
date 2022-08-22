@@ -39,6 +39,15 @@ if ($result == false) { // NGの場合
     $result = '';
 }
 
+// first_nameの文字数チェック
+$result = Validation::llFirstName($post['first_name']);
+if ($result == false) { // NGの場合
+    $_SESSION['err']['err_ll_first_name'] = Config::ERR_LL_FIRST_NAME;
+    $check_ng = true;
+} else {
+    $result = '';
+}
+
 // user_mail_addressの文字数チェック
 $result = Validation::llUserMailAddress($post['user_mail_address']);
 if ($result == false) { // NGの場合
@@ -52,15 +61,6 @@ if ($result == false) { // NGの場合
 $result = Validation::llPass($post['pass']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_pass'] = Config::ERR_LL_PASS;
-    $check_ng = true;
-} else {
-    $result = '';
-}
-
-// first_nameの文字数チェック
-$result = Validation::llFirstName($post['first_name']);
-if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_first_name'] = Config::ERR_LL_FIRST_NAME;
     $check_ng = true;
 } else {
     $result = '';
