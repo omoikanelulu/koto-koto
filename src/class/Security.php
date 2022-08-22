@@ -60,6 +60,25 @@ class Security
     }
 
     /**
+     * 本人確認メソッド
+     * 入力されたIDとPASSが$_SESSION['login_user']の情報と同一かチェックする
+     */
+    public static function checkId($mail, $pass)
+    {
+        // self::session();
+        if (!empty($mail) && !empty($pass)) {
+            // if ($mail == $_SESSION['login_user']['user_mail_address'] && $pass == $_SESSION['login_user']['pass']) {
+            if ($mail == $_SESSION['login_user']['user_mail_address'] && password_verify($pass, $_SESSION['login_user']['pass'])) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * CSRF（クロスサイトリクエストフォージェリ）対策
      * $_SESSION['token']に保存
      */
@@ -77,12 +96,6 @@ class Security
      */
     public static function matched_token($p_token): bool
     {
-        // ここが怪しいのかも
-        // if (!isset($_SESSION['token']) || $_SESSION['token'] !== $p_token) {
-        //     return false;
-        // }
-        // return true;
-
         if (empty($_SESSION['token']) || empty($p_token) || $_SESSION['token'] !== $p_token) {
             return false; // 一致せず
         } else {
