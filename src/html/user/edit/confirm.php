@@ -13,8 +13,6 @@ Security::notLogin();
 
 $ins = new Base();
 
-// コピペしてきた
-
 // POSTされてきたデータをサニタイズして$postへ代入
 $post = Security::sanitize($_POST);
 
@@ -80,8 +78,6 @@ if ($check_ng == true) {
     header('location:./account_edit.php', true, 307);
     exit();
 }
-
-// ここまでコピペ
 
 ?>
 
