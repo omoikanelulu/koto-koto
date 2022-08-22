@@ -1,6 +1,15 @@
 <?php
 require_once '../../class/Config.php';
 require_once '../../class/Base.php';
+require_once '../../class/Security.php';
+require_once '../../class/Validation.php';
+require_once '../../class/DB_Base.php';
+require_once '../../class/DB_Users.php';
+
+Security::session();
+
+// ログインしていない場合トップページへリダイレクトする
+Security::notLogin();
 
 $ins = new Base();
 
@@ -76,7 +85,7 @@ $ins = new Base();
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
                         <li class="nav-item dropstart">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                user_name
+                            <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
                             </a>
                             <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
