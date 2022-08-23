@@ -80,9 +80,15 @@ if (!isset($_SESSION['verified'])) {
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="edit_user_name" value="on" id="user_name" <?= isset($_SESSION['edit_user_data']['edit_user_name']) ? 'checked' : '' ?>>
+                            <!-- <input type="checkbox" name="edit_user_name" value="on" id="user_name" </?=isset($_SESSION['edit_user_data']['edit_user_name']) ? 'checked' : '' ?>>
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com" value=<?= isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>>
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com" value=</?=isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>> -->
+
+                            <label for="check_user_name" class="form-label">
+                                <input type="checkbox" id="check_user_name" value="on" onclick="userNameDisabled('user_name',this.checked);">ユーザ名
+                            </label>
+                            <input <?= empty($_SESSION['edit_user_data']['user_name']) ? 'disabled' : '' ?> type="text" class="form-control" name="user_name" id="user_name" value=<?= isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>>
+
                         </div>
                         <div class="col"></div>
                     </div>
@@ -94,9 +100,15 @@ if (!isset($_SESSION['verified'])) {
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="edit_user_mail_address" value="on" id="user_mail_address" <?= isset($_SESSION['edit_user_data']['edit_user_mail_address']) ? 'checked' : '' ?>>
+                            <!-- <input type="checkbox" name="edit_user_mail_address" value="on" id="user_mail_address" </?= isset($_SESSION['edit_user_data']['edit_user_mail_address']) ? 'checked' : '' ?>>
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com" value=</?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>> -->
+
+                            <label for="check_user_mail_address" class="form-label">
+                                <input type="checkbox" id="check_user_mail_address" value="on" onclick="userMailAddressDisabled('user_mail_address',this.checked);">メールアドレス
+                            </label>
+                            <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? 'disabled' : '' ?> type="text" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
+
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
@@ -153,6 +165,7 @@ if (!isset($_SESSION['verified'])) {
 
     <!-- bootstrap JavaScript Bundle with Popper -->
     <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/script.js"></script>
 </body>
 
 </html>
