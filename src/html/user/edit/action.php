@@ -9,7 +9,7 @@ try {
 
     // セッションスタート
     Security::session();
-    $post = $_SESSION['input_user_data'];
+    $post = $_SESSION['edit_user_data'];
 
     $ins = new Base;
 
@@ -18,7 +18,7 @@ try {
     // trueならsuccessページへ遷移する
     $result = $DBins->userUpdate($post);
     if ($result == true) {
-        unset($_SESSION['input_user_data'],$_SESSION['exception']);
+        unset($_SESSION['edit_user_data'],$_SESSION['exception']);
         header('Location:./success.php');
         exit();
     }

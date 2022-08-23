@@ -7,9 +7,9 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
-// $_SESSIONにユーザがインプットしたデータがあればunsetする
-if (isset($_SESSION['input_user_data'])) {
-    unset($_SESSION['input_user_data']);
+// $_SESSIONにユーザが入力したデータがあればunsetする
+if (isset($_SESSION['edit_user_data'])) {
+    unset($_SESSION['edit_user_data']);
 }
 // $_SESSIONにエラーメッセージがあればunsetする
 if (isset($_SESSION['err'])) {

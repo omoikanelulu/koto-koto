@@ -17,7 +17,7 @@ $ins = new Base();
 $post = Security::sanitize($_POST);
 
 // サニタイズ済みのデータをセッションに保存
-$_SESSION['input_user_data'] = $post;
+$_SESSION['edit_user_data'] = $post;
 
 // checkId()を通過した事を示す値を持たせる
 $_SESSION['verified'] = 'checkId';
