@@ -107,7 +107,7 @@ if (!isset($_SESSION['verified'])) {
                             <label for="cb_user_mail_address" class="form-label">
                                 <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? '' : 'checked' ?> type="checkbox" id="cb_user_mail_address" value="on" onclick="userMailAddressDisabled('user_mail_address',this.checked);">メールアドレス
                             </label>
-                            <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? 'disabled' : '' ?> type="text" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
+                            <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? 'disabled' : '' ?> type="email" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
 
                         </div>
                         <div class="col">
@@ -132,7 +132,7 @@ if (!isset($_SESSION['verified'])) {
                             <label for="cb_pass" class="form-label">
                                 <input <?= empty($_SESSION['edit_user_data']['pass']) ? '' : 'checked' ?> type="checkbox" id="cb_pass" value="on" onclick="userMailAddressDisabled('pass',this.checked);">パスワード
                             </label>
-                            <input <?= empty($_SESSION['edit_user_data']['pass']) ? 'disabled' : '' ?> type="text" class="form-control" name="pass" id="pass" value=<?= isset($_SESSION['edit_user_data']['pass']) ? $_SESSION['edit_user_data']['pass'] : '' ?>>
+                            <input <?= empty($_SESSION['edit_user_data']['pass']) ? 'disabled' : '' ?> type="password" class="form-control" name="pass" id="pass" value=<?= isset($_SESSION['edit_user_data']['pass']) ? $_SESSION['edit_user_data']['pass'] : '' ?>>
 
                         </div>
                         <div class="col">
