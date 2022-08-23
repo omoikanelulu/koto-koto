@@ -23,62 +23,62 @@ $_SESSION['edit_user_data'] = $post;
 $_SESSION['verified'] = 'checkId';
 
 // 【バリデーション開始】
-$check_ng = '';
-$result = '';
-unset($_SESSION['err']);
+// $check_ng = '';
+// $result = '';
+// unset($_SESSION['err']);
 
-// user_nameの文字数チェック
-$result = Validation::llUserName($post['user_name']);
-if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_user_name'] = Config::ERR_LL_USER_NAME;
-    $check_ng = true;
-} else {
-    $result = '';
-}
+// // user_nameの文字数チェック
+// $result = Validation::llUserName($post['user_name']);
+// if ($result == false) { // NGの場合
+//     $_SESSION['err']['err_ll_user_name'] = Config::ERR_LL_USER_NAME;
+//     $check_ng = true;
+// } else {
+//     $result = '';
+// }
 
-// user_mail_addressの文字数チェック
-$result = Validation::llUserMailAddress($post['user_mail_address']);
-if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_user_mail_address'] = Config::ERR_LL_USER_MAIL_ADDRESS;
-    $check_ng = true;
-} else {
-    $result = '';
-}
+// // user_mail_addressの文字数チェック
+// $result = Validation::llUserMailAddress($post['user_mail_address']);
+// if ($result == false) { // NGの場合
+//     $_SESSION['err']['err_ll_user_mail_address'] = Config::ERR_LL_USER_MAIL_ADDRESS;
+//     $check_ng = true;
+// } else {
+//     $result = '';
+// }
 
-// passの文字数チェック
-$result = Validation::llPass($post['pass']);
-if ($result == false) { // NGの場合
-    $_SESSION['err']['err_ll_pass'] = Config::ERR_LL_PASS;
-    $check_ng = true;
-} else {
-    $result = '';
-}
+// // passの文字数チェック
+// $result = Validation::llPass($post['pass']);
+// if ($result == false) { // NGの場合
+//     $_SESSION['err']['err_ll_pass'] = Config::ERR_LL_PASS;
+//     $check_ng = true;
+// } else {
+//     $result = '';
+// }
 
-// 確認用メールアドレスが正しいかチェック
-$result = Validation::isMatched($post['user_mail_address'], $post['user_mail_address_check']);
-if ($result == false) { // NGの場合
-    $_SESSION['err']['err_is_matched_mail'] = Config::ERR_IS_MATCHED;
-    $check_ng = true;
-} else {
-    $result = '';
-}
+// // 確認用メールアドレスが正しいかチェック
+// $result = Validation::isMatched($post['user_mail_address'], $post['user_mail_address_check']);
+// if ($result == false) { // NGの場合
+//     $_SESSION['err']['err_is_matched_mail'] = Config::ERR_IS_MATCHED;
+//     $check_ng = true;
+// } else {
+//     $result = '';
+// }
 
-// 確認用パスワードが正しいかチェック
-$result = Validation::isMatched($post['pass'], $post['pass_check']);
-if ($result == false) { // NGの場合
-    $_SESSION['err']['err_is_matched_pass'] = Config::ERR_IS_MATCHED;
-    $check_ng = true;
-} else {
-    $result = '';
-}
-// 【バリデーション終了】
+// // 確認用パスワードが正しいかチェック
+// $result = Validation::isMatched($post['pass'], $post['pass_check']);
+// if ($result == false) { // NGの場合
+//     $_SESSION['err']['err_is_matched_pass'] = Config::ERR_IS_MATCHED;
+//     $check_ng = true;
+// } else {
+//     $result = '';
+// }
 
 // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307でトークンも送信出来る？
-if ($check_ng == true) {
-    header('location:./account_edit.php', true, 307);
-    exit();
-}
+// if ($check_ng == true) {
+//     header('location:./account_edit.php', true, 307);
+//     exit();
+// }
 
+// 【バリデーション終了】
 ?>
 
 <!DOCTYPE html>
@@ -128,9 +128,9 @@ if ($check_ng == true) {
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="user_name_edit" id="user_name">
+                            <!-- <input type="checkbox" name="user_name_edit" id="user_name"> -->
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" value=<?= $post['user_name'] ?>>
+                            <input type="text" class="form-control" name="user_name" id="user_name" value=<?= isset($post['user_name']) ? $post['user_name'] : '' ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -142,11 +142,11 @@ if ($check_ng == true) {
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="user_mail_address_edit" id="user_mail_address">
+                            <!-- <input type="checkbox" name="user_mail_address_edit" id="user_mail_address"> -->
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= $post['user_mail_address'] ?>>
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($post['user_mail_address']) ? $post['user_mail_address'] : '' ?>>
                         </div>
-                        <div class="col">
+                        <div class="invisible col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
                             <input type="email" class="form-control" name="user_mail_address_check" id="user_mail_address_check" placeholder="hoge@example.com">
                         </div>
@@ -161,11 +161,11 @@ if ($check_ng == true) {
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="pass_edit" id="pass">
+                            <!-- <input type="checkbox" name="pass_edit" id="pass"> -->
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" name="pass" id="pass" value=<?= $post['pass'] ?>>
+                            <input type="password" class="form-control" name="pass" id="pass" value=<?= isset($post['pass']) ? $post['pass'] : '' ?>>
                         </div>
-                        <div class="col">
+                        <div class="invisible col">
                             <label for="pass_check" class="form-label">パスワード確認用</label>
                             <input type="password" class="form-control" name="pass_check" id="pass_check" placeholder="your_password">
                         </div>
