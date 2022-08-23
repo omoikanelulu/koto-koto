@@ -84,8 +84,8 @@ if (!isset($_SESSION['verified'])) {
                             <label for="user_name" class="form-label">ユーザ名</label>
                             <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com" value=</?=isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>> -->
 
-                            <label for="check_user_name" class="form-label">
-                                <input <?= empty($_SESSION['edit_user_data']['user_name']) ? '' : 'checked' ?> type="checkbox" id="check_user_name" value="on" onclick="userNameDisabled('user_name',this.checked);">ユーザ名
+                            <label for="cb_user_name" class="form-label">
+                                <input <?= empty($_SESSION['edit_user_data']['user_name']) ? '' : 'checked' ?> type="checkbox" id="cb_user_name" value="on" onclick="userNameDisabled('user_name',this.checked);">ユーザ名
                             </label>
                             <input <?= empty($_SESSION['edit_user_data']['user_name']) ? 'disabled' : '' ?> type="text" class="form-control" name="user_name" id="user_name" value=<?= isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>>
 
@@ -104,15 +104,15 @@ if (!isset($_SESSION['verified'])) {
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
                             <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com" value=</?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>> -->
 
-                            <label for="check_user_mail_address" class="form-label">
-                                <input type="checkbox" id="check_user_mail_address" value="on" onclick="userMailAddressDisabled('user_mail_address',this.checked);">メールアドレス
+                            <label for="cb_user_mail_address" class="form-label">
+                                <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? '' : 'checked' ?> type="checkbox" id="cb_user_mail_address" value="on" onclick="userMailAddressDisabled('user_mail_address',this.checked);">メールアドレス
                             </label>
                             <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? 'disabled' : '' ?> type="text" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
 
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
-                            <input type="email" class="form-control" name="user_mail_address_check" id="user_mail_address_check" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address_check" id="user_mail_address" placeholder="hoge@example.com">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -125,13 +125,19 @@ if (!isset($_SESSION['verified'])) {
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <input type="checkbox" name="edit_pass" value="on" id="pass" <?= isset($_SESSION['edit_user_data']['edit_pass']) ? 'checked' : '' ?>>
+                            <!-- <input type="checkbox" name="edit_pass" value="on" id="pass" <?= isset($_SESSION['edit_user_data']['edit_pass']) ? 'checked' : '' ?>>
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password"> -->
+
+                            <label for="cb_pass" class="form-label">
+                                <input <?= empty($_SESSION['edit_user_data']['pass']) ? '' : 'checked' ?> type="checkbox" id="cb_pass" value="on" onclick="userMailAddressDisabled('pass',this.checked);">パスワード
+                            </label>
+                            <input <?= empty($_SESSION['edit_user_data']['pass']) ? 'disabled' : '' ?> type="text" class="form-control" name="pass" id="pass" value=<?= isset($_SESSION['edit_user_data']['pass']) ? $_SESSION['edit_user_data']['pass'] : '' ?>>
+
                         </div>
                         <div class="col">
                             <label for="pass_check" class="form-label">パスワード確認用</label>
-                            <input type="password" class="form-control" name="pass_check" id="pass_check" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass_check" id="pass" placeholder="your_password">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
