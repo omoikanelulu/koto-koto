@@ -82,7 +82,7 @@ if (!isset($_SESSION['verified'])) {
                         <div class="col">
                             <input type="checkbox" name="edit_user_name" id="user_name">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com">
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com" value=<?= isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -96,7 +96,7 @@ if (!isset($_SESSION['verified'])) {
                         <div class="col">
                             <input type="checkbox" name="edit_user_mail_address" id="user_mail_address">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
