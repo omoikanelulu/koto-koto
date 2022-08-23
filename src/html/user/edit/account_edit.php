@@ -85,7 +85,7 @@ if (!isset($_SESSION['verified'])) {
                             <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com" value=</?=isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>> -->
 
                             <label for="check_user_name" class="form-label">
-                                <input type="checkbox" id="check_user_name" value="on" onclick="userNameDisabled('user_name',this.checked);">ユーザ名
+                                <input <?= empty($_SESSION['edit_user_data']['user_name']) ? '' : 'checked' ?> type="checkbox" id="check_user_name" value="on" onclick="userNameDisabled('user_name',this.checked);">ユーザ名
                             </label>
                             <input <?= empty($_SESSION['edit_user_data']['user_name']) ? 'disabled' : '' ?> type="text" class="form-control" name="user_name" id="user_name" value=<?= isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>>
 
