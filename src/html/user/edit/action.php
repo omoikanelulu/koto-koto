@@ -13,12 +13,13 @@ try {
 
     $ins = new Base;
 
-    // インスタンス生成、新規ユーザ登録する
+    // インスタンス生成
     $DBins = new DB_Users;
-    // trueならsuccessページへ遷移する
+    // userUpdateを呼び出す
     $result = $DBins->userUpdate($post);
+    // trueならsuccessページへ遷移する
     if ($result == true) {
-        unset($_SESSION['edit_user_data'],$_SESSION['exception']);
+        unset($_SESSION['edit_user_data'], $_SESSION['exception'], $_SESSION['err']);
         header('Location:./success.php');
         exit();
     }
