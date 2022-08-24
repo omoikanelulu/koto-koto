@@ -85,7 +85,7 @@ if (!isset($_SESSION['verified'])) {
                             <input type="text" class="form-control" name="user_name" id="user_name" placeholder="hoge@example.com" value=</?=isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>> -->
 
                             <label for="cb_user_name" class="form-label">
-                                <input <?= empty($_SESSION['edit_user_data']['user_name']) ? '' : 'checked' ?> type="checkbox" id="cb_user_name" value="on" onclick="userNameDisabled('user_name',this.checked);">ユーザ名
+                                <input <?= empty($_SESSION['edit_user_data']['user_name']) ? '' : 'checked' ?> type="checkbox" id="cb_user_name" value="on" onclick="userNameDisabled('user_name',this.checked);">新しいユーザ名
                             </label>
                             <input <?= empty($_SESSION['edit_user_data']['user_name']) ? 'disabled' : '' ?> type="text" class="form-control" name="user_name" id="user_name" value=<?= isset($_SESSION['edit_user_data']['user_name']) ? $_SESSION['edit_user_data']['user_name'] : '' ?>>
 
@@ -105,7 +105,7 @@ if (!isset($_SESSION['verified'])) {
                             <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com" value=</?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>> -->
 
                             <label for="cb_user_mail_address" class="form-label">
-                                <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? '' : 'checked' ?> type="checkbox" id="cb_user_mail_address" value="on" onclick="userMailAddressDisabled('user_mail_address',this.checked);">メールアドレス
+                                <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? '' : 'checked' ?> type="checkbox" id="cb_user_mail_address" value="on" onclick="userMailAddressDisabled('user_mail_address',this.checked);">新しいメールアドレス
                             </label>
                             <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? 'disabled' : '' ?> type="email" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
 
@@ -130,7 +130,7 @@ if (!isset($_SESSION['verified'])) {
                             <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password"> -->
 
                             <label for="cb_pass" class="form-label">
-                                <input <?= empty($_SESSION['edit_user_data']['pass']) ? '' : 'checked' ?> type="checkbox" id="cb_pass" value="on" onclick="userMailAddressDisabled('pass',this.checked);">パスワード
+                                <input <?= empty($_SESSION['edit_user_data']['pass']) ? '' : 'checked' ?> type="checkbox" id="cb_pass" value="on" onclick="userMailAddressDisabled('pass',this.checked);">新しいパスワード
                             </label>
                             <input <?= empty($_SESSION['edit_user_data']['pass']) ? 'disabled' : '' ?> type="password" class="form-control" name="pass" id="pass" value=<?= isset($_SESSION['edit_user_data']['pass']) ? $_SESSION['edit_user_data']['pass'] : '' ?>>
 
@@ -149,6 +149,14 @@ if (!isset($_SESSION['verified'])) {
                         </div>
                     </div>
                 </fieldset>
+                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                    <div class="col">
+                        <div class="col form-text text-danger">
+                            <?= isset($_SESSION['err']['err_isArrayEmpty']) ? $_SESSION['err']['err_isArrayEmpty'] : '' ?>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" id="submit" class="me-3 btn btn-success">編集する</button>
