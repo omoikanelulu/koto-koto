@@ -17,7 +17,7 @@ $login = new DB_Users;
 $post = Security::sanitize($_POST);
 
 // 配列$postの中に空の物がないかチェック
-if (Validation::isArrayEmpty($post) == true) {
+if (empty($post) == true) {
     $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
     header('Location:./index.php');
     exit();
