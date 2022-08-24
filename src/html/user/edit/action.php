@@ -23,6 +23,9 @@ try {
         unset($_SESSION['edit_user_data'], $_SESSION['exception'], $_SESSION['err']);
         header('Location:./success.php');
         exit();
+    } else {
+        throw new Exception('UPDATEに失敗しました');
+        exit();
     }
 } catch (Exception $e) {
     $_SESSION['exception'] = $e;
