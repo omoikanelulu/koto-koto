@@ -4,23 +4,24 @@ require_once 'Config.php';
 class Validation
 {
     /**
+     * 使いどころがなかった…
      * 配列の中身に空の物がないかチェックする
      * true:空の物があります
      * false:空の物はないです
      */
-    public static function isArrayEmpty($var): bool
-    {
-        $result = '';
-        foreach ($var as $i) {
-            if (empty($i) == true) {
-                $result = true;
-                break;
-            } else {
-                $result = false;
-            }
-        }
-        return $result;
-    }
+    // public static function isArrayEmpty($var): bool
+    // {
+    //     $result = '';
+    //     foreach ($var as $i) {
+    //         if (empty($i) == true) {
+    //             $result = true;
+    //             break;
+    //         } else {
+    //             $result = false;
+    //         }
+    //     }
+    //     return $result;
+    // }
 
     /**
      * user_name文字数チェック
