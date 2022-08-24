@@ -110,7 +110,7 @@ if (!isset($_SESSION['verified'])) {
                             <input <?= empty($_SESSION['edit_user_data']['user_mail_address']) ? 'disabled' : '' ?> type="email" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address']) ? $_SESSION['edit_user_data']['user_mail_address'] : '' ?>>
 
                         </div>
-                        <div class="col">
+                        <div class="invisible col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
                             <input <?= empty($_SESSION['edit_user_data']['user_mail_address_check']) ? 'disabled' : '' ?> type="email" class="form-control" name="user_mail_address_check" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address_check']) ? $_SESSION['edit_user_data']['user_mail_address_check'] : '' ?>>
                         </div>
@@ -125,7 +125,7 @@ if (!isset($_SESSION['verified'])) {
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
-                            <!-- <input type="checkbox" name="edit_pass" value="on" id="pass" <?= isset($_SESSION['edit_user_data']['edit_pass']) ? 'checked' : '' ?>>
+                            <!-- <input type="checkbox" name="edit_pass" value="on" id="pass" </?= isset($_SESSION['edit_user_data']['edit_pass']) ? 'checked' : '' ?>>
                             <label for="pass" class="form-label">パスワード</label>
                             <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password"> -->
 
@@ -135,7 +135,7 @@ if (!isset($_SESSION['verified'])) {
                             <input <?= empty($_SESSION['edit_user_data']['pass']) ? 'disabled' : '' ?> type="password" class="form-control" name="pass" id="pass" value=<?= isset($_SESSION['edit_user_data']['pass']) ? $_SESSION['edit_user_data']['pass'] : '' ?>>
 
                         </div>
-                        <div class="col">
+                        <div class="invisible col">
                             <label for="pass_check" class="form-label">パスワード確認用</label>
                             <input <?= empty($_SESSION['edit_user_data']['pass_check']) ? 'disabled' : '' ?> type="password" class="form-control" name="pass_check" id="pass" value=<?= isset($_SESSION['edit_user_data']['pass_check']) ? $_SESSION['edit_user_data']['pass_check'] : '' ?>>
                         </div>
