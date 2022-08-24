@@ -32,3 +32,10 @@ function passDisabled(pass, is_checked) {
         document.getElementById(pass).disabled = true;
     }
 }
+
+/**
+ * submitボタンを無効化する処理のつもり
+ */
+function submitDisabled() {
+    document.getElementById('submit').disabled = true;
+}
