@@ -23,16 +23,22 @@ $_SESSION['edit_user_data'] = $post;
 $_SESSION['verified'] = 'checkId';
 
 // 【バリデーション開始】
-$check_ng = '';
+$has_ng = '';
 $result = '';
 unset($_SESSION['err']);
+
+// 配列$postの中に空の物がないかチェック
+if (empty($post) == true) {
+    $_SESSION['err']['err_isArrayEmpty'] = Config::ERR_IS_ARRAY_EMPTY;
+    $has_ng = true;
+}
 
 // user_nameの文字数チェック
 if (isset($post['user_name']) == true) { // 変数が定義されている場合にチェックする
     $result = Validation::llUserName($post['user_name']);
     if ($result == false) { // NGの場合
         $_SESSION['err']['err_ll_user_name'] = Config::ERR_LL_USER_NAME;
-        $check_ng = true;
+        $has_ng = true;
     } else {
         $result = '';
     }
@@ -43,7 +49,7 @@ if (isset($post['user_mail_address']) == true) { // 変数が定義されてい�
     $result = Validation::llUserMailAddress($post['user_mail_address']);
     if ($result == false) { // NGの場合
         $_SESSION['err']['err_ll_user_mail_address'] = Config::ERR_LL_USER_MAIL_ADDRESS;
-        $check_ng = true;
+        $has_ng = true;
     } else {
         $result = '';
     }
@@ -54,7 +60,7 @@ if (isset($post['pass']) == true) { // 変数が定義されている場合に�
     $result = Validation::llPass($post['pass']);
     if ($result == false) { // NGの場合
         $_SESSION['err']['err_ll_pass'] = Config::ERR_LL_PASS;
-        $check_ng = true;
+        $has_ng = true;
     } else {
         $result = '';
     }
@@ -65,7 +71,7 @@ if (isset($post['user_mail_address'], $post['user_mail_address_check']) == true)
     $result = Validation::isMatched($post['user_mail_address'], $post['user_mail_address_check']);
     if ($result == false) { // NGの場合
         $_SESSION['err']['err_is_matched_mail'] = Config::ERR_IS_MATCHED;
-        $check_ng = true;
+        $has_ng = true;
     } else {
         $result = '';
     }
@@ -76,14 +82,14 @@ if (isset($post['pass'], $post['pass_check']) == true) { // 変数が定義さ�
     $result = Validation::isMatched($post['pass'], $post['pass_check']);
     if ($result == false) { // NGの場合
         $_SESSION['err']['err_is_matched_pass'] = Config::ERR_IS_MATCHED;
-        $check_ng = true;
+        $has_ng = true;
     } else {
         $result = '';
     }
 }
 
 // // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307でトークンも送信出来る？
-if ($check_ng == true) {
+if ($has_ng == true) {
     header('location:./account_edit.php', true, 307);
     exit();
 }
