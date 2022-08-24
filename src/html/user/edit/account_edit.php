@@ -112,7 +112,7 @@ if (!isset($_SESSION['verified'])) {
                         </div>
                         <div class="col">
                             <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
-                            <input type="email" class="form-control" name="user_mail_address_check" id="user_mail_address" placeholder="hoge@example.com">
+                            <input <?= empty($_SESSION['edit_user_data']['user_mail_address_check']) ? 'disabled' : '' ?> type="email" class="form-control" name="user_mail_address_check" id="user_mail_address" value=<?= isset($_SESSION['edit_user_data']['user_mail_address_check']) ? $_SESSION['edit_user_data']['user_mail_address_check'] : '' ?>>
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -137,7 +137,7 @@ if (!isset($_SESSION['verified'])) {
                         </div>
                         <div class="col">
                             <label for="pass_check" class="form-label">パスワード確認用</label>
-                            <input type="password" class="form-control" name="pass_check" id="pass" placeholder="your_password">
+                            <input <?= empty($_SESSION['edit_user_data']['pass_check']) ? 'disabled' : '' ?> type="password" class="form-control" name="pass_check" id="pass" value=<?= isset($_SESSION['edit_user_data']['pass_check']) ? $_SESSION['edit_user_data']['pass_check'] : '' ?>>
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-3 d-flex justify-content-center">
@@ -151,7 +151,7 @@ if (!isset($_SESSION['verified'])) {
                 </fieldset>
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
-                        <button type="submit" class="me-3 btn btn-success">編集する</button>
+                        <button type="submit" id="submit" class="me-3 btn btn-success">編集する</button>
                         <a href="<?= $ins->edit_cancel_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
