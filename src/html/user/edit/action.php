@@ -10,13 +10,14 @@ try {
     // セッションスタート
     Security::session();
     $post = $_SESSION['edit_user_data'];
+    $login_user = $_SESSION['login_user'];
 
     $ins = new Base;
 
     // インスタンス生成
     $DBins = new DB_Users;
     // userUpdateを呼び出す
-    $result = $DBins->userUpdate($post);
+    $result = $DBins->userUpdate($post, $login_user);
     // trueならsuccessページへ遷移する
     if ($result == true) {
         unset($_SESSION['edit_user_data'], $_SESSION['exception'], $_SESSION['err']);

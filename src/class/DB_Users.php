@@ -59,7 +59,7 @@ class DB_Users extends DB_Base
     /**
      * ユーザ情報の編集、更新
      */
-    public function userUpdate($post)
+    public function userUpdate($post, $login_user)
     {
         $sql = 'UPDATE users SET';
         $sql .= ' user_name=:user_name,';
@@ -71,7 +71,7 @@ class DB_Users extends DB_Base
         $stmt->bindValue(':user_name', $post['user_name'], PDO::PARAM_STR);
         $stmt->bindValue(':pass', $post['pass'], PDO::PARAM_STR);
         $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
-        $stmt->bindValue(':id', $post['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':id', $login_user['id'], PDO::PARAM_INT);
 
         $stmt->execute();
 
