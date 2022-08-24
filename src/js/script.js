@@ -1,3 +1,6 @@
+/**
+ * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ */
 function userNameDisabled(user_name, is_checked) {
     if (is_checked == true) {
         // チェックが入っていたらdisabledしない
@@ -10,6 +13,9 @@ function userNameDisabled(user_name, is_checked) {
     }
 }
 
+/**
+ * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ */
 function userMailAddressDisabled(user_mail_address, is_checked) {
     if (is_checked == true) {
         // チェックが入っていたらdisabledしない
@@ -22,6 +28,9 @@ function userMailAddressDisabled(user_mail_address, is_checked) {
     }
 }
 
+/**
+ * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ */
 function passDisabled(pass, is_checked) {
     if (is_checked == true) {
         // チェックが入っていたらdisabledしない
