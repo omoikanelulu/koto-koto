@@ -63,12 +63,16 @@ class DB_Users extends DB_Base
     {
         isset($edit_user_data['pass']) ? $edit_user_data['pass'] = password_hash($edit_user_data['pass'], PASSWORD_DEFAULT) : '';
 
+        // クエリを$queに代入する
         $que = isset($edit_user_data['user_name']) ? ',user_name=:user_name' : '';
         $que .= isset($edit_user_data['pass']) ? ',pass=:pass' : '';
         $que .= isset($edit_user_data['user_mail_address']) ? ',user_mail_address=:user_mail_address' : '';
 
+        // クエリの最左に来る','を除去する
+        $que = ltrim($que, ',');
+
         $sql = 'UPDATE users SET ';
-        ltrim($que, ',');
+        $sql .= $que;
         $sql .= ' WHERE id=:id';
 
         $stmt = $this->dbh->prepare($sql);
