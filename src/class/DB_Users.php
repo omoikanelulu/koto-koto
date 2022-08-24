@@ -62,21 +62,15 @@ class DB_Users extends DB_Base
     public function userUpdate($post)
     {
         $sql = 'UPDATE users SET';
-        $sql .= ' user=:user,';
-        // $sql .= ' pass=:pass';
-        $sql .= ' family_name=:family_name';
-        $sql .= ' ,first_name=:first_name';
-        $sql .= ' ,is_admin=:is_admin';
-        $sql .= ' ,is_deleted=:is_deleted';
+        $sql .= ' user_name=:user_name,';
+        $sql .= ' ,pass=:pass';
+        $sql .= ' ,user_mail_address=:user_mail_address';
         $sql .= ' WHERE id=:id';
 
         $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user', $post['user'], PDO::PARAM_STR);
-        // $stmt->bindValue(':pass', $post['pass'], PDO::PARAM_STR);
-        $stmt->bindValue(':family_name', $post['family_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':first_name', $post['first_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':is_admin', $post['is_admin'], PDO::PARAM_INT);
-        $stmt->bindValue(':is_deleted', $post['is_deleted'], PDO::PARAM_INT);
+        $stmt->bindValue(':user_name', $post['user_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':pass', $post['pass'], PDO::PARAM_STR);
+        $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
         $stmt->bindValue(':id', $post['id'], PDO::PARAM_INT);
 
         $stmt->execute();
