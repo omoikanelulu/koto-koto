@@ -59,18 +59,22 @@ class DB_Users extends DB_Base
     /**
      * ユーザ情報の編集、更新
      */
-    public function userUpdate($post, $login_user)
+    public function userUpdate($edit_user_data, $login_user)
     {
-        $sql = 'UPDATE users SET';
-        $sql .= ' user_name=:user_name,';
-        $sql .= ' ,pass=:pass';
-        $sql .= ' ,user_mail_address=:user_mail_address';
+        isset($edit_user_data['pass']) ? $edit_user_data['pass'] = password_hash($edit_user_data['pass'], PASSWORD_DEFAULT) : '';
+
+        $que = isset($edit_user_data['user_name']) ? ',user_name=:user_name' : '';
+        $que .= isset($edit_user_data['pass']) ? ',pass=:pass' : '';
+        $que .= isset($edit_user_data['user_mail_address']) ? ',user_mail_address=:user_mail_address' : '';
+
+        $sql = 'UPDATE users SET ';
+        ltrim($que, ',');
         $sql .= ' WHERE id=:id';
 
         $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user_name', $post['user_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':pass', $post['pass'], PDO::PARAM_STR);
-        $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
+        $stmt->bindValue(':user_name', isset($edit_user_data['user_name']) ? $edit_user_data['user_name'] : '', PDO::PARAM_STR);
+        $stmt->bindValue(':pass', isset($edit_user_data['pass']) ? $edit_user_data['pass'] : '', PDO::PARAM_STR);
+        $stmt->bindValue(':user_mail_address', isset($edit_user_data['user_mail_address']) ? $edit_user_data['user_mail_address'] : '', PDO::PARAM_STR);
         $stmt->bindValue(':id', $login_user['id'], PDO::PARAM_INT);
 
         $stmt->execute();
