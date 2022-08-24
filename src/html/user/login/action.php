@@ -10,11 +10,20 @@ Security::session();
 $ins = new Base;
 $login = new DB_Users;
 
-unset($_SESSION['err']);
+// これいらないな
+// unset($_SESSION['err']);
 
+// $_POSTされたデータをサニタイズ
 $post = Security::sanitize($_POST);
 
-// ユーザのレコードが代入される
+// 配列$postの中に空の物がないかチェック
+if (Validation::isArrayEmpty($post) == true) {
+    $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
+    header('Location:./index.php');
+    exit();
+}
+
+// ログイン処理、ユーザのレコードが代入される
 $rec = $login->userLogin($post);
 
 if (empty($rec)) {
@@ -22,7 +31,7 @@ if (empty($rec)) {
 } elseif (password_verify($post['pass'], $rec['pass'])) {
     $_SESSION['login_user'] = $rec;
     unset($_SESSION['err']);
-    header('Location:'.$ins->things_top_page_url);
+    header('Location:' . $ins->things_top_page_url);
     exit();
 } else {
     $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
