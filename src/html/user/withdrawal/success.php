@@ -1,6 +1,11 @@
 <?php
 require_once '../../../class/Config.php';
 require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
+Security::session();
 
 $ins = new Base();
 
@@ -21,7 +26,7 @@ $ins = new Base();
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -52,7 +57,7 @@ $ins = new Base();
             </div>
             <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
-                    <a href=<?= $ins->top_page_url ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
+                    <a href=<?= $ins->nav_user_menus['ログアウト'] ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
                 <div class="col"></div>
             </div>
