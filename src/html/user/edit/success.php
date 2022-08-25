@@ -55,12 +55,13 @@ $ins = new Base();
             <div class="row row-cols-3 d-flex justify-content-center">
                 <div class="mb-4 col">
                     <p>ユーザ情報編集が完了しました</p>
+                    <p>トップページよりログインし直してください</p>
                 </div>
                 <div class="col"></div>
             </div>
             <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                 <div class="col">
-                    <a href=<?= $ins->things_top_page_url ?>><button type="button" class="me-3 btn btn-primary">デキゴト記録へ</button></a>
+                    <a href=<?= $ins->nav_user_menus['ログアウト'] ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
                 <div class="col"></div>
             </div>

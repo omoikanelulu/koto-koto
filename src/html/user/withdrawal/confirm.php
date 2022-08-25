@@ -1,8 +1,33 @@
 <?php
 require_once '../../../class/Config.php';
 require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
+
+Security::session();
+
+// ログインしていない場合トップページへリダイレクトする
+Security::notLogin();
 
 $ins = new Base();
+
+$login_user = $_SESSION['login_user'];
+$post = Security::sanitize($_POST);
+
+// 入力されたIDとPASSをログイン情報と比較し、本人確認する
+$check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+
+// NGの場合はエラーメッセージを出して前のページに遷移
+if ($check_id == false) {
+    $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
+    header('Location:./index.php', true, 307);
+    exit();
+} else {
+    // 通過したタイミングでエラーメッセージを削除する
+    unset($_SESSION['err']['err_checkId']);
+}
 
 ?>
 
@@ -21,7 +46,7 @@ $ins = new Base();
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -46,16 +71,16 @@ $ins = new Base();
             <form action="./action.php" method="POST">
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <p class="mb-4">下記ユーザの退会処理を行います、よろしいですか？</p>
-                            <p class="mb-4 text-danger">※この処理は取り消せません！</p>
+                        <div class="mb-4 col">
+                            <p>退会処理を行います、よろしいですか？<br>退会処理を行うと、ユーザ情報および、これまでに記録したデキゴト全てが消去されます！</p>
+                            <p class="text-danger fw-bold">※この処理は取り消せません！</p>
                         </div>
                         <div class="col"></div>
                     </div>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?= $ins->session_info ?>>
+                            <input type="text" class="form-control" id="user_name" value=<?= $login_user['user_name'] ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -68,11 +93,11 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" value=<?= $ins->session_info ?>>
+                            <input type="text" class="form-control" id="family_name" value=<?= $login_user['family_name'] ?>>
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" value=<?= $ins->session_info ?>>
+                            <input type="text" class="form-control" id="first_name" value=<?= $login_user['first_name'] ?>>
                         </div>
                     </div>
                     <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
@@ -86,7 +111,7 @@ $ins = new Base();
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" value=<?= $ins->session_info ?>>
+                            <input type="email" class="form-control" id="user_mail_address" value=<?= $login_user['user_mail_address'] ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -100,7 +125,7 @@ $ins = new Base();
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">退会する</button>
-                        <a href="<?= $ins->things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -108,6 +133,13 @@ $ins = new Base();
         </div>
     </main>
     <footer>
+        <?php
+        // デバッグ用 //
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ////////////////
+        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->

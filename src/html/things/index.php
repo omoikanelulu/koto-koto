@@ -13,6 +13,12 @@ Security::notLogin();
 
 $ins = new Base();
 
+// 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
+$date = new DateTime();
+// フォーマットを整えて変数に代入
+$today = $date->format('Y/n/d');
+
+
 ?>
 
 <!DOCTYPE html>
@@ -102,43 +108,12 @@ $ins = new Base();
 
     <main>
         <div class="mt-5 container">
-            <div class="row row-cols-2 d-flex justify-content-center">
-                <div class="col">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5>使い方</h5>
-                        </div>
-                        <div class="card-body">
-                            <ol>
-                                <li class="card-text">深く考えずにメモ感覚でデキゴトを記録する</li>
-                                <li class="card-text">記録したデキゴトをふり返る</li>
-                                <li class="card-text">そのデキゴトがイイコトだったのかヤナコトだったのか仕分ける</li>
-                                <li class="card-text">今日のイイコトベスト3を決める（就寝前に行うのが良い）</li>
-                                <li class="card-text">ヤナコトに対する対処法を考える（ストレスに対する対処法を持つ事でストレス軽減に繋がる）</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-2 d-flex justify-content-center">
-                <div class="col">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5>なぜなに「koto-koto」</h5>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="mb-2 card-text">何をするサイトなの？</h5>
-                            <p class="card-text">当サイトは日々のデキゴトを記録し、イイコト（良かった事、楽しかった事、嬉しかった事など）を振り返ったり、
-                                ヤナコト（悪かった事、悲しかった事、辛かった事など）に対してどの様に対処するのか考える事で、</p>
-                            <ul>
-                                <li class="card-text">自己肯定感の向上</li>
-                                <li class="card-text">ストレスに対する対処の仕方を考え日々のストレスを軽減する</li>
-                            </ul>
-                            <p class="card-text">といった、セルフケアのお手伝いが出来れば良いな、という趣旨で制作しております。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h1><?= $today ?></h1>
+            <label for="thing">デキゴトを登録する
+                <form action="" method="post">
+                    <textarea name="thing" id="thing" cols="30" rows="10" placeholder="デキゴトを入力してください"></textarea>
+                </form>
+            </label>
         </div>
     </main>
     <footer>

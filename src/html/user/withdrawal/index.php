@@ -1,6 +1,11 @@
 <?php
 require_once '../../../class/Config.php';
 require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
+Security::session();
 
 $ins = new Base();
 
@@ -48,25 +53,27 @@ $ins = new Base();
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password">
                         </div>
                     </div>
                 </fieldset>
                 <div class="row row-cols-2 d-flex justify-content-center">
                     <div class="col form-text text-danger">
-                        NG message
+                        <div class="col form-text text-danger">
+                            <?= isset($_SESSION['err']['err_checkId']) ? $_SESSION['err']['err_checkId'] : '' ?>
+                        </div>
                     </div>
                 </div>
                 <div class="row row-cols-2 d-flex justify-content-center">
                     <div class="col">
                         <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <a href="<?= $ins->top_page_url ?>"><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                        <a href=<?= $ins->things_top_page_url ?>><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                 </div>
             </form>
@@ -74,6 +81,14 @@ $ins = new Base();
     </main>
 
     <footer>
+        <?php
+        // デバッグ用 //
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        exit();
+        ////////////////
+        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->

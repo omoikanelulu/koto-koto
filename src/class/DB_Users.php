@@ -94,6 +94,26 @@ class DB_Users extends DB_Base
     }
 
     /**
+     * 論理削除する（削除フラグを立てる）
+     * @param INT $is_deleted 「1」を入れるとフラグが立つ
+     * @param INT $login_user 削除対象のid
+     */
+    public function deletedFlagOn($login_user)
+    {
+        $sql = 'UPDATE users';
+        $sql .= ' SET is_deleted=1';
+        $sql .= ' WHERE users.id=:id';
+
+        $stmt = $this->dbh->prepare($sql);
+        // $stmt->bindValue(':is_deleted', $is_deleted, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $login_user['id'], PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return true;
+    }
+
+    /**
      * 一覧を取得しreturnする
      * @param int 0=未削除 1=削除済み
      */
@@ -165,23 +185,6 @@ class DB_Users extends DB_Base
         } else {
             return true;
         }
-    }
-
-    /**
-     * 論理削除する（削除フラグを立てる）
-     *
-     * @param INT $is_deleted 1を入れるとフラグが立つ
-     * @param INT $id 削除対象のid
-     */
-    public function deleted_flag_on($is_deleted, $id)
-    {
-        $sql = 'UPDATE users SET is_deleted=:is_deleted WHERE users.id=:id';
-
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':is_deleted', $is_deleted, PDO::PARAM_INT);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
-        $stmt->execute();
     }
 
     /**
