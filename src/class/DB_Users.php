@@ -13,7 +13,7 @@ class DB_Users extends DB_Base
      * ログイン処理
      * 入力されたメールアドレスを元にDBのusersテーブルからuserのレコードを探す
      */
-    public function userLogin($post): array
+    public function userLogin($post)
     {
         $rec = '';
 
@@ -76,9 +76,16 @@ class DB_Users extends DB_Base
         $sql .= ' WHERE id=:id';
 
         $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user_name', isset($edit_user_data['user_name']) ? $edit_user_data['user_name'] : '', PDO::PARAM_STR);
-        $stmt->bindValue(':pass', isset($edit_user_data['pass']) ? $edit_user_data['pass'] : '', PDO::PARAM_STR);
-        $stmt->bindValue(':user_mail_address', isset($edit_user_data['user_mail_address']) ? $edit_user_data['user_mail_address'] : '', PDO::PARAM_STR);
+        // バインドが必要なプレースメントだけににバインドするように、if文でbindValueをするかしないか判定する
+        if (isset($edit_user_data['user_name']) == true) {
+            $stmt->bindValue(':user_name', $edit_user_data['user_name'], PDO::PARAM_STR);
+        }
+        if (isset($edit_user_data['pass']) == true) {
+            $stmt->bindValue(':pass', $edit_user_data['pass'], PDO::PARAM_STR);
+        }
+        if (isset($edit_user_data['user_mail_address']) == true) {
+            $stmt->bindValue(':user_mail_address', $edit_user_data['user_mail_address'], PDO::PARAM_STR);
+        }
         $stmt->bindValue(':id', $login_user['id'], PDO::PARAM_INT);
 
         $stmt->execute();
