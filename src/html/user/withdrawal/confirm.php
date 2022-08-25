@@ -71,9 +71,9 @@ if ($check_id == false) {
             <form action="./action.php" method="POST">
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <p class="mb-4">下記ユーザの退会処理を行います、よろしいですか？</p>
-                            <p class="mb-4 text-danger">※この処理は取り消せません！</p>
+                        <div class="mb-4 col">
+                            <p>退会処理を行います、よろしいですか？<br>退会処理を行うと、ユーザ情報および、これまでに記録したデキゴト全てが消去されます！</p>
+                            <p class="text-danger fw-bold">※この処理は取り消せません！</p>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -135,9 +135,9 @@ if ($check_id == false) {
     <footer>
         <?php
         // デバッグ用 //
-        echo'<pre>';
+        echo '<pre>';
         var_dump($_SESSION);
-        echo'</pre>';
+        echo '</pre>';
         ////////////////
         ?>
     </footer>
