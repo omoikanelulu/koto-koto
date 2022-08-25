@@ -1,8 +1,35 @@
 <?php
 require_once '../../../class/Config.php';
 require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
+
+Security::session();
+
+// ログインしていない場合トップページへリダイレクトする
+Security::notLogin();
 
 $ins = new Base();
+
+$post = Security::sanitize($_POST);
+
+if (!isset($_SESSION['verified'])) {
+    // 入力されたIDとPASSをログイン情報と比較し、本人確認する
+    $check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+
+    // NGの場合はエラーメッセージを出して前のページに遷移
+    if ($check_id == false) {
+        $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
+        header('Location:./index.php', true, 307);
+        exit();
+    } else {
+        // 通過したタイミングでエラーメッセージと、verifiedを削除する
+        unset($_SESSION['err']['err_checkId']);
+        unset($_SESSION['verified']);
+    }
+}
 
 ?>
 
@@ -21,7 +48,7 @@ $ins = new Base();
 </head>
 
 <body class="bg-light">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -100,7 +127,7 @@ $ins = new Base();
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">退会する</button>
-                        <a href="<?= $ins->things_top_page_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
