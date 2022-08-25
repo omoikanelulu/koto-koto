@@ -13,5 +13,5 @@ if (isset($_SESSION['err'])) {
 
 $ins = new Base;
 
-header('Location:'.$ins->edit_page_url);
+header('Location:./index.php');
 exit();
