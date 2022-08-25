@@ -13,22 +13,20 @@ Security::notLogin();
 
 $ins = new Base();
 
+$login_user = $_SESSION['login_user'];
 $post = Security::sanitize($_POST);
 
-if (!isset($_SESSION['verified'])) {
-    // 入力されたIDとPASSをログイン情報と比較し、本人確認する
-    $check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+// 入力されたIDとPASSをログイン情報と比較し、本人確認する
+$check_id = Security::checkId($post['user_mail_address'], $post['pass']);
 
-    // NGの場合はエラーメッセージを出して前のページに遷移
-    if ($check_id == false) {
-        $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
-        header('Location:./index.php', true, 307);
-        exit();
-    } else {
-        // 通過したタイミングでエラーメッセージと、verifiedを削除する
-        unset($_SESSION['err']['err_checkId']);
-        unset($_SESSION['verified']);
-    }
+// NGの場合はエラーメッセージを出して前のページに遷移
+if ($check_id == false) {
+    $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
+    header('Location:./index.php', true, 307);
+    exit();
+} else {
+    // 通過したタイミングでエラーメッセージを削除する
+    unset($_SESSION['err']['err_checkId']);
 }
 
 ?>
@@ -82,7 +80,7 @@ if (!isset($_SESSION['verified'])) {
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?= $ins->session_info ?>>
+                            <input type="text" class="form-control" id="user_name" value=<?= $login_user['user_name'] ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -95,11 +93,11 @@ if (!isset($_SESSION['verified'])) {
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" value=<?= $ins->session_info ?>>
+                            <input type="text" class="form-control" id="family_name" value=<?= $login_user['family_name'] ?>>
                         </div>
                         <div class="col">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" value=<?= $ins->session_info ?>>
+                            <input type="text" class="form-control" id="first_name" value=<?= $login_user['first_name'] ?>>
                         </div>
                     </div>
                     <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
@@ -113,7 +111,7 @@ if (!isset($_SESSION['verified'])) {
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" value=<?= $ins->session_info ?>>
+                            <input type="email" class="form-control" id="user_mail_address" value=<?= $login_user['user_mail_address'] ?>>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -135,6 +133,13 @@ if (!isset($_SESSION['verified'])) {
         </div>
     </main>
     <footer>
+        <?php
+        // デバッグ用 //
+        echo'<pre>';
+        var_dump($_SESSION);
+        echo'</pre>';
+        ////////////////
+        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
