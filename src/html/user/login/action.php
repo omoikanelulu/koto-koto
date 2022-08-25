@@ -24,18 +24,23 @@ if (empty($post) == true) {
 }
 
 // ログイン処理、ユーザのレコードが代入される
-$rec = $login->userLogin($post);
+try {
+    $rec = $login->userLogin($post);
 
-if (empty($rec)) {
-    $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
-} elseif (password_verify($post['pass'], $rec['pass'])) {
-    $_SESSION['login_user'] = $rec;
-    unset($_SESSION['err']);
-    header('Location:' . $ins->things_top_page_url);
+    if (empty($rec) || $rec == false) {
+        $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
+    } elseif (password_verify($post['pass'], $rec['pass'])) {
+        $_SESSION['login_user'] = $rec;
+        unset($_SESSION['err']);
+        header('Location:' . $ins->things_top_page_url);
+        exit();
+    } else {
+        $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
+    }
+    header('Location:./index.php');
     exit();
-} else {
-    $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
+} catch (Exception $e) {
+    $_SESSION['exception'] = $e;
+    header('Location:' . $ins->err_page_url);
+    exit();
 }
-
-header('Location:./index.php');
-exit();
