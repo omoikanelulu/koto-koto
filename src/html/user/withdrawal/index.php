@@ -53,13 +53,13 @@ $ins = new Base();
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" placeholder="hoge@example.com">
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com">
                         </div>
                     </div>
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" placeholder="your_password">
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password">
                         </div>
                     </div>
                 </fieldset>
