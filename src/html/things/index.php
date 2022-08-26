@@ -108,12 +108,75 @@ $today = $date->format('Y/n/d');
 
     <main>
         <div class="mt-5 container">
-            <h1><?= $today ?></h1>
-            <label for="thing">デキゴトを登録する
-                <form action="" method="post">
-                    <textarea name="thing" id="thing" cols="30" rows="10" placeholder="デキゴトを入力してください"></textarea>
-                </form>
-            </label>
+            <div class="row justify-content:flex-start">
+                <div class="col-sm">
+                    <h1><?= $today ?></h1>
+                </div>
+            </div>
+
+            <!-- デキゴト入力ブロック -->
+            <form action="" method="post">
+                <div class="row mt-4 justify-content-end">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <label class="form-label" for="thing">デキゴトの登録
+                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"></textarea>
+                            <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
+                        </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- 属性付与ブロック -->
+                <div class="row mt-4 justify-content-start">
+                    <!-- <div class="row"> -->
+                    <div class="col-sm-2"></div>
+                    <!-- イイコトブロック -->
+                    <div class="col-sm-auto align-self-center">
+                        <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" value="1">
+                        <label class="form-label" for="cb_good_thing">イイコト</label>
+                    </div>
+                    <div class="col-sm-auto">
+                        <label class="form-label" for="good_thing_level">イイコトレベル
+                            <select class="form-select" name="good_thing_level" id="good_thing_level">
+                                <?php foreach (Config::GOOD_THING_LEVEL as $i) : ?>
+                                    <option value="$i"><?= $i ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </label>
+                    </div>
+
+                    <!-- ヤナコトブロック -->
+                    <div class="col-sm-auto align-self-center">
+                        <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" value="1">
+                        <label class="form-check-label" for="cb_bad_thing">ヤナコト</label>
+                    </div>
+                    <div class="col-sm-auto">
+                        <label class="form-check-label" for="bad_thing_level">ヤナコトレベル
+                            <select class="form-select" name="bad_thing_level" id="bad_thing_level">
+                                <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
+                                    <option value="$i"><?= $i ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </label>
+                        <!-- </div> -->
+                        <div class="col-sm"></div>
+                    </div>
+                </div>
+                <div class="row mt-4 justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <button class="btn btn-primary" type="submit">登録する</button>
+                        <button class="btn btn-secondary" type="reset">書き直す</button>
+                        <button class="btn btn-danger" type="reset">キャンセル</button>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+            </form>
+
+
+
+
         </div>
     </main>
     <footer>
