@@ -129,21 +129,21 @@ $today = $date->format('Y/n/d');
 
                 <!-- 属性付与ブロック -->
                 <div class="row mt-4 justify-content-start">
-                    <!-- <div class="row"> -->
                     <div class="col-sm-2"></div>
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
                         <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" value="1">
                         <label class="form-check-label" for="cb_good_thing">イイコト</label>
                     </div>
-                    <div class="col-sm-auto">
-                        <label class="form-label" for="good_thing_level">イイコトレベル
+                    <div class="col-sm-auto align-self-center">
+                        <div class="input-group">
+                            <label class="input-group-text" for="good_thing_level">イイコトレベル</label>
                             <select class="form-select" name="good_thing_level" id="good_thing_level">
                                 <?php foreach (Config::GOOD_THING_LEVEL as $i) : ?>
                                     <option value="$i"><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
-                        </label>
+                        </div>
                     </div>
 
                     <!-- ヤナコトブロック -->
@@ -151,32 +151,28 @@ $today = $date->format('Y/n/d');
                         <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" value="1">
                         <label class="form-check-label" for="cb_bad_thing">ヤナコト</label>
                     </div>
-                    <div class="col-sm-auto">
-                        <label class="form-check-label" for="bad_thing_level">ヤナコトレベル
+                    <div class="col-sm-auto align-self-center">
+                        <div class="input-group">
+                            <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select class="form-select" name="bad_thing_level" id="bad_thing_level">
                                 <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
                                     <option value="$i"><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
-                        </label>
-                        <!-- </div> -->
-                        <div class="col-sm"></div>
+                        </div>
                     </div>
+                    <div class="col-sm"></div>
                 </div>
                 <div class="row mt-4 justify-content-start">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
-                        <button class="btn btn-primary" type="submit">登録する</button>
-                        <button class="btn btn-secondary" type="reset">書き直す</button>
-                        <button class="btn btn-danger" type="reset">キャンセル</button>
+                        <button class="me-3 btn btn-primary" type="submit">登録する</button>
+                        <button class="me-3 btn btn-secondary" type="reset">書き直す</button>
+                        <button class="me-3 btn btn-danger" type="reset">キャンセル</button>
                     </div>
                     <div class="col-sm"></div>
                 </div>
             </form>
-
-
-
-
         </div>
     </main>
     <footer>
