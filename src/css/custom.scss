@@ -143,3 +143,11 @@ h1,
     margin-top: 0;
     margin-bottom: 0;
 }
+
+// 右の画面端まで伸びる色つけ
+.right_bg_line {
+    padding: 0.5rem 0;
+    border-image-source: linear-gradient(140deg, $light 5%, $dark 25%);
+    border-image-slice: 0 fill;
+    border-image-outset: 0 100vw 0 1rem;
+}
