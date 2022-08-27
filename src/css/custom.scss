@@ -1,16 +1,16 @@
 //テーマカラーの設定
 // $primary: #0d6efd;
-$primary: #9646f3;
-$secondary: #6c757d;
+$primary: #352fe9;
+$secondary: #616970;
 // $success: #198754;
 $success: #0a8072;
 $info: #0dcaf0;
 $warning: #ffc107;
 $danger: #dc3545;
 // $light: #f8f9fa;
-$light: #85a9ff;
+$light: #bacaee;
 // $dark: #212529;
-$dark: #2d4256;
+$dark: #3d5c78;
 
 //リンクの文字色
 $link-color: #0d6efd;
@@ -150,4 +150,5 @@ h1,
     border-image-source: linear-gradient(140deg, $light 5%, $dark 25%);
     border-image-slice: 0 fill;
     border-image-outset: 0 100vw 0 1rem;
+    opacity: 75%;
 }
