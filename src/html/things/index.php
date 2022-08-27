@@ -110,7 +110,7 @@ $today = $date->format('Y/n/d');
         <div class="mt-5 container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
-                    <h1><?= $today ?></h1>
+                    <h1 class="right_bg_line"><?= $today ?></h1>
                 </div>
             </div>
 
@@ -134,7 +134,7 @@ $today = $date->format('Y/n/d');
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
                         <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" value="1">
-                        <label class="form-label" for="cb_good_thing">イイコト</label>
+                        <label class="form-check-label" for="cb_good_thing">イイコト</label>
                     </div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="good_thing_level">イイコトレベル
