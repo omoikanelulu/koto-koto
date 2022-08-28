@@ -10,24 +10,43 @@ class DB_Things extends DB_Base
     }
 
     /**
-     * ToDoを追加する
-     * @param array $post
+     * thingsを追加する
+     * @param array $things
      * サニタイズした配列を入れる
      */
-    public function dbAdd($post)
+    public function thingsAdd($things)
     {
         $sql = 'INSERT INTO';
-        $sql .= ' todo_items (user_id,registration_date,expire_date,item_name,finished_date)';
-        $sql .= ' VALUES (:user_id,:registration_date,:expire_date,:item_name,:finished_date)';
+        $sql .= ' things (thing,good_thing_flag,good_thing_ranking,bad_thing_flag,bad_thing_level)';
+        $sql .= ' VALUES (:thing,:good_thing_flag,:good_thing_ranking,:bad_thing_flag,:bad_thing_level)';
 
         $stmt = $this->dbh->prepare($sql);
 
         // SQL文の該当箇所に、変数の値を割り当て（バインド）する
-        $stmt->bindValue(':user_id', $post['user_id'], PDO::PARAM_INT);
-        $stmt->bindValue(':registration_date', $post['registration_date'], PDO::PARAM_STR);
-        $stmt->bindValue(':expire_date', $post['expire_date'], PDO::PARAM_STR);
-        $stmt->bindValue(':item_name', $post['item_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':finished_date', $post['finished_date'], PDO::PARAM_STR);
+        $stmt->bindValue(':thing', $things['thing'], PDO::PARAM_STR);
+        $stmt->bindValue(':good_thing_flag', $things['good_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':good_thing_ranking', $things['good_thing_ranking'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_flag', $things['bad_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_level', $things['bad_thing_level'], PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
+    /**
+     * bad_thing_approachを追加する
+     * @param array $approach
+     * サニタイズした配列を入れる
+     */
+    public function badThingApproachAdd($approach)
+    {
+        $sql = 'INSERT INTO';
+        $sql .= ' things (bad_thing_approach)';
+        $sql .= ' VALUES (:bad_thing_approach)';
+
+        $stmt = $this->dbh->prepare($sql);
+
+        // SQL文の該当箇所に、変数の値を割り当て（バインド）する
+        $stmt->bindValue(':bad_thing_approach', $approach['bad_thing_approach'], PDO::PARAM_STR);
 
         $stmt->execute();
     }
