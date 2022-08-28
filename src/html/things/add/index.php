@@ -1,10 +1,10 @@
 <?php
-require_once '../../class/Config.php';
-require_once '../../class/Base.php';
-require_once '../../class/Security.php';
-require_once '../../class/Validation.php';
-require_once '../../class/DB_Base.php';
-require_once '../../class/DB_Users.php';
+require_once '../../../class/Config.php';
+require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
 
 Security::session();
 
@@ -29,9 +29,9 @@ $today = $date->format('Y/n/d');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <link rel="stylesheet" href="../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
-    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $ins->nav_title ?></title>
 </head>
 
@@ -186,7 +186,7 @@ $today = $date->format('Y/n/d');
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
-    <script src="../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
