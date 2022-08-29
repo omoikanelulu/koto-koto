@@ -30,6 +30,8 @@ class DB_Things extends DB_Base
         $stmt->bindValue(':bad_thing_level', $things['bad_thing_level'], PDO::PARAM_INT);
 
         $stmt->execute();
+
+        return true;
     }
 
     /**
@@ -49,6 +51,8 @@ class DB_Things extends DB_Base
         $stmt->bindValue(':bad_thing_approach', $approach['bad_thing_approach'], PDO::PARAM_STR);
 
         $stmt->execute();
+
+        return true;
     }
 
     /**
