@@ -115,7 +115,7 @@ $today = $date->format('Y/n/d');
             </div>
 
             <!-- デキゴト入力ブロック -->
-            <form action="" method="post">
+            <form action="./action.php" method="post">
                 <div class="row mt-4 justify-content-end">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
@@ -132,15 +132,15 @@ $today = $date->format('Y/n/d');
                     <div class="col-sm-2"></div>
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" value="1">
+                        <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" onclick="goodThingLevelDisabled('good_thing_level',this.checked)" value="1">
                         <label class="form-check-label" for="cb_good_thing">イイコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_level">イイコトレベル</label>
-                            <select class="form-select" name="good_thing_level" id="good_thing_level">
+                            <select disabled class="level form-select" name="good_thing_level" id="good_thing_level">
                                 <?php foreach (Config::GOOD_THING_LEVEL as $i) : ?>
-                                    <option value="$i"><?= $i ?></option>
+                                    <option value=<?= $i ?>><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -148,15 +148,15 @@ $today = $date->format('Y/n/d');
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" value="1">
+                        <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1">
                         <label class="form-check-label" for="cb_bad_thing">ヤナコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select class="form-select" name="bad_thing_level" id="bad_thing_level">
+                            <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
                                 <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
-                                    <option value="$i"><?= $i ?></option>
+                                    <option value=<?= $i ?>><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -167,8 +167,8 @@ $today = $date->format('Y/n/d');
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <button class="me-3 btn btn-primary" type="submit">登録する</button>
-                        <button class="me-3 btn btn-secondary" type="reset">書き直す</button>
-                        <button class="me-3 btn btn-danger" type="reset">キャンセル</button>
+                        <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
+                        <!-- <button class="me-3 btn btn-danger">キャンセル</button> -->
                     </div>
                     <div class="col-sm"></div>
                 </div>
@@ -187,6 +187,8 @@ $today = $date->format('Y/n/d');
 
     <!-- bootstrap JavaScript Bundle with Popper -->
     <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/script.js"></script>
+
 </body>
 
 </html>
