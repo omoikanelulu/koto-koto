@@ -24,6 +24,19 @@ class Validation
     // }
 
     /**
+     * 文字数チェック完全版
+     * @param int $length 最大文字数
+     */
+    public static function llCheck($var, $length)
+    {
+        if (mb_strlen($var) <= $length && !empty($var)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * user_name文字数チェック
      */
     public static function llUserName($var)
