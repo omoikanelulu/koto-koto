@@ -9,6 +9,8 @@ try {
 
     // セッションスタート
     Security::session();
+    Security::notLogin();
+
     $post = $_SESSION['input_user_data'];
 
     $ins = new Base;
