@@ -29,6 +29,9 @@ class Config //staticプロパティは内容が変化しないのものを設�
     // Tipsメッセージ
     public const TIPS_LL_THING = '登録文字数は1文字以上' . self::LL_THING . '文字以内です';
 
+    // successメッセージ
+    public const SUCCESS_THINGS_ADD = 'デキゴト登録が完了しました';
+
     // エラーメッセージ
     public const ERR_MSG = '申し訳ございません<br>予期せぬエラーが発生いたしました<br>時間を置いてから再度お試しください';
     public const ERR_IS_CORRECT_DATE = '正しい日付ではありません';
@@ -40,6 +43,7 @@ class Config //staticプロパティは内容が変化しないのものを設�
     public const ERR_LL_FIRST_NAME = '文字数は1文字以上' . self::LL_FIRST_NAME . '文字以内にしてください';
     public const ERR_LL_USER_MAIL_ADDRESS = '文字数は1文字以上' . self::LL_USER_MAIL_ADDRESS . '文字以内にしてください';
     public const ERR_LL_PASS = '文字数は1文字以上' . self::LL_PASS . '文字以内にしてください';
+    public const ERR_LL_THING = '文字数は1文字以上' . self::LL_THING . '文字以内にしてください';
 
     // エラーメッセージ（メソッド）
     public const ERR_USER_LOGIN = 'ご登録されていないか、入力に誤りがあります';
