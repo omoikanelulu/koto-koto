@@ -1,10 +1,10 @@
 <?php
-require_once '../../class/Config.php';
-require_once '../../class/Base.php';
-require_once '../../class/Security.php';
-require_once '../../class/Validation.php';
-require_once '../../class/DB_Base.php';
-require_once '../../class/DB_Users.php';
+require_once '../../../class/Config.php';
+require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
 
 Security::session();
 
@@ -14,10 +14,9 @@ Security::notLogin();
 $ins = new Base();
 
 // 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
-$date = new DateTime();
+$date = $_SESSION['things']['create_date_time'];
 // フォーマットを整えて変数に代入
-$today = $date->format('Y/n/d');
-
+$create_date_time = $date->format('Y/n/d');
 
 ?>
 
@@ -29,9 +28,9 @@ $today = $date->format('Y/n/d');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <link rel="stylesheet" href="../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
-    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $ins->nav_title ?></title>
 </head>
 
@@ -108,12 +107,71 @@ $today = $date->format('Y/n/d');
 
     <main>
         <div class="mt-5 container">
-            <h1><?= $today ?></h1>
-            <label for="thing">デキゴトを登録する
-                <form action="" method="post">
-                    <textarea name="thing" id="thing" cols="30" rows="10" placeholder="デキゴトを入力してください"></textarea>
-                </form>
-            </label>
+            <div class="row justify-content:flex-start">
+                <div class="col-sm">
+                    <h1 class="right_bg_line"><?= $create_date_time ?></h1>
+                </div>
+            </div>
+
+            <!-- デキゴト入力ブロック -->
+            <form action="" method="post">
+                <div class="row mt-4 justify-content-end">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <label class="form-label" for="thing">デキゴトの編集 <!-- rowとcolはCSSで設定する方が良い？ -->
+                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" aria-valuetext=""><?= $thing // ここがvalueの値になるらしい ?></textarea>
+                            <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
+                        </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- 属性付与ブロック -->
+                <div class="row mt-4 justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <!-- イイコトブロック -->
+                    <div class="col-sm-auto align-self-center">
+                        <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" value="1">
+                        <label class="form-check-label" for="cb_good_thing">イイコト</label>
+                    </div>
+                    <div class="col-sm-auto align-self-center">
+                        <div class="input-group">
+                            <label class="input-group-text" for="good_thing_level">イイコトレベル</label>
+                            <select class="form-select" name="good_thing_level" id="good_thing_level">
+                                <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
+                                    <option value="$i"><?= $i ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ヤナコトブロック -->
+                    <div class="col-sm-auto align-self-center">
+                        <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" value="1">
+                        <label class="form-check-label" for="cb_bad_thing">ヤナコト</label>
+                    </div>
+                    <div class="col-sm-auto align-self-center">
+                        <div class="input-group">
+                            <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
+                            <select class="form-select" name="bad_thing_level" id="bad_thing_level">
+                                <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
+                                    <option value="$i"><?= $i ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+                <div class="row mt-4 justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <button class="me-3 btn btn-primary" type="submit">登録する</button>
+                        <button class="me-3 btn btn-secondary" type="reset">書き直す</button>
+                        <button class="me-3 btn btn-danger" type="reset">キャンセル</button>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+            </form>
         </div>
     </main>
     <footer>
@@ -127,7 +185,7 @@ $today = $date->format('Y/n/d');
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
-    <script src="../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

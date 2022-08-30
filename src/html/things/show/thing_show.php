@@ -1,10 +1,10 @@
 <?php
-require_once '../../class/Config.php';
-require_once '../../class/Base.php';
-require_once '../../class/Security.php';
-require_once '../../class/Validation.php';
-require_once '../../class/DB_Base.php';
-require_once '../../class/DB_Users.php';
+require_once '../../../class/Config.php';
+require_once '../../../class/Base.php';
+require_once '../../../class/Security.php';
+require_once '../../../class/Validation.php';
+require_once '../../../class/DB_Base.php';
+require_once '../../../class/DB_Users.php';
 
 Security::session();
 
@@ -23,9 +23,9 @@ $ins = new Base();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
-    <link rel="stylesheet" href="../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
-    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $ins->nav_title ?></title>
 </head>
 
@@ -54,7 +54,7 @@ $ins = new Base();
                             </ul>
                         </li>
                         <!-- 年月日の入力フォーム -->
-                        <form class="invisible row" action="#">
+                        <form class="row" action="#">
                             <div class="col input-group">
                                 <select class="form-select" name="input_year" id="input_year">
                                     <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
@@ -145,7 +145,7 @@ $ins = new Base();
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
-    <script src="../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

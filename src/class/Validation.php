@@ -4,24 +4,17 @@ require_once 'Config.php';
 class Validation
 {
     /**
-     * 使いどころがなかった…
-     * 配列の中身に空の物がないかチェックする
-     * true:空の物があります
-     * false:空の物はないです
+     * 文字数チェック完全版
+     * @param int $length 最大文字数
      */
-    // public static function isArrayEmpty($var): bool
-    // {
-    //     $result = '';
-    //     foreach ($var as $i) {
-    //         if (empty($i) == true) {
-    //             $result = true;
-    //             break;
-    //         } else {
-    //             $result = false;
-    //         }
-    //     }
-    //     return $result;
-    // }
+    public static function llCheck($str, $length)
+    {
+        if (mb_strlen($str) <= $length && !empty($str)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * user_name文字数チェック

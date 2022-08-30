@@ -1,5 +1,36 @@
 /**
  * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ * デキゴト記録画面用
+ */
+function goodThingLevelDisabled(good_thing_level, is_checked) {
+    if (is_checked == true) {
+        // チェックが入っていたらdisabledしない
+        document.getElementById(good_thing_level).disabled = false;
+    }
+    else {
+        // チェックが入っていなかったらdisabledする
+        document.getElementById(good_thing_level).disabled = true;
+    }
+}
+
+/**
+ * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ * デキゴト記録画面用
+ */
+function badThingLevelDisabled(bat_thing_level, is_checked) {
+    if (is_checked == true) {
+        // チェックが入っていたらdisabledしない
+        document.getElementById(bat_thing_level).disabled = false;
+    }
+    else {
+        // チェックが入っていなかったらdisabledする
+        document.getElementById(bat_thing_level).disabled = true;
+    }
+}
+
+/**
+ * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ * ユーザ情報編集画面用
  */
 function userNameDisabled(user_name, is_checked) {
     if (is_checked == true) {
@@ -15,6 +46,7 @@ function userNameDisabled(user_name, is_checked) {
 
 /**
  * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ * ユーザ情報編集画面用
  */
 function userMailAddressDisabled(user_mail_address, is_checked) {
     if (is_checked == true) {
@@ -30,6 +62,7 @@ function userMailAddressDisabled(user_mail_address, is_checked) {
 
 /**
  * チェックボックスにチェックが入っている時だけ、入力出来るようになる
+ * ユーザ情報編集画面用
  */
 function passDisabled(pass, is_checked) {
     if (is_checked == true) {
@@ -40,11 +73,4 @@ function passDisabled(pass, is_checked) {
         // チェックが入っていなかったらdisabledする
         document.getElementById(pass).disabled = true;
     }
-}
-
-/**
- * submitボタンを無効化する処理のつもり
- */
-function submitDisabled() {
-    document.getElementById('submit').disabled = true;
 }
