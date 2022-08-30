@@ -13,18 +13,10 @@ Security::notLogin();
 // 送信されてきたデータをサニタイズして変数に代入
 $input_thing = Security::sanitize($_POST);
 
-// デバッグ用 //
-echo'<pre>';
-var_dump($input_thing);
-echo'</pre>';
-exit();
-////////////////
-
-
-
 // ここからバリデーション
+// 文字数チェック
+$result = Validation::llCheck($input_thing['thing'], Config::LL_THING);
 
-$result = Validation::llCheck($input_thing, Config::LL_THING);
 if ($result == false) {
     $_SESSION['err']['err_llCheck'] = Config::ERR_LL_THING;
     header('Location:./index.php', true, 307);
@@ -37,9 +29,9 @@ $ins = new Base;
 $DBins = new DB_Things;
 
 try {
-    $result = $DBins->thingsAdd($input_thing);
+    $result = $DBins->thingsAdd($input_thing, $_SESSION['login_user']['id']);
     if ($result == true) {
-        unset($_SESSION['input_thing'], $_SESSION['exception']);
+        unset($_SESSION['input_thing'], $_SESSION['err']['err_llCheck'], $_SESSION['exception']);
         header('Location:./success.php');
         exit();
     }
