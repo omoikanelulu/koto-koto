@@ -17,9 +17,9 @@ $DBins = new DB_Things;
 $rec = $DBins->thingShow($_SESSION['login_user']['id']);
 
 // デバッグ用 //
-echo'<pre>';
+echo '<pre>';
 var_dump($rec);
-echo'</pre>';
+echo '</pre>';
 exit();
 ////////////////
 
@@ -112,45 +112,82 @@ exit();
 
     <main>
         <div class="mt-5 container">
-            <div class="row row-cols-2 d-flex justify-content-center">
-                <div class="col">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5>使い方</h5>
-                        </div>
-                        <div class="card-body">
-                            <ol>
-                                <li class="card-text">深く考えずにメモ感覚でデキゴトを記録する</li>
-                                <li class="card-text">記録したデキゴトをふり返る</li>
-                                <li class="card-text">そのデキゴトがイイコトだったのかヤナコトだったのか仕分ける</li>
-                                <li class="card-text">今日のイイコトベスト3を決める（就寝前に行うのが良い）</li>
-                                <li class="card-text">ヤナコトに対する対処法を考える（ストレスに対する対処法を持つ事でストレス軽減に繋がる）</li>
-                            </ol>
-                        </div>
-                    </div>
+            <div class="row justify-content:flex-start">
+                <div class="col-sm">
+                    <h1 class="right_bg_line"><?php foreach($rec as $i=>$v) :?></h1>
                 </div>
             </div>
-            <div class="row row-cols-2 d-flex justify-content-center">
-                <div class="col">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5>なぜなに「koto-koto」</h5>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="mb-2 card-text">何をするサイトなの？</h5>
-                            <p class="card-text">当サイトは日々のデキゴトを記録し、イイコト（良かった事、楽しかった事、嬉しかった事など）を振り返ったり、
-                                ヤナコト（悪かった事、悲しかった事、辛かった事など）に対してどの様に対処するのか考える事で、</p>
-                            <ul>
-                                <li class="card-text">自己肯定感の向上</li>
-                                <li class="card-text">ストレスに対する対処の仕方を考え日々のストレスを軽減する</li>
-                            </ul>
-                            <p class="card-text">といった、セルフケアのお手伝いが出来れば良いな、という趣旨で制作しております。</p>
+
+            <!-- デキゴト入力ブロック -->
+            <form action="./action.php" method="post">
+                <div class="row mt-4 justify-content-end">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <label class="form-label" for="thing">デキゴトの登録
+                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"></textarea>
+                            <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
+                        </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- 属性付与ブロック -->
+                <div class="row mt-4 justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <!-- イイコトブロック -->
+                    <div class="col-sm-auto align-self-center">
+                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingLevelDisabled('good_thing_rank',this.checked)" value="1">
+                        <label class="form-check-label" for="good_thing_flag">イイコト</label>
+                    </div>
+                    <div class="col-sm-auto align-self-center">
+                        <div class="input-group">
+                            <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
+                            <select disabled class="level form-select" name="good_thing_rank" id="good_thing_rank">
+                                <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
+                                    <option value=<?= $i ?>><?= $i ?>位</option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                     </div>
+
+                    <!-- ヤナコトブロック -->
+                    <div class="col-sm-auto align-self-center">
+                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1">
+                        <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
+                    </div>
+                    <div class="col-sm-auto align-self-center">
+                        <div class="input-group">
+                            <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
+                            <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
+                                <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
+                                    <option value=<?= $v ?>><?= $i ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm"></div>
                 </div>
-            </div>
+                <div class="row mt-4 justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <div class="form-text text-danger">
+                            <?= isset($_SESSION['err']['err_llCheck']) ? $_SESSION['err']['err_llCheck'] : '' ?>
+                        </div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <button class="me-3 btn btn-primary" type="submit">登録する</button>
+                        <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+            </form>
         </div>
     </main>
+
     <footer>
     </footer>
 
