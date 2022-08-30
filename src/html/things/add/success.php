@@ -13,12 +13,6 @@ Security::notLogin();
 
 $ins = new Base();
 
-// 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
-$date = new DateTime();
-// フォーマットを整えて変数に代入
-$today = $date->format('Y/n/d');
-
-
 ?>
 
 <!DOCTYPE html>
