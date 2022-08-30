@@ -41,7 +41,7 @@ class DB_Users extends DB_Base
 
         $sql = 'INSERT INTO';
         $sql .= ' users (user_name, family_name, first_name, birth_date, user_mail_address, pass)';
-        $sql .= ' VALUES(:user_name, :family_name, :first_name, :birth_date, :user_mail_address, :pass)';
+        $sql .= ' VALUES (:user_name, :family_name, :first_name, :birth_date, :user_mail_address, :pass)';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_name', $data['user_name'], PDO::PARAM_STR);
