@@ -13,11 +13,6 @@ Security::notLogin();
 
 $ins = new Base();
 
-// 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
-$date = $_SESSION['things']['create_date_time'];
-// フォーマットを整えて変数に代入
-$create_date_time = $date->format('Y/n/d');
-
 ?>
 
 <!DOCTYPE html>
