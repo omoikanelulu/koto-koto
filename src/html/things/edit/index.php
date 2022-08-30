@@ -13,8 +13,6 @@ Security::notLogin();
 
 $ins = new Base();
 
-// $things = データベースから引っ張ってきたthings内容
-
 // 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
 $date = $_SESSION['things']['create_date_time'];
 // フォーマットを整えて変数に代入
@@ -140,7 +138,7 @@ $create_date_time = $date->format('Y/n/d');
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_level">イイコトレベル</label>
                             <select class="form-select" name="good_thing_level" id="good_thing_level">
-                                <?php foreach (Config::GOOD_THING_LEVEL as $i) : ?>
+                                <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
                                     <option value="$i"><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
