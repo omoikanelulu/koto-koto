@@ -88,12 +88,11 @@ class DB_Things extends DB_Base
         $sql = 'SELECT';
         $sql .= ' thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
-        $sql .= ' WHERE is_deleted = 0 AND user_id=:$user_id';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
-
 
         $stmt->execute();
 
