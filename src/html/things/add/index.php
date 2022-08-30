@@ -132,15 +132,15 @@ $today = $date->format('Y/n/d');
                     <div class="col-sm-2"></div>
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" onclick="goodThingLevelDisabled('good_thing_level',this.checked)" value="1">
-                        <label class="form-check-label" for="cb_good_thing">イイコト</label>
+                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingLevelDisabled('good_thing_rank',this.checked)" value="1">
+                        <label class="form-check-label" for="good_thing_flag">イイコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
-                            <label class="input-group-text" for="good_thing_level">イイコトレベル</label>
-                            <select disabled class="level form-select" name="good_thing_level" id="good_thing_level">
-                                <?php foreach (Config::GOOD_THING_LEVEL as $i) : ?>
-                                    <option value=<?= $i ?>><?= $i ?></option>
+                            <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
+                            <select disabled class="level form-select" name="good_thing_rank" id="good_thing_rank">
+                                <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
+                                    <option value=<?= $i ?>><?= $i ?>位</option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -148,15 +148,15 @@ $today = $date->format('Y/n/d');
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1">
-                        <label class="form-check-label" for="cb_bad_thing">ヤナコト</label>
+                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1">
+                        <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
-                                <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
-                                    <option value=<?= $i ?>><?= $i ?></option>
+                                <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
+                                    <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -166,15 +166,24 @@ $today = $date->format('Y/n/d');
                 <div class="row mt-4 justify-content-start">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
+                        <div class="form-text text-danger">
+                            <?= isset($_SESSION['err']['err_llCheck']) ? $_SESSION['err']['err_llCheck'] : '' ?>
+                        </div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
                         <button class="me-3 btn btn-primary" type="submit">登録する</button>
                         <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
-                        <!-- <button class="me-3 btn btn-danger">キャンセル</button> -->
                     </div>
                     <div class="col-sm"></div>
                 </div>
             </form>
         </div>
     </main>
+    
     <footer>
         <?php
         // デバッグ用 //
