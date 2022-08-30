@@ -16,16 +16,16 @@ class DB_Things extends DB_Base
      */
     public function thingsAdd($things, $user_id)
     {
-        $que1 = isset($things['thing']) == true ? ',thing' : '';
-        $que1 .= isset($things['good_thing_flag']) == true ? ',good_thing_flag' : '';
-        $que1 .= isset($things['good_thing_rank']) == true ? ',good_thing_rank' : '';
+        $que1 = isset($things['thing']) ? ',thing' : '';
+        $que1 .= isset($things['good_thing_flag']) ? ',good_thing_flag' : '';
+        $que1 .= isset($things['good_thing_rank']) ? ',good_thing_rank' : '';
         $que1 .= isset($things['bad_thing_flag']) ? ',bad_thing_flag' : '';
         $que1 .= isset($things['bad_thing_level']) ? ',bad_thing_level' : '';
         // $que1 = ltrim($que1, ',');
 
-        $que2 = isset($things['thing']) == true ? ',:thing' : '';
-        $que2 .= isset($things['good_thing_flag']) == true ? ',:good_thing_flag' : '';
-        $que2 .= isset($things['good_thing_rank']) == true ? ',:good_thing_rank' : '';
+        $que2 = isset($things['thing']) ? ',:thing' : '';
+        $que2 .= isset($things['good_thing_flag']) ? ',:good_thing_flag' : '';
+        $que2 .= isset($things['good_thing_rank']) ? ',:good_thing_rank' : '';
         $que2 .= isset($things['bad_thing_flag']) ? ',:bad_thing_flag' : '';
         $que2 .= isset($things['bad_thing_level']) ? ',:bad_thing_level' : '';
         // $que2 = ltrim($que2, ',');
@@ -35,7 +35,7 @@ class DB_Things extends DB_Base
         $sql .= ' VALUES (:user_id' . $que2 . ')';
 
         $stmt = $this->dbh->prepare($sql);
-        
+
         // SQL文の該当箇所に、変数の値を割り当て（バインド）する
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
         if (isset($things['thing']) == true) {
@@ -81,31 +81,25 @@ class DB_Things extends DB_Base
     }
 
     /**
-     * 一覧を取得しreturnする
-     * 取得するテーブルはtodo_itemsとusersのふたつ
-     * 削除フラグが1の物は除外する
+     * ログインしているユーザのデキゴト（未削除）を取得し表示する
      */
-    public function dbAllSelect()
+    public function thingShow($user_id)
     {
         $sql = 'SELECT';
-        $sql .= ' todo_items.id';
-        $sql .= ',todo_items.user_id';
-        $sql .= ',todo_items.item_name';
-        $sql .= ',todo_items.registration_date';
-        $sql .= ',todo_items.expire_date';
-        $sql .= ',todo_items.finished_date';
-        $sql .= ',todo_items.is_deleted';
-        $sql .= ',users.family_name';
-        $sql .= ',users.first_name';
-        $sql .= ' FROM todo_items INNER JOIN users ON todo_items.user_id = users.id';
-        $sql .= ' WHERE todo_items.is_deleted = 0';
-        $sql .= ' ORDER BY todo_items.expire_date ASC, todo_items.finished_date ASC, todo_items.item_name ASC';
+        $sql .= ' thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:$user_id';
+        $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
 
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
     }
 
     /**
