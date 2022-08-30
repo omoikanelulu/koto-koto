@@ -12,8 +12,8 @@ class Config //staticプロパティは内容が変化しないのものを設�
     public const DAYS = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31');
 
     // things関係
-    public const GOOD_THING_LEVEL = array('01', '02', '03');
-    public const BAD_THING_LEVEL = array('01', '02', '03');
+    public const GOOD_THING_RANK = array('1', '2', '3');
+    public const BAD_THING_LEVEL = array('弱' => '1', '中' => '2', '強' => '3');
 
     // 文字数制限（user関係）
     public const LL_USER_NAME = '50';
