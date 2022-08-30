@@ -12,22 +12,47 @@ class DB_Things extends DB_Base
     /**
      * thingsを追加する
      * @param array $things
-     * サニタイズした配列を入れる
+     * デキゴト登録から送信されたデータ
      */
-    public function thingsAdd($things)
+    public function thingsAdd($things, $user_id)
     {
+        $que1 = isset($things['thing']) == true ? ',thing' : '';
+        $que1 .= isset($things['good_thing_flag']) == true ? ',good_thing_flag' : '';
+        $que1 .= isset($things['good_thing_rank']) == true ? ',good_thing_rank' : '';
+        $que1 .= isset($things['bad_thing_flag']) ? ',bad_thing_flag' : '';
+        $que1 .= isset($things['bad_thing_level']) ? ',bad_thing_level' : '';
+        // $que1 = ltrim($que1, ',');
+
+        $que2 = isset($things['thing']) == true ? ',:thing' : '';
+        $que2 .= isset($things['good_thing_flag']) == true ? ',:good_thing_flag' : '';
+        $que2 .= isset($things['good_thing_rank']) == true ? ',:good_thing_rank' : '';
+        $que2 .= isset($things['bad_thing_flag']) ? ',:bad_thing_flag' : '';
+        $que2 .= isset($things['bad_thing_level']) ? ',:bad_thing_level' : '';
+        // $que2 = ltrim($que2, ',');
+
         $sql = 'INSERT INTO';
-        $sql .= ' things (thing,good_thing_flag,good_thing_ranking,bad_thing_flag,bad_thing_level)';
-        $sql .= ' VALUES (:thing,:good_thing_flag,:good_thing_ranking,:bad_thing_flag,:bad_thing_level)';
+        $sql .= ' things (user_id' . $que1 . ')';
+        $sql .= ' VALUES (:user_id' . $que2 . ')';
 
         $stmt = $this->dbh->prepare($sql);
-
+        
         // SQL文の該当箇所に、変数の値を割り当て（バインド）する
-        $stmt->bindValue(':thing', $things['thing'], PDO::PARAM_STR);
-        $stmt->bindValue(':good_thing_flag', $things['good_thing_flag'], PDO::PARAM_INT);
-        $stmt->bindValue(':good_thing_ranking', $things['good_thing_ranking'], PDO::PARAM_INT);
-        $stmt->bindValue(':bad_thing_flag', $things['bad_thing_flag'], PDO::PARAM_INT);
-        $stmt->bindValue(':bad_thing_level', $things['bad_thing_level'], PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+        if (isset($things['thing']) == true) {
+            $stmt->bindValue(':thing', $things['thing'], PDO::PARAM_STR);
+        }
+        if (isset($things['good_thing_flag']) == true) {
+            $stmt->bindValue(':good_thing_flag', $things['good_thing_flag'], PDO::PARAM_INT);
+        }
+        if (isset($things['good_thing_rank']) == true) {
+            $stmt->bindValue(':good_thing_rank', $things['good_thing_rank'], PDO::PARAM_INT);
+        }
+        if (isset($things['bad_thing_flag']) == true) {
+            $stmt->bindValue(':bad_thing_flag', $things['bad_thing_flag'], PDO::PARAM_INT);
+        }
+        if (isset($things['bad_thing_level']) == true) {
+            $stmt->bindValue(':bad_thing_level', $things['bad_thing_level'], PDO::PARAM_INT);
+        }
 
         $stmt->execute();
 
