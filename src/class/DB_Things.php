@@ -81,7 +81,7 @@ class DB_Things extends DB_Base
     }
 
     /**
-     * ログインしているユーザのデキゴト（未削除）を取得し表示する
+     * ログインしているユーザidのデキゴト（未削除）を取得し表示する
      */
     public function thingShow($user_id)
     {
