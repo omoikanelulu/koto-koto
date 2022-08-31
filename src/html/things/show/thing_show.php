@@ -118,7 +118,9 @@ echo '</pre>';
                 <div class="col-sm">
                     <?php foreach ($things as $thing) : ?>
                         <!-- 日付を表示 -->
-                        <h2 class="right_bg_line"><?= $thing['create_date_time'] ?></h2>
+                        <!-- str_replace('変更したい文字列', '変更後の文字列', 置換対象 -->
+                        <!-- mb_substr(文字列,取り出したい文字の開始位置,開始位置から取り出す文字の数) -->
+                        <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
 
                         <!-- イイコトの順位表示 -->
                         <div class="row m-2 mb-4 justify-content-start align-items-center">
