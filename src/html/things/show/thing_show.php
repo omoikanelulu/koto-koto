@@ -34,6 +34,8 @@ echo '</pre>';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
     <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
+    <!-- bootstrap-iconの読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $ins->nav_title ?></title>
@@ -115,15 +117,37 @@ echo '</pre>';
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
                     <?php foreach ($things as $thing) : ?>
+                        <!-- 日付を表示 -->
                         <h2 class="right_bg_line"><?= $thing['create_date_time'] ?></h2>
 
-                        <div class="row mt-4 justify-content-end">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-auto">
-                                <p><?= $thing['thing'] ?></p>
+                        <!-- イイコトの順位表示 -->
+                        <div class="row m-1 justify-content-start align-items-center">
+                            <div class="col-sm-1 text-center">
+                                <p class="mb-0 bg-good-thing rounded-pill"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] ?></p>
                             </div>
-                            <div class="col-sm"></div>
+
+                            <!-- ヤナコトの強度表示 -->
+                            <div class="col-sm-1 text-center">
+                                <p class="mb-0 bg-bad-thing rounded-pill"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></p>
+                            </div>
+
+                            <!-- thingを表示 -->
+                            <div class="col-sm-8">
+                                <p class="mb-0"><?= $thing['thing'] ?></p>
+                            </div>
+
+                            <!-- 各種ボタンを表示 -->
+                            <div class="col-sm-1 text-center">
+                                <a href="../edit/index.php"><i class="bi bi-pencil"></i></a>
+                            </div>
+                            <div class="col-sm-1 text-center">
+                                <a href="#"><i class="bi bi-trash"></i></a>
+                            </div>
                         </div>
+
+<!-- デキゴト毎にmargin-bottomをつける、アイコンは普段隠れていて、マウスを乗せたら出てくるようにする -->
+
+
 
                     <?php endforeach ?>
                 </div>
