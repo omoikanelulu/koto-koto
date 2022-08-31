@@ -111,7 +111,7 @@ $today = $date->format('Y/m/d');
         <div class="mt-5 container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
-                    <h1 class="right_bg_line"><?= $today ?></h1>
+                    <h2 class="right_bg_line"><?= $today ?></h2>
                 </div>
             </div>
 
