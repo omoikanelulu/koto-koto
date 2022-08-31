@@ -10337,4 +10337,12 @@ h1,
   border-image-slice: 0 fill;
   border-image-outset: 0 100vw 0 1rem;
   opacity: 75%;
+}
+
+.bg-good-thing {
+  background-color: #5fe68c;
+}
+
+.bg-bad-thing {
+  background-color: #e86a5c;
 }/*# sourceMappingURL=custom.css.map */
