@@ -74,8 +74,3 @@ function passDisabled(pass, is_checked) {
         document.getElementById(pass).disabled = true;
     }
 }
-// ここを作るマウスを乗せたらアイコンが出てくるように
-function editButtonEnabled(){
-    document.getElementById(pass).disabled = true;
-
-}
