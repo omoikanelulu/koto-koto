@@ -121,7 +121,7 @@ echo '</pre>';
                         <h2 class="right_bg_line"><?= $thing['create_date_time'] ?></h2>
 
                         <!-- イイコトの順位表示 -->
-                        <div class="row m-1 justify-content-start align-items-center">
+                        <div class="row m-2 mb-4 justify-content-start align-items-center">
                             <div class="col-sm-1 text-center">
                                 <p class="mb-0 bg-good-thing rounded-pill"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] ?></p>
                             </div>
@@ -145,7 +145,7 @@ echo '</pre>';
                             </div>
                         </div>
 
-<!-- デキゴト毎にmargin-bottomをつける、アイコンは普段隠れていて、マウスを乗せたら出てくるようにする -->
+                        <!-- デキゴト毎にmargin-bottomをつける、アイコンは普段隠れていて、マウスを乗せたら出てくるようにする -->
 
 
 
