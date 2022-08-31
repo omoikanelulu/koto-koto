@@ -14,13 +14,13 @@ Security::notLogin();
 $ins = new Base;
 $DBins = new DB_Things;
 
-$rec = $DBins->thingShow($_SESSION['login_user']['id']);
+$things = $DBins->thingShow($_SESSION['login_user']['id']);
 
 // デバッグ用 //
 echo '<pre>';
-var_dump($rec);
+var_dump($things);
 echo '</pre>';
-exit();
+// exit();
 ////////////////
 
 ?>
@@ -114,22 +114,33 @@ exit();
         <div class="mt-5 container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
-                    <h1 class="right_bg_line"><?php foreach($rec as $i=>$v) :?></h1>
+                    <?php foreach ($things as $thing) : ?>
+                        <h2 class="right_bg_line"><?= $thing['create_date_time'] ?></h2>
+
+                        <div class="row mt-4 justify-content-end">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-auto">
+                                <p><?= $thing['thing'] ?></p>
+                            </div>
+                            <div class="col-sm"></div>
+                        </div>
+
+                    <?php endforeach ?>
                 </div>
             </div>
 
             <!-- デキゴト入力ブロック -->
             <form action="./action.php" method="post">
-                <div class="row mt-4 justify-content-end">
+                <!-- <div class="row mt-4 justify-content-end">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="thing">デキゴトの登録
                             <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"></textarea>
-                            <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
+                            <div class="form-text"></?= Config::TIPS_LL_THING ?></div>
                         </label>
                     </div>
                     <div class="col-sm"></div>
-                </div>
+                </div> -->
 
                 <!-- 属性付与ブロック -->
                 <div class="row mt-4 justify-content-start">
