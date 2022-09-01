@@ -4,14 +4,24 @@ require_once '../../../class/Base.php';
 require_once '../../../class/Security.php';
 require_once '../../../class/Validation.php';
 require_once '../../../class/DB_Base.php';
-require_once '../../../class/DB_Users.php';
+require_once '../../../class/DB_Things.php';
 
 Security::session();
 
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
-$ins = new Base();
+$ins = new Base;
+$DBins = new DB_Things;
+
+$thing = $DBins->thingSelect($_GET['id'], $_SESSION['login_user']['id']);
+
+// デバッグ用 //
+echo '<pre>';
+var_dump($thing);
+echo '</pre>';
+// exit();
+////////////////
 
 ?>
 
@@ -104,7 +114,6 @@ $ins = new Base();
         <div class="mt-5 container">
             <div class="row">
                 <div class="col-sm">
-                    <p>編集する項目にチェックを入れ</p>
                     <p>デキゴトを編集してください</p>
                 </div>
             </div>
@@ -120,8 +129,8 @@ $ins = new Base();
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="thing">デキゴト
-                            <textarea readonly class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200"><?= $thing['thing'] ?></textarea>
-                            <div class="invisible form-text"><?= Config::TIPS_LL_THING ?></div>
+                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200"><?= $thing['thing'] ?></textarea>
+                            <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
                         </label>
                     </div>
                     <div class="col-sm"></div>
@@ -132,13 +141,15 @@ $ins = new Base();
                     <div class="col-sm-2"></div>
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1">
+                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1" <?= empty($thing['good_thing_rank']) ? '' : 'checked' ?>>
                         <label class="form-check-label" for="good_thing_flag">イイコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
                             <select disabled class="level form-select" name="good_thing_rank" id="good_thing_rank">
+
+                                <option value="$thing['good_thing_rank']"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] . '位' ?></option>
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
                                     <option value=<?= $i ?>><?= $i ?>位</option>
                                 <?php endforeach ?>
@@ -148,13 +159,18 @@ $ins = new Base();
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_rank',this.checked)" value="1">
+                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1" <?= empty($thing['bad_thing_level']) ? '' : 'checked' ?>>
                         <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
+
+                                <!-- </?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?> -->
+                                <!-- 漢字で表記するにはどうすれば… -->
+                                <!-- ボタンの初期状態が、登録済みの状態と一致しない -->
+                                <option value="$thing['bad_thing_level']"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></option>
                                 <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
                                     <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
