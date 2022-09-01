@@ -17,9 +17,9 @@ $DBins = new DB_Things;
 $things = $DBins->thingShow($_SESSION['login_user']['id']);
 
 // デバッグ用 //
-echo '<pre>';
-var_dump($things);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($things);
+// echo '</pre>';
 // exit();
 ////////////////
 
@@ -143,7 +143,7 @@ echo '</pre>';
                                 <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
                             </div>
                             <div class="col-sm-1 text-center">
-                                <a href="../delete/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
+                                <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
                             </div>
                         </div>
 
