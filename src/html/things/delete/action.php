@@ -14,15 +14,18 @@ Security::notLogin();
 $ins = new Base;
 $DBins = new DB_Things;
 
-$thing = $DBins->thingSelect($_GET['id'], $_SESSION['login_user']['id']);
+try {
+    $thing = $DBins->thingDelete($_GET['id'], $_SESSION['login_user']['id']);
+    header('Location:../show/thing_show.php');
+    exit();
+} catch (Exception $e) {
+    $_SESSION['exception'] = $e;
+    header('Location:' . $ins->err_page_url);
+    exit();
+}
 
-// デバッグ用 //
-echo '<pre>';
-var_dump($thing);
-echo '</pre>';
-// exit();
-////////////////
 
+// ここから下は不要
 
 ?>
 
