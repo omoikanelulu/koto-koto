@@ -45,7 +45,7 @@ $ins = new Base();
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= $ins->nav_title ?>
+                                デキゴトを編集
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
@@ -102,20 +102,26 @@ $ins = new Base();
 
     <main>
         <div class="mt-5 container">
+            <div class="row">
+                <div class="col-sm">
+                    <p>編集する項目にチェックを入れ</p>
+                    <p>デキゴトを編集してください</p>
+                </div>
+            </div>
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
-                    <h1 class="right_bg_line"><?= $create_date_time ?></h1>
+                    <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
                 </div>
             </div>
 
             <!-- デキゴト入力ブロック -->
-            <form action="" method="post">
+            <form action="./action.php" method="post">
                 <div class="row mt-4 justify-content-end">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
-                        <label class="form-label" for="thing">デキゴトの編集 <!-- rowとcolはCSSで設定する方が良い？ -->
-                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" aria-valuetext=""><?= $thing // ここがvalueの値になるらしい ?></textarea>
-                            <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
+                        <label class="form-label" for="thing">デキゴト
+                            <textarea readonly class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200"><?= $thing['thing'] ?></textarea>
+                            <div class="invisible form-text"><?= Config::TIPS_LL_THING ?></div>
                         </label>
                     </div>
                     <div class="col-sm"></div>
@@ -126,15 +132,15 @@ $ins = new Base();
                     <div class="col-sm-2"></div>
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" value="1">
-                        <label class="form-check-label" for="cb_good_thing">イイコト</label>
+                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1">
+                        <label class="form-check-label" for="good_thing_flag">イイコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
-                            <label class="input-group-text" for="good_thing_level">イイコトレベル</label>
-                            <select class="form-select" name="good_thing_level" id="good_thing_level">
+                            <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
+                            <select disabled class="level form-select" name="good_thing_rank" id="good_thing_rank">
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
-                                    <option value="$i"><?= $i ?></option>
+                                    <option value=<?= $i ?>><?= $i ?>位</option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -142,15 +148,15 @@ $ins = new Base();
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" value="1">
-                        <label class="form-check-label" for="cb_bad_thing">ヤナコト</label>
+                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_rank',this.checked)" value="1">
+                        <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select class="form-select" name="bad_thing_level" id="bad_thing_level">
-                                <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
-                                    <option value="$i"><?= $i ?></option>
+                            <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
+                                <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
+                                    <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -160,15 +166,25 @@ $ins = new Base();
                 <div class="row mt-4 justify-content-start">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
-                        <button class="me-3 btn btn-primary" type="submit">登録する</button>
-                        <button class="me-3 btn btn-secondary" type="reset">書き直す</button>
-                        <button class="me-3 btn btn-danger" type="reset">キャンセル</button>
+                        <div class="form-text text-danger">
+                            <?= isset($_SESSION['err']['err_llCheck']) ? $_SESSION['err']['err_llCheck'] : '' ?>
+                        </div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <button class="me-3 btn btn-primary" type="submit">編集を登録</button>
+                        <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
                     </div>
                     <div class="col-sm"></div>
                 </div>
             </form>
         </div>
     </main>
+
     <footer>
         <?php
         // デバッグ用 //
@@ -181,6 +197,8 @@ $ins = new Base();
 
     <!-- bootstrap JavaScript Bundle with Popper -->
     <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/script.js"></script>
+
 </body>
 
 </html>
