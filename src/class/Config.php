@@ -13,7 +13,7 @@ class Config //staticプロパティは内容が変化しないのものを設�
 
     // things関係
     public const GOOD_THING_RANK = array('1', '2', '3');
-    public const BAD_THING_LEVEL = array('弱' => '1', '中' => '2', '強' => '3');
+    public const BAD_THING_LEVEL = array('小' => '1', '中' => '2', '大' => '3');
 
     // 文字数制限（user関係）
     public const LL_USER_NAME = '50';
