@@ -147,8 +147,7 @@ echo '</pre>';
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
-                            <select disabled class="level form-select" name="good_thing_rank" id="good_thing_rank">
-
+                            <select class="level form-select" name="good_thing_rank" id="good_thing_rank" <?= empty($thing['good_thing_rank']) ? 'disabled' : '' ?>>
                                 <option value="$thing['good_thing_rank']"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] . '位' ?></option>
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
                                     <option value=<?= $i ?>><?= $i ?>位</option>
@@ -165,11 +164,8 @@ echo '</pre>';
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
-
-                                <!-- </?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?> -->
+                            <select class="level form-select" name="bad_thing_level" id="bad_thing_level" <?= empty($thing['bad_thing_level']) ? 'disabled' : '' ?>>
                                 <!-- 漢字で表記するにはどうすれば… -->
-                                <!-- ボタンの初期状態が、登録済みの状態と一致しない -->
                                 <option value="$thing['bad_thing_level']"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></option>
                                 <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
                                     <option value=<?= $v ?>><?= $i ?></option>
