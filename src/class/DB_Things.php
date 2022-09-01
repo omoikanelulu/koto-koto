@@ -86,7 +86,7 @@ class DB_Things extends DB_Base
     public function thingShow($user_id)
     {
         $sql = 'SELECT';
-        $sql .= ' thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
         $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id';
         $sql .= ' ORDER BY create_date_time DESC';
@@ -99,6 +99,42 @@ class DB_Things extends DB_Base
         $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $rec;
+    }
+
+    /**
+     * 選択したidのデキゴト（未削除）を取得し表示する
+     */
+    public function thingSelect($id, $user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND id=:id AND user_id=:user_id';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * 削除フラグを1にUPDATEする
+     */
+    public function thingDelete($id)
+    {
+        $sql = 'UPDATE things SET is_deleted=:is_deleted WHERE id=:id';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':is_deleted', 1, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->execute();
     }
 
     /**
@@ -131,32 +167,6 @@ class DB_Things extends DB_Base
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /**
-     * 引数に入れた['item_id']のToDoを表示する（1レコードだけ）
-     * @param int item_id
-     */
-    public function dbConfirmation($id)
-    {
-        $sql = 'SELECT';
-        $sql .= ' todo_items.id';
-        $sql .= ',todo_items.user_id';
-        $sql .= ',todo_items.item_name';
-        $sql .= ',todo_items.registration_date';
-        $sql .= ',todo_items.expire_date';
-        $sql .= ',todo_items.finished_date';
-        $sql .= ',todo_items.is_deleted';
-        $sql .= ',users.family_name';
-        $sql .= ',users.first_name';
-        $sql .= ' FROM todo_items INNER JOIN users ON todo_items.user_id = users.id';
-        $sql .= ' WHERE todo_items.id=:id';
-        $sql .= ' ORDER BY todo_items.expire_date ASC';
-
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
 
     /**
      * 削除する（削除フラグを立てる）
