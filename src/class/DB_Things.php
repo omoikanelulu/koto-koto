@@ -126,13 +126,14 @@ class DB_Things extends DB_Base
     /**
      * 削除フラグを1にUPDATEする
      */
-    public function thingDelete($id)
+    public function thingDelete($id, $user_id)
     {
-        $sql = 'UPDATE things SET is_deleted=:is_deleted WHERE id=:id';
+        $sql = 'UPDATE things SET is_deleted=:is_deleted WHERE id=:id AND user_id=:user_id';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':is_deleted', 1, PDO::PARAM_INT);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
         $stmt->execute();
     }
