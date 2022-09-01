@@ -140,15 +140,12 @@ echo '</pre>';
 
                             <!-- 各種ボタンを表示 -->
                             <div class="col-sm-1 text-center">
-                                <a href="../edit/index.php"><i class="bi bi-pencil"></i></a>
+                                <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
                             </div>
                             <div class="col-sm-1 text-center">
-                                <a href="#"><i class="bi bi-trash"></i></a>
+                                <a href="../delete/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
                             </div>
                         </div>
-
-                        <!-- デキゴト毎にmargin-bottomをつける、アイコンは普段隠れていて、マウスを乗せたら出てくるようにする -->
-
 
 
                     <?php endforeach ?>
