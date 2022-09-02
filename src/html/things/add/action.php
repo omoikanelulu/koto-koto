@@ -21,7 +21,10 @@ $result = '';
 unset($_SESSION['err']);
 
 // 文字数チェック
-$result = Validation::llCheck($post['thing'], Config::LL_THING);
+// 値が入っていたらチェックを開始する
+if (!empty($post['thing'])) {
+    $result = Validation::llCheck($post['thing'], Config::LL_THING);
+}
 
 if ($result == false) {
     $_SESSION['err']['err_llThing'] = Config::ERR_LL_THING;
@@ -29,7 +32,10 @@ if ($result == false) {
     $has_err = true;
 }
 
-$result = Validation::llCheck($post['bad_thing_approach'], Config::LL_APPROACH);
+// 値が入っていたらチェックを開始する
+if (!empty($post['bad_thing_approach'])) {
+    $result = Validation::llCheck($post['bad_thing_approach'], Config::LL_APPROACH);
+}
 
 if ($result == false) {
     $_SESSION['err']['err_llApproach'] = Config::ERR_LL_APPROACH;
@@ -37,7 +43,7 @@ if ($result == false) {
     $has_err = true;
 }
 
-// エラーがあったらページをリダイレクトで戻す
+// どこかでエラーがあったらページをリダイレクトで戻す
 if ($has_err == true) {
     header('Location:./index.php', true, 307);
     exit();
@@ -52,7 +58,7 @@ $DBins = new DB_Things;
 try {
     $result = $DBins->thingsAdd($post, $_SESSION['login_user']['id']);
     if ($result == true) {
-        unset($_SESSION['input_thing'], $_SESSION['err']['err_llCheck'], $_SESSION['exception']);
+        unset($_SESSION['post_data'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
         header('Location:./success.php');
         exit();
     }
