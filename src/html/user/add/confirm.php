@@ -17,7 +17,7 @@ $post = Security::sanitize($_POST);
 $_SESSION['input_user_data'] = $post;
 
 // 【バリデーション開始】
-$check_ng = '';
+$has_err = '';
 $result = '';
 unset($_SESSION['err']);
 
@@ -25,7 +25,7 @@ unset($_SESSION['err']);
 $result = Validation::llUserName($post['user_name']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_user_name'] = Config::ERR_LL_USER_NAME;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
@@ -34,7 +34,7 @@ if ($result == false) { // NGの場合
 $result = Validation::llFamilyName($post['family_name']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_family_name'] = Config::ERR_LL_FAMILY_NAME;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
@@ -43,7 +43,7 @@ if ($result == false) { // NGの場合
 $result = Validation::llFirstName($post['first_name']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_first_name'] = Config::ERR_LL_FIRST_NAME;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
@@ -52,7 +52,7 @@ if ($result == false) { // NGの場合
 $result = Validation::llUserMailAddress($post['user_mail_address']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_user_mail_address'] = Config::ERR_LL_USER_MAIL_ADDRESS;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
@@ -61,7 +61,7 @@ if ($result == false) { // NGの場合
 $result = Validation::llPass($post['pass']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_ll_pass'] = Config::ERR_LL_PASS;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
@@ -70,7 +70,7 @@ if ($result == false) { // NGの場合
 $result = Validation::isCorrectDate($post['birth_date_year'], $post['birth_date_month'], $post['birth_date_day']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_is_correct_date'] = Config::ERR_IS_CORRECT_DATE;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
@@ -79,7 +79,7 @@ if ($result == false) { // NGの場合
 $result = Validation::isMatched($post['user_mail_address'], $post['user_mail_address_check']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_is_matched_mail'] = Config::ERR_IS_MATCHED;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
@@ -88,14 +88,14 @@ if ($result == false) { // NGの場合
 $result = Validation::isMatched($post['pass'], $post['pass_check']);
 if ($result == false) { // NGの場合
     $_SESSION['err']['err_is_matched_pass'] = Config::ERR_IS_MATCHED;
-    $check_ng = true;
+    $has_err = true;
 } else {
     $result = '';
 }
 // 【バリデーション終了】
 
 // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307でトークンも送信出来る？
-if ($check_ng == true) {
+if ($has_err == true) {
     header('location:./index.php', true, 307);
     exit();
 }
