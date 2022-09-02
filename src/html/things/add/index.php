@@ -121,9 +121,20 @@ $today = $date->format('Y/m/d');
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="thing">デキゴトの登録
-                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"></textarea>
+                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"><?= empty($_SESSION['post_data']['thing']) ? '' : $_SESSION['post_data']['thing'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
                         </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- thingの文字数エラーメッセージ -->
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <div class="form-text text-danger">
+                            <?= isset($_SESSION['err']['err_llThing']) ? $_SESSION['err']['err_llThing'] : '' ?>
+                        </div>
                     </div>
                     <div class="col-sm"></div>
                 </div>
@@ -164,15 +175,31 @@ $today = $date->format('Y/m/d');
                     </div>
                     <div class="col-sm"></div>
                 </div>
-                <div class="row mt-4 justify-content-start">
+
+                <!-- 対処法の記入ブロック -->
+                <div class="row mt-4 justify-content-end">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
+                            <textarea class="form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" placeholder="対処法を入力"><?= empty($_SESSION['post_data']['bad_thing_approach']) ? '' : $_SESSION['post_data']['bad_thing_approach'] ?></textarea>
+                            <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
+                        </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- 対処法の文字数エラーメッセージ -->
+                <div class="row justify-content-start">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <div class="form-text text-danger">
-                            <?= isset($_SESSION['err']['err_llCheck']) ? $_SESSION['err']['err_llCheck'] : '' ?>
+                            <?= isset($_SESSION['err']['err_llApproach']) ? $_SESSION['err']['err_llApproach'] : '' ?>
                         </div>
                     </div>
                     <div class="col-sm"></div>
                 </div>
+
+                <!-- 送信ボタンたち -->
                 <div class="row justify-content-start">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
