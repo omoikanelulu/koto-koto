@@ -141,6 +141,7 @@ $today = $date->format('Y/m/d');
                 <!-- 属性付与ブロック -->
                 <div class="row mt-4 justify-content-start">
                     <div class="col-sm-2"></div>
+
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
                         <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1">
