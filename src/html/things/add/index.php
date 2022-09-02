@@ -160,13 +160,13 @@ $today = $date->format('Y/m/d');
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1">
+                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1">
                         <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
+                            <select disabled class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
                                 <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
                                     <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
@@ -181,7 +181,7 @@ $today = $date->format('Y/m/d');
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
-                            <textarea class="form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" placeholder="対処法を入力"><?= empty($_SESSION['post_data']['bad_thing_approach']) ? '' : $_SESSION['post_data']['bad_thing_approach'] ?></textarea>
+                            <textarea disabled class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" placeholder="対処法を入力"><?= empty($_SESSION['post_data']['bad_thing_approach']) ? '' : $_SESSION['post_data']['bad_thing_approach'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
                         </label>
                     </div>
