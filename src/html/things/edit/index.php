@@ -14,7 +14,16 @@ Security::notLogin();
 $ins = new Base;
 $DBins = new DB_Things;
 
-$thing = $DBins->thingSelect($_GET['id'], $_SESSION['login_user']['id']);
+try {
+    $thing = $DBins->thingSelect($_GET['id'], $_SESSION['login_user']['id']);
+    if ($thing == false) {
+        throw new Exception('レコードが取得できませんでした');
+    }
+} catch (Exception $e) {
+    $_SESSION['exception'] = $e;
+    header('Location:' . $ins->err_page_url);
+    exit();
+}
 
 // デバッグ用 //
 echo '<pre>';
