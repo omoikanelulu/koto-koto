@@ -148,6 +148,7 @@ echo '</pre>';
                 <!-- 属性付与ブロック -->
                 <div class="row mt-4 justify-content-start">
                     <div class="col-sm-2"></div>
+
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
                         <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1" <?= empty($thing['good_thing_rank']) ? '' : 'checked' ?>>
@@ -167,15 +168,14 @@ echo '</pre>';
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1" <?= empty($thing['bad_thing_level']) ? '' : 'checked' ?>>
+                        <!-- ここが上手く有効無効の切り替えされてない -->
+                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1">
                         <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select class="level form-select" name="bad_thing_level" id="bad_thing_level" <?= empty($thing['bad_thing_level']) ? 'disabled' : '' ?>>
-                                <!-- 漢字で表記するにはどうすれば… -->
-                                <option value="$thing['bad_thing_level']"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></option>
+                            <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level" <?= empty($thing['bad_thing_level']) ? 'disabled' : '' ?>>
                                 <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
                                     <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
@@ -184,16 +184,31 @@ echo '</pre>';
                     </div>
                     <div class="col-sm"></div>
                 </div>
-                <div class="row mt-4 justify-content-start">
+
+                <!-- 対処法の記入ブロック -->
+                <div class="row mt-4 justify-content-end">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
+                            <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" <?= empty($thing['bad_thing_approach']) ? 'disabled' : '' ?>><?= empty($thing['bad_thing_approach']) ? '' : $thing['bad_thing_approach'] ?></textarea>
+                            <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
+                        </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- 対処法の文字数エラーメッセージ -->
+                <div class="row justify-content-start">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <div class="form-text text-danger">
-                            <?= isset($_SESSION['err']['err_llCheck']) ? $_SESSION['err']['err_llCheck'] : '' ?>
+                            <?= isset($_SESSION['err']['err_llApproach']) ? $_SESSION['err']['err_llApproach'] : '' ?>
                         </div>
                     </div>
                     <div class="col-sm"></div>
                 </div>
 
+                <!-- 送信ボタンたち -->
                 <div class="row justify-content-start">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
