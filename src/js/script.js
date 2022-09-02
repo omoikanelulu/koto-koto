@@ -17,14 +17,16 @@ function goodThingRankDisabled(good_thing_rank, is_checked) {
  * チェックボックスにチェックが入っている時だけ、入力出来るようになる
  * デキゴト記録画面用
  */
-function badThingLevelDisabled(bat_thing_level, is_checked) {
+function badFactorDisabled(is_checked) {
+    var list = document.querySelectorAll('.bad_factor')
     if (is_checked == true) {
-        // チェックが入っていたらdisabledしない
-        document.getElementById(bat_thing_level).disabled = false;
-    }
-    else {
-        // チェックが入っていなかったらdisabledする
-        document.getElementById(bat_thing_level).disabled = true;
+        for (let i = 0; i < list.length; i++) {
+            list[i].disabled = false;
+        }
+    } else {
+        for (let i = 0; i < list.length; i++) {
+            list[i].disabled = true;
+        }
     }
 }
 
