@@ -21,6 +21,7 @@ class DB_Things extends DB_Base
         $que1 .= isset($things['good_thing_rank']) ? ',good_thing_rank' : '';
         $que1 .= isset($things['bad_thing_flag']) ? ',bad_thing_flag' : '';
         $que1 .= isset($things['bad_thing_level']) ? ',bad_thing_level' : '';
+        $que1 .= isset($things['bad_thing_approach']) ? ',bad_thing_approach' : '';
         // $que1 = ltrim($que1, ',');
 
         $que2 = isset($things['thing']) ? ',:thing' : '';
@@ -28,6 +29,7 @@ class DB_Things extends DB_Base
         $que2 .= isset($things['good_thing_rank']) ? ',:good_thing_rank' : '';
         $que2 .= isset($things['bad_thing_flag']) ? ',:bad_thing_flag' : '';
         $que2 .= isset($things['bad_thing_level']) ? ',:bad_thing_level' : '';
+        $que2 .= isset($things['bad_thing_approach']) ? ',:bad_thing_approach' : '';
         // $que2 = ltrim($que2, ',');
 
         $sql = 'INSERT INTO';
@@ -52,6 +54,9 @@ class DB_Things extends DB_Base
         }
         if (isset($things['bad_thing_level']) == true) {
             $stmt->bindValue(':bad_thing_level', $things['bad_thing_level'], PDO::PARAM_INT);
+        }
+        if (isset($things['bad_thing_approach']) == true) {
+            $stmt->bindValue(':bad_thing_approach', $things['bad_thing_approach'], PDO::PARAM_STR);
         }
 
         $stmt->execute();
