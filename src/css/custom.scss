@@ -15,9 +15,9 @@ $dark: #3d5c78;
 //リンクの文字色
 $link-color: #352fe9;
 // good_thingの基本カラー
-$good_thing:#5fe68c;
+$good_thing: #5fe68c;
 // bad_thingの基本カラー
-$bad_thing:#e86a5c;
+$bad_thing: #e86a5c;
 
 //bodyの背景、文字色
 $body-bg: #fff;
@@ -157,10 +157,14 @@ h1,
     opacity: 75%;
 }
 
-.bg-good-thing{
-background-color: $good_thing;
+.bg-good-thing {
+    background-color: $good_thing;
 }
 
-.bg-bad-thing{
-background-color: $bad_thing;
+.bg-bad-thing {
+    background-color: $bad_thing;
+}
+
+#input_year {
+    width: 300px;
 }
