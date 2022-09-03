@@ -151,7 +151,7 @@ echo '</pre>';
 
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1" <?= empty($thing['good_thing_rank']) ? '' : 'checked' ?>>
+                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1" <?= empty($thing['good_thing_flag']) ? '' : 'checked' ?>>
                         <label class="form-check-label" for="good_thing_flag">イイコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
@@ -169,7 +169,7 @@ echo '</pre>';
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
                         <!-- ここが上手く有効無効の切り替えされてない -->
-                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1">
+                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1" <?= empty($thing['bad_thing_flag']) ? '' : 'checked' ?>>
                         <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
                     </div>
                     <div class="col-sm-auto align-self-center">
@@ -190,7 +190,7 @@ echo '</pre>';
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
-                            <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" <?= empty($thing['bad_thing_approach']) ? 'disabled' : '' ?>><?= empty($thing['bad_thing_approach']) ? '' : $thing['bad_thing_approach'] ?></textarea>
+                            <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" <?= empty($thing['bad_thing_flag']) ? 'disabled' : '' ?>><?= empty($thing['bad_thing_approach']) ? '' : $thing['bad_thing_approach'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
                         </label>
                     </div>
@@ -213,7 +213,7 @@ echo '</pre>';
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <button class="me-3 btn btn-primary" type="submit">編集を登録</button>
-                        <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
+                        <button class="btn btn-secondary" type="button" onclick="location.href='../show/thing_show.php',this.clicked">キャンセル</button>
                     </div>
                     <div class="col-sm"></div>
                 </div>
