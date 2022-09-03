@@ -168,7 +168,6 @@ echo '</pre>';
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <!-- ここが上手く有効無効の切り替えされてない -->
                         <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1" <?= empty($thing['bad_thing_flag']) ? '' : 'checked' ?>>
                         <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
                     </div>
@@ -176,6 +175,7 @@ echo '</pre>';
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level" <?= empty($thing['bad_thing_level']) ? 'disabled' : '' ?>>
+                            <!-- 既に入力されているヤナコトレベルをどうやって表示するかが問題 -->
                                 <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
                                     <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
