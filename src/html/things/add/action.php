@@ -56,7 +56,7 @@ $DBins = new DB_Things;
 
 // データベースに登録
 try {
-    $result = $DBins->thingsAdd($post, $_SESSION['login_user']['id']);
+    $result = $DBins->thingsAdd($_SESSION['post_data'], $_SESSION['login_user']['id']);
     if ($result == true) {
         unset($_SESSION['post_data'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
         header('Location:./success.php');
