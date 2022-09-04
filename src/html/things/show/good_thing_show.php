@@ -111,37 +111,42 @@ $things = $DBins->goodThingShow($_SESSION['login_user']['id']);
         <div class="mt-5 container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
-                    <?php foreach ($things as $thing) : ?>
-                        <!-- 日付を表示 -->
-                        <!-- str_replace('変更したい文字列', '変更後の文字列', 置換対象 -->
-                        <!-- mb_substr(文字列,取り出したい文字の開始位置,開始位置から取り出す文字の数) -->
-                        <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
+                    <!-- 削除済みのレコードがない場合とある場合で分岐させる -->
+                    <?php if (empty($things)) : ?>
+                        <?= Config::ERR_THING_SHOW ?>
+                    <?php else : ?>
+                        <?php foreach ($things as $thing) : ?>
+                            <!-- 日付を表示 -->
+                            <!-- str_replace('変更したい文字列', '変更後の文字列', 置換対象 -->
+                            <!-- mb_substr(文字列,取り出したい文字の開始位置,開始位置から取り出す文字の数) -->
+                            <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
 
-                        <!-- イイコトの順位表示 -->
-                        <div class="row m-2 mb-4 justify-content-start align-items-center">
-                            <div class="col-sm-1 text-center">
-                                <p class="mb-0 bg-good-thing rounded-pill"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] ?></p>
-                            </div>
+                            <!-- イイコトの順位表示 -->
+                            <div class="row m-2 mb-4 justify-content-start align-items-center">
+                                <div class="col-sm-1 text-center">
+                                    <p class="mb-0 bg-good-thing rounded-pill"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] ?></p>
+                                </div>
 
-                            <!-- ヤナコトの強度表示 -->
-                            <div class="col-sm-1 text-center">
-                                <p class="mb-0 bg-bad-thing rounded-pill"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></p>
-                            </div>
+                                <!-- ヤナコトの強度表示 -->
+                                <div class="col-sm-1 text-center">
+                                    <p class="mb-0 bg-bad-thing rounded-pill"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></p>
+                                </div>
 
-                            <!-- thingを表示 -->
-                            <div class="col-sm-8">
-                                <p class="mb-0"><?= $thing['thing'] ?></p>
-                            </div>
+                                <!-- thingを表示 -->
+                                <div class="col-sm-8">
+                                    <p class="mb-0"><?= $thing['thing'] ?></p>
+                                </div>
 
-                            <!-- 各種ボタンを表示 -->
-                            <div class="col-sm-1 text-center">
-                                <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
+                                <!-- 各種ボタンを表示 -->
+                                <div class="col-sm-1 text-center">
+                                    <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
+                                </div>
+                                <div class="col-sm-1 text-center">
+                                    <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
+                                </div>
                             </div>
-                            <div class="col-sm-1 text-center">
-                                <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
-                            </div>
-                        </div>
-                    <?php endforeach ?>
+                        <?php endforeach ?>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
