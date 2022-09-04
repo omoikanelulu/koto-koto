@@ -4,14 +4,17 @@ require_once '../../../class/Base.php';
 require_once '../../../class/Security.php';
 require_once '../../../class/Validation.php';
 require_once '../../../class/DB_Base.php';
-require_once '../../../class/DB_Users.php';
+require_once '../../../class/DB_Things.php';
 
 Security::session();
 
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
-$ins = new Base();
+$ins = new Base;
+$DBins = new DB_Things;
+
+$things = $DBins->goodThingShow($_SESSION['login_user']['id']);
 
 ?>
 
@@ -24,6 +27,8 @@ $ins = new Base();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap cssの読み込み -->
     <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
+    <!-- bootstrap-iconの読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
     <title><?= $ins->nav_title ?></title>
@@ -53,39 +58,41 @@ $ins = new Base();
                                 <?php endforeach ?>
                             </ul>
                         </li>
-                        <!-- 年月日の入力フォーム -->
-                        <form class="row" action="#">
-                            <div class="col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
-                                    <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
-                                        <option value="$i"><?= $i ?></option>
-                                    <?php endfor ?>
-                                </select>
-                                <label class="input-group-text" for="input_year">年</label>
-                            </div>
-                            <div class="col input-group">
-                                <select class="form-select" name="input_month" id="input_month">
-                                    <?php foreach (Config::MONTHS as $key => $val) : ?>
-                                        <option value=<?= $val ?>><?= $val ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_month">月</label>
-                            </div>
-                            <div class="col input-group">
-                                <select class="form-select" name="input_day" id="input_day">
-                                    <?php foreach (Config::DAYS as $key => $val) : ?>
-                                        <option value=<?= $val ?>><?= $val ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_day">日</label>
-                            </div>
-                        </form>
                     </ul>
+
+                    <!-- 年月日の入力フォーム -->
+                    <form class="row" action="#">
+                        <div class="col input-group">
+                            <select class="form-select" name="input_year" id="input_year">
+                                <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
+                                    <option value="$i"><?= $i ?></option>
+                                <?php endfor ?>
+                            </select>
+                            <label class="input-group-text" for="input_year">年</label>
+                        </div>
+                        <div class="input-group">
+                            <select class="form-select" name="input_month" id="input_month">
+                                <?php foreach (Config::MONTHS as $key => $val) : ?>
+                                    <option value=<?= $val ?>><?= $val ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <label class="input-group-text" for="input_month">月</label>
+                        </div>
+                        <div class="input-group">
+                            <select class="form-select" name="input_day" id="input_day">
+                                <?php foreach (Config::DAYS as $key => $val) : ?>
+                                    <option value=<?= $val ?>><?= $val ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <label class="input-group-text" for="input_day">日</label>
+                        </div>
+                    </form>
+
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
                         <li class="nav-item dropstart">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
+                                <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
                             </a>
                             <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
@@ -102,45 +109,44 @@ $ins = new Base();
 
     <main>
         <div class="mt-5 container">
-            <div class="row row-cols-2 d-flex justify-content-center">
-                <div class="col">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5>使い方</h5>
+            <div class="row justify-content:flex-start">
+                <div class="col-sm">
+                    <?php foreach ($things as $thing) : ?>
+                        <!-- 日付を表示 -->
+                        <!-- str_replace('変更したい文字列', '変更後の文字列', 置換対象 -->
+                        <!-- mb_substr(文字列,取り出したい文字の開始位置,開始位置から取り出す文字の数) -->
+                        <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
+
+                        <!-- イイコトの順位表示 -->
+                        <div class="row m-2 mb-4 justify-content-start align-items-center">
+                            <div class="col-sm-1 text-center">
+                                <p class="mb-0 bg-good-thing rounded-pill"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] ?></p>
+                            </div>
+
+                            <!-- ヤナコトの強度表示 -->
+                            <div class="col-sm-1 text-center">
+                                <p class="mb-0 bg-bad-thing rounded-pill"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></p>
+                            </div>
+
+                            <!-- thingを表示 -->
+                            <div class="col-sm-8">
+                                <p class="mb-0"><?= $thing['thing'] ?></p>
+                            </div>
+
+                            <!-- 各種ボタンを表示 -->
+                            <div class="col-sm-1 text-center">
+                                <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
+                            </div>
+                            <div class="col-sm-1 text-center">
+                                <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <ol>
-                                <li class="card-text">深く考えずにメモ感覚でデキゴトを記録する</li>
-                                <li class="card-text">記録したデキゴトをふり返る</li>
-                                <li class="card-text">そのデキゴトがイイコトだったのかヤナコトだったのか仕分ける</li>
-                                <li class="card-text">今日のイイコトベスト3を決める（就寝前に行うのが良い）</li>
-                                <li class="card-text">ヤナコトに対する対処法を考える（ストレスに対する対処法を持つ事でストレス軽減に繋がる）</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-2 d-flex justify-content-center">
-                <div class="col">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5>なぜなに「koto-koto」</h5>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="mb-2 card-text">何をするサイトなの？</h5>
-                            <p class="card-text">当サイトは日々のデキゴトを記録し、イイコト（良かった事、楽しかった事、嬉しかった事など）を振り返ったり、
-                                ヤナコト（悪かった事、悲しかった事、辛かった事など）に対してどの様に対処するのか考える事で、</p>
-                            <ul>
-                                <li class="card-text">自己肯定感の向上</li>
-                                <li class="card-text">ストレスに対する対処の仕方を考え日々のストレスを軽減する</li>
-                            </ul>
-                            <p class="card-text">といった、セルフケアのお手伝いが出来れば良いな、という趣旨で制作しております。</p>
-                        </div>
-                    </div>
+                    <?php endforeach ?>
                 </div>
             </div>
         </div>
     </main>
+
     <footer>
     </footer>
 

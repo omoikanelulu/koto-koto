@@ -69,21 +69,21 @@ class DB_Things extends DB_Base
      * @param array $approach
      * サニタイズした配列を入れる
      */
-    public function badThingApproachAdd($approach)
-    {
-        $sql = 'INSERT INTO';
-        $sql .= ' things (bad_thing_approach)';
-        $sql .= ' VALUES (:bad_thing_approach)';
+    // public function badThingApproachAdd($approach)
+    // {
+    //     $sql = 'INSERT INTO';
+    //     $sql .= ' things (bad_thing_approach)';
+    //     $sql .= ' VALUES (:bad_thing_approach)';
 
-        $stmt = $this->dbh->prepare($sql);
+    //     $stmt = $this->dbh->prepare($sql);
 
-        // SQL文の該当箇所に、変数の値を割り当て（バインド）する
-        $stmt->bindValue(':bad_thing_approach', $approach['bad_thing_approach'], PDO::PARAM_STR);
+    //     // SQL文の該当箇所に、変数の値を割り当て（バインド）する
+    //     $stmt->bindValue(':bad_thing_approach', $approach['bad_thing_approach'], PDO::PARAM_STR);
 
-        $stmt->execute();
+    //     $stmt->execute();
 
-        return true;
-    }
+    //     return true;
+    // }
 
     /**
      * ログインしているユーザidのデキゴト（未削除）を取得し表示する
@@ -94,6 +94,69 @@ class DB_Things extends DB_Base
         $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
         $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * ログインしているユーザidのイイコト（未削除）を取得し表示する
+     */
+    public function goodThingShow($user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND good_thing_flag=1';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * ログインしているユーザidのナヤコト（未削除）を取得し表示する
+     */
+    public function badThingShow($user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND bad_thing_flag=1';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * ログインしているユーザidのナヤコト（未削除）を取得し表示する
+     */
+    public function deletedThingShow($user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND is_deleted=1';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
