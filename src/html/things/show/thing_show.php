@@ -65,34 +65,36 @@ $things = $DBins->thingShow($_SESSION['login_user']['id']);
                                 <?php endforeach ?>
                             </ul>
                         </li>
-                        <!-- 年月日の入力フォーム -->
-                        <form class="row" action="#">
-                            <div class="col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
-                                    <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
-                                        <option value="$i"><?= $i ?></option>
-                                    <?php endfor ?>
-                                </select>
-                                <label class="input-group-text" for="input_year">年</label>
-                            </div>
-                            <div class="col input-group">
-                                <select class="form-select" name="input_month" id="input_month">
-                                    <?php foreach (Config::MONTHS as $key => $val) : ?>
-                                        <option value=<?= $val ?>><?= $val ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_month">月</label>
-                            </div>
-                            <div class="col input-group">
-                                <select class="form-select" name="input_day" id="input_day">
-                                    <?php foreach (Config::DAYS as $key => $val) : ?>
-                                        <option value=<?= $val ?>><?= $val ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_day">日</label>
-                            </div>
-                        </form>
                     </ul>
+
+                    <!-- 年月日の入力フォーム -->
+                    <form class="row" action="#">
+                        <div class="col input-group">
+                            <select class="form-select" name="input_year" id="input_year">
+                                <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
+                                    <option value="$i"><?= $i ?></option>
+                                <?php endfor ?>
+                            </select>
+                            <label class="input-group-text" for="input_year">年</label>
+                        </div>
+                        <div class="input-group">
+                            <select class="form-select" name="input_month" id="input_month">
+                                <?php foreach (Config::MONTHS as $key => $val) : ?>
+                                    <option value=<?= $val ?>><?= $val ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <label class="input-group-text" for="input_month">月</label>
+                        </div>
+                        <div class="input-group">
+                            <select class="form-select" name="input_day" id="input_day">
+                                <?php foreach (Config::DAYS as $key => $val) : ?>
+                                    <option value=<?= $val ?>><?= $val ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <label class="input-group-text" for="input_day">日</label>
+                        </div>
+                    </form>
+
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
                         <li class="nav-item dropstart">
@@ -146,79 +148,9 @@ $things = $DBins->thingShow($_SESSION['login_user']['id']);
                                 <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
                             </div>
                         </div>
-
-
                     <?php endforeach ?>
                 </div>
             </div>
-
-            <!-- デキゴト入力ブロック -->
-            <form action="./action.php" method="post">
-                <!-- <div class="row mt-4 justify-content-end">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
-                        <label class="form-label" for="thing">デキゴトの登録
-                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"></textarea>
-                            <div class="form-text"></?= Config::TIPS_LL_THING ?></div>
-                        </label>
-                    </div>
-                    <div class="col-sm"></div>
-                </div> -->
-
-                <!-- 属性付与ブロック -->
-                <div class="row mt-4 justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <!-- イイコトブロック -->
-                    <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingLevelDisabled('good_thing_rank',this.checked)" value="1">
-                        <label class="form-check-label" for="good_thing_flag">イイコト</label>
-                    </div>
-                    <div class="col-sm-auto align-self-center">
-                        <div class="input-group">
-                            <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
-                            <select disabled class="level form-select" name="good_thing_rank" id="good_thing_rank">
-                                <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
-                                    <option value=<?= $i ?>><?= $i ?>位</option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- ヤナコトブロック -->
-                    <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badThingLevelDisabled('bad_thing_level',this.checked)" value="1">
-                        <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
-                    </div>
-                    <div class="col-sm-auto align-self-center">
-                        <div class="input-group">
-                            <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select disabled class="level form-select" name="bad_thing_level" id="bad_thing_level">
-                                <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
-                                    <option value=<?= $v ?>><?= $i ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm"></div>
-                </div>
-                <div class="row mt-4 justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
-                        <div class="form-text text-danger">
-                            <?= isset($_SESSION['err']['err_llCheck']) ? $_SESSION['err']['err_llCheck'] : '' ?>
-                        </div>
-                    </div>
-                    <div class="col-sm"></div>
-                </div>
-                <div class="row justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
-                        <button class="me-3 btn btn-primary" type="submit">登録する</button>
-                        <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
-                    </div>
-                    <div class="col-sm"></div>
-                </div>
-            </form>
         </div>
     </main>
 
