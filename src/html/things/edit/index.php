@@ -145,6 +145,17 @@ echo '</pre>';
                     <div class="col-sm"></div>
                 </div>
 
+                <!-- デキゴトの文字数エラーメッセージ -->
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <div class="form-text text-danger">
+                            <?= isset($_SESSION['err']['err_llThing']) ? $_SESSION['err']['err_llThing'] : '' ?>
+                        </div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
                 <!-- 属性付与ブロック -->
                 <div class="row mt-4 justify-content-start">
                     <div class="col-sm-2"></div>
@@ -175,7 +186,8 @@ echo '</pre>';
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level" <?= empty($thing['bad_thing_level']) ? 'disabled' : '' ?>>
-                            <!-- 既に入力されているヤナコトレベルをどうやって表示するかが問題 -->
+                                <!-- 既に入力されているヤナコトレベルをどうやって漢字の表示するかが問題 -->
+                                <option value="$thing['bad_thing_level']"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></option>
                                 <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
                                     <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
