@@ -37,6 +37,7 @@ class Config //staticプロパティは内容が変化しないのものを設�
     public const ERR_MSG = '申し訳ございません<br>予期せぬエラーが発生いたしました<br>時間を置いてから再度お試しください';
     public const ERR_IS_CORRECT_DATE = '正しい日付ではありません';
     public const ERR_IS_MATCHED = '一致しません';
+    public const ERR_THING_SHOW = 'ご登録がありません';
 
     // エラーメッセージ（文字数制限）
     public const ERR_LL_USER_NAME = '文字数は1文字以上' . self::LL_USER_NAME . '文字以内にしてください';

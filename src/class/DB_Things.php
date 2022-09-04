@@ -149,14 +149,14 @@ class DB_Things extends DB_Base
     }
 
     /**
-     * ログインしているユーザidのナヤコト（未削除）を取得し表示する
+     * ログインしているユーザidの削除済みデキゴトを取得し表示する
      */
     public function deletedThingShow($user_id)
     {
         $sql = 'SELECT';
         $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
-        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND is_deleted=1';
+        $sql .= ' WHERE is_deleted = 1 AND user_id=:user_id';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
