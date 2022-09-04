@@ -57,11 +57,11 @@ $enable-rounded: true;
 
 //角丸の大きさの設定
 // $border-radius: 0.25rem;
-$border-radius: 0, 1.25rem, 0, 1.25rem;
+$border-radius: 0.3rem, 1.25rem, 0.3rem, 1.25rem;
 // $border-radius-sm: 0.2rem;
-$border-radius-sm: 0, 1rem, 0, 1rem;
+$border-radius-sm: 0.3rem, 1rem, 0.3rem, 1rem;
 // $border-radius-sm: 0.3rem;
-$border-radius-lg: 0, 2rem, 0, 2rem;
+$border-radius-lg: 0.3rem, 2rem, 0.3rem, 2rem;
 $border-radius-pill: 50rem;
 
 //影の設定 true=有効 false=無効
@@ -165,6 +165,7 @@ h1,
     background-color: $bad_thing;
 }
 
+// idがinput_yearの物に適用する
 #input_year {
     width: 300px;
 }
