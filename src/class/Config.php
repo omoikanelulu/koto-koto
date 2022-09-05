@@ -23,7 +23,7 @@ class Config //staticプロパティは内容が変化しないのものを設�
     public const LL_PASS = '50';
 
     // 文字数制限（things関係）
-    public const LL_THING = '200';
+    public const LL_THING = '20';
     public const LL_APPROACH = '1000';
 
     // Tipsメッセージ

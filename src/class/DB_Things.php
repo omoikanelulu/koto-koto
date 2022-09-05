@@ -190,53 +190,135 @@ class DB_Things extends DB_Base
      */
     public function thingUpDate($edit_thing, $user_id)
     {
-        $que1 = isset($edit_thing['thing']) ? ',thing' : '';
-        $que1 .= isset($edit_thing['good_thing_flag']) ? ',good_thing_flag' : '';
-        $que1 .= isset($edit_thing['good_thing_rank']) ? ',good_thing_rank' : '';
-        $que1 .= isset($edit_thing['bad_thing_flag']) ? ',bad_thing_flag' : '';
-        $que1 .= isset($edit_thing['bad_thing_level']) ? ',bad_thing_level' : '';
-        $que1 .= isset($edit_thing['bad_thing_approach']) ? ',bad_thing_approach' : '';
+        // $que1 = isset($edit_thing['thing']) ? ',thing' : '';
+        // $que1 .= isset($edit_thing['good_thing_flag']) ? ',good_thing_flag' : '';
+        // $que1 .= isset($edit_thing['good_thing_rank']) ? ',good_thing_rank' : '';
+        // $que1 .= isset($edit_thing['bad_thing_flag']) ? ',bad_thing_flag' : '';
+        // $que1 .= isset($edit_thing['bad_thing_level']) ? ',bad_thing_level' : '';
+        // $que1 .= isset($edit_thing['bad_thing_approach']) ? ',bad_thing_approach' : '';
         // $que1 = ltrim($que1, ',');
 
-        $que2 = isset($edit_thing['thing']) ? ',:thing' : '';
-        $que2 .= isset($edit_thing['good_thing_flag']) ? ',:good_thing_flag' : '';
-        $que2 .= isset($edit_thing['good_thing_rank']) ? ',:good_thing_rank' : '';
-        $que2 .= isset($edit_thing['bad_thing_flag']) ? ',:bad_thing_flag' : '';
-        $que2 .= isset($edit_thing['bad_thing_level']) ? ',:bad_thing_level' : '';
-        $que2 .= isset($edit_thing['bad_thing_approach']) ? ',:bad_thing_approach' : '';
+        // $que2 = isset($edit_thing['thing']) ? ':thing' : '';
+        // $que2 .= isset($edit_thing['good_thing_flag']) ? ':good_thing_flag' : '';
+        // $que2 .= isset($edit_thing['good_thing_rank']) ? ':good_thing_rank' : '';
+        // $que2 .= isset($edit_thing['bad_thing_flag']) ? ':bad_thing_flag' : '';
+        // $que2 .= isset($edit_thing['bad_thing_level']) ? ':bad_thing_level' : '';
+        // $que2 .= isset($edit_thing['bad_thing_approach']) ? ':bad_thing_approach' : '';
         // $que2 = ltrim($que2, ',');
 
-        $sql = 'UPDATE SET';
-        $sql .= ' things (user_id' . $que1 . ')';
-        $sql .= ' VALUES (:user_id' . $que2 . ')';
+        $sql = 'UPDATE things';
+        $sql .= ' SET';
+        // $sql .= (isset($edit_thing['thing']) ? ' thing=' : '')(isset($edit_thing['thing']) ? ':thing,' : '');
+        // $sql .= (isset($edit_thing['good_thing_flag']) ? ' good_thing_flag=' : '')(isset($edit_thing['good_thing_flag']) ?  ':good_thing_flag,' : '');
+        // $sql .= (isset($edit_thing['good_thing_rank']) ? ' good_thing_rank=' : '')(isset($edit_thing['good_thing_rank']) ? ':good_thing_rank,' : '');
+        // $sql .= (isset($edit_thing['bad_thing_flag']) ? ' bad_thing_flag=' : '')(isset($edit_thing['bad_thing_flag']) ? ' :bad_thing_flag,' : '');
+        // $sql .= (isset($edit_thing['bad_thing_level']) ? ' bad_thing_level=' : '')(isset($edit_thing['bad_thing_level']) ? ':bad_thing_level,' : '');
+        // $sql .= (isset($edit_thing['bad_thing_approach']) ? ' bad_thing_approach=' : '')(isset($edit_thing['bad_thing_approach']) ? ':bad_thing_approach' : '');
+
+        $sql .= ' thing=:thing';
+        $sql .= ',good_thing_flag=:good_thing_flag';
+        $sql .= ',good_thing_rank=:good_thing_rank';
+        // $sql .= ',bad_thing_flag=:bad_thing_flag';
+        // $sql .= ',bad_thing_level=:bad_thing_level';
+        // $sql .= ',bad_thing_approach=:bad_thing_approach';
+
+        $sql .= ' WHERE id=:id';
+        $sql .= ' AND user_id=:user_id';
 
         $stmt = $this->dbh->prepare($sql);
 
         // SQL文の該当箇所に、変数の値を割り当て（バインド）する
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
-        if (isset($edit_thing['thing']) == true) {
-            $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
-        }
-        if (isset($edit_thing['good_thing_flag']) == true) {
-            $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
-        }
-        if (isset($edit_thing['good_thing_rank']) == true) {
-            $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
-        }
-        if (isset($edit_thing['bad_thing_flag']) == true) {
-            $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
-        }
-        if (isset($edit_thing['bad_thing_level']) == true) {
-            $stmt->bindValue(':bad_thing_level', $edit_thing['bad_thing_level'], PDO::PARAM_INT);
-        }
-        if (isset($edit_thing['bad_thing_approach']) == true) {
-            $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
-        }
 
+        $stmt->bindValue(':id', $edit_thing['get_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
+        $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
+        // $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
+        // $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
+        // $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
+
+        // if (isset($edit_thing['thing']) == true) {
+        //     $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
+        // }
+        // if (isset($edit_thing['good_thing_flag']) == true) {
+        //     $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['good_thing_rank']) == true) {
+        //     $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['bad_thing_flag']) == true) {
+        //     $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['bad_thing_level']) == true) {
+        //     $stmt->bindValue(':bad_thing_level', $edit_thing['bad_thing_level'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['bad_thing_approach']) == true) {
+        //     $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
+        // }
+        // デバッグ用 //
+        // echo '<pre>';
+        // var_dump($stmt);
+        // echo '</pre>';
+        // exit();
+        ////////////////
         $stmt->execute();
 
         return true;
     }
+
+    /**
+     * デキゴトを編集するバックアップ
+     */
+    // public function thingUpDate($edit_thing, $user_id)
+    // {
+    //     $que1 = isset($edit_thing['thing']) ? ',thing' : '';
+    //     $que1 .= isset($edit_thing['good_thing_flag']) ? ',good_thing_flag' : '';
+    //     $que1 .= isset($edit_thing['good_thing_rank']) ? ',good_thing_rank' : '';
+    //     $que1 .= isset($edit_thing['bad_thing_flag']) ? ',bad_thing_flag' : '';
+    //     $que1 .= isset($edit_thing['bad_thing_level']) ? ',bad_thing_level' : '';
+    //     $que1 .= isset($edit_thing['bad_thing_approach']) ? ',bad_thing_approach' : '';
+    //     // $que1 = ltrim($que1, ',');
+
+    //     $que2 = isset($edit_thing['thing']) ? ',:thing' : '';
+    //     $que2 .= isset($edit_thing['good_thing_flag']) ? ',:good_thing_flag' : '';
+    //     $que2 .= isset($edit_thing['good_thing_rank']) ? ',:good_thing_rank' : '';
+    //     $que2 .= isset($edit_thing['bad_thing_flag']) ? ',:bad_thing_flag' : '';
+    //     $que2 .= isset($edit_thing['bad_thing_level']) ? ',:bad_thing_level' : '';
+    //     $que2 .= isset($edit_thing['bad_thing_approach']) ? ',:bad_thing_approach' : '';
+    //     // $que2 = ltrim($que2, ',');
+
+    //     $sql = 'UPDATE SET';
+    //     $sql .= ' things (user_id' . $que1 . ')';
+    //     $sql .= ' VALUES (:user_id' . $que2 . ')';
+
+    //     $stmt = $this->dbh->prepare($sql);
+
+    //     // SQL文の該当箇所に、変数の値を割り当て（バインド）する
+    //     $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+    //     if (isset($edit_thing['thing']) == true) {
+    //         $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
+    //     }
+    //     if (isset($edit_thing['good_thing_flag']) == true) {
+    //         $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['good_thing_rank']) == true) {
+    //         $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['bad_thing_flag']) == true) {
+    //         $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['bad_thing_level']) == true) {
+    //         $stmt->bindValue(':bad_thing_level', $edit_thing['bad_thing_level'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['bad_thing_approach']) == true) {
+    //         $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
+    //     }
+
+    //     $stmt->execute();
+
+    //     return true;
+    // }
 
     /**
      * searchに入力した文字列がitem_name内に存在するか

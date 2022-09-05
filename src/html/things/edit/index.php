@@ -13,6 +13,7 @@ Security::notLogin();
 
 $ins = new Base;
 $DBins = new DB_Things;
+$get_id = $_GET['id'];
 
 try {
     $thing = $DBins->thingSelect($_GET['id'], $_SESSION['login_user']['id']);
@@ -134,6 +135,7 @@ echo '</pre>';
 
             <!-- デキゴト入力ブロック -->
             <form action="./action.php" method="post">
+                <input type="hidden" name="get_id" value=$get_id>
                 <div class="row mt-4 justify-content-end">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
