@@ -45,7 +45,9 @@ if ($result == false) {
 
 // どこかでエラーがあったらページをリダイレクトで戻す
 if ($has_err == true) {
-    header('Location:./index.php', true, 307);
+    // header('Location:./index.php', true, 307);
+    // これダメなんか、動かんな…判定はされてるけど遷移しない
+    header('Location:javascript://history.go(-1)', true, 307);
     exit();
 }
 
