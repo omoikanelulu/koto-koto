@@ -218,9 +218,9 @@ class DB_Things extends DB_Base
         $sql .= ' thing=:thing';
         $sql .= ',good_thing_flag=:good_thing_flag';
         $sql .= ',good_thing_rank=:good_thing_rank';
-        // $sql .= ',bad_thing_flag=:bad_thing_flag';
-        // $sql .= ',bad_thing_level=:bad_thing_level';
-        // $sql .= ',bad_thing_approach=:bad_thing_approach';
+        $sql .= ',bad_thing_flag=:bad_thing_flag';
+        $sql .= ',bad_thing_level=:bad_thing_level';
+        $sql .= ',bad_thing_approach=:bad_thing_approach';
 
         $sql .= ' WHERE id=:id';
         $sql .= ' AND user_id=:user_id';
@@ -234,9 +234,9 @@ class DB_Things extends DB_Base
         $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
         $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
         $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
-        // $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
-        // $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
-        // $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
+        $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_level', $edit_thing['bad_thing_level'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
 
         // if (isset($edit_thing['thing']) == true) {
         //     $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
@@ -256,12 +256,7 @@ class DB_Things extends DB_Base
         // if (isset($edit_thing['bad_thing_approach']) == true) {
         //     $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
         // }
-        // デバッグ用 //
-        // echo '<pre>';
-        // var_dump($stmt);
-        // echo '</pre>';
-        // exit();
-        ////////////////
+
         $stmt->execute();
 
         return true;
