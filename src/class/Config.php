@@ -23,7 +23,7 @@ class Config //staticプロパティは内容が変化しないのものを設�
     public const LL_PASS = '50';
 
     // 文字数制限（things関係）
-    public const LL_THING = '20';
+    public const LL_THING = '200';
     public const LL_APPROACH = '1000';
 
     // Tipsメッセージ
@@ -32,6 +32,7 @@ class Config //staticプロパティは内容が変化しないのものを設�
 
     // successメッセージ
     public const SUCCESS_THINGS_ADD = 'デキゴト登録が完了しました';
+    public const SUCCESS_THINGS_UPDATE = 'デキゴト更新が完了しました';
 
     // エラーメッセージ
     public const ERR_MSG = '申し訳ございません<br>予期せぬエラーが発生いたしました<br>時間を置いてから再度お試しください';
