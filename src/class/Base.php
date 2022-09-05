@@ -8,6 +8,7 @@ class Base //クラスプロパティの値には動的な値を入れられな�
     public $edit_page_url = null;
     public $edit_cancel_url = null;
     public $things_top_page_url = null;
+    public $thing_show_page_url = null;
     public $test_msg = '入力内容が表示される';
     public $session_info = 'sessionに保存した内容';
     public $this_year = null;
@@ -24,6 +25,7 @@ class Base //クラスプロパティの値には動的な値を入れられな�
         $this->edit_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/index.php';
         $this->edit_cancel_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/user/edit/cancel.php';
         $this->things_top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/add/index.php';
+        $this->thing_show_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/show/thing_show.php';
         $this->this_year = date('Y');
         $this->current_page = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
