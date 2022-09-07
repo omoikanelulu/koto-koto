@@ -166,18 +166,10 @@ echo '</pre>';
 
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <!-- flagのチェックボックスにチェックが入っていない場合は、hiddenで「0」を入れる -->
-                        <input class="form-check-input" type="hidden" name="good_thing_flag" id="good_thing_flag_hidden" value=0>
-                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1" <?= empty($thing['good_thing_flag']) ? '' : 'checked' ?>>
-                        <label class="form-check-label" for="good_thing_flag">イイコト</label>
-                    </div>
-                    <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
-                            <!-- flagのチェックボックスにチェックが入っていない場合は、hiddenで「0」を入れる -->
-                            <input type="hidden" name="good_thing_rank" value=<?= isset($thing['good_thing_rank']) == false ? $thing['good_thing_rank'] = 0 : $thing['good_thing_rank'] ?>>
-                            <select class="level form-select" name="good_thing_rank" id="good_thing_rank" <?= empty($thing['good_thing_flag']) ? 'disabled' : '' ?>>
-                                <option value=<?= $thing['good_thing_rank'] ?>><?= empty($thing['good_thing_flag']) ? $thing['good_thing_rank'] = 0 : $thing['good_thing_rank'] . '位' ?></option>
+                            <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
+                                <!-- <option value=</?= $thing['good_thing_rank'] ?>><?= empty($thing['good_thing_flag']) ? $thing['good_thing_rank'] = 0 : $thing['good_thing_rank'] . '位' ?></option> -->
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
                                     <option value=<?= $i ?>><?= $i ?>位</option>
                                 <?php endforeach ?>
@@ -187,19 +179,11 @@ echo '</pre>';
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <!-- flagのチェックボックスにチェックが入っていない場合は、hiddenで「0」を入れる -->
-                        <input class="form-check-input" type="hidden" name="bad_thing_flag" id="bad_thing_flag_hidden" value=0>
-                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1" <?= empty($thing['bad_thing_flag']) ? '' : 'checked' ?>>
-                        <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
-                    </div>
-                    <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <!-- flagのチェックボックスにチェックが入っていない場合は、hiddenで「0」を入れる -->
-                            <input type="hidden" name="bad_thing_level" value=<?= isset($thing['bad_thin_level']) == false ? $thing['bad_thin_level'] = 0 : $thing['bad_thin_level'] ?>>
-                            <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level" <?= empty($thing['bad_thing_flag']) ? 'disabled' : '' ?>>
+                            <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
                                 <!-- 既に入力されているヤナコトレベルをどうやって漢字の表示するかが問題 -->
-                                <option value=<?= $thing['bad_thing_level'] ?>><?= empty($thing['bad_thing_flag']) ? $thing['bad_thing_level'] = 0 : $thing['bad_thing_level'] ?></option>
+                                <!-- <option value=</?= $thing['bad_thing_level'] ?>><?= empty($thing['bad_thing_flag']) ? $thing['bad_thing_level'] = 0 : $thing['bad_thing_level'] ?></option> -->
                                 <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
                                     <option value=<?= $v ?>><?= $i ?></option>
                                 <?php endforeach ?>
@@ -214,7 +198,7 @@ echo '</pre>';
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
-                            <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" <?= empty($thing['bad_thing_flag']) ? 'disabled' : '' ?>><?= empty($thing['bad_thing_approach']) ? '' : $thing['bad_thing_approach'] ?></textarea>
+                            <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000"><?= empty($thing['bad_thing_approach']) ? '' : $thing['bad_thing_approach'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
                         </label>
                     </div>
