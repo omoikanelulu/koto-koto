@@ -118,7 +118,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id']);
         <div class="mt-5 container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
-                    <!-- 削除済みのレコードがない場合とある場合で分岐させる -->
+                    <!-- レコードがない場合とある場合で分岐させる -->
                     <?php if (empty($things)) : ?>
                         <?= Config::ERR_THING_SHOW ?>
                     <?php else : ?>
@@ -128,15 +128,15 @@ $things = $DBins->thingShow($_SESSION['login_user']['id']);
                             <!-- mb_substr(文字列,取り出したい文字の開始位置,開始位置から取り出す文字の数) -->
                             <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
 
-                            <!-- イイコトの順位表示 -->
                             <div class="row m-2 mb-4 justify-content-start align-items-center">
+                                <!-- イイコトの順位表示 -->
                                 <div class="col-sm-1 text-center">
-                                    <p class="mb-0 bg-good-thing rounded-pill"><?= empty($thing['good_thing_flag']) ? '' : $thing['good_thing_rank'] ?></p>
+                                    <p class="mb-0 bg-good-thing rounded-pill"><?= $thing['good_thing_flag'] == '0' ? '' : $thing['good_thing_rank'] ?></p>
                                 </div>
 
                                 <!-- ヤナコトの強度表示 -->
                                 <div class="col-sm-1 text-center">
-                                    <p class="mb-0 bg-bad-thing rounded-pill"><?= empty($thing['bad_thing_flag']) ? '' : $thing['bad_thing_level'] ?></p>
+                                    <p class="mb-0 bg-bad-thing rounded-pill"><?= $thing['bad_thing_flag'] == '0' ? '' : $thing['bad_thing_level'] ?></p>
                                 </div>
 
                                 <!-- thingを表示 -->

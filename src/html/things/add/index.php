@@ -145,14 +145,14 @@ $today = $date->format('Y/m/d');
                     <div class="col-sm-2"></div>
 
                     <!-- イイコトブロック -->
-                    <div class="col-sm-auto align-self-center">
+                    <!-- <div class="col-sm-auto align-self-center">
                         <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1">
                         <label class="form-check-label" for="good_thing_flag">イイコト</label>
-                    </div>
+                    </div> -->
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
-                            <select disabled class="level form-select" name="good_thing_rank" id="good_thing_rank">
+                            <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
                                     <option value=<?= $i ?>><?= $i ?>位</option>
                                 <?php endforeach ?>
@@ -161,16 +161,16 @@ $today = $date->format('Y/m/d');
                     </div>
 
                     <!-- ヤナコトブロック -->
-                    <div class="col-sm-auto align-self-center">
+                    <!-- <div class="col-sm-auto align-self-center">
                         <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1">
                         <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
-                    </div>
+                    </div> -->
                     <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select disabled class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
-                                <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
-                                    <option value=<?= $v ?>><?= $i ?></option>
+                            <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
+                                <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
+                                    <option value=<?= $i ?>><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -183,7 +183,7 @@ $today = $date->format('Y/m/d');
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
-                            <textarea disabled class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" placeholder="対処法を入力"><?= empty($_SESSION['post_data']['bad_thing_approach']) ? '' : $_SESSION['post_data']['bad_thing_approach'] ?></textarea>
+                            <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" placeholder="対処法を入力"><?= empty($_SESSION['post_data']['bad_thing_approach']) ? '' : $_SESSION['post_data']['bad_thing_approach'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
                         </label>
                     </div>

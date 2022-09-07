@@ -12,7 +12,22 @@ Security::notLogin();
 
 // 送信されてきたデータをサニタイズして変数に代入
 $post = Security::sanitize($_POST);
-// $_SESSIONにも代入
+
+// good_thing_flagを立てる
+if ($post['good_thing_rank'] != '--') {
+    $post += (array('good_thing_flag' => '1'));
+} else {
+    $post += (array('good_thing_flag' => '0'));
+}
+
+// bad_thing_flagを立てる
+if ($post['bad_thing_level'] != '--') {
+    $post += (array('bad_thing_flag' => '1'));
+} else {
+    $post += (array('bad_thing_flag' => '0'));
+}
+
+// $_SESSIONに代入
 $_SESSION['post_data'] = $post;
 
 // ここからバリデーション

@@ -169,7 +169,7 @@ echo '</pre>';
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
                             <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
-                                <!-- <option value=</?= $thing['good_thing_rank'] ?>><?= empty($thing['good_thing_flag']) ? $thing['good_thing_rank'] = 0 : $thing['good_thing_rank'] . '位' ?></option> -->
+                                <option value=<?= $thing['good_thing_rank'] ?>><?= $thing['good_thing_rank'] ?>位</option>
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
                                     <option value=<?= $i ?>><?= $i ?>位</option>
                                 <?php endforeach ?>
@@ -182,10 +182,9 @@ echo '</pre>';
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
-                                <!-- 既に入力されているヤナコトレベルをどうやって漢字の表示するかが問題 -->
-                                <!-- <option value=</?= $thing['bad_thing_level'] ?>><?= empty($thing['bad_thing_flag']) ? $thing['bad_thing_level'] = 0 : $thing['bad_thing_level'] ?></option> -->
-                                <?php foreach (Config::BAD_THING_LEVEL as $i => $v) : ?>
-                                    <option value=<?= $v ?>><?= $i ?></option>
+                                <option value=<?= $thing['bad_thing_level'] ?>><?= $thing['bad_thing_level'] ?></option>
+                                <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
+                                    <option value=<?= $i ?>><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
