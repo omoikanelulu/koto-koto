@@ -10,6 +10,7 @@ function goodThingRankDisabled(good_thing_rank, is_checked) {
     else {
         // チェックが入っていなかったらdisabledする
         document.getElementById(good_thing_rank).disabled = true;
+        document.getElementById(good_thing_rank).value = '';
     }
 }
 
@@ -26,6 +27,7 @@ function badFactorDisabled(is_checked) {
     } else {
         for (let i = 0; i < list.length; i++) {
             list[i].disabled = true;
+            list[i].value = '';
         }
     }
 }

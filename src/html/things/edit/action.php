@@ -11,9 +11,9 @@ Security::session();
 Security::notLogin();
 
 // 送信されてきたデータをサニタイズして変数に代入
-$post = Security::sanitize($_POST);
+$edit_thing = Security::sanitize($_POST);
 // $_SESSIONにも代入
-$_SESSION['post_data'] = $post;
+$_SESSION['edit_thing'] = $edit_thing;
 
 // ここからバリデーション
 $has_err = '';
@@ -22,8 +22,8 @@ unset($_SESSION['err']);
 
 // 文字数チェック
 // 値が入っていたらチェックを開始する
-if (!empty($post['thing'])) {
-    $result = Validation::llCheck($post['thing'], Config::LL_THING);
+if (!empty($edit_thing['thing'])) {
+    $result = Validation::llCheck($edit_thing['thing'], Config::LL_THING);
 }
 
 if ($result == false) {
@@ -33,8 +33,8 @@ if ($result == false) {
 }
 
 // 値が入っていたらチェックを開始する
-if (!empty($post['bad_thing_approach'])) {
-    $result = Validation::llCheck($post['bad_thing_approach'], Config::LL_APPROACH);
+if (!empty($edit_thing['bad_thing_approach'])) {
+    $result = Validation::llCheck($edit_thing['bad_thing_approach'], Config::LL_APPROACH);
 }
 
 if ($result == false) {
@@ -56,11 +56,11 @@ if ($has_err == true) {
 $ins = new Base;
 $DBins = new DB_Things;
 
-// データベースに登録
+// データベースをUPDATE
 try {
-    $result = $DBins->thingUpDate($_SESSION['post_data'], $_SESSION['login_user']['id']);
+    $result = $DBins->thingUpDate($_SESSION['edit_thing'], $_SESSION['login_user']['id'], $_SESSION['thing']);
     if ($result == true) {
-        unset($_SESSION['post_data'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
+        unset($_SESSION['edit_thing'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
         header('Location:./success.php');
         exit();
     }

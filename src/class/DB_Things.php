@@ -188,7 +188,7 @@ class DB_Things extends DB_Base
     /**
      * デキゴトを編集する
      */
-    public function thingUpDate($edit_thing, $user_id)
+    public function thingUpDate($edit_thing, $user_id, $thing)
     {
         // $que1 = isset($edit_thing['thing']) ? ',thing' : '';
         // $que1 .= isset($edit_thing['good_thing_flag']) ? ',good_thing_flag' : '';
@@ -231,12 +231,12 @@ class DB_Things extends DB_Base
 
         $stmt->bindValue(':id', $edit_thing['get_id'], PDO::PARAM_INT);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
-        $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
-        $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
-        $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
-        $stmt->bindValue(':bad_thing_level', $edit_thing['bad_thing_level'], PDO::PARAM_INT);
-        $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
+        $stmt->bindValue(':thing', isset($edit_thing['thing']) == true ? $edit_thing['thing'] : $thing['thing'], PDO::PARAM_STR);
+        $stmt->bindValue(':good_thing_flag', isset($edit_thing['good_thing_flag']) == true ? $edit_thing['good_thing_flag'] : $thing['good_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':good_thing_rank', isset($edit_thing['good_thing_rank']) == true ? $edit_thing['good_thing_rank'] : $thing['good_thing_rank'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_flag', isset($edit_thing['bad_thing_flag']) == true ? $edit_thing['bad_thing_flag'] : $thing['bad_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_level', isset($edit_thing['bad_thing_level']) == true ? $edit_thing['bad_thing_level'] : $thing['bad_thing_level'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_approach', isset($edit_thing['bad_thing_approach']) == true ? $edit_thing['bad_thing_approach'] : $thing['bad_thing_approach'], PDO::PARAM_STR);
 
         // if (isset($edit_thing['thing']) == true) {
         //     $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
