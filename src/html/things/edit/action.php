@@ -12,6 +12,21 @@ Security::notLogin();
 
 // 送信されてきたデータをサニタイズして変数に代入
 $edit_thing = Security::sanitize($_POST);
+
+// good_thing_flagを見直す
+if ($edit_thing['good_thing_rank'] == '--') {
+    $edit_thing['good_thing_flag'] = 0;
+} else {
+    $edit_thing['good_thing_flag'] = 1;
+}
+
+// bad_thing_flagを見直す
+if ($edit_thing['bad_thing_level'] == '--') {
+    $edit_thing['bad_thing_flag'] = 0;
+} else {
+    $edit_thing['bad_thing_flag'] = 1;
+}
+
 // $_SESSIONにも代入
 $_SESSION['edit_thing'] = $edit_thing;
 
