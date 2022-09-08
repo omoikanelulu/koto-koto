@@ -10347,6 +10347,11 @@ h1,
   background-color: #e86a5c;
 }
 
+.bg-bad-approach {
+  padding: 0.8rem;
+  background-color: #91abe4;
+}
+
 #input_year {
   width: 300px;
 }/*# sourceMappingURL=custom.css.map */

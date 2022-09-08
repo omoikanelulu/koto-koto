@@ -18,6 +18,8 @@ $link-color: #352fe9;
 $good_thing: #5fe68c;
 // bad_thingの基本カラー
 $bad_thing: #e86a5c;
+// bad_approachの基本カラー
+$bad_approach: #e86a5c;
 
 //bodyの背景、文字色
 $body-bg: #fff;
@@ -163,6 +165,12 @@ h1,
 
 .bg-bad-thing {
     background-color: $bad_thing;
+}
+
+.bg-bad-approach {
+    padding: 0.8rem;
+    // ベースカラーから輝度を相対的に下げる
+    background-color: darken($light, 10%);
 }
 
 // idがinput_yearの物に適用する
