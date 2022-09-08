@@ -143,7 +143,7 @@ $things = $DBins->deletedThingShow($_SESSION['login_user']['id']);
                                     <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
                                 </div>
                                 <div class="col-sm-1 text-center">
-                                    <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
+                                    <a href="../delete/undo.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-arrow-counterclockwise">戻す</i></a>
                                 </div>
                             </div>
                         <?php endforeach ?>
