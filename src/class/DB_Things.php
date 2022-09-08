@@ -67,16 +67,20 @@ class DB_Things extends DB_Base
     /**
      * ログインしているユーザidのデキゴト（未削除）を取得し表示する
      */
-    public function thingShow($user_id)
+    public function thingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
         $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
-        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id';
+        $sql .= ' WHERE';
+        $sql .= ' is_deleted = 0';
+        $sql .= ' AND user_id=:user_id';
+        $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt->bindValue(':search_date', $search_date, PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -84,6 +88,27 @@ class DB_Things extends DB_Base
 
         return $rec;
     }
+
+    // /**
+    //  * ログインしているユーザidのデキゴト（未削除）を取得し表示する【バックアップ】
+    //  */
+    // public function thingShow($user_id)
+    // {
+    //     $sql = 'SELECT';
+    //     $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+    //     $sql .= ' FROM things';
+    //     $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id';
+    //     $sql .= ' ORDER BY create_date_time DESC';
+
+    //     $stmt = $this->dbh->prepare($sql);
+    //     $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+    //     $stmt->execute();
+
+    //     $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    //     return $rec;
+    // }
 
     /**
      * ログインしているユーザidのイイコト（未削除）を取得し表示する

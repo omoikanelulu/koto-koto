@@ -14,7 +14,9 @@ Security::notLogin();
 $ins = new Base;
 $DBins = new DB_Things;
 
-$things = $DBins->thingShow($_SESSION['login_user']['id']);
+$search_date = $_GET['search_date'];
+
+$things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
 
 // デバッグ用 //
 // echo '<pre>';
