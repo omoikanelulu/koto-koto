@@ -116,7 +116,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id']);
 
     <main>
         <div class="mt-5 container">
-            <div class="row justify-content:flex-start">
+            <div class="row d-flex justify-content-start">
                 <div class="col-sm">
                     <!-- レコードがない場合とある場合で分岐させる -->
                     <?php if (empty($things)) : ?>
@@ -128,7 +128,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id']);
                             <!-- mb_substr(文字列,取り出したい文字の開始位置,開始位置から取り出す文字の数) -->
                             <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
 
-                            <div class="row m-2 mb-4 justify-content-start align-items-center">
+                            <div class="row m-2 justify-content-start align-items-center">
                                 <!-- イイコトの順位表示 -->
                                 <div class="col-sm-1 text-center">
                                     <p class="mb-0 bg-good-thing rounded-pill"><?= $thing['good_thing_flag'] == '0' ? '' : $thing['good_thing_rank'] ?></p>
@@ -150,6 +150,12 @@ $things = $DBins->thingShow($_SESSION['login_user']['id']);
                                 </div>
                                 <div class="col-sm-1 text-center">
                                     <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <!-- 対処法が保存されていたら表示 -->
+                                <div class="col-sm d-flex justify-content-end align-items-center">
+                                    <p class="<?= empty($thing['bad_thing_approach']) ? 'invisible' : '' ?> bg-bad-approach rounded-pill"><?= $thing['bad_thing_approach'] ?></p>
                                 </div>
                             </div>
                         <?php endforeach ?>
