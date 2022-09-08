@@ -124,12 +124,12 @@ $things = $DBins->badThingShow($_SESSION['login_user']['id']);
                             <!-- イイコトの順位表示 -->
                             <div class="row m-2 mb-4 justify-content-start align-items-center">
                                 <div class="col-sm-1 text-center">
-                                    <p class="mb-0 bg-good-thing rounded-pill"><?= empty($thing['good_thing_rank']) ? '' : $thing['good_thing_rank'] ?></p>
+                                    <p class="mb-0 bg-good-thing rounded-pill"><?= $thing['good_thing_flag'] == '0' ? '' : $thing['good_thing_rank'] ?></p>
                                 </div>
 
                                 <!-- ヤナコトの強度表示 -->
                                 <div class="col-sm-1 text-center">
-                                    <p class="mb-0 bg-bad-thing rounded-pill"><?= empty($thing['bad_thing_level']) ? '' : $thing['bad_thing_level'] ?></p>
+                                    <p class="mb-0 bg-bad-thing rounded-pill"><?= $thing['bad_thing_flag'] == '0' ? '' : $thing['bad_thing_level'] ?></p>
                                 </div>
 
                                 <!-- thingを表示 -->
