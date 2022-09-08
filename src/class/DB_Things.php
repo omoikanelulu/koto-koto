@@ -16,18 +16,20 @@ class DB_Things extends DB_Base
      */
     public function thingsAdd($things, $user_id)
     {
-        $que1 = isset($things['thing']) == true ? ',thing' : '';
-        $que1 .= isset($things['good_thing_flag']) == true ? ',good_thing_flag' : '';
-        $que1 .= isset($things['good_thing_rank']) == true ? ',good_thing_rank' : '';
+        $que1 = isset($things['thing']) ? ',thing' : '';
+        $que1 .= isset($things['good_thing_flag']) ? ',good_thing_flag' : '';
+        $que1 .= isset($things['good_thing_rank']) ? ',good_thing_rank' : '';
         $que1 .= isset($things['bad_thing_flag']) ? ',bad_thing_flag' : '';
         $que1 .= isset($things['bad_thing_level']) ? ',bad_thing_level' : '';
+        $que1 .= isset($things['bad_thing_approach']) ? ',bad_thing_approach' : '';
         // $que1 = ltrim($que1, ',');
 
-        $que2 = isset($things['thing']) == true ? ',:thing' : '';
-        $que2 .= isset($things['good_thing_flag']) == true ? ',:good_thing_flag' : '';
-        $que2 .= isset($things['good_thing_rank']) == true ? ',:good_thing_rank' : '';
+        $que2 = isset($things['thing']) ? ',:thing' : '';
+        $que2 .= isset($things['good_thing_flag']) ? ',:good_thing_flag' : '';
+        $que2 .= isset($things['good_thing_rank']) ? ',:good_thing_rank' : '';
         $que2 .= isset($things['bad_thing_flag']) ? ',:bad_thing_flag' : '';
         $que2 .= isset($things['bad_thing_level']) ? ',:bad_thing_level' : '';
+        $que2 .= isset($things['bad_thing_approach']) ? ',:bad_thing_approach' : '';
         // $que2 = ltrim($que2, ',');
 
         $sql = 'INSERT INTO';
@@ -35,7 +37,7 @@ class DB_Things extends DB_Base
         $sql .= ' VALUES (:user_id' . $que2 . ')';
 
         $stmt = $this->dbh->prepare($sql);
-        
+
         // SQL文の該当箇所に、変数の値を割り当て（バインド）する
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
         if (isset($things['thing']) == true) {
@@ -45,13 +47,16 @@ class DB_Things extends DB_Base
             $stmt->bindValue(':good_thing_flag', $things['good_thing_flag'], PDO::PARAM_INT);
         }
         if (isset($things['good_thing_rank']) == true) {
-            $stmt->bindValue(':good_thing_rank', $things['good_thing_rank'], PDO::PARAM_INT);
+            $stmt->bindValue(':good_thing_rank', $things['good_thing_rank'], PDO::PARAM_STR);
         }
         if (isset($things['bad_thing_flag']) == true) {
             $stmt->bindValue(':bad_thing_flag', $things['bad_thing_flag'], PDO::PARAM_INT);
         }
         if (isset($things['bad_thing_level']) == true) {
-            $stmt->bindValue(':bad_thing_level', $things['bad_thing_level'], PDO::PARAM_INT);
+            $stmt->bindValue(':bad_thing_level', $things['bad_thing_level'], PDO::PARAM_STR);
+        }
+        if (isset($things['bad_thing_approach']) == true) {
+            $stmt->bindValue(':bad_thing_approach', $things['bad_thing_approach'], PDO::PARAM_STR);
         }
 
         $stmt->execute();
@@ -60,20 +65,212 @@ class DB_Things extends DB_Base
     }
 
     /**
-     * bad_thing_approachを追加する
-     * @param array $approach
-     * サニタイズした配列を入れる
+     * ログインしているユーザidのデキゴト（未削除）を取得し表示する
      */
-    public function badThingApproachAdd($approach)
+    public function thingShow($user_id)
     {
-        $sql = 'INSERT INTO';
-        $sql .= ' things (bad_thing_approach)';
-        $sql .= ' VALUES (:bad_thing_approach)';
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * ログインしているユーザidのイイコト（未削除）を取得し表示する
+     */
+    public function goodThingShow($user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND good_thing_flag=1';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * ログインしているユーザidのナヤコト（未削除）を取得し表示する
+     */
+    public function badThingShow($user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND bad_thing_flag=1';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * ログインしているユーザidの削除済みデキゴトを取得し表示する
+     */
+    public function deletedThingShow($user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE is_deleted = 1 AND user_id=:user_id';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * 選択したidのデキゴト（未削除）を取得し表示する
+     */
+    public function thingSelect($id, $user_id)
+    {
+        $sql = 'SELECT';
+        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' FROM things';
+        $sql .= ' WHERE id=:id AND user_id=:user_id';
+        $sql .= ' ORDER BY create_date_time DESC';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $rec;
+    }
+
+    /**
+     * 削除フラグを1にUPDATEする
+     */
+    public function thingDelete($id, $user_id)
+    {
+        $sql = 'UPDATE things SET is_deleted=:is_deleted WHERE id=:id AND user_id=:user_id';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':is_deleted', 1, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
+    /**
+     * 削除フラグを1にUPDATEする
+     */
+    public function thingUndo($id, $user_id)
+    {
+        $sql = 'UPDATE things SET is_deleted=:is_deleted WHERE id=:id AND user_id=:user_id';
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':is_deleted', 0, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
+    /**
+     * デキゴトを編集する
+     */
+    public function thingUpDate($edit_thing, $user_id, $thing)
+    {
+        // $que1 = isset($edit_thing['thing']) ? ',thing' : '';
+        // $que1 .= isset($edit_thing['good_thing_flag']) ? ',good_thing_flag' : '';
+        // $que1 .= isset($edit_thing['good_thing_rank']) ? ',good_thing_rank' : '';
+        // $que1 .= isset($edit_thing['bad_thing_flag']) ? ',bad_thing_flag' : '';
+        // $que1 .= isset($edit_thing['bad_thing_level']) ? ',bad_thing_level' : '';
+        // $que1 .= isset($edit_thing['bad_thing_approach']) ? ',bad_thing_approach' : '';
+        // $que1 = ltrim($que1, ',');
+
+        // $que2 = isset($edit_thing['thing']) ? ':thing' : '';
+        // $que2 .= isset($edit_thing['good_thing_flag']) ? ':good_thing_flag' : '';
+        // $que2 .= isset($edit_thing['good_thing_rank']) ? ':good_thing_rank' : '';
+        // $que2 .= isset($edit_thing['bad_thing_flag']) ? ':bad_thing_flag' : '';
+        // $que2 .= isset($edit_thing['bad_thing_level']) ? ':bad_thing_level' : '';
+        // $que2 .= isset($edit_thing['bad_thing_approach']) ? ':bad_thing_approach' : '';
+        // $que2 = ltrim($que2, ',');
+
+        $sql = 'UPDATE things';
+        $sql .= ' SET';
+        // $sql .= (isset($edit_thing['thing']) ? ' thing=' : '')(isset($edit_thing['thing']) ? ':thing,' : '');
+        // $sql .= (isset($edit_thing['good_thing_flag']) ? ' good_thing_flag=' : '')(isset($edit_thing['good_thing_flag']) ?  ':good_thing_flag,' : '');
+        // $sql .= (isset($edit_thing['good_thing_rank']) ? ' good_thing_rank=' : '')(isset($edit_thing['good_thing_rank']) ? ':good_thing_rank,' : '');
+        // $sql .= (isset($edit_thing['bad_thing_flag']) ? ' bad_thing_flag=' : '')(isset($edit_thing['bad_thing_flag']) ? ' :bad_thing_flag,' : '');
+        // $sql .= (isset($edit_thing['bad_thing_level']) ? ' bad_thing_level=' : '')(isset($edit_thing['bad_thing_level']) ? ':bad_thing_level,' : '');
+        // $sql .= (isset($edit_thing['bad_thing_approach']) ? ' bad_thing_approach=' : '')(isset($edit_thing['bad_thing_approach']) ? ':bad_thing_approach' : '');
+
+        $sql .= ' thing=:thing';
+        $sql .= ',good_thing_flag=:good_thing_flag';
+        $sql .= ',good_thing_rank=:good_thing_rank';
+        $sql .= ',bad_thing_flag=:bad_thing_flag';
+        $sql .= ',bad_thing_level=:bad_thing_level';
+        $sql .= ',bad_thing_approach=:bad_thing_approach';
+
+        $sql .= ' WHERE id=:id';
+        $sql .= ' AND user_id=:user_id';
 
         $stmt = $this->dbh->prepare($sql);
 
         // SQL文の該当箇所に、変数の値を割り当て（バインド）する
-        $stmt->bindValue(':bad_thing_approach', $approach['bad_thing_approach'], PDO::PARAM_STR);
+
+        $stmt->bindValue(':id', $edit_thing['get_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':thing', isset($edit_thing['thing']) == true ? $edit_thing['thing'] : $thing['thing'], PDO::PARAM_STR);
+        $stmt->bindValue(':good_thing_flag', isset($edit_thing['good_thing_flag']) == true ? $edit_thing['good_thing_flag'] : $thing['good_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':good_thing_rank', isset($edit_thing['good_thing_rank']) == true ? $edit_thing['good_thing_rank'] : $thing['good_thing_rank'], PDO::PARAM_STR);
+        $stmt->bindValue(':bad_thing_flag', isset($edit_thing['bad_thing_flag']) == true ? $edit_thing['bad_thing_flag'] : $thing['bad_thing_flag'], PDO::PARAM_INT);
+        $stmt->bindValue(':bad_thing_level', isset($edit_thing['bad_thing_level']) == true ? $edit_thing['bad_thing_level'] : $thing['bad_thing_level'], PDO::PARAM_STR);
+        $stmt->bindValue(':bad_thing_approach', isset($edit_thing['bad_thing_approach']) == true ? $edit_thing['bad_thing_approach'] : $thing['bad_thing_approach'], PDO::PARAM_STR);
+
+        // if (isset($edit_thing['thing']) == true) {
+        //     $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
+        // }
+        // if (isset($edit_thing['good_thing_flag']) == true) {
+        //     $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['good_thing_rank']) == true) {
+        //     $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['bad_thing_flag']) == true) {
+        //     $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['bad_thing_level']) == true) {
+        //     $stmt->bindValue(':bad_thing_level', $edit_thing['bad_thing_level'], PDO::PARAM_INT);
+        // }
+        // if (isset($edit_thing['bad_thing_approach']) == true) {
+        //     $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
+        // }
 
         $stmt->execute();
 
@@ -81,32 +278,57 @@ class DB_Things extends DB_Base
     }
 
     /**
-     * 一覧を取得しreturnする
-     * 取得するテーブルはtodo_itemsとusersのふたつ
-     * 削除フラグが1の物は除外する
+     * デキゴトを編集するバックアップ
      */
-    public function dbAllSelect()
-    {
-        $sql = 'SELECT';
-        $sql .= ' todo_items.id';
-        $sql .= ',todo_items.user_id';
-        $sql .= ',todo_items.item_name';
-        $sql .= ',todo_items.registration_date';
-        $sql .= ',todo_items.expire_date';
-        $sql .= ',todo_items.finished_date';
-        $sql .= ',todo_items.is_deleted';
-        $sql .= ',users.family_name';
-        $sql .= ',users.first_name';
-        $sql .= ' FROM todo_items INNER JOIN users ON todo_items.user_id = users.id';
-        $sql .= ' WHERE todo_items.is_deleted = 0';
-        $sql .= ' ORDER BY todo_items.expire_date ASC, todo_items.finished_date ASC, todo_items.item_name ASC';
+    // public function thingUpDate($edit_thing, $user_id)
+    // {
+    //     $que1 = isset($edit_thing['thing']) ? ',thing' : '';
+    //     $que1 .= isset($edit_thing['good_thing_flag']) ? ',good_thing_flag' : '';
+    //     $que1 .= isset($edit_thing['good_thing_rank']) ? ',good_thing_rank' : '';
+    //     $que1 .= isset($edit_thing['bad_thing_flag']) ? ',bad_thing_flag' : '';
+    //     $que1 .= isset($edit_thing['bad_thing_level']) ? ',bad_thing_level' : '';
+    //     $que1 .= isset($edit_thing['bad_thing_approach']) ? ',bad_thing_approach' : '';
+    //     // $que1 = ltrim($que1, ',');
 
-        $stmt = $this->dbh->prepare($sql);
+    //     $que2 = isset($edit_thing['thing']) ? ',:thing' : '';
+    //     $que2 .= isset($edit_thing['good_thing_flag']) ? ',:good_thing_flag' : '';
+    //     $que2 .= isset($edit_thing['good_thing_rank']) ? ',:good_thing_rank' : '';
+    //     $que2 .= isset($edit_thing['bad_thing_flag']) ? ',:bad_thing_flag' : '';
+    //     $que2 .= isset($edit_thing['bad_thing_level']) ? ',:bad_thing_level' : '';
+    //     $que2 .= isset($edit_thing['bad_thing_approach']) ? ',:bad_thing_approach' : '';
+    //     // $que2 = ltrim($que2, ',');
 
-        $stmt->execute();
+    //     $sql = 'UPDATE SET';
+    //     $sql .= ' things (user_id' . $que1 . ')';
+    //     $sql .= ' VALUES (:user_id' . $que2 . ')';
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    //     $stmt = $this->dbh->prepare($sql);
+
+    //     // SQL文の該当箇所に、変数の値を割り当て（バインド）する
+    //     $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+    //     if (isset($edit_thing['thing']) == true) {
+    //         $stmt->bindValue(':thing', $edit_thing['thing'], PDO::PARAM_STR);
+    //     }
+    //     if (isset($edit_thing['good_thing_flag']) == true) {
+    //         $stmt->bindValue(':good_thing_flag', $edit_thing['good_thing_flag'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['good_thing_rank']) == true) {
+    //         $stmt->bindValue(':good_thing_rank', $edit_thing['good_thing_rank'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['bad_thing_flag']) == true) {
+    //         $stmt->bindValue(':bad_thing_flag', $edit_thing['bad_thing_flag'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['bad_thing_level']) == true) {
+    //         $stmt->bindValue(':bad_thing_level', $edit_thing['bad_thing_level'], PDO::PARAM_INT);
+    //     }
+    //     if (isset($edit_thing['bad_thing_approach']) == true) {
+    //         $stmt->bindValue(':bad_thing_approach', $edit_thing['bad_thing_approach'], PDO::PARAM_STR);
+    //     }
+
+    //     $stmt->execute();
+
+    //     return true;
+    // }
 
     /**
      * searchに入力した文字列がitem_name内に存在するか
@@ -138,32 +360,6 @@ class DB_Things extends DB_Base
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /**
-     * 引数に入れた['item_id']のToDoを表示する（1レコードだけ）
-     * @param int item_id
-     */
-    public function dbConfirmation($id)
-    {
-        $sql = 'SELECT';
-        $sql .= ' todo_items.id';
-        $sql .= ',todo_items.user_id';
-        $sql .= ',todo_items.item_name';
-        $sql .= ',todo_items.registration_date';
-        $sql .= ',todo_items.expire_date';
-        $sql .= ',todo_items.finished_date';
-        $sql .= ',todo_items.is_deleted';
-        $sql .= ',users.family_name';
-        $sql .= ',users.first_name';
-        $sql .= ' FROM todo_items INNER JOIN users ON todo_items.user_id = users.id';
-        $sql .= ' WHERE todo_items.id=:id';
-        $sql .= ' ORDER BY todo_items.expire_date ASC';
-
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
 
     /**
      * 削除する（削除フラグを立てる）

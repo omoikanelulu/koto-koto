@@ -13,7 +13,11 @@ $light: #bacaee;
 $dark: #3d5c78;
 
 //リンクの文字色
-$link-color: #0d6efd;
+$link-color: #352fe9;
+// good_thingの基本カラー
+$good_thing: #5fe68c;
+// bad_thingの基本カラー
+$bad_thing: #e86a5c;
 
 //bodyの背景、文字色
 $body-bg: #fff;
@@ -53,11 +57,11 @@ $enable-rounded: true;
 
 //角丸の大きさの設定
 // $border-radius: 0.25rem;
-$border-radius: 0, 1.25rem, 0, 1.25rem;
+$border-radius: 0.3rem, 1.25rem, 0.3rem, 1.25rem;
 // $border-radius-sm: 0.2rem;
-$border-radius-sm: 0, 1rem, 0, 1rem;
+$border-radius-sm: 0.3rem, 1rem, 0.3rem, 1rem;
 // $border-radius-sm: 0.3rem;
-$border-radius-lg: 0, 2rem, 0, 2rem;
+$border-radius-lg: 0.3rem, 2rem, 0.3rem, 2rem;
 $border-radius-pill: 50rem;
 
 //影の設定 true=有効 false=無効
@@ -151,4 +155,17 @@ h1,
     border-image-slice: 0 fill;
     border-image-outset: 0 100vw 0 1rem;
     opacity: 75%;
+}
+
+.bg-good-thing {
+    background-color: $good_thing;
+}
+
+.bg-bad-thing {
+    background-color: $bad_thing;
+}
+
+// idがinput_yearの物に適用する
+#input_year {
+    width: 300px;
 }

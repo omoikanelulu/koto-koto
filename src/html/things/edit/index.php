@@ -4,19 +4,36 @@ require_once '../../../class/Base.php';
 require_once '../../../class/Security.php';
 require_once '../../../class/Validation.php';
 require_once '../../../class/DB_Base.php';
-require_once '../../../class/DB_Users.php';
+require_once '../../../class/DB_Things.php';
 
 Security::session();
 
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
-$ins = new Base();
+$ins = new Base;
+$DBins = new DB_Things;
+$get_id = $_GET['id'];
 
-// 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
-$date = $_SESSION['things']['create_date_time'];
-// フォーマットを整えて変数に代入
-$create_date_time = $date->format('Y/n/d');
+try {
+    $thing = $DBins->thingSelect($_GET['id'], $_SESSION['login_user']['id']);
+    if ($thing == false) {
+        throw new Exception('レコードが取得できませんでした');
+    }
+} catch (Exception $e) {
+    $_SESSION['exception'] = $e;
+    header('Location:' . $ins->err_page_url);
+    exit();
+}
+
+$_SESSION['thing'] = $thing;
+
+// デバッグ用 //
+echo '<pre>';
+var_dump($thing);
+echo '</pre>';
+// exit();
+////////////////
 
 ?>
 
@@ -50,7 +67,7 @@ $create_date_time = $date->format('Y/n/d');
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= $ins->nav_title ?>
+                                デキゴトを編集
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
@@ -107,21 +124,38 @@ $create_date_time = $date->format('Y/n/d');
 
     <main>
         <div class="mt-5 container">
+            <div class="row">
+                <div class="col-sm">
+                    <p>デキゴトを編集してください</p>
+                </div>
+            </div>
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
-                    <h1 class="right_bg_line"><?= $create_date_time ?></h1>
+                    <h2 class="right_bg_line"><?= mb_substr(str_replace('-', '/', $thing['create_date_time']), 0, 16) ?></h2>
                 </div>
             </div>
 
             <!-- デキゴト入力ブロック -->
-            <form action="" method="post">
+            <form action="./action.php" method="post">
+                <input type="hidden" name="get_id" value=<?= $get_id ?>>
                 <div class="row mt-4 justify-content-end">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
-                        <label class="form-label" for="thing">デキゴトの編集 <!-- rowとcolはCSSで設定する方が良い？ -->
-                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" aria-valuetext=""><?= $thing // ここがvalueの値になるらしい ?></textarea>
+                        <label class="form-label" for="thing">デキゴト
+                            <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200"><?= $thing['thing'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
                         </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- デキゴトの文字数エラーメッセージ -->
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <div class="form-text text-danger">
+                            <?= isset($_SESSION['err']['err_llThing']) ? $_SESSION['err']['err_llThing'] : '' ?>
+                        </div>
                     </div>
                     <div class="col-sm"></div>
                 </div>
@@ -129,17 +163,15 @@ $create_date_time = $date->format('Y/n/d');
                 <!-- 属性付与ブロック -->
                 <div class="row mt-4 justify-content-start">
                     <div class="col-sm-2"></div>
+
                     <!-- イイコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_good_thing" id="cb_good_thing" value="1">
-                        <label class="form-check-label" for="cb_good_thing">イイコト</label>
-                    </div>
-                    <div class="col-sm-auto align-self-center">
                         <div class="input-group">
-                            <label class="input-group-text" for="good_thing_level">イイコトレベル</label>
-                            <select class="form-select" name="good_thing_level" id="good_thing_level">
+                            <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
+                            <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
+                                <option value=<?= $thing['good_thing_rank'] ?>><?= $thing['good_thing_rank'] ?>位</option>
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
-                                    <option value="$i"><?= $i ?></option>
+                                    <option value=<?= $i ?>><?= $i ?>位</option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -147,33 +179,55 @@ $create_date_time = $date->format('Y/n/d');
 
                     <!-- ヤナコトブロック -->
                     <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="cb_bad_thing" id="cb_bad_thing" value="1">
-                        <label class="form-check-label" for="cb_bad_thing">ヤナコト</label>
-                    </div>
-                    <div class="col-sm-auto align-self-center">
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
-                            <select class="form-select" name="bad_thing_level" id="bad_thing_level">
+                            <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
+                                <option value=<?= $thing['bad_thing_level'] ?>><?= $thing['bad_thing_level'] ?></option>
                                 <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
-                                    <option value="$i"><?= $i ?></option>
+                                    <option value=<?= $i ?>><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm"></div>
                 </div>
-                <div class="row mt-4 justify-content-start">
+
+                <!-- 対処法の記入ブロック -->
+                <div class="row mt-4 justify-content-end">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
-                        <button class="me-3 btn btn-primary" type="submit">登録する</button>
-                        <button class="me-3 btn btn-secondary" type="reset">書き直す</button>
-                        <button class="me-3 btn btn-danger" type="reset">キャンセル</button>
+                        <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
+                            <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000"><?= empty($thing['bad_thing_approach']) ? '' : $thing['bad_thing_approach'] ?></textarea>
+                            <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
+                        </label>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- 対処法の文字数エラーメッセージ -->
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <div class="form-text text-danger">
+                            <?= isset($_SESSION['err']['err_llApproach']) ? $_SESSION['err']['err_llApproach'] : '' ?>
+                        </div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+
+                <!-- 送信ボタンたち -->
+                <div class="row justify-content-start">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                        <button class="me-3 btn btn-primary" type="submit">編集を登録</button>
+                        <button class="btn btn-secondary" type="button" onclick="location.href='../show/thing_show.php',this.clicked">キャンセル</button>
                     </div>
                     <div class="col-sm"></div>
                 </div>
             </form>
         </div>
     </main>
+
     <footer>
         <?php
         // デバッグ用 //
@@ -186,6 +240,8 @@ $create_date_time = $date->format('Y/n/d');
 
     <!-- bootstrap JavaScript Bundle with Popper -->
     <script src="../../../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/script.js"></script>
+
 </body>
 
 </html>
