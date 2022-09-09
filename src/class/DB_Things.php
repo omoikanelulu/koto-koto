@@ -113,16 +113,21 @@ class DB_Things extends DB_Base
     /**
      * ログインしているユーザidのイイコト（未削除）を取得し表示する
      */
-    public function goodThingShow($user_id)
+    public function goodThingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
         $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
-        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND good_thing_flag=1';
+        $sql .= ' WHERE';
+        $sql .= ' is_deleted = 0';
+        $sql .= ' AND user_id=:user_id';
+        $sql .= ' AND good_thing_flag = 1';
+        $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt->bindValue(':search_date', $search_date, PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -134,16 +139,21 @@ class DB_Things extends DB_Base
     /**
      * ログインしているユーザidのナヤコト（未削除）を取得し表示する
      */
-    public function badThingShow($user_id)
+    public function badThingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
         $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
-        $sql .= ' WHERE is_deleted = 0 AND user_id=:user_id AND bad_thing_flag=1';
+        $sql .= ' WHERE';
+        $sql .= ' is_deleted = 0';
+        $sql .= ' AND user_id=:user_id';
+        $sql .= ' AND bad_thing_flag = 1';
+        $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt->bindValue(':search_date', $search_date, PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -155,16 +165,21 @@ class DB_Things extends DB_Base
     /**
      * ログインしているユーザidの削除済みデキゴトを取得し表示する
      */
-    public function deletedThingShow($user_id)
+    public function deletedThingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
         $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
-        $sql .= ' WHERE is_deleted = 1 AND user_id=:user_id';
+        $sql .= ' WHERE';
+        $sql .= ' is_deleted = 0';
+        $sql .= ' AND user_id=:user_id';
+        $sql .= ' AND is_deleted = 1';
+        $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt->bindValue(':search_date', $search_date, PDO::PARAM_STR);
 
         $stmt->execute();
 

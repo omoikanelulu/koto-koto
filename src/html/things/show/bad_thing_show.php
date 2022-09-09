@@ -14,7 +14,18 @@ Security::notLogin();
 $ins = new Base;
 $DBins = new DB_Things;
 
-$things = $DBins->badThingShow($_SESSION['login_user']['id']);
+$date = new DateTime();
+// フォーマットを整えて変数に代入
+// 今月の1日に設定
+$this_month = $date->format('Y-m-01');
+
+if (isset($_POST['search_date']) == false) {
+    $search_date = $this_month;
+} else {
+    $search_date = $_POST['search_date'];
+}
+
+$things = $DBins->badThingShow($_SESSION['login_user']['id'], $search_date);
 
 ?>
 
@@ -61,30 +72,12 @@ $things = $DBins->badThingShow($_SESSION['login_user']['id']);
                     </ul>
 
                     <!-- 年月日の入力フォーム -->
-                    <form class="row" action="#">
+                    <form class="row" action="#" method="post">
                         <div class="col input-group">
-                            <select class="form-select" name="input_year" id="input_year">
-                                <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
-                                    <option value="$i"><?= $i ?></option>
-                                <?php endfor ?>
-                            </select>
-                            <label class="input-group-text" for="input_year">年</label>
+                            <input type="date" name="search_date" id="search_date" value=<?= $search_date ?>>
                         </div>
-                        <div class="input-group">
-                            <select class="form-select" name="input_month" id="input_month">
-                                <?php foreach (Config::MONTHS as $key => $val) : ?>
-                                    <option value=<?= $val ?>><?= $val ?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_month">月</label>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-select" name="input_day" id="input_day">
-                                <?php foreach (Config::DAYS as $key => $val) : ?>
-                                    <option value=<?= $val ?>><?= $val ?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_day">日</label>
+                        <div class="col input-group">
+                            <input type="submit" value="表示">
                         </div>
                     </form>
 
