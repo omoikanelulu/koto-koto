@@ -81,10 +81,10 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                     <form class="row" action="#" method="post">
                         <div class="navbar-nav mb-lg-0 d-flex justify-content-start">
                             <div class="col-sm input-group">
-                                <input type="date" name="search_date" id="search_date" value=<?= $search_date ?>>
+                                <input type="date" name="search_date" id="search_date_input" value=<?= $search_date ?>>
                             </div>
                             <div class="col-sm input-group">
-                                <input type="submit" value="表示">
+                                <input type="submit" id="search_date_submit" value="表示">
                             </div>
                         </div>
                     </form>
