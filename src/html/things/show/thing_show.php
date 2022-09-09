@@ -77,14 +77,15 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                             </ul>
                         </li>
                     </ul>
-
                     <!-- 年月日の入力フォーム -->
                     <form class="row" action="#" method="post">
-                        <div class="col input-group">
-                            <input type="date" name="search_date" id="search_date" value=<?= $search_date ?>>
-                        </div>
-                        <div class="col input-group">
-                            <input type="submit" value="表示">
+                        <div class="navbar-nav mb-lg-0 d-flex justify-content-start">
+                            <div class="col-sm input-group">
+                                <input type="date" name="search_date" id="search_date" value=<?= $search_date ?>>
+                            </div>
+                            <div class="col-sm input-group">
+                                <input type="submit" value="表示">
+                            </div>
                         </div>
                     </form>
 
