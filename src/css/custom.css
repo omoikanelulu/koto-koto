@@ -10355,6 +10355,10 @@ h1,
   background-color: #91abe4;
 }
 
+#search_date_form {
+  padding: 8px;
+}
+
 #search_date_input {
   position: relative;
   background-color: transparent;

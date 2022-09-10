@@ -176,6 +176,10 @@ h1,
     background-color: darken($light, 10%);
 }
 
+#search_date_form {
+    padding: 8px;
+}
+
 // 日付検索の日付入力部分
 #search_date_input {
     position: relative;

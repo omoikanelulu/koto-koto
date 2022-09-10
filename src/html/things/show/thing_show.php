@@ -63,7 +63,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-lg-0">
+                    <ul class="navbar-nav me-1 mb-lg-0">
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
@@ -78,14 +78,14 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                         </li>
                     </ul>
                     <!-- 年月日の入力フォーム -->
-                    <form class="row" action="#" method="post">
-                        <div class="navbar-nav mb-lg-0 d-flex justify-content-start">
+                    <form class="row me-auto d-flex justify-content-start" id="search_date_form" action="#" method="post">
+                        <div class="navbar-nav mb-lg-0">
                             <div class="col-sm input-group">
                                 <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
                                 <i class="bi bi-calendar" id="search_date_icon"></i>
                             </div>
                             <div class="col-sm input-group">
-                                <input type="submit" id="search_date_submit" value="表示">
+                                <input type="submit" id="search_date_submit" value="以降を表示">
                             </div>
                         </div>
                     </form>
