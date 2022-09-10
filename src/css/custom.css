@@ -10331,6 +10331,10 @@ h1,
   margin-bottom: 0;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: rgb(255, 255, 255);
+}
+
 .right_bg_line {
   padding: 0.5rem 0;
   border-image-source: linear-gradient(140deg, #bacaee 5%, #3d5c78 25%);

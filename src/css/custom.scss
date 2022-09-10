@@ -150,6 +150,10 @@ h1,
     margin-bottom: 0;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 1);
+}
+
 // 右の画面端まで伸びる色つけ
 .right_bg_line {
     padding: 0.5rem 0;
