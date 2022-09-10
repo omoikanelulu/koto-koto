@@ -54,7 +54,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
 
 <body class="bg-light">
     <header>
-        <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar fixed-top zindex-fixed p-0 navbar-expand-lg navbar-dark bg-dark">
             <div class="navbar-text container-fluid align-item-center">
                 <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
@@ -81,7 +81,8 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                     <form class="row" action="#" method="post">
                         <div class="navbar-nav mb-lg-0 d-flex justify-content-start">
                             <div class="col-sm input-group">
-                                <input type="date" name="search_date" id="search_date_input" value=<?= $search_date ?>>
+                                <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                                <i class="bi bi-calendar" id="search_date_icon"></i>
                             </div>
                             <div class="col-sm input-group">
                                 <input type="submit" id="search_date_submit" value="表示">

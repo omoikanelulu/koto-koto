@@ -10352,18 +10352,30 @@ h1,
   background-color: #91abe4;
 }
 
-#input_year {
-  width: 300px;
-}
-
 #search_date_input {
+  position: relative;
   background-color: transparent;
   border: none;
   color: #fff;
+}
+
+#search_date_icon {
+  position: absolute;
+  right: 3px;
+  bottom: 1px;
+  color: #fff;
+  z-index: -100;
 }
 
 #search_date_submit {
   background-color: transparent;
   border: none;
   color: #fff;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  position: absolute;
+  height: 24px;
+  width: 104px;
 }/*# sourceMappingURL=custom.css.map */

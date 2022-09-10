@@ -173,19 +173,35 @@ h1,
     background-color: darken($light, 10%);
 }
 
-// idがinput_yearの物に適用する
-#input_year {
-    width: 300px;
-}
-
-#search_date_input{
+// 日付検索の日付入力部分
+#search_date_input {
+    position: relative;
     background-color: transparent;
     border: none;
     color: #fff;
 }
 
-#search_date_submit{
+// カレンダーのアイコン
+#search_date_icon {
+    position: absolute;
+    right: 3px;
+    bottom: 1px;
+    color: #fff;
+    z-index: -100;
+}
+
+// 日付検索のボタン
+#search_date_submit {
     background-color: transparent;
     border: none;
     color: #fff;
+}
+
+// デフォルトで表示されるカレンダーのアイコン
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    position: absolute;
+    // 大きくすることでクリックの範囲を広げている
+    height: 24px;
+    width: 104px;
 }
