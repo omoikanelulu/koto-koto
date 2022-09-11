@@ -150,6 +150,11 @@ h1,
     margin-bottom: 0;
 }
 
+.navbar-dark .navbar-toggler {
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+}
+
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 1);
 }
@@ -195,6 +200,16 @@ h1,
     bottom: 1px;
     color: #fff;
     z-index: -100;
+}
+
+@media only screen and (max-width: 992px) {
+    #search_date_icon {
+        position: absolute;
+        left: 85px;
+        bottom: 1px;
+        color: #fff;
+        z-index: -100;
+    }
 }
 
 // 日付検索のボタン

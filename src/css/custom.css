@@ -10331,6 +10331,11 @@ h1,
   margin-bottom: 0;
 }
 
+.navbar-dark .navbar-toggler {
+  color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: rgb(255, 255, 255);
 }
@@ -10374,6 +10379,15 @@ h1,
   z-index: -100;
 }
 
+@media only screen and (max-width: 992px) {
+  #search_date_icon {
+    position: absolute;
+    left: 85px;
+    bottom: 1px;
+    color: #fff;
+    z-index: -100;
+  }
+}
 #search_date_submit {
   background-color: transparent;
   border: none;
