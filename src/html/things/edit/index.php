@@ -54,7 +54,7 @@ echo '</pre>';
 <body class="bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-lg navbar-dark bg-dark">
-            <div class="navbar-text container-fluid align-item-center">
+            <div class="navbar-text container-fluid">
                 <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
@@ -62,12 +62,12 @@ echo '</pre>';
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-lg-0 d-flex justify-content-start">
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                デキゴトを編集
+                            デキゴトを編集
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
@@ -75,34 +75,36 @@ echo '</pre>';
                                 <?php endforeach ?>
                             </ul>
                         </li>
-                        <!-- 年月日の入力フォーム -->
-                        <form class="invisible row" action="#">
-                            <div class="col input-group">
-                                <select class="form-select" name="input_year" id="input_year">
-                                    <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
-                                        <option value="$i"><?= $i ?></option>
-                                    <?php endfor ?>
-                                </select>
-                                <label class="input-group-text" for="input_year">年</label>
-                            </div>
-                            <div class="col input-group">
-                                <select class="form-select" name="input_month" id="input_month">
-                                    <?php foreach (Config::MONTHS as $key => $val) : ?>
-                                        <option value=<?= $val ?>><?= $val ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_month">月</label>
-                            </div>
-                            <div class="col input-group">
-                                <select class="form-select" name="input_day" id="input_day">
-                                    <?php foreach (Config::DAYS as $key => $val) : ?>
-                                        <option value=<?= $val ?>><?= $val ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                                <label class="input-group-text" for="input_day">日</label>
-                            </div>
-                        </form>
                     </ul>
+
+                    <!-- 年月日の入力フォーム -->
+                    <form class="invisible row" action="#">
+                        <div class="col input-group">
+                            <select class="form-select" name="input_year" id="input_year">
+                                <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
+                                    <option value="$i"><?= $i ?></option>
+                                <?php endfor ?>
+                            </select>
+                            <label class="input-group-text" for="input_year">年</label>
+                        </div>
+                        <div class="col input-group">
+                            <select class="form-select" name="input_month" id="input_month">
+                                <?php foreach (Config::MONTHS as $key => $val) : ?>
+                                    <option value=<?= $val ?>><?= $val ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <label class="input-group-text" for="input_month">月</label>
+                        </div>
+                        <div class="col input-group">
+                            <select class="form-select" name="input_day" id="input_day">
+                                <?php foreach (Config::DAYS as $key => $val) : ?>
+                                    <option value=<?= $val ?>><?= $val ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <label class="input-group-text" for="input_day">日</label>
+                        </div>
+                    </form>
+
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
                         <li class="nav-item dropstart">

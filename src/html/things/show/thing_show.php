@@ -77,6 +77,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                             </ul>
                         </li>
                     </ul>
+
                     <!-- 年月日の入力フォーム -->
                     <form class="row me-auto d-flex justify-content-start" id="search_date_form" action="#" method="post">
                         <div class="navbar-nav mb-lg-0">
@@ -89,34 +90,6 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                             </div>
                         </div>
                     </form>
-
-                    <!-- 年月日の入力フォーム
-                    <form class="row" action="#">
-                        <div class="col input-group">
-                            <select class="form-select" name="input_year" id="input_year">
-                                </?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
-                                    <option value="$i"></?= $i ?></option>
-                                </?php endfor ?>
-                            </select>
-                            <label class="input-group-text" for="input_year">年</label>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-select" name="input_month" id="input_month">
-                                </?php foreach (Config::MONTHS as $key => $val) : ?>
-                                    <option value=</?= $val ?>></?= $val ?></option>
-                                </?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_month">月</label>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-select" name="input_day" id="input_day">
-                                </?php foreach (Config::DAYS as $key => $val) : ?>
-                                    <option value=</?= $val ?>></?= $val ?></option>
-                                </?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_day">日</label>
-                        </div>
-                    </form> -->
 
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
