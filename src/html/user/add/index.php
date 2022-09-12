@@ -188,7 +188,7 @@ $ins = new Base();
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" class="me-3 btn btn-success">新規登録</button>
-                        <a href="<?= $ins->nav_user_menus['ログアウト'] ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                     <div class="col"></div>
                 </div>
