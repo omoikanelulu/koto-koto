@@ -5,6 +5,14 @@ require_once '../class/Security.php';
 
 Security::session();
 
+// トークンの生成
+// 暗号学的に安全なランダムなバイナリを生成し、それを16進数に変換することでASCII文字列に変換
+$token_byte = openssl_random_pseudo_bytes(16);
+$token = bin2hex($token_byte);
+// 生成したトークンをセッションに保存します
+$_SESSION['token'] = $token;
+
+// インスタンス生成
 $ins = new Base();
 
 ?>
@@ -50,6 +58,7 @@ $ins = new Base();
                 <div class="mb-4 col">
                     <a href="./user/login/index.php"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
                     <a href="./user/add/index.php"><button type="button" class="btn btn-success">新規登録</button></a>
+                    <a href="./user/logout/action.php"><button type="button" class="btn btn-danger">開発用ログアウトボタン</button></a>
                 </div>
             </div>
             <div class="row row-cols-2 d-flex justify-content-center">
