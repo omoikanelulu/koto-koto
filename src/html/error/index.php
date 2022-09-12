@@ -10,6 +10,9 @@ Security::session();
 
 $ins = new Base();
 
+// トークンの生成
+$token = Security::makeToken();
+
 ?>
 
 <!DOCTYPE html>
