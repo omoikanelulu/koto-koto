@@ -82,9 +82,12 @@ class Security
      * CSRF（クロスサイトリクエストフォージェリ）対策
      * $_SESSION['token']に保存
      */
-    public static function makeToken(): string
+    public static function makeToken()
     {
+        // トークンの生成
+        // 暗号学的に安全なランダムなバイナリを生成し、それを16進数に変換することでASCII文字列に変換
         $token = bin2hex(openssl_random_pseudo_bytes(32));
+        // 生成したトークンをセッションに保存
         $_SESSION['token'] = $token;
         return $token;
     }
@@ -92,11 +95,11 @@ class Security
     /**
      * CSRF（クロスサイトリクエストフォージェリ）対策
      * 受信側では、$_SESSION['token']と$_POST['token']が同一であるかチェックする
-     * @param string $p_token ポストされてきたワンタイムトークン
+     * @param string $post_token ポストされてきたワンタイムトークン
      */
-    public static function matched_token($p_token): bool
+    public static function matchedToken($post_token): bool
     {
-        if (empty($_SESSION['token']) || empty($p_token) || $_SESSION['token'] !== $p_token) {
+        if (empty($_SESSION['token']) || empty($post_token) || $_SESSION['token'] !== $post_token) {
             return false; // 一致せず
         } else {
             return true; // 一致した
