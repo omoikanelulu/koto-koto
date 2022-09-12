@@ -85,7 +85,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                                 <i class="bi bi-calendar" id="search_date_icon"></i>
                             </div>
                             <div class="col-sm input-group">
-                                <input type="submit" id="search_date_submit" value="以降を表示">
+                                <input class="btn" type="submit" id="search_date_submit" value="以降を表示">
                             </div>
                         </div>
                     </form>

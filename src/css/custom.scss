@@ -191,13 +191,14 @@ h1,
     background-color: transparent;
     border: none;
     color: #fff;
+    padding: 8px;
 }
 
 // カレンダーのアイコン
 #search_date_icon {
     position: absolute;
-    right: 3px;
-    bottom: 1px;
+    right: 10px;
+    bottom: 8px;
     color: #fff;
     z-index: -100;
 }
@@ -205,8 +206,8 @@ h1,
 @media only screen and (max-width: 992px) {
     #search_date_icon {
         position: absolute;
-        left: 85px;
-        bottom: 1px;
+        left: 92px;
+        bottom: 8px;
         color: #fff;
         z-index: -100;
     }
@@ -214,7 +215,7 @@ h1,
 
 // 日付検索のボタン
 #search_date_submit {
-    background-color: transparent;
+    background-color: darken($dark, 5%);
     border: none;
     color: #fff;
 }
