@@ -5,15 +5,25 @@ require_once '../class/Security.php';
 
 Security::session();
 
-// トークンの生成
-// 暗号学的に安全なランダムなバイナリを生成し、それを16進数に変換することでASCII文字列に変換
-$token_byte = openssl_random_pseudo_bytes(16);
-$token = bin2hex($token_byte);
-// 生成したトークンをセッションに保存します
-$_SESSION['token'] = $token;
-
 // インスタンス生成
 $ins = new Base();
+
+// セッションidが定義されていたらトークンをチェック（初めてこのページを開いた時にはチェックしない）
+// if (isset($_COOKIE['PHPSESSID']) == true) {
+// トークンのチェック
+//     $matched_token = Security::matchedToken($_POST['token']);
+//     if (isset($matched_token) == false || $matched_token == false) {
+//         header('Location:' . $ins->err_page_url);
+//         exit();
+//     }
+// }
+
+
+
+
+// トークンの生成
+$token = Security::makeToken();
+
 
 ?>
 
@@ -56,8 +66,14 @@ $ins = new Base();
         <div class="mt-5 container">
             <div class="row row-cols-2 d-flex justify-content-center">
                 <div class="mb-4 col">
-                    <a href="./user/login/index.php"><button type="button" class="me-3 btn btn-primary">ログイン</button></a>
-                    <a href="./user/add/index.php"><button type="button" class="btn btn-success">新規登録</button></a>
+                    <form action="./user/login/index.php" method="post">
+                        <input type="hidden" name="token" value="<?= $token ?>">
+                        <button class="me-3 btn btn-primary" type="submit">ログイン</button>
+                    </form>
+                    <form action="./user/add/index.php" method="post">
+                        <input type="hidden" name="token" value="<?= $token ?>">
+                        <button class="me-3 btn btn-success" type="submit">新規登録</button>
+                    </form>
                     <a href="./user/logout/action.php"><button type="button" class="btn btn-danger">開発用ログアウトボタン</button></a>
                 </div>
             </div>
@@ -103,12 +119,12 @@ $ins = new Base();
     <footer>
         <?php
         // デバッグ用 //
-        echo'<pre>';
+        echo '<pre>';
         echo 'セッションID<br>';
         var_dump($_COOKIE['PHPSESSID']);
         echo 'セッションの中身<br>';
         var_dump($_SESSION);
-        echo'</pre>';
+        echo '</pre>';
         ////////////////
         ?>
     </footer>
