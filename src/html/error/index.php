@@ -53,6 +53,17 @@ $ins = new Base();
                 <div class="col-1 col-md-2 col-xl-3"></div>
                 <div class="mb-4 col-10 col-md-8 col-xl-6">
                     <p class="mb-4"><?= Config::ERR_MSG ?></p>
+
+                    <!-- エラーの情報を表示 -->
+                    <?php
+                    if (isset($_SESSION['err']) == true) {
+                        echo '<pre>';
+                        var_dump($_SESSION['err']);
+                        echo '</pre>';
+                    }
+                    ?>
+                    <!-- エラーの情報を表示 ここまで -->
+
                     <a href="../user/logout/action.php"><button type="button" class="btn btn-danger">ログアウト</button></a>
                 </div>
                 <div class="col-1 col-md-2 col-xl-3"></div>
