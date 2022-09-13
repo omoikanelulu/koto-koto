@@ -4,9 +4,6 @@ require_once '../../../class/Security.php';
 
 Security::session();
 
-// ログインしていない場合トップページへリダイレクトする
-Security::notLogin();
-
 // $_SESSIONにエラーメッセージがあればunsetする
 if (isset($_SESSION['err']) == true) {
     unset($_SESSION['err']);

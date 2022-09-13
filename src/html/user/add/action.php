@@ -9,7 +9,6 @@ try {
 
     // セッションスタート
     Security::session();
-    Security::notLogin();
 
     // トークンの確認
     if (Security::matchedToken($_POST['token']) == false) {

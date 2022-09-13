@@ -260,14 +260,17 @@ if ($has_err == true) {
     <footer>
 
         <?php
-        echo '
-        <pre>';
-        // var_dump($result);
-        var_dump($post);
-        echo '<br>年月日をまとめて表示<br>';
-        var_dump($post['birth_date_year'] . '-' . $post['birth_date_month'] . '-' . $post['birth_date_day']);
+        // デバッグ用 //
+        echo '<pre>$_POST_token';
+        var_dump($_POST['token']);
         echo '</pre>';
-        // exit();
+        echo '<pre>$token';
+        var_dump($token);
+        echo '</pre>';
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ////////////////
         ?>
 
     </footer>
