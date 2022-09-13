@@ -12,6 +12,7 @@ $ins = new Base();
 
 // トークンの確認
 if (Security::matchedToken($_POST['token']) == false) {
+    $_SESSION['err']['token'] = $_SERVER.__FILE__.'でエラーが発生しました';
     header('Location:../../error/index.php');
     exit('トークンが一致しません');
 }
@@ -103,10 +104,10 @@ if ($result == false) { // NGの場合
 }
 // 【バリデーション終了】
 
-// チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307でトークンも送信出来る？
+// チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307はPOSTデータを引き継いでリダイレクトする
 if ($has_err == true) {
     header('location:./index.php', true, 307);
-    exit();
+    exit('バリデーションNGです');
 }
 
 ?>
@@ -247,14 +248,28 @@ if ($has_err == true) {
                 </fieldset>
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
-                        <button type="submit" class="me-3 btn btn-success">新規登録</button>
-                        <a href="./index.php"><button type="button" class="btn btn-secondary">前のページに戻る</button></a>
-                    </div>
-                    <div class="col">
-                        <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <button type="submit" class="me-3 btn btn-success">登録</button>
                     </div>
                 </div>
             </form>
+
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                <div class="col">
+                    <form action="./index.php" method="post">
+                        <input type="hidden" name="token" value="<?= $token ?>">
+                        <button type="submit" class="btn btn-secondary">前のページに戻る</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
+                <div class="col">
+                    <form action="./cancel.php" method="post">
+                        <input type="hidden" name="token" value="<?= $token ?>">
+                        <button type="submit" class="btn btn-danger">キャンセル</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
     <footer>
