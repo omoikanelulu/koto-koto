@@ -101,6 +101,7 @@ class Security
         if (empty($_SESSION['token']) || empty($post_token) || $_SESSION['token'] !== $post_token) {
             return false; // 一致せず
         } else {
+            unset($_SESSION['token']);
             return true; // 一致した
         }
     }
