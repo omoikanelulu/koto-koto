@@ -149,8 +149,8 @@ if ($has_err == true) {
     <main>
         <div class="mt-5 container">
             <form action="./action.php" method="POST">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>
-                    <input type="hidden" name="token" value="<?= $token ?>">
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col mb-4">
                             <p>以下の内容で登録します、</p>
