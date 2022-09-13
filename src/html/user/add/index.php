@@ -10,6 +10,15 @@ Security::session();
 // インスタンス作成
 $ins = new Base();
 
+// トークンの確認
+if (Security::matchedToken($_POST['token']) == false) {
+    header('Location:../../error/index.php');
+    exit('トークンが一致しません');
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +60,7 @@ $ins = new Base();
         <div class="mt-5 container">
             <form action="./confirm.php" method="POST">
                 <fieldset>
+                    <input type="hidden" name="token" value="<?= $token ?>">
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <p class="mb-4">登録内容を入力してください</p>

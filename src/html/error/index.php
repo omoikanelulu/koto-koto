@@ -10,9 +10,6 @@ Security::session();
 
 $ins = new Base();
 
-// トークンの生成
-$token = Security::makeToken();
-
 ?>
 
 <!DOCTYPE html>
@@ -64,9 +61,11 @@ $token = Security::makeToken();
     </main>
     <footer>
         <?php
-        echo '<pre>';
-        var_dump($_SESSION['exception']);
-        echo '</pre>';
+        if (isset($_SESSION['exception']) == true) {
+            echo '<pre>';
+            var_dump($_SESSION['exception']);
+            echo '</pre>';
+        }
         ?>
     </footer>
 

@@ -10,6 +10,15 @@ Security::session();
 // インスタンス作成
 $ins = new Base();
 
+// トークンの確認
+if (Security::matchedToken($_POST['token']) == false) {
+    header('Location:../../error/index.php');
+    exit('トークンが一致しません');
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 // POSTされてきたデータをサニタイズして$postへ代入
 $post = Security::sanitize($_POST);
 
@@ -141,6 +150,7 @@ if ($has_err == true) {
         <div class="mt-5 container">
             <form action="./action.php" method="POST">
                 <fieldset disabled>
+                    <input type="hidden" name="token" value="<?= $token ?>">
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col mb-4">
                             <p>以下の内容で登録します、</p>
@@ -241,7 +251,7 @@ if ($has_err == true) {
                         <a href="./index.php"><button type="button" class="btn btn-secondary">前のページに戻る</button></a>
                     </div>
                     <div class="col">
-                        <a href=<?= $ins->nav_user_menus['ログアウト'] ?>><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                 </div>
             </form>
@@ -261,11 +271,6 @@ if ($has_err == true) {
         ?>
 
     </footer>
-
-    <!-- 指定したidがついている要素にreadonlyを付与するっぽいけど動かなかった
-    <script>
-        $('#user_form *').prop('readonly', true);
-    </script> -->
 
     <!-- bootstrap JavaScript Bundle with Popper -->
     <script src="../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>

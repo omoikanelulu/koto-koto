@@ -8,22 +8,8 @@ Security::session();
 // インスタンス生成
 $ins = new Base();
 
-// セッションidが定義されていたらトークンをチェック（初めてこのページを開いた時にはチェックしない）
-// if (isset($_COOKIE['PHPSESSID']) == true) {
-// トークンのチェック
-//     $matched_token = Security::matchedToken($_POST['token']);
-//     if (isset($matched_token) == false || $matched_token == false) {
-//         header('Location:' . $ins->err_page_url);
-//         exit();
-//     }
-// }
-
-
-
-
 // トークンの生成
 $token = Security::makeToken();
-
 
 ?>
 

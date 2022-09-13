@@ -94,8 +94,7 @@ class Security
 
     /**
      * CSRF（クロスサイトリクエストフォージェリ）対策
-     * 受信側では、$_SESSION['token']と$_POST['token']が同一であるかチェックする
-     * @param string $post_token ポストされてきたワンタイムトークン
+     * $_SESSION['token']と$_POST['token']が同一であるかチェックする
      */
     public static function matchedToken($post_token): bool
     {

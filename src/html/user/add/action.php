@@ -11,6 +11,12 @@ try {
     Security::session();
     Security::notLogin();
 
+    // トークンの確認
+    if (Security::matchedToken($_POST['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+
     $post = $_SESSION['input_user_data'];
 
     $ins = new Base;
@@ -20,7 +26,7 @@ try {
     // trueならsuccessページへ遷移する
     $result = $DBins->userAdd($post);
     if ($result == true) {
-        unset($_SESSION['input_user_data'],$_SESSION['exception']);
+        unset($_SESSION['input_user_data'], $_SESSION['exception'], $_SESSION['token']);
         header('Location:./success.php');
         exit();
     }
