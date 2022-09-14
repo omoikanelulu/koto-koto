@@ -10390,6 +10390,8 @@ h1,
   }
 }
 #search_date_submit {
+  position: absolute;
+  left: 15px;
   background-color: #344f67;
   border: none;
   color: #fff;

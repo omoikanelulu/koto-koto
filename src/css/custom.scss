@@ -215,6 +215,8 @@ h1,
 
 // 日付検索のボタン
 #search_date_submit {
+    position: absolute;
+    left: 15px;
     background-color: darken($dark, 5%);
     border: none;
     color: #fff;
