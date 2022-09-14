@@ -10,9 +10,6 @@ Security::session();
 $ins = new Base;
 $login = new DB_Users;
 
-// これいらないな
-// unset($_SESSION['err']);
-
 // $_POSTされたデータをサニタイズ
 $post = Security::sanitize($_POST);
 
