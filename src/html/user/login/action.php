@@ -10,6 +10,15 @@ Security::session();
 $ins = new Base;
 $login = new DB_Users;
 
+// トークンの確認
+if (Security::matchedToken($_POST['token']) == false) {
+    header('Location:../../error/index.php');
+    exit('トークンが一致しません');
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 // $_POSTされたデータをサニタイズ
 $post = Security::sanitize($_POST);
 
@@ -24,16 +33,18 @@ if (empty($post) == true) {
 try {
     $rec = $login->userLogin($post);
 
-    if (empty($rec) || $rec == false) {
+    if (empty($rec) || $rec == false) { // レコードが取得できない場合
         $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
-    } elseif (password_verify($post['pass'], $rec['pass'])) {
+    } elseif (password_verify($post['pass'], $rec['pass'])) { // レコードを取得し、パスワードが一致した場合
         $_SESSION['login_user'] = $rec;
         unset($_SESSION['err']);
         header('Location:' . $ins->things_top_page_url);
         exit();
-    } else {
+    } else { // パスワードが一致しない場合
         $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
     }
+    // 通行証を渡して、ページを戻す
+    $_SESSION['verified'] = 'action';
     header('Location:./index.php');
     exit();
 } catch (Exception $e) {

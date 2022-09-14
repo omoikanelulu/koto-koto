@@ -10,6 +10,23 @@ Security::session();
 
 $ins = new Base();
 
+// confirmページから戻ってきた場合は、トークンの確認を素通りさせる
+if (!isset($_SESSION['verified']) == 'action') {
+    // トークンの確認
+    if (Security::matchedToken($_POST['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset($_SESSION['verified']) == true) {
+    unset($_SESSION['verified']);
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +68,7 @@ $ins = new Base();
         <div class="mt-5 container">
             <form action="./action.php" method="post">
                 <fieldset>
+                    <input type="hidden" name="token" value="<?= $token ?>">
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
