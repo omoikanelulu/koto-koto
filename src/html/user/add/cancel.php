@@ -4,9 +4,12 @@ require_once '../../../class/Security.php';
 
 Security::session();
 
-// $_SESSIONにエラーメッセージがあればunsetする
+// 不要な$_SESSIONに残っている値を削除する
 if (isset($_SESSION['err']) == true) {
     unset($_SESSION['err']);
+}
+if (isset($_SESSION['input_user_data']) == true) {
+    unset($_SESSION['input_user_data']);
 }
 
 $ins = new Base;
