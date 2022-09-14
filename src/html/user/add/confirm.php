@@ -12,7 +12,6 @@ $ins = new Base();
 
 // トークンの確認
 if (Security::matchedToken($_POST['token']) == false) {
-    $_SESSION['err']['token'] = $_SERVER.__FILE__.'でエラーが発生しました';
     header('Location:../../error/index.php');
     exit('トークンが一致しません');
 }
@@ -106,6 +105,7 @@ if ($result == false) { // NGの場合
 
 // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307はPOSTデータを引き継いでリダイレクトする
 if ($has_err == true) {
+    $_SESSION['verified'] = 'confirm';
     header('location:./index.php', true, 307);
     exit('バリデーションNGです');
 }

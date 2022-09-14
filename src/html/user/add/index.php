@@ -7,13 +7,24 @@ require_once '../../../class/Validation.php';
 // セッションスタート
 Security::session();
 
+// リファラがある場合は変数に代入しておく
+// $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+
 // インスタンス作成
 $ins = new Base();
 
-// トークンの確認
-if (Security::matchedToken($_POST['token']) == false) {
-    header('Location:../../error/index.php');
-    exit('トークンが一致しません');
+// confirmページから戻ってきた場合は、トークンの確認を素通りさせる
+if (!isset($_SESSION['verified']) == 'confirm') {
+    // トークンの確認
+    if (Security::matchedToken($_POST['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset($_SESSION['verified']) == true) {
+    unset($_SESSION['verified']);
 }
 
 // 新しいトークンの生成
