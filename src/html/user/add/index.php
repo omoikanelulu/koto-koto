@@ -14,7 +14,7 @@ Security::session();
 $ins = new Base();
 
 // confirmページから戻ってきた場合は、トークンの確認を素通りさせる
-if (!isset($_SESSION['verified']) == 'confirm') {
+if (!isset($_SESSION['verified']['confirm']) == 'OK') {
     // トークンの確認
     if (Security::matchedToken($_POST['token']) == false) {
         header('Location:../../error/index.php');
@@ -23,8 +23,8 @@ if (!isset($_SESSION['verified']) == 'confirm') {
 }
 
 // トークンの確認の素通りを解除する
-if (isset($_SESSION['verified']) == true) {
-    unset($_SESSION['verified']);
+if (isset($_SESSION['verified']['confirm']) == 'OK') {
+    unset($_SESSION['verified']['confirm']);
 }
 
 // 新しいトークンの生成

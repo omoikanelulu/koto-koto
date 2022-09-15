@@ -12,8 +12,8 @@ if (isset($_SESSION['input_user_data']) == true) {
     unset($_SESSION['input_user_data']);
 }
 // $_SESSIONにverifiedがあればunsetする
-if (isset($_SESSION['verified'])) {
-    unset($_SESSION['verified']);
+if (isset($_SESSION['verified']['confirm']) == true) {
+    unset($_SESSION['verified']['confirm']);
 }
 
 $ins = new Base;

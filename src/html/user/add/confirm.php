@@ -105,7 +105,7 @@ if ($result == false) { // NGの場合
 
 // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307はPOSTデータを引き継いでリダイレクトする
 if ($has_err == true) {
-    $_SESSION['verified'] = 'confirm';
+    $_SESSION['verified']['confirm'] = 'OK';
     header('location:./index.php', true, 307);
     exit('バリデーションNGです');
 }
