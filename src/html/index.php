@@ -8,6 +8,12 @@ Security::session();
 // インスタンス生成
 $ins = new Base();
 
+// ログイン済みの場合はそちらにリダイレクト
+if (isset($_SESSION['login_user']) == true) {
+    header('Location:' . $ins->things_top_page_url);
+    exit();
+}
+
 // トークンの生成
 $token = Security::makeToken();
 
