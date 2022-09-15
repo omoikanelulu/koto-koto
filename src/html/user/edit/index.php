@@ -53,7 +53,7 @@ $ins = new Base();
     <main>
         <div class="mt-5 container">
             <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                <p>ユーザ情報を編集するには、ログインしてください</p>
+                <p>ユーザ情報を編集するには、再ログインしてください</p>
             </div>
             <form action="./account_edit.php" method="post">
                 <fieldset>
