@@ -20,7 +20,8 @@ if (isset($_SESSION['verified'])) {
     unset($_SESSION['verified']);
 }
 
-$ins = new Base;
+// いらんだろこれは
+// $ins = new Base;
 
 header('Location:./index.php');
 exit();
