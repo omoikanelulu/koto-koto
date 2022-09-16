@@ -30,6 +30,7 @@ if (empty($post) == true) {
 }
 
 // ログイン処理、ユーザのレコードが代入される
+// ユーザのレコードに記録されているpassが入力されたpassと一致するか確認する
 try {
     $rec = $login->userLogin($post);
 
