@@ -92,8 +92,8 @@ if (isset($post)) {
     <main>
         <div class="mt-5 container">
             <form action="./confirm.php" method="POST">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset>
-                    <input type="hidden" name="token" value="<?= $token ?>">
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <p class="mb-4">編集する項目にチェックを入れてください</p>
