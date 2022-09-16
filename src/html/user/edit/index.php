@@ -11,6 +11,9 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// トークン生成
+$token = Security::makeToken();
+
 $ins = new Base();
 
 ?>
@@ -56,6 +59,7 @@ $ins = new Base();
                 <p>ユーザ情報を編集するには、再ログインしてください</p>
             </div>
             <form action="./account_edit.php" method="post">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset>
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
@@ -78,7 +82,7 @@ $ins = new Base();
                 <div class="row row-cols-2 d-flex justify-content-center">
                     <div class="col">
                         <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <a href="<?= $ins->things_top_page_url ?>"><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                 </div>
             </form>
