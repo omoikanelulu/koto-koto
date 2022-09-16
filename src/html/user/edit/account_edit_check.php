@@ -17,7 +17,7 @@ $post = Security::sanitize($_POST);
 
 if (!isset($_SESSION['verified'])) {
     // 入力されたIDとPASSをログイン情報と比較し、本人確認する
-    $check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+    $check_id = Security::checkId($post['user_mail_address'], $post['pass'], $_SESSION['login_user']['user_mail_address'], $_SESSION['login_user']['pass']);
 
     // NGの場合はエラーメッセージを出して前のページに遷移
     if ($check_id == false) {
