@@ -11,13 +11,32 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// actionページから戻ってきた場合は、トークンの確認を素通りさせる
+if (isset($_SESSION['verified']['action']) == true) {
+    if ($_SESSION['verified']['action'] != 'OK') {
+        // トークンの確認
+        if (Security::matchedToken($_POST['token']) == false) {
+            header('Location:../../error/index.php');
+            exit('トークンが一致しません');
+        }
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset(($_SESSION['verified']['action'])) == true) {
+    unset($_SESSION['verified']['action']);
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 $ins = new Base();
 
 $login_user = $_SESSION['login_user'];
 $post = Security::sanitize($_POST);
 
 // 入力されたIDとPASSをログイン情報と比較し、本人確認する
-$check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+$check_id = Security::checkId($post['user_mail_address'], $post['pass'], $_SESSION['login_user']['user_mail_address'], $_SESSION['login_user']['pass']);
 
 // NGの場合はエラーメッセージを出して前のページに遷移
 if ($check_id == false) {
@@ -69,6 +88,7 @@ if ($check_id == false) {
     <main>
         <div class="mt-5 container">
             <form action="./action.php" method="POST">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="mb-4 col">

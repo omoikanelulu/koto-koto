@@ -7,6 +7,12 @@ require_once '../../../class/DB_Base.php';
 require_once '../../../class/DB_Users.php';
 Security::session();
 
+// ログインしていない場合トップページへリダイレクトする
+Security::notLogin();
+
+// トークン生成
+$token = Security::makeToken();
+
 $ins = new Base();
 
 ?>
@@ -49,6 +55,7 @@ $ins = new Base();
     <main>
         <div class="mt-5 container">
             <form action="./confirm.php" method="post">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset>
                     <div class="mb-4 row row-cols-2 d-flex justify-content-center">
                         <div class="col">
