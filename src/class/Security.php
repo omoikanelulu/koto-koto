@@ -66,6 +66,8 @@ class Security
     public static function checkId($mail, $pass, $login_mail, $login_pass)
     {
         if (!empty($mail) && !empty($pass) && !empty($login_mail) && !empty($login_pass)) {
+            // このように、引数で渡さずとも$_SESSIONから引っ張ってくるやり方もあり
+            // if (!empty($mail) && !empty($pass) && !empty($_SESSION['login_user']['user_mail_address']) && !empty($_SESSION['login_user']['pass'])) {
             if ($mail == $login_mail && password_verify($pass, $login_pass)) {
                 return true;
             } else {
