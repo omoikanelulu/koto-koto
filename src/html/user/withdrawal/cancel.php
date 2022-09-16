@@ -6,12 +6,23 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// $_SESSIONにユーザが入力したデータがあればunsetする
+if (isset($_SESSION['edit_user_data']) == true) {
+    unset($_SESSION['edit_user_data']);
+}
 // $_SESSIONにエラーメッセージがあればunsetする
-if (isset($_SESSION['err'])) {
+if (isset($_SESSION['err']) == true) {
     unset($_SESSION['err']);
+}
+// $_SESSIONにverifiedがあればunsetする
+if (isset($_SESSION['verified']['confirm']) == true) {
+    unset($_SESSION['verified']['confirm']);
+}
+if (isset($_SESSION['verified']['checkId']) == true) {
+    unset($_SESSION['verified']['checkId']);
 }
 
 $ins = new Base;
 
-header('Location:./index.php');
+header('Location:' . $ins->things_top_page_url);
 exit();
