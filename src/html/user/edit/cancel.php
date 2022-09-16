@@ -8,20 +8,22 @@ Security::session();
 Security::notLogin();
 
 // $_SESSIONにユーザが入力したデータがあればunsetする
-if (isset($_SESSION['edit_user_data'])) {
+if (isset($_SESSION['edit_user_data']) == true) {
     unset($_SESSION['edit_user_data']);
 }
 // $_SESSIONにエラーメッセージがあればunsetする
-if (isset($_SESSION['err'])) {
+if (isset($_SESSION['err']) == true) {
     unset($_SESSION['err']);
 }
 // $_SESSIONにverifiedがあればunsetする
-if (isset($_SESSION['verified'])) {
-    unset($_SESSION['verified']);
+if (isset($_SESSION['verified']['confirm']) == true) {
+    unset($_SESSION['verified']['confirm']);
+}
+if (isset($_SESSION['verified']['checkId']) == true) {
+    unset($_SESSION['verified']['checkId']);
 }
 
-// いらんだろこれは
-// $ins = new Base;
+$ins = new Base;
 
-header('Location:./index.php');
+header('Location:' . $ins->things_top_page_url);
 exit();
