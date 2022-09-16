@@ -74,15 +74,6 @@ class Security
         } else {
             return false;
         }
-        // if (!empty($mail) && !empty($pass)) {
-        //     if ($mail == $_SESSION['login_user']['user_mail_address'] && password_verify($pass, $_SESSION['login_user']['pass'])) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // } else {
-        //     return false;
-        // }
     }
 
     /**
