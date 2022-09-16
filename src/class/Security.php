@@ -63,12 +63,10 @@ class Security
      * 本人確認メソッド
      * 入力されたIDとPASSが$_SESSION['login_user']の情報と同一かチェックする
      */
-    public static function checkId($mail, $pass)
+    public static function checkId($mail, $pass, $login_mail, $login_pass)
     {
-        // self::session();
-        if (!empty($mail) && !empty($pass)) {
-            // if ($mail == $_SESSION['login_user']['user_mail_address'] && $pass == $_SESSION['login_user']['pass']) {
-            if ($mail == $_SESSION['login_user']['user_mail_address'] && password_verify($pass, $_SESSION['login_user']['pass'])) {
+        if (!empty($mail) && !empty($pass) && !empty($login_mail) && !empty($login_pass)) {
+            if ($mail == $login_mail && password_verify($pass, $login_pass)) {
                 return true;
             } else {
                 return false;
@@ -76,6 +74,15 @@ class Security
         } else {
             return false;
         }
+        // if (!empty($mail) && !empty($pass)) {
+        //     if ($mail == $_SESSION['login_user']['user_mail_address'] && password_verify($pass, $_SESSION['login_user']['pass'])) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // } else {
+        //     return false;
+        // }
     }
 
     /**
