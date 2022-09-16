@@ -11,6 +11,23 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// confirmページから戻ってきた場合は、トークンの確認を素通りさせる
+if (!isset($_SESSION['verified']['confirm']) == 'OK') {
+    // トークンの確認
+    if (Security::matchedToken($_POST['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset($_SESSION['verified']['confirm']) == true) {
+    unset($_SESSION['verified']['confirm']);
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 $ins = new Base();
 
 // POSTされてきたデータをサニタイズして$postへ代入
@@ -20,15 +37,15 @@ $post = Security::sanitize($_POST);
 $_SESSION['edit_user_data'] = $post;
 
 // checkId()を通過した事を示す値を持たせる
-$_SESSION['verified'] = 'checkId';
+$_SESSION['verified']['checkId'] = 'OK';
 
 // 【バリデーション開始】
 $has_ng = '';
 $result = '';
 unset($_SESSION['err']);
 
-// 配列$postの中に空の物がないかチェック
-if (empty($post) == true) {
+// $postの値全てが空の場合はNG
+if (empty($post['user_name']) && empty($post['user_mail_address']) && empty($post['pass'])) {
     $_SESSION['err']['err_isArrayEmpty'] = Config::ERR_IS_ARRAY_EMPTY;
     $has_ng = true;
 }
@@ -88,8 +105,10 @@ if (isset($post['pass'], $post['pass_check']) == true) { // 変数が定義さ�
     }
 }
 
-// // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307でトークンも送信出来る？
+// // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307はpostデータをそのまま引き継ぐ
 if ($has_ng == true) {
+    // 通行証を渡す
+    $_SESSION['verified']['confirm'] = 'OK';
     header('location:./account_edit.php', true, 307);
     exit();
 }
@@ -135,6 +154,7 @@ if ($has_ng == true) {
     <main>
         <div class="mt-5 container">
             <form action="./action.php" method="POST">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
@@ -201,7 +221,7 @@ if ($has_ng == true) {
                         <a href="./account_edit.php"><button type="button" class="me-3 btn btn-secondary">前の画面に戻る</button></a>
                     </div>
                     <div class="col">
-                        <a href="<?= $ins->edit_cancel_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                 </div>
             </form>
