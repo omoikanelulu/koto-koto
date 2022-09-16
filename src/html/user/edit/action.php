@@ -9,19 +9,34 @@ try {
 
     // セッションスタート
     Security::session();
+
+    // confirmページから戻ってきた場合は、トークンの確認を素通りさせる
+    if (!isset($_SESSION['verified']['confirm']) == 'OK') {
+        // トークンの確認
+        if (Security::matchedToken($_POST['token']) == false) {
+            header('Location:../../error/index.php');
+            exit('トークンが一致しません');
+        }
+    }
+
+    // トークンの確認の素通りを解除する
+    if (isset($_SESSION['verified']['confirm']) == true) {
+        unset($_SESSION['verified']['confirm']);
+    }
+
     $edit_user_data = $_SESSION['edit_user_data'];
     $login_user = $_SESSION['login_user'];
 
-    $ins = new Base;
-
     // インスタンス生成
+    $ins = new Base;
     $DBins = new DB_Users;
+
     // userUpdateを呼び出す
     $result = $DBins->userUpdate($edit_user_data, $login_user);
     // trueならsuccessページへ遷移する
     if ($result == true) {
         unset($_SESSION['edit_user_data'], $_SESSION['exception'], $_SESSION['err']);
-        header('Location:./success.php');
+        header('Location:./success.php', true, 307);
         exit();
     } else {
         throw new Exception('UPDATEに失敗しました');
