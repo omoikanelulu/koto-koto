@@ -13,7 +13,7 @@ $ins = new Base();
 // confirmページから戻ってきた場合は、トークンの確認を素通りさせる
 if (!isset($_SESSION['verified']) == 'action') {
     // トークンの確認
-    if (Security::matchedToken($_POST['token']) == false) {
+    if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
         header('Location:../../error/index.php');
         exit('トークンが一致しません');
     }
