@@ -11,23 +11,44 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// confirmページから戻ってきた場合は、トークンの確認を素通りさせる
+if (isset($_SESSION['verified']['confirm']) == true) {
+    if ($_SESSION['verified']['confirm'] != 'OK') {
+        // トークンの確認
+        if (Security::matchedToken($_POST['token']) == false) {
+            header('Location:../../error/index.php');
+            exit('トークンが一致しません');
+        }
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset(($_SESSION['verified']['confirm'])) == true) {
+    unset($_SESSION['verified']['confirm']);
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 $ins = new Base();
 
 $post = Security::sanitize($_POST);
 
-if (!isset($_SESSION['verified'])) {
-    // 入力されたIDとPASSをログイン情報と比較し、本人確認する
-    $check_id = Security::checkId($post['user_mail_address'], $post['pass']);
+if (isset($post)) {
+    if (!isset($_SESSION['verified']['checkId'])) {
+        // 入力されたIDとPASSをログイン情報と比較し、本人確認する
+        $check_id = Security::checkId($post['user_mail_address'], $post['pass'], $_SESSION['login_user']['user_mail_address'], $_SESSION['login_user']['pass']);
 
-    // NGの場合はエラーメッセージを出して前のページに遷移
-    if ($check_id == false) {
-        $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
-        header('Location:./index.php', true, 307);
-        exit();
-    } else {
-        // 通過したタイミングでエラーメッセージと、verifiedを削除する
-        unset($_SESSION['err']['err_checkId']);
-        unset($_SESSION['verified']);
+        // NGの場合はエラーメッセージを出して前のページに遷移
+        if ($check_id == false) {
+            $_SESSION['err']['err_checkId'] = Config::ERR_CHECK_ID;
+            header('Location:./index.php', true, 307);
+            exit();
+        } else {
+            // 通過したタイミングでエラーメッセージと、verifiedを削除する
+            unset($_SESSION['err']['err_checkId']);
+            unset($_SESSION['verified']['checkId']);
+        }
     }
 }
 
@@ -72,6 +93,7 @@ if (!isset($_SESSION['verified'])) {
         <div class="mt-5 container">
             <form action="./confirm.php" method="POST">
                 <fieldset>
+                    <input type="hidden" name="token" value="<?= $token ?>">
                     <div class="row row-cols-3 d-flex justify-content-center">
                         <div class="col">
                             <p class="mb-4">編集する項目にチェックを入れてください</p>
@@ -160,7 +182,7 @@ if (!isset($_SESSION['verified'])) {
                 <div class="mb-4 row row-cols-3 d-flex justify-content-center">
                     <div class="col">
                         <button type="submit" id="submit" class="me-3 btn btn-success">編集する</button>
-                        <a href="<?= $ins->edit_cancel_url ?>"><button type="button" class="btn btn-danger">キャンセル</button></a>
+                        <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                     <div class="col"></div>
                 </div>
