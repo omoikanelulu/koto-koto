@@ -94,12 +94,12 @@ class Security
      * CSRF（クロスサイトリクエストフォージェリ）対策
      * $_SESSION['token']と$_POST['token']が同一であるかチェックする
      */
-    public static function matchedToken($post_token): bool
+    public static function matchedToken($post_token, $session_token): bool
     {
-        if (empty($_SESSION['token']) || empty($post_token) || $_SESSION['token'] !== $post_token) {
+        if (empty($session_token) || empty($post_token) || $session_token !== $post_token) {
             return false; // 一致せず
         } else {
-            unset($_SESSION['token']);
+            unset($session_token);
             return true; // 一致した
         }
     }
