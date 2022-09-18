@@ -44,7 +44,7 @@ $token = Security::makeToken();
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item navbar-brand">
                             <h4><?= $ins->nav_title ?></h4>
                         </li>
