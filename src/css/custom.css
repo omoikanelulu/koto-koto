@@ -10326,6 +10326,10 @@ h1,
   margin-top: 10rem !important;
 }
 
+.container {
+  min-width: 400px;
+}
+
 .nav_title {
   margin-top: 0;
   margin-bottom: 0;
