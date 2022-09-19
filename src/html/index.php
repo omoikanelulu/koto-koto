@@ -57,28 +57,21 @@ $token = Security::makeToken();
 
     <main>
         <div class="container">
-            <div class="row g-0 mb-2">
-                <div class="col-md-1"></div>
-                <div class="col-md-2">
+            <div class="row g-0">
+                <div class="col-md-8 offset-md-2 d-md-flex">
                     <form action="./user/login/index.php" method="post">
                         <input type="hidden" name="token" value="<?= $token ?>">
                         <button class="btn btn-primary" type="submit">ログイン</button>
                     </form>
-                </div>
-                <div class="col-md-2">
                     <form action="./user/add/index.php" method="post">
                         <input type="hidden" name="token" value="<?= $token ?>">
                         <button class="btn btn-success" type="submit">新規登録</button>
                     </form>
-                </div>
-
-                <div class="col-md-4">
                     <a href="./user/logout/action.php"><button type="button" class="btn btn-danger">開発用ログアウトボタン</button></a>
                 </div>
-
             </div>
             <div class="row g-0">
-                <div class="mb-2 col-md-10 offset-md-1">
+                <div class="mb-2 col-md-8 offset-md-2">
                     <div class="card">
                         <div class="card-header">
                             <h5>使い方</h5>
@@ -96,7 +89,7 @@ $token = Security::makeToken();
                 </div>
             </div>
             <div class="row g-0">
-                <div class="col-md-10 offset-md-1">
+                <div class="col-md-8 offset-md-2">
                     <div class="card">
                         <div class="card-header">
                             <h5>なぜなに「koto-koto」</h5>
@@ -114,6 +107,7 @@ $token = Security::makeToken();
                     </div>
                 </div>
             </div>
+        </div>
     </main>
 
 

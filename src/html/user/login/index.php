@@ -43,7 +43,7 @@ $token = Security::makeToken();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
@@ -54,7 +54,7 @@ $token = Security::makeToken();
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item navbar-brand">
                             <h4><?= $ins->nav_title ?></h4>
                         </li>
@@ -65,36 +65,33 @@ $token = Security::makeToken();
     </header>
 
     <main>
-        <div class="mt-5 container">
-            <form action="./action.php" method="post">
-                <fieldset>
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                        <div class="col">
+        <div class="container">
+            <div class="row g-0 mb-2">
+                <div class="col-md-8 offset-md-2">
+                    <form action="./action.php" method="post">
+                        <fieldset>
+                            <!-- 送信する内容 -->
+                            <input type="hidden" name="token" value="<?= $token ?>">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
                             <input type="email" class="form-control" id="user_mail_address" name="user_mail_address" placeholder="hoge@example.com">
-                        </div>
-                    </div>
-                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                        <div class="col">
                             <label for="pass" class="form-label">パスワード</label>
                             <input type="password" class="form-control" id="pass" name="pass" placeholder="your_password">
-                        </div>
-                    </div>
-                </fieldset>
-                <div class="row row-cols-2 d-flex justify-content-center">
-                    <div class="col form-text text-danger">
-                        <?= isset($_SESSION['err']['err_userLogin']) ? $_SESSION['err']['err_userLogin'] : '' ?>
-                    </div>
+
+                            <!-- エラーメッセージ -->
+                            <div class="col-md-12 form-text text-danger">
+                                <?= isset($_SESSION['err']['err_userLogin']) ? $_SESSION['err']['err_userLogin'] : '' ?>
+                            </div>
+
+                            <!-- ボタン -->
+                            <div class="col-md-12">
+                                <input type="submit" class="me-3 btn btn-primary" value="ログイン">
+                                <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
-                <div class="row row-cols-2 d-flex justify-content-center">
-                    <div class="col">
-                        <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+
     </main>
     <footer>
         <?php
