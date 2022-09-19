@@ -46,7 +46,7 @@ $today = $date->format('Y/m/d');
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-lg-0 d-flex justify-content-start">
+                    <ul class="navbar-nav d-inline justify-content-start">
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
@@ -62,7 +62,7 @@ $today = $date->format('Y/m/d');
                     </ul>
 
                     <!-- 年月日の入力フォーム -->
-                    <form class="invisible row" action="#">
+                    <form class="d-none row" action="#">
                         <div class="col input-group">
                             <select class="form-select" name="input_year" id="input_year">
                                 <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
@@ -90,8 +90,8 @@ $today = $date->format('Y/m/d');
                     </form>
 
                     <!-- ユーザメニュー -->
-                    <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
-                        <li class="nav-item dropstart">
+                    <ul class="navbar-nav d-inline">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
                             </a>
@@ -118,15 +118,15 @@ $today = $date->format('Y/m/d');
 
             <!-- デキゴト入力ブロック -->
             <form action="./action.php" method="post">
-                <div class="row mt-4 justify-content-end">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                <div class="row mt-4">
+                    <!-- <div class="col-sm-2"></div> -->
+                    <div class="col-md-8 offset-md-2">
                         <label class="form-label" for="thing">デキゴトの登録
                             <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"><?= empty($_SESSION['post_data']['thing']) ? '' : $_SESSION['post_data']['thing'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
                         </label>
                     </div>
-                    <div class="col-sm"></div>
+                    <!-- <div class="col-sm"></div> -->
                 </div>
 
                 <!-- thingの文字数エラーメッセージ -->
@@ -179,7 +179,7 @@ $today = $date->format('Y/m/d');
                 </div>
 
                 <!-- 対処法の記入ブロック -->
-                <div class="row mt-4 justify-content-end">
+                <div class="row mt-4">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
