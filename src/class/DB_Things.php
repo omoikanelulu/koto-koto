@@ -171,8 +171,7 @@ class DB_Things extends DB_Base
         $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
         $sql .= ' FROM things';
         $sql .= ' WHERE';
-        $sql .= ' is_deleted = 0';
-        $sql .= ' AND user_id=:user_id';
+        $sql .= ' user_id=:user_id';
         $sql .= ' AND is_deleted = 1';
         $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
