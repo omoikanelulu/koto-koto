@@ -119,37 +119,28 @@ $today = $date->format('Y/m/d');
             <!-- デキゴト入力ブロック -->
             <form action="./action.php" method="post">
                 <div class="row mt-4">
-                    <!-- <div class="col-sm-2"></div> -->
                     <div class="col-md-8 offset-md-2">
                         <label class="form-label" for="thing">デキゴトの登録
                             <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200" placeholder="デキゴトを入力してください"><?= empty($_SESSION['post_data']['thing']) ? '' : $_SESSION['post_data']['thing'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
                         </label>
                     </div>
-                    <!-- <div class="col-sm"></div> -->
                 </div>
 
                 <!-- thingの文字数エラーメッセージ -->
                 <div class="row justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                    <div class="col-md-8 offset-md-2">
                         <div class="form-text text-danger">
                             <?= isset($_SESSION['err']['err_llThing']) ? $_SESSION['err']['err_llThing'] : '' ?>
                         </div>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 属性付与ブロック -->
-                <div class="row mt-4 justify-content-start">
-                    <div class="col-sm-2"></div>
+                <div class="row mt-4">
 
                     <!-- イイコトブロック -->
-                    <!-- <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="good_thing_flag" id="good_thing_flag" onclick="goodThingRankDisabled('good_thing_rank',this.checked)" value="1">
-                        <label class="form-check-label" for="good_thing_flag">イイコト</label>
-                    </div> -->
-                    <div class="col-sm-auto align-self-center">
+                    <div class="d-md-flex col-md-8 offset-md-2">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
                             <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
@@ -158,14 +149,8 @@ $today = $date->format('Y/m/d');
                                 <?php endforeach ?>
                             </select>
                         </div>
-                    </div>
 
-                    <!-- ヤナコトブロック -->
-                    <!-- <div class="col-sm-auto align-self-center">
-                        <input class="form-check-input" type="checkbox" name="bad_thing_flag" id="bad_thing_flag" onclick="badFactorDisabled(this.checked)" value="1">
-                        <label class="form-check-label" for="bad_thing_flag">ヤナコト</label>
-                    </div> -->
-                    <div class="col-sm-auto align-self-center">
+                        <!-- ヤナコトブロック -->
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
@@ -175,40 +160,33 @@ $today = $date->format('Y/m/d');
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 対処法の記入ブロック -->
                 <div class="row mt-4">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                    <div class="col-md-8 offset-md-2">
                         <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
                             <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000" placeholder="対処法を入力"><?= empty($_SESSION['post_data']['bad_thing_approach']) ? '' : $_SESSION['post_data']['bad_thing_approach'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
                         </label>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 対処法の文字数エラーメッセージ -->
                 <div class="row justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                    <div class="col-md-8 offset-md-2">
                         <div class="form-text text-danger">
                             <?= isset($_SESSION['err']['err_llApproach']) ? $_SESSION['err']['err_llApproach'] : '' ?>
                         </div>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 送信ボタンたち -->
                 <div class="row justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                    <div class="col-md-8 offset-md-2">
                         <button class="me-3 btn btn-primary" type="submit">登録する</button>
                         <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
             </form>
         </div>
