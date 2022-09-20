@@ -15,7 +15,7 @@ $ins = new Base;
 $DBins = new DB_Things;
 
 try {
-    $thing = $DBins->thingUndo($_GET['id'], $_SESSION['login_user']['id']);
+    $DBins->thingUndo($_GET['id'], $_SESSION['login_user']['id']);
     header('Location:../show/thing_show.php');
     exit();
 } catch (Exception $e) {
