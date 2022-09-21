@@ -55,7 +55,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
 <body class="bg-light">
     <header>
         <nav class="navbar bg-opacity-75 fixed-top zindex-fixed p-0 navbar-expand-md navbar-dark bg-dark">
-            <div class="navbar-text container-fluid align-item-center">
+            <div class="navbar-text container-fluid">
                 <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
