@@ -10,6 +10,15 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// トークンの確認
+if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
+    header('Location:../../error/index.php');
+    exit('トークンが一致しません');
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 // 送信されてきたデータをサニタイズして変数に代入
 $edit_thing = Security::sanitize($_POST);
 
@@ -60,9 +69,8 @@ if ($result == false) {
 
 // どこかでエラーがあったらページをリダイレクトで戻す
 if ($has_err == true) {
-    // header('Location:./index.php', true, 307);
-    // これダメなんか、動かんな…判定はされてるけど遷移しない
-    header('Location:javascript://history.go(-1)', true, 307);
+    $_SESSION['verified']['action'] = 'OK';
+    header('Location:./index.php?id=' . urlencode($edit_thing['get_id']), true, 307);
     exit();
 }
 
@@ -75,7 +83,7 @@ $DBins = new DB_Things;
 try {
     $result = $DBins->thingUpDate($_SESSION['edit_thing'], $_SESSION['login_user']['id'], $_SESSION['thing']);
     if ($result == true) {
-        unset($_SESSION['edit_thing'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
+        unset($_SESSION['thing'], $_SESSION['edit_thing'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
         header('Location:./success.php');
         exit();
     }

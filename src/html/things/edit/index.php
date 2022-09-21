@@ -11,12 +11,29 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// 戻ってきた場合は、トークンの確認を素通りさせる
+if (isset($_SESSION['verified']['action']) == true && $_SESSION['verified']['action'] != 'OK') {
+    // トークンの確認
+    if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset($_SESSION['verified']['action']) == 'OK') {
+    unset($_SESSION['verified']['action']);
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 $ins = new Base;
 $DBins = new DB_Things;
 $get_id = $_GET['id'];
 
 try {
-    $thing = $DBins->thingSelect($_GET['id'], $_SESSION['login_user']['id']);
+    $thing = $DBins->thingSelect($get_id, $_SESSION['login_user']['id']);
     if ($thing == false) {
         throw new Exception('レコードが取得できませんでした');
     }
@@ -67,7 +84,7 @@ echo '</pre>';
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            デキゴトを編集
+                                デキゴトを編集
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
@@ -139,6 +156,7 @@ echo '</pre>';
 
             <!-- デキゴト入力ブロック -->
             <form action="./action.php" method="post">
+                <input type="hidden" name="token" value=<?= $token ?>>
                 <input type="hidden" name="get_id" value=<?= $get_id ?>>
                 <div class="row mt-4 justify-content-end">
                     <div class="col-sm-2"></div>
@@ -222,7 +240,7 @@ echo '</pre>';
                     <div class="col-sm-2"></div>
                     <div class="col-sm-auto">
                         <button class="me-3 btn btn-primary" type="submit">編集を登録</button>
-                        <button class="btn btn-secondary" type="button" onclick="location.href='../show/thing_show.php',this.clicked">キャンセル</button>
+                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                     <div class="col-sm"></div>
                 </div>
