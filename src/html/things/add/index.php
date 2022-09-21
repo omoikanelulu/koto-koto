@@ -12,6 +12,23 @@ Security::notLogin();
 
 $ins = new Base();
 
+// 戻ってきた場合は、トークンの確認を素通りさせる
+if (isset($_SESSION['verified']['action']) == true && $_SESSION['verified']['action'] != 'OK') {
+    // トークンの確認
+    if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset($_SESSION['verified']['action']) == 'OK') {
+    unset($_SESSION['verified']['action']);
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 // 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
 // 現在の日付を取得 $date->format('Y/m/d'); // 2016/01/25
 $date = new DateTime();
@@ -118,6 +135,7 @@ $today = $date->format('Y/m/d');
 
             <!-- デキゴト入力ブロック -->
             <form action="./action.php" method="post">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <div class="row mt-4">
                     <div class="col-md-8 offset-md-2">
                         <label class="form-label" for="thing">デキゴトの登録
@@ -185,7 +203,7 @@ $today = $date->format('Y/m/d');
                 <div class="row justify-content-start">
                     <div class="col-md-8 offset-md-2">
                         <button class="me-3 btn btn-primary" type="submit">登録する</button>
-                        <button class="btn btn-secondary" type="button" onclick="location.href='./index.php',this.clicked">書き直す</button>
+                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                 </div>
             </form>

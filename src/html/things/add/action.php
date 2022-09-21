@@ -10,6 +10,15 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// トークンの確認
+if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
+    header('Location:../../error/index.php');
+    exit('トークンが一致しません');
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
+
 // 送信されてきたデータをサニタイズして変数に代入
 $post = Security::sanitize($_POST);
 
@@ -39,27 +48,26 @@ unset($_SESSION['err']);
 // 値が入っていたらチェックを開始する
 if (!empty($post['thing'])) {
     $result = Validation::llCheck($post['thing'], Config::LL_THING);
-}
-
-if ($result == false) {
-    $_SESSION['err']['err_llThing'] = Config::ERR_LL_THING;
-    $result = '';
-    $has_err = true;
+    if ($result == false) {
+        $_SESSION['err']['err_llThing'] = Config::ERR_LL_THING;
+        $result = '';
+        $has_err = true;
+    }
 }
 
 // 値が入っていたらチェックを開始する
 if (!empty($post['bad_thing_approach'])) {
     $result = Validation::llCheck($post['bad_thing_approach'], Config::LL_APPROACH);
-}
-
-if ($result == false) {
-    $_SESSION['err']['err_llApproach'] = Config::ERR_LL_APPROACH;
-    $result = '';
-    $has_err = true;
+    if ($result == false) {
+        $_SESSION['err']['err_llApproach'] = Config::ERR_LL_APPROACH;
+        $result = '';
+        $has_err = true;
+    }
 }
 
 // どこかでエラーがあったらページをリダイレクトで戻す
 if ($has_err == true) {
+    $_SESSION['verified']['action'] = 'OK';
     header('Location:./index.php', true, 307);
     exit();
 }
