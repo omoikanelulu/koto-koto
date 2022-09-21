@@ -7,6 +7,10 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
+// $_SESSIONに編集前のデキゴトがあればunsetする
+if (isset($_SESSION['thing']) == true) {
+    unset($_SESSION['thing']);
+}
 // $_SESSIONにユーザが入力したデータがあればunsetする
 if (isset($_SESSION['edit_thing']) == true) {
     unset($_SESSION['edit_thing']);
