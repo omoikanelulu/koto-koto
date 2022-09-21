@@ -35,6 +35,14 @@ $date = new DateTime();
 // フォーマットを整えて変数に代入
 $today = $date->format('Y/m/d');
 
+// 今月の1日に設定
+$this_month = $date->format('Y-m-01');
+
+if (isset($_POST['search_date']) == false) {
+    $search_date = $this_month;
+} else {
+    $search_date = $_POST['search_date'];
+}
 
 ?>
 
@@ -54,7 +62,7 @@ $today = $date->format('Y/m/d');
 
 <body class="bg-light">
     <header>
-        <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
                 <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
@@ -63,7 +71,7 @@ $today = $date->format('Y/m/d');
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-inline justify-content-start">
+                    <ul class="navbar-nav d-inline">
                         <!-- ここからドロップダウンメニュー -->
                         <!-- ページ移動メニュー -->
                         <li class="nav-item dropdown">
@@ -78,34 +86,6 @@ $today = $date->format('Y/m/d');
                         </li>
                     </ul>
 
-                    <!-- 年月日の入力フォーム -->
-                    <form class="d-none row" action="#">
-                        <div class="col input-group">
-                            <select class="form-select" name="input_year" id="input_year">
-                                <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
-                                    <option value="$i"><?= $i ?></option>
-                                <?php endfor ?>
-                            </select>
-                            <label class="input-group-text" for="input_year">年</label>
-                        </div>
-                        <div class="col input-group">
-                            <select class="form-select" name="input_month" id="input_month">
-                                <?php foreach (Config::MONTHS as $key => $val) : ?>
-                                    <option value=<?= $val ?>><?= $val ?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_month">月</label>
-                        </div>
-                        <div class="col input-group">
-                            <select class="form-select" name="input_day" id="input_day">
-                                <?php foreach (Config::DAYS as $key => $val) : ?>
-                                    <option value=<?= $val ?>><?= $val ?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_day">日</label>
-                        </div>
-                    </form>
-
                     <!-- ユーザメニュー -->
                     <ul class="navbar-nav d-inline">
                         <li class="nav-item dropdown">
@@ -119,6 +99,20 @@ $today = $date->format('Y/m/d');
                             </ul>
                         </li>
                     </ul>
+
+                    <!-- 年月日の入力フォーム -->
+                    <form class="d-none row me-auto d-flex justify-content-start" id="search_date_form" action="#" method="post">
+                        <div class="navbar-nav mb-lg-0">
+                            <div class="col-sm input-group">
+                                <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                                <!-- アイコン表示されないな…そこにあるっぽいのに -->
+                                <i class="bi bi-calendar" id="search_date_icon"></i>
+                            </div>
+                            <div class="col-sm input-group">
+                                <input class="btn" type="submit" id="search_date_submit" value="以降を表示">
+                            </div>
+                        </div>
+                    </form>
                     <!-- ここまでドロップダウンメニュー -->
                 </div>
             </div>
