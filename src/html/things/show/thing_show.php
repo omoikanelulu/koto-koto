@@ -55,57 +55,68 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
 <body class="bg-light">
     <header>
         <nav class="navbar bg-opacity-75 fixed-top zindex-fixed p-0 navbar-expand-md navbar-dark bg-dark">
-            <div class="navbar-text container-fluid">
-                <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
-                    <h1><?= Config::SITE_TITLE ?> |</h1>
-                </a>
+            <div class="navbar-text container-fluid row">
+                <div class="col-md-auto">
+                    <a class="navbar-brand d-flex align-items-center" href="<?= $ins->top_page_url ?>">
+                        <h1><?= Config::SITE_TITLE ?> |</h1>
+                    </a>
+                </div>
+                <!-- 幅が小さくなると表示されるボタンを用意する、この中にメニューが入る -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-1 mb-lg-0">
-                        <!-- ここからドロップダウンメニュー -->
-                        <!-- ページ移動メニュー -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= $ins->nav_title ?>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
-                                <?php endforeach ?>
-                            </ul>
-                        </li>
-                    </ul>
 
-                    <!-- 年月日の入力フォーム -->
-                    <form class="row me-auto d-flex justify-content-start" id="search_date_form" action="#" method="post">
-                        <div class="navbar-nav mb-lg-0">
-                            <div class="col-sm input-group">
-                                <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
-                                <i class="bi bi-calendar" id="search_date_icon"></i>
-                            </div>
-                            <div class="col-sm input-group">
-                                <input class="btn" type="submit" id="search_date_submit" value="以降を表示">
-                            </div>
-                        </div>
-                    </form>
+                <!-- この中身idで括っている部分がボタンの中に入る事になる -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- ページ移動メニュー -->
+                    <div class="col-md-auto">
+                        <ul class="navbar-nav me-1 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?= $ins->nav_title ?>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                    <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
+                                        <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
+                                    <?php endforeach ?>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
 
                     <!-- ユーザメニュー -->
-                    <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
-                        <li class="nav-item dropstart">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
-                            </a>
-                            <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
-                                <?php endforeach ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- ここまでドロップダウンメニュー -->
+                    <div class="col-md-auto">
+                        <ul class="navbar-nav mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
+                                </a>
+                                <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                    <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
+                                        <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
+                                    <?php endforeach ?>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 年月日の入力フォーム -->
+                    <div class="col-md-auto">
+                        <form class="d-flex justify-content-start" id="search_date_form" action="#" method="post">
+                            <div class="navbar-nav mb-lg-0">
+                                <div class="col-sm input-group">
+                                    <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                                    <i class="bi bi-calendar" id="search_date_icon"></i>
+                                </div>
+                                <div class="col-sm input-group">
+                                    <input class="btn" type="submit" id="search_date_submit" value="以降を表示">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <!-- ここまで この中身idで括っている部分がボタンの中に入る事になる -->
             </div>
         </nav>
     </header>
