@@ -10349,6 +10349,10 @@ main .container {
   color: rgb(255, 255, 255);
 }
 
+.navbar-dark .navbar-text {
+  color: rgb(255, 255, 255);
+}
+
 .right_bg_line {
   padding: 0.5rem 0;
   border-image-source: linear-gradient(140deg, #bacaee 4%, #3d5c78 60%);
