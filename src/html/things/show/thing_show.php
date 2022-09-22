@@ -98,17 +98,29 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                     </ul>
 
                     <!-- 年月日の入力フォーム -->
-                    <form class="row" id="search_date_form" action="#" method="post">
+                    <!-- <form class="row" id="search_date_form" action="#" method="post">
                         <div class="navbar-nav mb-lg-0">
                             <div class="">
                                 <input class="col" type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
                                 <i class="bi bi-calendar" id="search_date_icon"></i>
-                                <!-- </div> -->
-                                <!-- <div class=""> -->
                                 <input class="d-inline-block btn" type="submit" id="search_date_submit" value="以降を表示">
                             </div>
                         </div>
-                    </form>
+                    </form> -->
+                    <!-- 年月日の入力フォーム -->
+                    <div class="col-md-auto">
+                        <form class="d-flex justify-content-start" id="search_date_form" action="#" method="post">
+                            <div class="navbar-nav mb-lg-0">
+                                <div class="col-sm input-group">
+                                    <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                                    <i class="bi bi-calendar" id="search_date_icon"></i>
+                                </div>
+                                <div class="col-sm input-group">
+                                    <input class="btn" type="submit" id="search_date_submit" value="以降を表示">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <!-- ここまで この中身idで括っている部分がボタンの中に入る事になる -->
             </div>
