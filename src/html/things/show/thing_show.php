@@ -131,32 +131,34 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
 
                             <div class="row m-2 justify-content-start align-items-center">
                                 <!-- イイコトの順位表示 -->
-                                <div class="col-sm-1 text-center">
+                                <div class="col-sm-2 col-md-1 text-center">
                                     <p class="mb-0 bg-good-thing rounded-pill"><?= $thing['good_thing_flag'] == '0' ? '' : $thing['good_thing_rank'] ?></p>
                                 </div>
 
                                 <!-- ヤナコトの強度表示 -->
-                                <div class="col-sm-1 text-center">
+                                <div class="col-sm-2 col-md-1 text-center">
                                     <p class="mb-0 bg-bad-thing rounded-pill"><?= $thing['bad_thing_flag'] == '0' ? '' : $thing['bad_thing_level'] ?></p>
                                 </div>
 
                                 <!-- thingを表示 -->
-                                <div class="col-sm-8">
+                                <div class="col-sm-8 col-md-10 justify-content-start">
                                     <p class="mb-0"><?= $thing['thing'] ?></p>
                                 </div>
 
-                                <!-- 各種ボタンを表示 -->
-                                <div class="col-sm-1 text-center">
-                                    <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
-                                </div>
-                                <div class="col-sm-1 text-center">
-                                    <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
-                                </div>
                             </div>
                             <div class="row m-2">
                                 <!-- 対処法が保存されていたら表示 -->
                                 <div class="col-sm d-flex justify-content-end align-items-center">
                                     <p class="<?= empty($thing['bad_thing_approach']) ? 'invisible' : '' ?> bg-bad-approach rounded-pill"><?= $thing['bad_thing_approach'] ?></p>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end m-2">
+                                <!-- 各種ボタンを表示 -->
+                                <div class="col-auto text-center">
+                                    <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
+                                </div>
+                                <div class="col-auto text-center">
+                                    <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
                                 </div>
                             </div>
                         <?php endforeach ?>
