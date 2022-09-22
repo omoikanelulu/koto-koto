@@ -54,9 +54,9 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
 
 <body class="bg-light">
     <header>
-        <nav class="navbar bg-opacity-75 fixed-top zindex-fixed p-0 navbar-expand-md navbar-dark bg-dark">
-            <div class="navbar-text container-fluid row">
-                <div class="col-md-auto">
+        <nav class="navbar bg-opacity-75 fixed-top zindex-fixed justify-content-center p-0 navbar-expand-md navbar-dark bg-dark">
+            <div class="navbar-text container-fluid">
+                <div class="">
                     <a class="navbar-brand d-flex align-items-center" href="<?= $ins->top_page_url ?>">
                         <h1><?= Config::SITE_TITLE ?> |</h1>
                     </a>
@@ -70,51 +70,45 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <!-- ページ移動メニュー -->
-                    <div class="col-md-auto">
-                        <ul class="navbar-nav me-1 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?= $ins->nav_title ?>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                    <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
-                                        <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
-                                    <?php endforeach ?>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="navbar-text nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?= $ins->nav_title ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
+                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </li>
+                    </ul>
 
                     <!-- ユーザメニュー -->
-                    <div class="col-md-auto">
-                        <ul class="navbar-nav mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
-                                </a>
-                                <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                    <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
-                                        <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
-                                    <?php endforeach ?>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="navbar-text nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
+                            </a>
+                            <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
+                                    <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </li>
+                    </ul>
 
                     <!-- 年月日の入力フォーム -->
-                    <div class="col-md-auto">
-                        <form class="d-flex justify-content-start" id="search_date_form" action="#" method="post">
-                            <div class="navbar-nav mb-lg-0">
-                                <div class="col-sm input-group">
-                                    <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
-                                    <i class="bi bi-calendar" id="search_date_icon"></i>
-                                </div>
-                                <div class="col-sm input-group">
-                                    <input class="btn" type="submit" id="search_date_submit" value="以降を表示">
-                                </div>
+                    <form class="row" id="search_date_form" action="#" method="post">
+                        <div class="navbar-nav mb-lg-0">
+                            <div class="">
+                                <input class="col" type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                                <i class="bi bi-calendar" id="search_date_icon"></i>
+                                <!-- </div> -->
+                                <!-- <div class=""> -->
+                                <input class="d-inline-block btn" type="submit" id="search_date_submit" value="以降を表示">
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
                 <!-- ここまで この中身idで括っている部分がボタンの中に入る事になる -->
             </div>
