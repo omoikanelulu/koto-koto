@@ -10354,7 +10354,7 @@ main .container {
 }
 
 .right_bg_line {
-  padding: 0.5rem 0;
+  padding: 0.2rem 0;
   border-image-source: linear-gradient(140deg, #bacaee 4%, #3d5c78 60%);
   border-image-slice: 0 fill;
   border-image-outset: 0 100vw 0 1rem;
@@ -10362,10 +10362,14 @@ main .container {
 
 .bg-good-thing {
   background-color: #5fe68c;
+  max-width: 50px;
+  min-width: 50px;
 }
 
 .bg-bad-thing {
   background-color: #e86a5c;
+  max-width: 50px;
+  min-width: 50px;
 }
 
 .bg-bad-approach {
