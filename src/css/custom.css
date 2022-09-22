@@ -10412,6 +10412,7 @@ main .container {
   background-color: #344f67;
   border: none;
   color: #fff;
+  margin: 0;
 }
 
 input[type=date]::-webkit-calendar-picker-indicator {
