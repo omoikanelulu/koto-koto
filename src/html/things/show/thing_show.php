@@ -98,25 +98,13 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                     </ul>
 
                     <!-- 年月日の入力フォーム -->
-                    <!-- <form class="row" id="search_date_form" action="#" method="post">
-                        <div class="navbar-nav mb-lg-0">
-                            <div class="">
-                                <input class="col" type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
-                                <i class="bi bi-calendar" id="search_date_icon"></i>
-                                <input class="d-inline-block btn" type="submit" id="search_date_submit" value="以降を表示">
-                            </div>
-                        </div>
-                    </form> -->
-                    <!-- 年月日の入力フォーム -->
-                    <div class="col-md-auto">
+                    <div class="navbar-nav col-md-auto">
                         <form class="d-flex justify-content-start" id="search_date_form" action="#" method="post">
-                            <div class="navbar-nav mb-lg-0">
-                                <div class="col-sm input-group">
-                                    <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                            <div class="row mb-lg-0">
+                                <div class="px-0 col-sm input-group">
+                                    <input class="me-2" type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
                                     <i class="bi bi-calendar" id="search_date_icon"></i>
-                                </div>
-                                <div class="col-sm input-group">
-                                    <input class="btn" type="submit" id="search_date_submit" value="以降を表示">
+                                    <input class="btn rounded-pill" type="submit" id="search_date_submit" value="以降を表示">
                                 </div>
                             </div>
                         </form>
@@ -160,7 +148,7 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                             </div>
                             <div class="row m-2">
                                 <!-- 対処法が保存されていたら表示 -->
-                                <div class="col-sm d-flex justify-content-end align-items-center">
+                                <div class="col-sm-10 offset-sm-2 d-flex justify-content-end align-items-center">
                                     <p class="<?= empty($thing['bad_thing_approach']) ? 'invisible' : '' ?> bg-bad-approach rounded-pill"><?= $thing['bad_thing_approach'] ?></p>
                                 </div>
                             </div>
