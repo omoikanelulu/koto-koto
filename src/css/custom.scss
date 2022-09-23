@@ -150,7 +150,7 @@ h1,
     margin-bottom: 1rem;
 }
 
-main .container{
+main .container {
     // コンテナは400pxより小さくならない
     min-width: 400px;
 }
@@ -208,32 +208,30 @@ main .container{
     background-color: transparent;
     border: none;
     color: #fff;
-    padding: 8px;
+    padding: 8px 8px 8px 4px;
 }
 
 // カレンダーのアイコン
 #search_date_icon {
     position: absolute;
-    right: 10px;
-    bottom: 8px;
+    left: 90px;
+    top: 8px;
     color: #fff;
     z-index: -100;
 }
 
-@media only screen and (max-width: 992px) {
-    #search_date_icon {
-        position: absolute;
-        left: 92px;
-        bottom: 8px;
-        color: #fff;
-        z-index: -100;
-    }
-}
+// @media only screen and (max-width: 992px) {
+//     #search_date_icon {
+//         position: absolute;
+//         left: 92px;
+//         bottom: 8px;
+//         color: #fff;
+//         z-index: -100;
+//     }
+// }
 
 // 日付検索のボタン
 #search_date_submit {
-    position: absolute;
-    left: 15px;
     background-color: darken($dark, 5%);
     border: none;
     color: #fff;

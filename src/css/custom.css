@@ -10386,29 +10386,18 @@ main .container {
   background-color: transparent;
   border: none;
   color: #fff;
-  padding: 8px;
+  padding: 8px 8px 8px 4px;
 }
 
 #search_date_icon {
   position: absolute;
-  right: 10px;
-  bottom: 8px;
+  left: 90px;
+  top: 8px;
   color: #fff;
   z-index: -100;
 }
 
-@media only screen and (max-width: 992px) {
-  #search_date_icon {
-    position: absolute;
-    left: 92px;
-    bottom: 8px;
-    color: #fff;
-    z-index: -100;
-  }
-}
 #search_date_submit {
-  position: absolute;
-  left: 15px;
   background-color: #344f67;
   border: none;
   color: #fff;
