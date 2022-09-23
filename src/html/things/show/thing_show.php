@@ -56,11 +56,9 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
     <header>
         <nav class="navbar bg-opacity-75 fixed-top zindex-fixed justify-content-center p-0 navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
-                <div class="">
-                    <a class="navbar-brand d-flex align-items-center" href="<?= $ins->top_page_url ?>">
-                        <h1><?= Config::SITE_TITLE ?> |</h1>
-                    </a>
-                </div>
+                <a class="navbar-brand d-flex align-items-center" href="<?= $ins->top_page_url ?>">
+                    <h1><?= Config::SITE_TITLE ?> |</h1>
+                </a>
                 <!-- 幅が小さくなると表示されるボタンを用意する、この中にメニューが入る -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
