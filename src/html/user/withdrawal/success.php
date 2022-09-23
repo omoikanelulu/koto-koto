@@ -25,41 +25,34 @@ $ins = new Base();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item navbar-brand">
-                            <h4><?= $ins->nav_title ?></h4>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item navbar-brand">
+                        <h4><?= $ins->nav_title ?></h4>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 
     <main>
         <div class="mt-5 container">
-            <div class="row row-cols-3 d-flex justify-content-center">
-                <div class="col">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md mb-4">
                     <p>退会処理が完了しました</p>
-                    <p class="mb-4">ご利用ありがとうございました</p>
+                    <p>ご利用ありがとうございました</p>
                 </div>
-                <div class="col"></div>
             </div>
-            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                <div class="col">
+            <div class="mb-4 row d-flex justify-content-center">
+                <div class="col-md">
                     <a href=<?= $ins->nav_user_menus['ログアウト'] ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
-                <div class="col"></div>
             </div>
     </main>
     <footer>
