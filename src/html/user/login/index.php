@@ -11,8 +11,8 @@ Security::session();
 $ins = new Base();
 
 // confirmページから戻ってきた場合は、トークンの確認を素通りさせる
-if (!isset($_SESSION['verified']) == 'action') {
-    // トークンの確認
+if (isset($_SESSION['verified']['action']) == true && $_SESSION['verified']['action'] != 'OK') {
+    // 通行証が確認出来ない場合、トークンの確認を行う
     if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
         header('Location:../../error/index.php');
         exit('トークンが一致しません');
@@ -20,8 +20,8 @@ if (!isset($_SESSION['verified']) == 'action') {
 }
 
 // トークンの確認の素通りを解除する
-if (isset($_SESSION['verified']) == true) {
-    unset($_SESSION['verified']);
+if (isset($_SESSION['verified']['action']) == true) {
+    unset($_SESSION['verified']['action']);
 }
 
 // 新しいトークンの生成

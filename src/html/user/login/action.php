@@ -24,6 +24,8 @@ $post = Security::sanitize($_POST);
 
 // 配列$postの中に空の物がないかチェック
 if (empty($post) == true) {
+    // 空だったら通行証を持たせて前のページ戻す
+    $_SESSION['verified']['action'] = 'OK';
     $_SESSION['err']['err_userLogin'] = Config::ERR_USER_LOGIN;
     header('Location:./index.php');
     exit();
