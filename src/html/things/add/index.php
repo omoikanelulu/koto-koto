@@ -105,7 +105,6 @@ if (isset($_POST['search_date']) == false) {
                         <div class="navbar-nav mb-lg-0">
                             <div class="col-sm input-group">
                                 <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
-                                <!-- アイコン表示されないな…そこにあるっぽいのに -->
                                 <i class="bi bi-calendar" id="search_date_icon"></i>
                             </div>
                             <div class="col-sm input-group">
@@ -152,7 +151,7 @@ if (isset($_POST['search_date']) == false) {
                 <div class="row mt-4">
 
                     <!-- イイコトブロック -->
-                    <div class="d-md-flex col-md-8 offset-md-2">
+                    <div class="d-lg-flex col-md-7 offset-md-2">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
                             <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
