@@ -128,21 +128,16 @@ if ($has_err == true) {
 
 <body class="bg-light">
     <header>
-        <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item navbar-brand">
-                            <h4><?= $ins->nav_title ?></h4>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item navbar-brand">
+                        <h4><?= $ins->nav_title ?></h4>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -152,124 +147,75 @@ if ($has_err == true) {
             <form action="./action.php" method="POST">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col mb-4">
-                            <p>以下の内容で登録します、</p>
-                            <p>よろしいですか？</p>
+                    <input type="hidden" name="token" value="<?= $token ?>">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-8 mb-4">
+                            <p>登録内容を入力してください</p>
                         </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
+                        <div class="col-md-8 mb-2">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?= $post['user_name'] ?>>
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['user_name'] : '' ?>>
                         </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
+                        <div class="col-md-8 mb-2">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" value=<?= $post['family_name'] ?>>
+                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['family_name'] : '' ?>>
                         </div>
-                        <div class="col">
+                        <div class="col-md-8 mb-2">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" value=<?= $post['first_name'] ?>>
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['first_name'] : '' ?>>
                         </div>
-                    </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                    </div>
-                    <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
+                        <div class="col-md-8">
                             <label for="" class="form-label">生年月日</label>
-                            <div class="input-group mb-3">
-                                <select class="form-select" id="birth_date_year">
-                                    <option selected><?= $post['birth_date_year'] ?></option>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <select class="form-select" name="birth_date_year" id="birth_date_year">
+                                    <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?></option>
+                                    <?php for ($i = $ins->this_year; $i >= $ins->this_year - 100; $i--) : ?>
+                                        <option value=<?= $i ?>><?= $i ?></option>
+                                    <?php endfor ?>
                                 </select>
                                 <label class="input-group-text" for="birth_date_year">年</label>
                             </div>
                         </div>
-                        <div class="me-2 row row-cols-2 d-flex justify-content-center align-items-end">
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <select class="form-select" id="birth_date_month">
-                                        <option selected><?= $post['birth_date_month'] ?></option>
+                        <div class="row p-0 mb-2 justify-content-center">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <select class="form-select" name="birth_date_month" id="birth_date_month">
+                                        <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?></option>
+                                        <?php foreach (Config::MONTHS as $key => $val) : ?>
+                                            <option value=<?= $val ?>><?= $val ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                     <label class="input-group-text" for="birth_date_month">月</label>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <select class="form-select" id="birth_date_day">
-                                        <option selected><?= $post['birth_date_day'] ?></option>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <select class="form-select" name="birth_date_day" id="birth_date_day">
+                                        <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?></option>
+                                        <?php foreach (Config::DAYS as $key => $val) : ?>
+                                            <option value=<?= $val ?>><?= $val ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                     <label class="input-group-text" for="birth_date_day">日</label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
+                        <div class="col-md-8 mb-2">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" value=<?= $post['user_mail_address'] ?>>
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="your@example.com" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['user_mail_address'] : '' ?>>
                         </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <label for="pass" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" id="pass" value=<?= $post['pass'] ?>>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col"></div>
                     </div>
                 </fieldset>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
-                        <button type="submit" class="me-3 btn btn-success">登録</button>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-success">登録</button>
+                        <a href="./index.php"><input type="button" class="btn btn-secondary" value="前のページ戻る"></a>
+                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
                 </div>
             </form>
-
-            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                <div class="col">
-                    <form action="./index.php" method="post">
-                        <input type="hidden" name="token" value="<?= $token ?>">
-                        <button type="submit" class="btn btn-secondary">前のページに戻る</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                <div class="col">
-                    <form action="./cancel.php" method="post">
-                        <input type="hidden" name="token" value="<?= $token ?>">
-                        <button type="submit" class="btn btn-danger">キャンセル</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </main>
     <footer>
