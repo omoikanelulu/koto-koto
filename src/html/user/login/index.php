@@ -10,7 +10,7 @@ Security::session();
 
 $ins = new Base();
 
-// confirmページから戻ってきた場合は、トークンの確認を素通りさせる
+// actionページから戻ってきた場合は、トークンの確認を素通りさせる
 if (isset($_SESSION['verified']['action']) == true && $_SESSION['verified']['action'] != 'OK') {
     // 通行証が確認出来ない場合、トークンの確認を行う
     if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
@@ -62,10 +62,10 @@ $token = Security::makeToken();
     <main>
         <div class="container">
             <form action="./action.php" method="post">
+                <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset>
                     <div class="row mb-2">
                         <!-- 送信する内容 -->
-                        <input type="hidden" name="token" value="<?= $token ?>">
                         <div class="col-md-8 offset-md-2 mb-2">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
                             <input type="email" class="form-control" id="user_mail_address" name="user_mail_address" placeholder="hoge@example.com">
@@ -75,8 +75,9 @@ $token = Security::makeToken();
                             <input type="password" class="form-control" id="pass" name="pass" placeholder="your_password">
                         </div>
                     </div>
+
+                    <!-- エラーメッセージ -->
                     <div class="row">
-                        <!-- エラーメッセージ -->
                         <div class="col-md-8 offset-md-2 mb-2 form-text text-danger">
                             <?= isset($_SESSION['err']['err_userLogin']) ? $_SESSION['err']['err_userLogin'] : '' ?>
                         </div>
