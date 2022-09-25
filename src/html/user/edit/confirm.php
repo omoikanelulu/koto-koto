@@ -83,29 +83,7 @@ if (isset($post['pass']) == true) { // 変数が定義されている場合に�
     }
 }
 
-// 確認用メールアドレスが正しいかチェック
-if (isset($post['user_mail_address'], $post['user_mail_address_check']) == true) { // 変数が定義されている場合にチェックする
-    $result = Validation::isMatched($post['user_mail_address'], $post['user_mail_address_check']);
-    if ($result == false) { // NGの場合
-        $_SESSION['err']['err_is_matched_mail'] = Config::ERR_IS_MATCHED;
-        $has_ng = true;
-    } else {
-        $result = '';
-    }
-}
-
-// 確認用パスワードが正しいかチェック
-if (isset($post['pass'], $post['pass_check']) == true) { // 変数が定義されている場合にチェックする
-    $result = Validation::isMatched($post['pass'], $post['pass_check']);
-    if ($result == false) { // NGの場合
-        $_SESSION['err']['err_is_matched_pass'] = Config::ERR_IS_MATCHED;
-        $has_ng = true;
-    } else {
-        $result = '';
-    }
-}
-
-// // チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307はpostデータをそのまま引き継ぐ
+// チェックのどこかでNGがあった場合、入力画面にリダイレクトする。HTTPコード307はpostデータをそのまま引き継ぐ
 if ($has_ng == true) {
     // 通行証を渡す
     $_SESSION['verified']['confirm'] = 'OK';
@@ -130,23 +108,18 @@ if ($has_ng == true) {
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item navbar-brand">
-                            <h4><?= $ins->nav_title ?></h4>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item navbar-brand">
+                        <h4><?= $ins->nav_title ?></h4>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
