@@ -11,10 +11,24 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
-// トークン生成
-$token = Security::makeToken();
-
 $ins = new Base();
+
+// account_editページから戻ってきた場合は、トークンの確認を素通りさせる
+if (isset($_SESSION['verified']['account_edit']) == true && $_SESSION['verified']['account_edit'] != 'OK') {
+    // 通行証が確認出来ない場合、トークンの確認を行う
+    if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset($_SESSION['verified']['account_edit']) == true) {
+    unset($_SESSION['verified']['account_edit']);
+}
+
+// 新しいトークンの生成
+$token = Security::makeToken();
 
 ?>
 
@@ -32,59 +46,57 @@ $ins = new Base();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item navbar-brand">
-                            <h4><?= $ins->nav_title ?></h4>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item navbar-brand">
+                        <h4><?= $ins->nav_title ?></h4>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 
     <main>
-        <div class="mt-5 container">
-            <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                <p>ユーザ情報を編集するには、再ログインしてください</p>
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-md-8 offset-md-2 mb-2">
+                    <p>ユーザ情報を編集するには、再ログインしてください</p>
+                </div>
             </div>
+
             <form action="./account_edit.php" method="post">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset>
-                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                        <div class="col">
+                    <div class="row mb-2">
+                        <div class="col-md-8 offset-md-2 mb-2">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
                             <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com">
                         </div>
-                    </div>
-                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                        <div class="col">
+                        <div class="col-md-8 offset-md-2">
                             <label for="pass" class="form-label">パスワード</label>
                             <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password">
                         </div>
                     </div>
+
+                    <!-- エラーメッセージ -->
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2 mb-2 form-text text-danger">
+                            <?= isset($_SESSION['err']['err_checkId']) ? $_SESSION['err']['err_checkId'] : '' ?>
+                        </div>
+
+                        <!-- ボタン -->
+                        <div class="col-md-8 offset-md-2">
+                            <input type="submit" class="me-3 btn btn-primary" value="ログイン">
+                            <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                        </div>
+                    </div>
                 </fieldset>
-                <div class="row row-cols-2 d-flex justify-content-center">
-                    <div class="col form-text text-danger">
-                        <?= isset($_SESSION['err']['err_checkId']) ? $_SESSION['err']['err_checkId'] : '' ?>
-                    </div>
-                </div>
-                <div class="row row-cols-2 d-flex justify-content-center">
-                    <div class="col">
-                        <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
-                    </div>
-                </div>
             </form>
         </div>
     </main>
