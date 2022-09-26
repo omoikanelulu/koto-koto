@@ -11,23 +11,6 @@ Security::session();
 // ログインしていない場合トップページへリダイレクトする
 Security::notLogin();
 
-// confirmページから戻ってきた場合は、トークンの確認を素通りさせる
-if (!isset($_SESSION['verified']['confirm']) == 'OK') {
-    // トークンの確認
-    if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
-        header('Location:../../error/index.php');
-        exit('トークンが一致しません');
-    }
-}
-
-// トークンの確認の素通りを解除する
-if (isset($_SESSION['verified']['confirm']) == true) {
-    unset($_SESSION['verified']['confirm']);
-}
-
-// 新しいトークンの生成
-$token = Security::makeToken();
-
 $ins = new Base();
 
 // POSTされてきたデータをサニタイズして$postへ代入
@@ -125,75 +108,43 @@ if ($has_ng == true) {
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <form action="./action.php" method="POST">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <p class="mb-4">下記の内容で編集してよろしいですか？</p>
+                    <div class="row mb-4">
+                        <div class="col-md-8 offset-md-2 mb-2">
+                            <p>下記の内容で編集してよろしいですか？</p>
                         </div>
-                        <div class="col"></div>
                     </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <!-- <input type="checkbox" name="user_name_edit" id="user_name"> -->
-                            <label for="user_name" class="form-label">ユーザ名</label>
+
+                    <div class="row mb-2">
+                        <div class="col-md-8 offset-md-2 mb-2">
+                            <label for="user_name" class="form-label">新しいユーザ名</label>
                             <input type="text" class="form-control" name="user_name" id="user_name" value=<?= isset($post['user_name']) ? $post['user_name'] : '' ?>>
                         </div>
-                        <div class="col"></div>
                     </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            <?= isset($_SESSION['err']['err_ll_user_name']) ? $_SESSION['err']['err_ll_user_name'] : '' ?>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <!-- <input type="checkbox" name="user_mail_address_edit" id="user_mail_address"> -->
-                            <label for="user_mail_address" class="form-label">メールアドレス</label>
+
+                    <div class="row mb-2">
+                        <div class="col-md-8 offset-md-2 mb-2">
+                            <label for="user_mail_address" class="form-label">新しいメールアドレス</label>
                             <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($post['user_mail_address']) ? $post['user_mail_address'] : '' ?>>
                         </div>
-                        <div class="invisible col">
-                            <label for="user_mail_address_check" class="form-label">メールアドレス確認用</label>
-                            <input type="email" class="form-control" name="user_mail_address_check" id="user_mail_address_check" placeholder="hoge@example.com">
-                        </div>
                     </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            <?= isset($_SESSION['err']['err_ll_user_mail_address']) ? $_SESSION['err']['err_ll_user_mail_address'] : '' ?>
-                        </div>
-                        <div class="col form-text text-danger">
-                            <?= isset($_SESSION['err']['err_is_matched_user_mail_address']) ? $_SESSION['err']['err_is_matched_user_mail_address'] : '' ?>
-                        </div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
-                            <!-- <input type="checkbox" name="pass_edit" id="pass"> -->
-                            <label for="pass" class="form-label">パスワード</label>
+
+                    <div class="row mb-4">
+                        <div class="col-md-8 offset-md-2">
+                            <label for="pass" class="form-label">新しいパスワード</label>
                             <input type="password" class="form-control" name="pass" id="pass" value=<?= isset($post['pass']) ? $post['pass'] : '' ?>>
-                        </div>
-                        <div class="invisible col">
-                            <label for="pass_check" class="form-label">パスワード確認用</label>
-                            <input type="password" class="form-control" name="pass_check" id="pass_check" placeholder="your_password">
-                        </div>
-                    </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            <?= isset($_SESSION['err']['err_ll_pass']) ? $_SESSION['err']['err_ll_pass'] : '' ?>
-                        </div>
-                        <div class="col form-text text-danger">
-                            <?= isset($_SESSION['err']['err_is_matched_pass']) ? $_SESSION['err']['err_is_matched_pass'] : '' ?>
                         </div>
                     </div>
                 </fieldset>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
+
+                <!-- ボタン -->
+                <div class="row mb-2">
+                    <div class="col-md-8 offset-md-2">
                         <button type="submit" class="me-3 btn btn-success">編集する</button>
                         <a href="./account_edit.php"><button type="button" class="me-3 btn btn-secondary">前の画面に戻る</button></a>
-                    </div>
-                    <div class="col">
                         <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
                 </div>

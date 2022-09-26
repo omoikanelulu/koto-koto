@@ -33,7 +33,7 @@ $ins = new Base();
 $post = Security::sanitize($_POST);
 
 if (isset($post)) {
-    if (!isset($_SESSION['verified']['checkId'])) {
+    if (!isset($_SESSION['verified']['checkId']) || $_SESSION['verified']['checkId'] != 'OK') {
         // 入力されたIDとPASSをログイン情報と比較し、本人確認する
         $check_id = Security::checkId($post['user_mail_address'], $post['pass'], $_SESSION['login_user']['user_mail_address'], $_SESSION['login_user']['pass']);
 
@@ -82,15 +82,14 @@ if (isset($post)) {
         </nav>
     </header>
 
-
     <main>
         <div class="container">
             <form action="./confirm.php" method="POST">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset>
-                    <div class="row mb-2">
+                    <div class="row mb-4">
                         <div class="col-md-8 offset-md-2 mb-2">
-                            <p class="mb-4">編集する項目にチェックを入れてください</p>
+                            <p>編集する項目にチェックを入れてください</p>
                         </div>
                     </div>
                     <!-- 新規ユーザ名入力 -->
@@ -132,6 +131,8 @@ if (isset($post)) {
                         </div>
                     </div>
                 </fieldset>
+
+                <!-- 入力値がない時のエラーメッセージ表示 -->
                 <div class="row mb-2">
                     <div class="col-md-8 offset-md-2 mb-2 form-text text-danger">
                         <?= isset($_SESSION['err']['err_isArrayEmpty']) ? $_SESSION['err']['err_isArrayEmpty'] : '' ?>
