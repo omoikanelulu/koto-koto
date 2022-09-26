@@ -10,10 +10,18 @@ Security::session();
 // インスタンス作成
 $ins = new Base();
 
-// トークンの確認
-if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
-    header('Location:../../error/index.php');
-    exit('トークンが一致しません');
+// actionページから戻ってきた場合は、トークンの確認を素通りさせる
+if (isset($_SESSION['verified']['action']) == true && $_SESSION['verified']['action'] != 'OK') {
+    // トークンの確認
+    if (Security::matchedToken($_POST['token'], $_SESSION['token']) == false) {
+        header('Location:../../error/index.php');
+        exit('トークンが一致しません');
+    }
+}
+
+// トークンの確認の素通りを解除する
+if (isset($_SESSION['verified']['action']) == 'OK') {
+    unset($_SESSION['verified']['action']);
 }
 
 // 新しいトークンの生成
@@ -147,7 +155,6 @@ if ($has_err == true) {
             <form action="./action.php" method="POST">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>
-                    <input type="hidden" name="token" value="<?= $token ?>">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-8 mb-4">
                             <p>登録内容を入力してください</p>
@@ -208,8 +215,10 @@ if ($has_err == true) {
                         </div>
                     </div>
                 </fieldset>
+
+                <!-- ボタン -->
                 <div class="row d-flex justify-content-center">
-                    <div class="col-md-8">
+                    <div class="mt-4 col-md-8">
                         <button type="submit" class="btn btn-success">登録</button>
                         <a href="./index.php"><input type="button" class="btn btn-secondary" value="前のページ戻る"></a>
                         <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
