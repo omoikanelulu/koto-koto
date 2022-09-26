@@ -42,7 +42,7 @@ $ins = new Base();
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <div class="row">
                 <div class="col-md-8  offset-md-2 mb-4">
                     <p>退会処理が完了しました</p>
