@@ -43,19 +43,21 @@ $ins = new Base();
     </header>
 
     <main>
-        <div class="mt-5 container">
-        <div class="row d-flex justify-content-center">
-                <div class="col-md mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8  offset-md-2 mb-4">
                     <p>ユーザ登録が完了しました</p>
                     <p>トップページよりログインし、ご利用ください</p>
                 </div>
             </div>
-            <div class="mb-4 row d-flex justify-content-center">
-                <div class="col-md">
+            <div class="row">
+                <div class="col-md-8  offset-md-2 mb-4">
                     <a href=<?= $ins->nav_user_menus['ログアウト'] ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
             </div>
+        </div>
     </main>
+
     <footer>
     </footer>
 
