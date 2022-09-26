@@ -64,90 +64,61 @@ if ($check_id == false) {
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item navbar-brand">
-                            <h4><?= $ins->nav_title ?></h4>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item navbar-brand">
+                        <h4><?= $ins->nav_title ?></h4>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <form action="./action.php" method="POST">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="mb-4 col">
+                    <div class="row">
+                        <div class="col-md-8  offset-md-2 mb-4">
                             <p>退会処理を行います、よろしいですか？<br>退会処理を行うと、ユーザ情報および、これまでに記録したデキゴト全てが消去されます！</p>
                             <p class="text-danger fw-bold">※この処理は取り消せません！</p>
                         </div>
-                        <div class="col"></div>
                     </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
+                    <div class="row">
+                        <div class="col-md-8  offset-md-2 mb-4">
                             <label for="user_name" class="form-label">ユーザ名</label>
                             <input type="text" class="form-control" id="user_name" value=<?= $login_user['user_name'] ?>>
                         </div>
-                        <div class="col"></div>
                     </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
+                    <div class="row mb-4">
+                        <div class="col-md-4  offset-md-2">
                             <label for="family_name" class="form-label">姓</label>
                             <input type="text" class="form-control" id="family_name" value=<?= $login_user['family_name'] ?>>
                         </div>
-                        <div class="col">
+                        <div class="col-md-4">
                             <label for="first_name" class="form-label">名</label>
                             <input type="text" class="form-control" id="first_name" value=<?= $login_user['first_name'] ?>>
                         </div>
                     </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                    </div>
-                    <div class="row row-cols-3 d-flex justify-content-center">
-                        <div class="col">
+                    <div class="row">
+                        <div class="col-md-8  offset-md-2 mb-4">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
                             <input type="email" class="form-control" id="user_mail_address" value=<?= $login_user['user_mail_address'] ?>>
                         </div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="invisible mb-4 row row-cols-3 d-flex justify-content-center">
-                        <div class="col form-text text-danger">
-                            NG message
-                        </div>
-                        <div class="col"></div>
                     </div>
                 </fieldset>
-                <div class="mb-4 row row-cols-3 d-flex justify-content-center">
-                    <div class="col">
+                <div class="row">
+                    <div class="col-md-8  offset-md-2 mb-4">
                         <button type="submit" class="me-3 btn btn-success">退会する</button>
                         <a href="./cancel.php"><button type="button" class="btn btn-danger">キャンセル</button></a>
                     </div>
-                    <div class="col"></div>
                 </div>
             </form>
         </div>

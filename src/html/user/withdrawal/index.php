@@ -32,7 +32,7 @@ $ins = new Base();
 </head>
 
 <body class="bg-light mt-5">
-<header>
+    <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
                 <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
@@ -48,36 +48,41 @@ $ins = new Base();
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-md-8 offset-md-2 mb-2">
+                    <p>退会処理を進めるには、再ログインしてください</p>
+                </div>
+            </div>
+
             <form action="./confirm.php" method="post">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset>
-                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                        <div class="col">
+                    <div class="row mb-2">
+                        <div class="col-md-8 offset-md-2">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
                             <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" placeholder="hoge@example.com">
                         </div>
                     </div>
-                    <div class="mb-4 row row-cols-2 d-flex justify-content-center">
-                        <div class="col">
+                    <div class="row mb-2">
+                        <div class="col-md-8 offset-md-2">
                             <label for="pass" class="form-label">パスワード</label>
                             <input type="password" class="form-control" name="pass" id="pass" placeholder="your_password">
                         </div>
                     </div>
-                </fieldset>
-                <div class="row row-cols-2 d-flex justify-content-center">
-                    <div class="col form-text text-danger">
-                        <div class="col form-text text-danger">
+
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2 mb-2 form-text text-danger">
                             <?= isset($_SESSION['err']['err_checkId']) ? $_SESSION['err']['err_checkId'] : '' ?>
                         </div>
+
+                        <!-- ボタン -->
+                        <div class="col-md-8 offset-md-2">
+                            <input type="submit" class="me-3 btn btn-primary" value="ログイン">
+                            <a href=<?= $ins->things_top_page_url ?>><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                        </div>
                     </div>
-                </div>
-                <div class="row row-cols-2 d-flex justify-content-center">
-                    <div class="col">
-                        <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                        <a href=<?= $ins->things_top_page_url ?>><input type="button" class="btn btn-danger" value="キャンセル"></a>
-                    </div>
-                </div>
+                </fieldset>
             </form>
         </div>
     </main>
