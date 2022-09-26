@@ -46,7 +46,7 @@ $token = Security::makeToken();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
@@ -63,7 +63,7 @@ $token = Security::makeToken();
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <form action="./confirm.php" method="POST">
                 <fieldset>
                     <input type="hidden" name="token" value="<?= $token ?>">
