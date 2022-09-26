@@ -177,13 +177,12 @@ $token = Security::makeToken();
                                 <?= $_SESSION['err']['err_is_matched_pass'] ?>
                             <?php endif ?>
                         </div>
-                </fieldset>
-                <div class="mb-4 row d-flex justify-content-center">
-                    <div class="col-md-8">
-                        <button type="submit" class="me-3 btn btn-success">新規登録</button>
-                        <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                        <div class="mt-4 col-md-8">
+                            <button type="submit" class="me-3 btn btn-success">新規登録</button>
+                            <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         </div>
     </main>
