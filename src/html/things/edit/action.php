@@ -84,7 +84,7 @@ try {
     $result = $DBins->thingUpDate($_SESSION['edit_thing'], $_SESSION['login_user']['id'], $_SESSION['thing']);
     if ($result == true) {
         unset($_SESSION['thing'], $_SESSION['edit_thing'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
-        header('Location:./success.php');
+        header('Location:' . $ins->thing_show_page_url);
         exit();
     }
 } catch (Exception $e) {

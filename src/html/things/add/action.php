@@ -85,7 +85,7 @@ try {
     $result = $DBins->thingsAdd($_SESSION['post_data'], $_SESSION['login_user']['id']);
     if ($result == true) {
         unset($_SESSION['post_data'], $_SESSION['err']['err_llCheck'], $_SESSION['err']['err_llApproach'], $_SESSION['exception']);
-        header('Location:./success.php');
+        header('Location:'.$ins->thing_show_page_url);
         exit();
     }
 } catch (Exception $e) {
