@@ -26,7 +26,7 @@ $ins = new Base();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5 mb-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid">
@@ -48,7 +48,7 @@ $ins = new Base();
     </header>
 
     <main>
-        <div class="mt-5 container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-1 col-md-2 col-xl-3"></div>
                 <div class="mb-4 col-10 col-md-8 col-xl-6">

@@ -45,8 +45,8 @@ $things = $DBins->deletedThingShow($_SESSION['login_user']['id'], $search_date);
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
-<header>
+<body class="bg-light mt-5 mb-5">
+    <header>
         <nav class="navbar bg-opacity-75 fixed-top zindex-fixed justify-content-center p-0 navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="<?= $ins->top_page_url ?>">
@@ -107,7 +107,7 @@ $things = $DBins->deletedThingShow($_SESSION['login_user']['id'], $search_date);
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
 
@@ -150,7 +150,7 @@ $things = $DBins->deletedThingShow($_SESSION['login_user']['id'], $search_date);
                                     <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><button class="rounded-pill" id="edit_btn"><i class="bi bi-pencil">編集</i></button></a>
                                 </div>
                                 <div class="col-auto text-center">
-                                <a href="../delete/undo.php?id=<?= urlencode($thing['id']) ?>"><button class="rounded-pill" id="delete_btn"><i class="bi bi-arrow-counterclockwise">戻す</i></button></a>
+                                    <a href="../delete/undo.php?id=<?= urlencode($thing['id']) ?>"><button class="rounded-pill" id="delete_btn"><i class="bi bi-arrow-counterclockwise">戻す</i></button></a>
                                 </div>
                             </div>
                         <?php endforeach ?>

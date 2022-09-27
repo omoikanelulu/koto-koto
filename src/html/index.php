@@ -33,7 +33,7 @@ $token = Security::makeToken();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light mt-5">
+<body class="bg-light mt-5 mb-5">
 
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
@@ -104,11 +104,6 @@ $token = Security::makeToken();
             </div>
         </div>
     </main>
-
-
-    </div>
-
-
 
     <!-- bootstrap JavaScript Bundle with Popper -->
     <script src="../css/bootstrap5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -134,7 +134,7 @@ if ($has_err == true) {
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5 mb-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
@@ -151,7 +151,7 @@ if ($has_err == true) {
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <form action="./action.php" method="POST">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <fieldset disabled>

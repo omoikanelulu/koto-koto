@@ -29,7 +29,7 @@ $ins = new Base();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5 mb-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">
@@ -51,7 +51,7 @@ $ins = new Base();
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <div class="mb-4 row row-cols-sm-2 d-flex justify-content-center">
                 <div class="col">
                     <p><?= Config::SUCCESS_THINGS_ADD ?></p>

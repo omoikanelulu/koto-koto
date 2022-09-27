@@ -31,7 +31,7 @@ $ins = new Base();
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light mt-5">
+<body class="bg-light mt-5 mb-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">

@@ -45,7 +45,7 @@ $things = $DBins->goodThingShow($_SESSION['login_user']['id'], $search_date);
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light mt-5 mb-5">
 <header>
         <nav class="navbar bg-opacity-75 fixed-top zindex-fixed justify-content-center p-0 navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
@@ -107,7 +107,7 @@ $things = $DBins->goodThingShow($_SESSION['login_user']['id'], $search_date);
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
                     <!-- 削除済みのレコードがない場合とある場合で分岐させる -->

@@ -68,7 +68,7 @@ $_SESSION['thing'] = $thing;
     <title>デキゴトを編集</title>
 </head>
 
-<body class="mt-5 bg-light">
+<body class="bg-light mt-5 mb-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid d-flex align-items-center">

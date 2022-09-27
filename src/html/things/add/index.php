@@ -60,7 +60,7 @@ if (isset($_POST['search_date']) == false) {
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="mt-5 bg-light">
+<body class="bg-light mt-5 mb-5">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
