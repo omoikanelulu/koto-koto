@@ -52,12 +52,12 @@ $ins = new Base();
 
     <main>
         <div class="mt-5 container">
-            <div class="mb-4 row row-cols-2 d-flex justify-content-center">
+            <div class="mb-4 row row-cols-sm-2 d-flex justify-content-center">
                 <div class="col">
                     <p><?= Config::SUCCESS_THINGS_ADD ?></p>
                 </div>
             </div>
-            <div class="mb-4 row row-cols-2 d-flex justify-content-center">
+            <div class="mb-4 row row-cols-sm-2 d-flex justify-content-center">
                 <div class="col">
                     <a href="./index.php"><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
