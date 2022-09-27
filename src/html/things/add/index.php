@@ -60,7 +60,7 @@ if (isset($_POST['search_date']) == false) {
     <title><?= $ins->nav_title ?></title>
 </head>
 
-<body class="bg-light">
+<body class="mt-5 bg-light">
     <header>
         <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
@@ -119,7 +119,7 @@ if (isset($_POST['search_date']) == false) {
     </header>
 
     <main>
-        <div class="mt-5 container">
+        <div class="container">
             <div class="row justify-content:flex-start">
                 <div class="col-sm">
                     <h2 class="right_bg_line"><?= $today ?></h2>
