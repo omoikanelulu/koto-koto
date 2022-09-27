@@ -147,10 +147,10 @@ $things = $DBins->deletedThingShow($_SESSION['login_user']['id'], $search_date);
                             <div class="row justify-content-end m-2">
                                 <!-- 各種ボタンを表示 -->
                                 <div class="col-auto text-center">
-                                    <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
+                                    <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><button class="rounded-pill" id="edit_btn"><i class="bi bi-pencil">編集</i></button></a>
                                 </div>
                                 <div class="col-auto text-center">
-                                <a href="../delete/undo.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-arrow-counterclockwise">戻す</i></a>
+                                <a href="../delete/undo.php?id=<?= urlencode($thing['id']) ?>"><button class="rounded-pill" id="delete_btn"><i class="bi bi-arrow-counterclockwise">戻す</i></button></a>
                                 </div>
                             </div>
                         <?php endforeach ?>
