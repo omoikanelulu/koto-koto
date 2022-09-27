@@ -53,6 +53,9 @@ if (!empty($post['thing'])) {
         $result = '';
         $has_err = true;
     }
+} else {
+    $_SESSION['err']['err_llThing'] = Config::ERR_LL_THING;
+    $has_err = true;
 }
 
 // 値が入っていたらチェックを開始する
