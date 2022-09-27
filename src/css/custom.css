@@ -10377,6 +10377,20 @@ main .container {
   background-color: #91abe4;
 }
 
+#edit_btn {
+  border: solid 0.5px;
+  background-color: transparent;
+  color: #065148;
+  padding: 0.5rem;
+}
+
+#delete_btn {
+  border: solid 0.5px;
+  background-color: transparent;
+  color: #bd2130;
+  padding: 0.5rem;
+}
+
 #search_date_form {
   padding: 8px;
 }

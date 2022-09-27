@@ -198,6 +198,20 @@ main .container {
     background-color: darken($light, 10%);
 }
 
+#edit_btn {
+    border: solid 0.5px;
+    background-color: transparent;
+    color: darken($success, 10%);
+    padding: 0.5rem;
+}
+
+#delete_btn {
+    border: solid 0.5px;
+    background-color: transparent;
+    color: darken($danger, 10%);
+    padding: 0.5rem;
+}
+
 #search_date_form {
     padding: 8px;
 }
