@@ -65,85 +65,28 @@ echo '</pre>';
     <link rel="stylesheet" href="../../../css/bootstrap5.1.3/dist/css/bootstrap.min.css">
     <!-- 自作cssの読み込み -->
     <link rel="stylesheet" href="../../../css/custom.css">
-    <title><?= $ins->nav_title ?></title>
+    <title>デキゴトを編集</title>
 </head>
 
-<body class="bg-light">
+<body class="mt-5 bg-light">
     <header>
-        <nav class="navbar fixed-top zindex-fixed p-0 opacity-75 navbar-expand-md navbar-dark bg-dark">
-            <div class="navbar-text container-fluid">
-                <a class="navbar-brand" href="<?= $ins->top_page_url ?>">
+        <nav class="navbar fixed-top zindex-fixed p-0 bg-opacity-75 navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid d-flex align-items-center">
+                <a class="navbar-brand row" href="<?= $ins->top_page_url ?>">
                     <h1><?= Config::SITE_TITLE ?> |</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-lg-0 d-flex justify-content-start">
-                        <!-- ここからドロップダウンメニュー -->
-                        <!-- ページ移動メニュー -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                デキゴトを編集
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($ins->nav_menus['links'] as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
-                                <?php endforeach ?>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <!-- 年月日の入力フォーム -->
-                    <form class="invisible row" action="#">
-                        <div class="col input-group">
-                            <select class="form-select" name="input_year" id="input_year">
-                                <?php for ($i = Config::FIRST_YEAR; $i <= $ins->this_year; $i++) : ?>
-                                    <option value="$i"><?= $i ?></option>
-                                <?php endfor ?>
-                            </select>
-                            <label class="input-group-text" for="input_year">年</label>
-                        </div>
-                        <div class="col input-group">
-                            <select class="form-select" name="input_month" id="input_month">
-                                <?php foreach (Config::MONTHS as $key => $val) : ?>
-                                    <option value=<?= $val ?>><?= $val ?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_month">月</label>
-                        </div>
-                        <div class="col input-group">
-                            <select class="form-select" name="input_day" id="input_day">
-                                <?php foreach (Config::DAYS as $key => $val) : ?>
-                                    <option value=<?= $val ?>><?= $val ?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <label class="input-group-text" for="input_day">日</label>
-                        </div>
-                    </form>
-
-                    <!-- ユーザメニュー -->
-                    <ul class="navbar-nav mb-lg-0 d-flex justify-content-end">
-                        <li class="nav-item dropstart">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= isset($_SESSION['login_user']['user_name']) ? $_SESSION['login_user']['user_name'] : '' ?>
-                            </a>
-                            <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
-                                <?php endforeach ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- ここまでドロップダウンメニュー -->
-                </div>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item navbar-brand">
+                        <h4>デキゴトを編集</h4>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 
     <main>
-        <div class="mt-5 container">
-            <div class="row">
+        <div class="container">
+            <div class="row justify-content:flex-start">
                 <div class="col-sm">
                     <p>デキゴトを編集してください</p>
                 </div>
@@ -158,34 +101,29 @@ echo '</pre>';
             <form action="./action.php" method="post">
                 <input type="hidden" name="token" value=<?= $token ?>>
                 <input type="hidden" name="get_id" value=<?= $get_id ?>>
-                <div class="row mt-4 justify-content-end">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                <div class="row mt-4">
+                    <div class="col-md-8 offset-md-2">
                         <label class="form-label" for="thing">デキゴト
                             <textarea class="form-control" name="thing" id="thing" cols="80" rows="5" maxlength="200"><?= $thing['thing'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_THING ?></div>
                         </label>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- デキゴトの文字数エラーメッセージ -->
-                <div class="row justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                <div class="row mt-4">
+                    <div class="col-md-8 offset-md-2">
                         <div class="form-text text-danger">
                             <?= isset($_SESSION['err']['err_llThing']) ? $_SESSION['err']['err_llThing'] : '' ?>
                         </div>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 属性付与ブロック -->
-                <div class="row mt-4 justify-content-start">
-                    <div class="col-sm-2"></div>
+                <div class="row">
 
                     <!-- イイコトブロック -->
-                    <div class="col-sm-auto align-self-center">
+                    <div class="d-lg-flex col-md-7 offset-md-2">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
                             <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
@@ -195,10 +133,8 @@ echo '</pre>';
                                 <?php endforeach ?>
                             </select>
                         </div>
-                    </div>
 
-                    <!-- ヤナコトブロック -->
-                    <div class="col-sm-auto align-self-center">
+                        <!-- ヤナコトブロック -->
                         <div class="input-group">
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
@@ -209,40 +145,33 @@ echo '</pre>';
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 対処法の記入ブロック -->
-                <div class="row mt-4 justify-content-end">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                <div class="row mt-4">
+                    <div class="col-md-8 offset-md-2">
                         <label class="form-label" for="bad_thing_approach">ヤナコトの対処法
                             <textarea class="bad_factor form-control" name="bad_thing_approach" id="bad_thing_approach" cols="80" rows="5" maxlength="1000"><?= empty($thing['bad_thing_approach']) ? '' : $thing['bad_thing_approach'] ?></textarea>
                             <div class="form-text"><?= Config::TIPS_LL_APPROACH ?></div>
                         </label>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 対処法の文字数エラーメッセージ -->
                 <div class="row justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                    <div class="col-md-8 offset-md-2">
                         <div class="form-text text-danger">
                             <?= isset($_SESSION['err']['err_llApproach']) ? $_SESSION['err']['err_llApproach'] : '' ?>
                         </div>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
 
                 <!-- 送信ボタンたち -->
                 <div class="row justify-content-start">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-auto">
+                    <div class="col-md-8 offset-md-2">
                         <button class="me-3 btn btn-primary" type="submit">編集を登録</button>
                         <a href="./cancel.php"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                     </div>
-                    <div class="col-sm"></div>
                 </div>
             </form>
         </div>
