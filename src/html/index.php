@@ -62,7 +62,7 @@ $token = Security::makeToken();
                         <input type="hidden" name="token" value="<?= $token ?>">
                         <button class="btn btn-success" type="submit">新規登録</button>
                     </form>
-                    <a href="./user/logout/action.php"><button type="button" class="btn btn-danger">開発用ログアウトボタン</button></a>
+                    <!-- <a href="./user/logout/action.php"><button type="button" class="btn btn-danger">開発用ログアウトボタン</button></a> -->
                 </div>
             </div>
             <div class="row g-0">
