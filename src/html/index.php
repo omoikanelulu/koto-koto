@@ -118,12 +118,12 @@ $token = Security::makeToken();
 
     <?php
     // デバッグ用 //
-    echo '<pre>';
-    echo 'セッションID<br>';
-    var_dump($_COOKIE['PHPSESSID']);
-    echo 'セッションの中身<br>';
-    var_dump($_SESSION);
-    echo '</pre>';
+    // echo '<pre>';
+    // echo 'セッションID<br>';
+    // var_dump($_COOKIE['PHPSESSID']);
+    // echo 'セッションの中身<br>';
+    // var_dump($_SESSION);
+    // echo '</pre>';
     ////////////////
     ?>
 

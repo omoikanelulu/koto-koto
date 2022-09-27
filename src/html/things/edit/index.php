@@ -46,9 +46,9 @@ try {
 $_SESSION['thing'] = $thing;
 
 // デバッグ用 //
-echo '<pre>';
-var_dump($thing);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($thing);
+// echo '</pre>';
 // exit();
 ////////////////
 
@@ -180,9 +180,9 @@ echo '</pre>';
     <footer>
         <?php
         // デバッグ用 //
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
+        // echo '<pre>';
+        // var_dump($_SESSION);
+        // echo '</pre>';
         ////////////////
         ?>
     </footer>

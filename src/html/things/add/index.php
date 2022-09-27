@@ -206,9 +206,9 @@ if (isset($_POST['search_date']) == false) {
     <footer>
         <?php
         // デバッグ用 //
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
+        // echo '<pre>';
+        // var_dump($_SESSION);
+        // echo '</pre>';
         ////////////////
         ?>
     </footer>

@@ -90,10 +90,10 @@ $ins = new Base();
     <footer>
         <?php
         // デバッグ用 //
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
-        exit();
+        // echo '<pre>';
+        // var_dump($_SESSION);
+        // echo '</pre>';
+        // exit();
         ////////////////
         ?>
     </footer>
