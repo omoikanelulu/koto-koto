@@ -159,12 +159,6 @@ $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
                                 <div class="col-auto text-center">
                                     <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><button class="rounded-pill" id="delete_btn"><i class="bi bi-trash">削除</i></button></a>
                                 </div>
-                                <!-- <div class="col-auto text-center">
-                                    <a href="../edit/index.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-pencil">編集</i></a>
-                                </div>
-                                <div class="col-auto text-center">
-                                    <a href="../delete/action.php?id=<?= urlencode($thing['id']) ?>"><i class="bi bi-trash">削除</i></a>
-                                </div> -->
                             </div>
                         <?php endforeach ?>
                     <?php endif ?>
