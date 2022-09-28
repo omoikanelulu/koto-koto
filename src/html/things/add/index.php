@@ -29,8 +29,6 @@ if (isset($_SESSION['verified']['action']) == 'OK') {
 // 新しいトークンの生成
 $token = Security::makeToken();
 
-// 現在の日付を取得 $date->format('Y/n/d'); // 2016/1/25
-// 現在の日付を取得 $date->format('Y/m/d'); // 2016/01/25
 $date = new DateTime();
 // フォーマットを整えて変数に代入
 $today = $date->format('Y/m/d');
@@ -204,13 +202,6 @@ if (isset($_POST['search_date']) == false) {
     </main>
 
     <footer>
-        <?php
-        // デバッグ用 //
-        // echo '<pre>';
-        // var_dump($_SESSION);
-        // echo '</pre>';
-        ////////////////
-        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
