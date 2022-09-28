@@ -7,9 +7,6 @@ require_once '../../../class/Validation.php';
 // セッションスタート
 Security::session();
 
-// リファラがある場合は変数に代入しておく（使用していない、使い方のメモ）
-// $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
-
 // インスタンス作成
 $ins = new Base();
 
@@ -186,20 +183,8 @@ $token = Security::makeToken();
             </form>
         </div>
     </main>
+
     <footer>
-        <?php
-        // デバッグ用 //
-        // echo '<pre>$_POST_token';
-        // var_dump($_POST['token']);
-        // echo '</pre>';
-        // echo '<pre>$token';
-        // var_dump($token);
-        // echo '</pre>';
-        // echo '<pre>';
-        // var_dump($_SESSION);
-        // echo '</pre>';
-        ////////////////
-        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->

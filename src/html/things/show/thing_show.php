@@ -27,13 +27,6 @@ if (isset($_POST['search_date']) == false) {
 
 $things = $DBins->thingShow($_SESSION['login_user']['id'], $search_date);
 
-// デバッグ用 //
-// echo '<pre>';
-// var_dump($things);
-// echo '</pre>';
-// exit();
-////////////////
-
 ?>
 
 <!DOCTYPE html>

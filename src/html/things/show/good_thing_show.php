@@ -46,7 +46,7 @@ $things = $DBins->goodThingShow($_SESSION['login_user']['id'], $search_date);
 </head>
 
 <body class="bg-light mt-5 mb-5">
-<header>
+    <header>
         <nav class="navbar bg-opacity-75 fixed-top zindex-fixed justify-content-center p-0 navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-text container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="<?= $ins->top_page_url ?>">

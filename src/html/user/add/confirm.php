@@ -227,22 +227,8 @@ if ($has_err == true) {
             </form>
         </div>
     </main>
+
     <footer>
-
-        <?php
-        // デバッグ用 //
-        // echo '<pre>$_POST_token';
-        // var_dump($_POST['token']);
-        // echo '</pre>';
-        // echo '<pre>$token';
-        // var_dump($token);
-        // echo '</pre>';
-        // echo '<pre>';
-        // var_dump($_SESSION);
-        // echo '</pre>';
-        ////////////////
-        ?>
-
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->

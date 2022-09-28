@@ -123,14 +123,8 @@ if ($check_id == false) {
             </form>
         </div>
     </main>
+
     <footer>
-        <?php
-        // デバッグ用 //
-        // echo '<pre>';
-        // var_dump($_SESSION);
-        // echo '</pre>';
-        ////////////////
-        ?>
     </footer>
 
     <!-- bootstrap JavaScript Bundle with Popper -->
