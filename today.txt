@@ -1,0 +1,226 @@
+【SQL文の書き順】
+SELECT
+FROM
+INNER JOIN ON
+WHERE
+GROUPBY
+HAVING
+ORDERBY
+
+
+unsetは値を消す、
+デストロイはsessionを消す、基本的に使わなくていい(マニュアル)
+unset array() で全てのkeyを一掃する
+
+// リファラがある場合は変数に代入しておく（使用していない、使い方のメモ）
+// $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+
+
+・デキゴト編集の対処法がヤナコトにチェックがなくてもバリデーションされて、文字数チェックされてる
+・'ご登録がありません'の位置が気に入らん
+・デキゴト編集画面のnavbarのドロップダウンメニューが半透明のままだな、何処で設定したこれ？
+・position sticy というのを知ってしまった、これ入れたい
+・デキゴト表示には「対処法」も表示されるけど、その他の表示では表示されない…仕様だったっけ？
+・イイコトとヤナコトのソートして表示は無しにする、ヤナコトの強度が数値じゃなくなったから
+・usersのis_deletedが'1'のレコードを削除しようとすると、エラーになりやがる…
+
+
+
+
+いよいよPHPの課題を提出したので、Laravel学習準備中…
+Linux環境だとまたややこしいだろうな…とは薄々感じていたので、
+迷うこと無くPCは借りるという決断。
+
+これまで自前のPCで書いたコードも、GitHub経由で貸与PCにクローン出来るだろうし、
+同じ環境は多分作れるだろう。
+ネットワーク必須の社会になったもんだなぁ。
+
+VScodeもインストールして、これもGitHubのアカウントで同期すれば設定も反映されるはず…
+されたね！便利！
+
+さあ、続きは明日から。
+
+
+
+
+DBのSQライト
+PHPバージョン8.0より上げるな
+ララベル６を使う
+
+
+
+
+【動作チェックリスト】
+○ログインとログアウト
+○ユーザ新規登録
+○ユーザ情報の編集、削除
+○デキゴトの登録、削除、取り消し
+○対処法の登録、削除
+○successページの廃止
+○イイコト、ヤナコトの振り分け、解除
+○デキゴト、イイコト、ヤナコト、削除済みそれぞれの表示
+○指定した日時以降が表示されているか
+
+
+
+
+
+ありがとござぃｍ…( ˘ω˘)ｽﾔｧ…
+
+( ｰ`дｰ´)ｷﾘｯ
+
+
+
+くもしりちおぽ〜
+（ありがとうございました〜）
+
+【classの書き方！】_(:3」∠)_
+classプロパティを書く（これが初期値になる）
+
+public $top_page = 'hoge'; //これでhogeが代入される、コレがインスタンスを作って呼び出した時に参照される
+
+文字列ならこれでOKだが、変数が入ってくるとコレでは上手くいかなくなる。
+その場合は、「プロパティの初期値をコンストラクタで上書きする」こうすると上手くいくようになる（なんでやねん）
+
+public $top_page = null; //一旦初期値を入れておいて…
+
+public function __constract() //コンストラクタで$top_page_urlを上書きすると…
+  $top_page_url = 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/index.php';
+
+$ins = new Base; // インスタンスを作って…
+var_dump(ins->$top_page_url); //これで呼び出せる！（なんでやねん）
+
+プロパティの初期値をコンストラクタで上書きする必要があるという事（なんでやねん）
+
+
+
+
+
+// 今後の課題 //　
+トップページに戻るボタンの処理は、
+「ログイン中はこっちのページ、ログインしていないならこっちのページ」
+という風にしたら良かったかも
+
+
+
+
+
+今回は、configファイルを作ってそれを require_once して上手い事したいと思っているけど、
+require_once する時の path の指定って何が正解なんだろう
+
+../../../class/config.php 相対パスだとこんな感じになるし、
+絶対パスで書くべきというサイトもある。
+
+require_once dirname(__DIR__) . '/class/config.php';
+
+
+
+
+
+
+
+
+
+エクスプレッシブ・ライティング（自己受容感）
+これは破り捨てるタイプ
+
+ストレスコーピングに似ている
+
+崖の上の壺
+
+ごめんやしておくれやしてごめんやっしゃー
+
+(;>Д<)
+
+
+
+管理少女♧みどりん
+大女優♢すわちゃん
+ウォーターブック♡SAYURI
+坂上・タランティーノ
+岡本・セリアンティーヌ
+
+
+
+1ページに表示するレコードの数
+トータルのレコード数
+トータルページ数
+現在のページ番号
+
+データの表示は、全データの何件目から何件目を取得すればよいかがわかればいいのです。
+
+
+
+array_slice($array,$offset,$length)
+
+
+
+
+
+
+
+
+アルゴリズム「問題解決のための手続き」
+決定問題　ｙかｎか
+関数問題　１つあるいは複数の値で答えるもの
+
+順次処理
+順番に処理していく
+
+条件処理
+条件により処理を変える
+
+繰り返し処理
+条件が成立する間繰り返す
+
+アルゴリズムはフローチャートで表現できる
+
+正当性
+正しい結果をもたらせなければいけない
+
+停止性
+最終的に必ず停止しなければいけない
+
+
+
+<!-- index.htmlへ遷移 -->
+<button onclick="location.href='./index.html'">遷移</button>
+<!-- 直前のページに戻る -->
+<button onclick="history.back()">戻る</button>
+
+$r=$_SERVER['HTTP_REFERER'];
+$h=$_SERVER['HTTP_HOST'];
+リファラがある、HTTP_HOSTと一致する文字があるか調べるstrpoos($r,$h)
+
+【サーチを検索】
+SELECT todo_items.id,todo_items.user_id,todo_items.item_name,todo_items.registration_date,todo_items.expire_date,todo_items.finished_date,todo_items.is_deleted,users.family_name,users.first_name FROM todo_items INNER JOIN users ON todo_items.user_id = users.id WHERE item_name LIKE "%サーチ%" ORDER BY todo_items.expire_date ASC;
+
+
+【未削除であいまい検索サーチ】
+SELECT todo_items.id,todo_items.user_id,todo_items.item_name,todo_items.registration_date,todo_items.expire_date,todo_items.finished_date,todo_items.is_deleted,users.family_name,users.first_name FROM todo_items INNER JOIN users ON todo_items.user_id = users.id WHERE todo_items.is_deleted = 0 AND item_name LIKE "%サーチ%" ORDER BY todo_items.expire_date ASC;
+
+
+【完全体？】
+SELECT todo_items.id,todo_items.user_id,todo_items.item_name,todo_items.registration_date,todo_items.expire_date,todo_items.finished_date,todo_items.is_deleted,users.family_name,users.first_name FROM todo_items INNER JOIN users ON todo_items.user_id = users.id WHERE todo_items.is_deleted = 0 AND todo_items.item_name LIKE "%サーチ%" ORDER BY todo_items.expire_date ASC;
+
+
+
+
+21　ヘッダとボディ
+リクエストヘッダ、ボディ
+レスポンスヘッダ、ボディ
+ヘッダにはURL、HTTPのバージョン、メソッド（postやget）
+コンテンツのタイプ、ブラウザの情報、cookie（サーバがデータを保存する）
+ボディ
+formの送信データ、アップロードするファイル
+
+
+22　HTTPレスポンスの状態を表すコード
+2xxが正常（受け取られた）
+3xxリダイレクション（追加的な処理が必要）
+4xxクライアントエラー（リクエストに誤りがある、受け入れられない）
+5xxサーバエラー（サーバがリクエストの処理に失敗した）
+処理が多すぎて間に合わない→503
+23　cookieとはブラウザに保存される情報（テキストファイル）
+24　サーバに保存される情報（サーバのcookie）
+セッションはブラウザを閉じれば消える、cookieを利用しているがそれはセッションIDだけ
