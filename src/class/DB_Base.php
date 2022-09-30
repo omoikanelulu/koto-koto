@@ -7,7 +7,7 @@ class DB_Base
     const DB_NAME = 'koto-koto';
     const DB_HOST = 'localhost';
     const DB_USER = 'root';
-    const DB_PASS = 'ナイショ';
+    const DB_PASS = '0971790';
 
     protected $dbh;
 
