@@ -33,9 +33,6 @@ class Base //クラスプロパティの値には動的な値を入れられな�
         $this->nav_menus = array(
             'links' => array(
                 "デキゴトを記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/add/index.php',
-                // "デキゴトを修正" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/edit/index.php',
-                // "デキゴトを削除" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/delete/index.php',
-                // "対処法を記録" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/edit/add_approach.php',
                 "- - - - - - - - - - - - - -" => '',
                 "デキゴトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/show/thing_show.php',
                 "イイコトを表示" => 'http://' . $_SERVER["HTTP_HOST"] . '/koto-koto/src/html/things/show/good_thing_show.php',
