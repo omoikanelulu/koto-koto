@@ -17,7 +17,11 @@ class DB_Users extends DB_Base
     {
         $rec = '';
 
-        $sql = 'SELECT * FROM users WHERE user_mail_address=:user_mail_address AND is_deleted=0';
+        $sql = 'SELECT *';
+        $sql .= ' FROM users';
+        $sql .= ' WHERE';
+        $sql .= ' user_mail_address = :user_mail_address';
+        $sql .= ' AND is_deleted = 0';
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
         $stmt->execute();
@@ -64,16 +68,16 @@ class DB_Users extends DB_Base
         isset($edit_user_data['pass']) ? $edit_user_data['pass'] = password_hash($edit_user_data['pass'], PASSWORD_DEFAULT) : '';
 
         // クエリを$queに代入する
-        $que = isset($edit_user_data['user_name']) ? ',user_name=:user_name' : '';
-        $que .= isset($edit_user_data['pass']) ? ',pass=:pass' : '';
-        $que .= isset($edit_user_data['user_mail_address']) ? ',user_mail_address=:user_mail_address' : '';
+        $que = isset($edit_user_data['user_name']) ? ',user_name = :user_name' : '';
+        $que .= isset($edit_user_data['pass']) ? ',pass = :pass' : '';
+        $que .= isset($edit_user_data['user_mail_address']) ? ',user_mail_address = :user_mail_address' : '';
 
         // クエリの最左に来る','を除去する
         $que = ltrim($que, ',');
 
         $sql = 'UPDATE users SET ';
         $sql .= $que;
-        $sql .= ' WHERE id=:id';
+        $sql .= ' WHERE id = :id';
 
         $stmt = $this->dbh->prepare($sql);
         // バインドが必要なプレースメントだけににバインドするように、if文でbindValueをするかしないか判定する
@@ -101,11 +105,10 @@ class DB_Users extends DB_Base
     public function deletedFlagOn($login_user)
     {
         $sql = 'UPDATE users';
-        $sql .= ' SET is_deleted=1';
-        $sql .= ' WHERE users.id=:id';
+        $sql .= ' SET is_deleted = 1';
+        $sql .= ' WHERE users.id = :id';
 
         $stmt = $this->dbh->prepare($sql);
-        // $stmt->bindValue(':is_deleted', $is_deleted, PDO::PARAM_INT);
         $stmt->bindValue(':id', $login_user['id'], PDO::PARAM_INT);
 
         $stmt->execute();
@@ -131,7 +134,8 @@ class DB_Users extends DB_Base
         $sql .= ',create_date_time';
         $sql .= ',update_date_time';
         $sql .= ' FROM users';
-        $sql .= ' WHERE is_deleted = :int';
+        $sql .= ' WHERE';
+        $sql .= ' is_deleted = :int';
         $sql .= ' ORDER BY id ASC';
 
         $stmt = $this->dbh->prepare($sql);
@@ -140,65 +144,5 @@ class DB_Users extends DB_Base
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    /**
-     * 特定の1レコードを取得する
-     */
-    public function pick_one($id): array
-    {
-        $sql = 'SELECT';
-        $sql .= ' id';
-        $sql .= ',user';
-        $sql .= ',family_name';
-        $sql .= ',first_name';
-        $sql .= ',is_admin';
-        $sql .= ',is_deleted';
-        $sql .= ' FROM users';
-        $sql .= ' WHERE is_deleted = 0 AND id = :id';
-        $sql .= ' ORDER BY id ASC';
-
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    /**
-     * DBのuserに重複があるか確認
-     * @param string $user
-     * @return bool
-     * true 重複あり false 重複なし
-     */
-    public function dbDupUser(string $user): bool
-    {
-        $sql = 'SELECT * FROM users WHERE user=:user';
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':user', $user, PDO::PARAM_STR);
-        $stmt->execute();
-        // DBに存在したレコードが入る
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (empty($rec)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * 会員情報削除
-     * 物理削除
-     */
-    public function dbDelete()
-    {
-        $sql = 'DELETE FROM users WHERE(:name, :pass)';
-
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':pass', $_POST['pass'], PDO::PARAM_STR);
-        // $stmt->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
-
-        $stmt->execute();
     }
 }
