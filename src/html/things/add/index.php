@@ -149,7 +149,7 @@ if (isset($_POST['search_date']) == false) {
                 <div class="row mt-4">
 
                     <!-- イイコトブロック -->
-                    <div class="d-lg-flex col-md-7 offset-md-2">
+                    <div class="d-lg-flex col-md-6 offset-md-2">
                         <div class="input-group">
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
                             <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
