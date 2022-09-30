@@ -68,11 +68,18 @@ class DB_Things extends DB_Base
     public function thingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
-        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' id';
+        $sql .= ',thing';
+        $sql .= ',good_thing_flag';
+        $sql .= ',good_thing_rank';
+        $sql .= ',bad_thing_flag';
+        $sql .= ',bad_thing_level';
+        $sql .= ',bad_thing_approach';
+        $sql .= ',create_date_time';
         $sql .= ' FROM things';
         $sql .= ' WHERE';
         $sql .= ' is_deleted = 0';
-        $sql .= ' AND user_id=:user_id';
+        $sql .= ' AND user_id = :user_id';
         $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
 
@@ -93,11 +100,18 @@ class DB_Things extends DB_Base
     public function goodThingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
-        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' id';
+        $sql .= ',thing';
+        $sql .= ',good_thing_flag';
+        $sql .= ',good_thing_rank';
+        $sql .= ',bad_thing_flag';
+        $sql .= ',bad_thing_level';
+        $sql .= ',bad_thing_approach';
+        $sql .= ',create_date_time';
         $sql .= ' FROM things';
         $sql .= ' WHERE';
         $sql .= ' is_deleted = 0';
-        $sql .= ' AND user_id=:user_id';
+        $sql .= ' AND user_id = :user_id';
         $sql .= ' AND good_thing_flag = 1';
         $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
@@ -119,11 +133,18 @@ class DB_Things extends DB_Base
     public function badThingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
-        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' id';
+        $sql .= ',thing';
+        $sql .= ',good_thing_flag';
+        $sql .= ',good_thing_rank';
+        $sql .= ',bad_thing_flag';
+        $sql .= ',bad_thing_level';
+        $sql .= ',bad_thing_approach';
+        $sql .= ',create_date_time';
         $sql .= ' FROM things';
         $sql .= ' WHERE';
         $sql .= ' is_deleted = 0';
-        $sql .= ' AND user_id=:user_id';
+        $sql .= ' AND user_id = :user_id';
         $sql .= ' AND bad_thing_flag = 1';
         $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
@@ -145,10 +166,17 @@ class DB_Things extends DB_Base
     public function deletedThingShow($user_id, $search_date)
     {
         $sql = 'SELECT';
-        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' id';
+        $sql .= ',thing';
+        $sql .= ',good_thing_flag';
+        $sql .= ',good_thing_rank';
+        $sql .= ',bad_thing_flag';
+        $sql .= ',bad_thing_level';
+        $sql .= ',bad_thing_approach';
+        $sql .= ',create_date_time';
         $sql .= ' FROM things';
         $sql .= ' WHERE';
-        $sql .= ' user_id=:user_id';
+        $sql .= ' user_id = :user_id';
         $sql .= ' AND is_deleted = 1';
         $sql .= ' AND create_date_time >= :search_date';
         $sql .= ' ORDER BY create_date_time DESC';
@@ -170,9 +198,17 @@ class DB_Things extends DB_Base
     public function thingSelect($id, $user_id)
     {
         $sql = 'SELECT';
-        $sql .= ' id,thing,good_thing_flag,good_thing_rank,bad_thing_flag,bad_thing_level,bad_thing_approach,create_date_time';
+        $sql .= ' id';
+        $sql .= ',thing';
+        $sql .= ',good_thing_flag';
+        $sql .= ',good_thing_rank';
+        $sql .= ',bad_thing_flag';
+        $sql .= ',bad_thing_level';
+        $sql .= ',bad_thing_approach';
+        $sql .= ',create_date_time';
         $sql .= ' FROM things';
-        $sql .= ' WHERE id=:id AND user_id=:user_id';
+        $sql .= ' WHERE id = :id';
+        $sql .= ' AND user_id = :user_id';
         $sql .= ' ORDER BY create_date_time DESC';
 
         $stmt = $this->dbh->prepare($sql);
@@ -191,7 +227,11 @@ class DB_Things extends DB_Base
      */
     public function thingDelete($id, $user_id)
     {
-        $sql = 'UPDATE things SET is_deleted=:is_deleted WHERE id=:id AND user_id=:user_id';
+        $sql = 'UPDATE things';
+        $sql .= ' SET';
+        $sql .= ' is_deleted = :is_deleted';
+        $sql .= ' WHERE id = :id';
+        $sql .= ' AND user_id = :user_id';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':is_deleted', 1, PDO::PARAM_INT);
@@ -202,11 +242,14 @@ class DB_Things extends DB_Base
     }
 
     /**
-     * 削除フラグを1にUPDATEする
+     * 削除フラグを0にUPDATEする
      */
     public function thingUndo($id, $user_id)
     {
-        $sql = 'UPDATE things SET is_deleted=:is_deleted WHERE id=:id AND user_id=:user_id';
+        $sql = 'UPDATE things';
+        $sql .= ' SET is_deleted = :is_deleted';
+        $sql .= ' WHERE id = :id';
+        $sql .= ' AND user_id = :user_id';
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':is_deleted', 0, PDO::PARAM_INT);
@@ -223,14 +266,14 @@ class DB_Things extends DB_Base
     {
         $sql = 'UPDATE things';
         $sql .= ' SET';
-        $sql .= ' thing=:thing';
-        $sql .= ',good_thing_flag=:good_thing_flag';
-        $sql .= ',good_thing_rank=:good_thing_rank';
-        $sql .= ',bad_thing_flag=:bad_thing_flag';
-        $sql .= ',bad_thing_level=:bad_thing_level';
-        $sql .= ',bad_thing_approach=:bad_thing_approach';
-        $sql .= ' WHERE id=:id';
-        $sql .= ' AND user_id=:user_id';
+        $sql .= ' thing = :thing';
+        $sql .= ',good_thing_flag = :good_thing_flag';
+        $sql .= ',good_thing_rank = :good_thing_rank';
+        $sql .= ',bad_thing_flag = :bad_thing_flag';
+        $sql .= ',bad_thing_level = :bad_thing_level';
+        $sql .= ',bad_thing_approach = :bad_thing_approach';
+        $sql .= ' WHERE id = :id';
+        $sql .= ' AND user_id = :user_id';
 
         $stmt = $this->dbh->prepare($sql);
 
