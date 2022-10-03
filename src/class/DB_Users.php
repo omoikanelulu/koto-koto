@@ -22,6 +22,7 @@ class DB_Users extends DB_Base
         $sql .= ' WHERE';
         $sql .= ' user_mail_address = :user_mail_address';
         $sql .= ' AND is_deleted = 0';
+
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':user_mail_address', $post['user_mail_address'], PDO::PARAM_STR);
         $stmt->execute();
