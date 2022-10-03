@@ -15,16 +15,20 @@ $ins = new Base;
 $DBins = new DB_Things;
 
 $date = new DateTime();
-// フォーマットを整えて変数に代入
-// 今月の1日に設定
+
+// フォーマットを整えて変数に代入し、日にちを1日に設定
 $this_month = $date->format('Y-m-01');
 
+// navbarのinput<type="date">で日時指定した場合は、指定された日付で処理を行う
 if (isset($_POST['search_date']) == false) {
+    // ユーザから日時の指定がなかった場合、当月の1日で処理する
     $search_date = $this_month;
 } else {
+    // ユーザから日時が指定されている場合、その日付で処理する
     $search_date = $_POST['search_date'];
 }
 
+// 該当する期間のレコードをDBから引っ張ってくる
 $things = $DBins->deletedThingShow($_SESSION['login_user']['id'], $search_date);
 
 ?>
