@@ -1,13 +1,12 @@
 <?php
 require_once '../../../class/Base.php';
 require_once '../../../class/Security.php';
+require_once '../../../class/Util.php';
 
 Security::session();
 
-// $_SESSIONにエラーメッセージがあればunsetする
-if (isset($_SESSION['err']) == true) {
-    unset($_SESSION['err']);
-}
+// キャンセル処理
+Util::usersCancel();
 
 $ins = new Base;
 

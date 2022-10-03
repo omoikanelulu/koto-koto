@@ -1,18 +1,21 @@
 <?php
-require_once 'Security.php';
-
-Security::session();
 
 class Util
 {
-    // デキゴトの処理で使用するキャンセル処理
+    /**
+     * デキゴトの処理で使用するキャンセル処理
+     */
     public static function thingsCancel()
     {
+        // $_SESSIONにポストされたデータがあればunsetする
+        if (isset($_SESSION['post_data']) == true) {
+            unset($_SESSION['post_data']);
+        }
         // $_SESSIONに編集前のデキゴトがあればunsetする
         if (isset($_SESSION['thing']) == true) {
             unset($_SESSION['thing']);
         }
-        // $_SESSIONにユーザが入力したデータがあればunsetする
+        // $_SESSIONに編集用のデータがあればunsetする
         if (isset($_SESSION['edit_thing']) == true) {
             unset($_SESSION['edit_thing']);
         }
@@ -32,7 +35,9 @@ class Util
         }
     }
 
-    // ユーザの処理で使用するキャンセル処理
+    /**
+     * ユーザの処理で使用するキャンセル処理
+     */
     public static function usersCancel()
     {
         // $_SESSIONにユーザが入力したデータがあればunsetする
