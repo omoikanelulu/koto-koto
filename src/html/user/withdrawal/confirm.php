@@ -94,23 +94,23 @@ if ($check_id == false) {
                     <div class="row">
                         <div class="col-md-8  offset-md-2 mb-4">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" id="user_name" value=<?= $login_user['user_name'] ?>>
+                            <input type="text" class="form-control" id="user_name" value="<?= $login_user['user_name'] ?>">
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-4  offset-md-2">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" id="family_name" value=<?= $login_user['family_name'] ?>>
+                            <input type="text" class="form-control" id="family_name" value="<?= $login_user['family_name'] ?>">
                         </div>
                         <div class="col-md-4">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" id="first_name" value=<?= $login_user['first_name'] ?>>
+                            <input type="text" class="form-control" id="first_name" value="<?= $login_user['first_name'] ?>">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8  offset-md-2 mb-4">
                             <label for="user_mail_address" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" id="user_mail_address" value=<?= $login_user['user_mail_address'] ?>>
+                            <input type="email" class="form-control" id="user_mail_address" value="<?= $login_user['user_mail_address'] ?>">
                         </div>
                     </div>
                 </fieldset>

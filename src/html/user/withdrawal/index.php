@@ -79,7 +79,7 @@ $ins = new Base();
                         <!-- ボタン -->
                         <div class="col-md-8 offset-md-2">
                             <input type="submit" class="me-3 btn btn-primary" value="ログイン">
-                            <a href=<?= $ins->things_top_page_url ?>><input type="button" class="btn btn-danger" value="キャンセル"></a>
+                            <a href="<?= $ins->things_top_page_url ?>"><input type="button" class="btn btn-danger" value="キャンセル"></a>
                         </div>
                     </div>
                 </fieldset>

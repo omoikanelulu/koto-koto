@@ -52,7 +52,7 @@ $ins = new Base();
             </div>
             <div class="row">
                 <div class="col-md-8  offset-md-2 mb-4">
-                    <a href=<?= $ins->nav_user_menus['ログアウト'] ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
+                    <a href="<?= $ins->nav_user_menus['ログアウト'] ?>"><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
             </div>
         </div>

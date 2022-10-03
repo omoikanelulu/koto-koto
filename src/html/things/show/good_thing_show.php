@@ -82,7 +82,7 @@ $things = $DBins->goodThingShow($_SESSION['login_user']['id'], $search_date);
                             </a>
                             <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
+                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
                                 <?php endforeach ?>
                             </ul>
                         </li>
@@ -93,7 +93,7 @@ $things = $DBins->goodThingShow($_SESSION['login_user']['id'], $search_date);
                         <form class="d-flex justify-content-start" id="search_date_form" action="#" method="post">
                             <div class="row mb-lg-0">
                                 <div class="px-0 col-sm input-group">
-                                    <input class="me-2" type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                                    <input class="me-2" type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value="<?= $search_date ?>">
                                     <i class="bi bi-calendar" id="search_date_icon"></i>
                                     <input class="btn rounded-pill" type="submit" id="search_date_submit" value="以降を表示">
                                 </div>

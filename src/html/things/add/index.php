@@ -92,7 +92,7 @@ if (isset($_POST['search_date']) == false) {
                             </a>
                             <ul class="text-start dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <?php foreach ($ins->nav_user_menus as $menu => $url) : ?>
-                                    <li><a class="dropdown-item" href=<?= $url ?>><?= $menu ?></a></li>
+                                    <li><a class="dropdown-item" href="<?= $url ?>"><?= $menu ?></a></li>
                                 <?php endforeach ?>
                             </ul>
                         </li>
@@ -102,7 +102,7 @@ if (isset($_POST['search_date']) == false) {
                     <form class="d-none row me-auto d-flex justify-content-start" id="search_date_form" action="#" method="post">
                         <div class="navbar-nav mb-lg-0">
                             <div class="col-sm input-group">
-                                <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value=<?= $search_date ?>>
+                                <input type="date" name="search_date" id="search_date_input" pattern=”[0-9]{4}-[0-9]{2}-[0-9]{2}” value="<?= $search_date ?>">
                                 <i class="bi bi-calendar" id="search_date_icon"></i>
                             </div>
                             <div class="col-sm input-group">
@@ -154,7 +154,7 @@ if (isset($_POST['search_date']) == false) {
                             <label class="input-group-text" for="good_thing_rank">イイコトランク</label>
                             <select class="level form-select" name="good_thing_rank" id="good_thing_rank">
                                 <?php foreach (Config::GOOD_THING_RANK as $i) : ?>
-                                    <option value=<?= $i ?>><?= $i ?>位</option>
+                                    <option value="<?= $i ?>"><?= $i ?>位</option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -164,7 +164,7 @@ if (isset($_POST['search_date']) == false) {
                             <label class="input-group-text" for="bad_thing_level">ヤナコトレベル</label>
                             <select class="bad_factor level form-select" name="bad_thing_level" id="bad_thing_level">
                                 <?php foreach (Config::BAD_THING_LEVEL as $i) : ?>
-                                    <option value=<?= $i ?>><?= $i ?></option>
+                                    <option value="<?= $i ?>"><?= $i ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

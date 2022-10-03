@@ -70,7 +70,7 @@ $token = Security::makeToken();
                         </div>
                         <div class="col-md-8">
                             <label for="user_name" class="form-label">ユーザ名</label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['user_name'] : '' ?>>
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="user_name" value="<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['user_name'] : '' ?>">
                         </div>
                         <div class="col-md-8 mb-2 form-text text-danger">
                             <?php if (isset($_SESSION['err']['err_ll_user_name'])) : ?>
@@ -79,7 +79,7 @@ $token = Security::makeToken();
                         </div>
                         <div class="col-md-8">
                             <label for="family_name" class="form-label">姓</label>
-                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['family_name'] : '' ?>>
+                            <input type="text" class="form-control" name="family_name" id="family_name" placeholder="family_name" value="<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['family_name'] : '' ?>">
                         </div>
                         <div class="col-md-8 mb-2 form-text text-danger">
                             <?php if (isset($_SESSION['err']['err_ll_family_name'])) : ?>
@@ -88,7 +88,7 @@ $token = Security::makeToken();
                         </div>
                         <div class="col-md-8">
                             <label for="first_name" class="form-label">名</label>
-                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name" value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['first_name'] : '' ?>>
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first_name" value="<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['first_name'] : '' ?>">
                         </div>
                         <div class="col-md-8 mb-2 form-text text-danger">
                             <?php if (isset($_SESSION['err']['err_ll_first_name'])) : ?>
@@ -101,9 +101,9 @@ $token = Security::makeToken();
                         <div class="col-md-8">
                             <div class="input-group">
                                 <select class="form-select" name="birth_date_year" id="birth_date_year">
-                                    <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?></option>
+                                    <option value="<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?>"><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_year'] : '' ?></option>
                                     <?php for ($i = $ins->this_year; $i >= $ins->this_year - 100; $i--) : ?>
-                                        <option value=<?= $i ?>><?= $i ?></option>
+                                        <option value="<?= $i ?>"><?= $i ?></option>
                                     <?php endfor ?>
                                 </select>
                                 <label class="input-group-text" for="birth_date_year">年</label>
@@ -113,9 +113,9 @@ $token = Security::makeToken();
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <select class="form-select" name="birth_date_month" id="birth_date_month">
-                                        <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?></option>
+                                        <option value="<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?>"><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_month'] : '' ?></option>
                                         <?php foreach (Config::MONTHS as $key => $val) : ?>
-                                            <option value=<?= $val ?>><?= $val ?></option>
+                                            <option value="<?= $val ?>"><?= $val ?></option>
                                         <?php endforeach ?>
                                     </select>
                                     <label class="input-group-text" for="birth_date_month">月</label>
@@ -124,9 +124,9 @@ $token = Security::makeToken();
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <select class="form-select" name="birth_date_day" id="birth_date_day">
-                                        <option value=<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?>><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?></option>
+                                        <option value="<?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?>"><?= isset($_SESSION['input_user_data']) ? $_SESSION['input_user_data']['birth_date_day'] : '' ?></option>
                                         <?php foreach (Config::DAYS as $key => $val) : ?>
-                                            <option value=<?= $val ?>><?= $val ?></option>
+                                            <option value="<?= $val ?>"><?= $val ?></option>
                                         <?php endforeach ?>
                                     </select>
                                     <label class="input-group-text" for="birth_date_day">日</label>

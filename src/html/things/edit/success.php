@@ -58,7 +58,7 @@ $ins = new Base();
             </div>
             <div class="mb-4 row row-cols-sm-2 d-flex justify-content-center">
                 <div class="col">
-                    <a href=<?= $ins->thing_show_page_url ?>><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
+                    <a href="<?= $ins->thing_show_page_url ?>"><button type="button" class="me-3 btn btn-primary">トップページへ</button></a>
                 </div>
             </div>
         </div>

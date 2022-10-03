@@ -121,21 +121,21 @@ if ($has_ng == true) {
                     <div class="row mb-2">
                         <div class="col-md-8 offset-md-2 mb-2">
                             <label for="user_name" class="form-label">新しいユーザ名</label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" value=<?= isset($post['user_name']) ? $post['user_name'] : '' ?>>
+                            <input type="text" class="form-control" name="user_name" id="user_name" value="<?= isset($post['user_name']) ? $post['user_name'] : '' ?>">
                         </div>
                     </div>
 
                     <div class="row mb-2">
                         <div class="col-md-8 offset-md-2 mb-2">
                             <label for="user_mail_address" class="form-label">新しいメールアドレス</label>
-                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" value=<?= isset($post['user_mail_address']) ? $post['user_mail_address'] : '' ?>>
+                            <input type="email" class="form-control" name="user_mail_address" id="user_mail_address" value="<?= isset($post['user_mail_address']) ? $post['user_mail_address'] : '' ?>">
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-md-8 offset-md-2">
                             <label for="pass" class="form-label">新しいパスワード</label>
-                            <input type="password" class="form-control" name="pass" id="pass" value=<?= isset($post['pass']) ? $post['pass'] : '' ?>>
+                            <input type="password" class="form-control" name="pass" id="pass" value="<?= isset($post['pass']) ? $post['pass'] : '' ?>">
                         </div>
                     </div>
                 </fieldset>
